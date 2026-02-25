@@ -411,6 +411,20 @@ class NutritionController extends Controller
     public function downloadStoredPdf(Request $request)
     {
         $userId = auth()->id();
+        $user = \App\Models\Utilisateur::find($userId);
+
+        if (!$user) {
+            return response()->json(['success' => false, 'message' => 'User not found'], 404);
+        }
+
+        // Restriction check
+        if ($user->maladie_chronique_id != 1 && !empty($user->maladie_chronique_id)) {
+            return response()->json([
+                'success' => false, 
+                'message' => 'Le téléchargement du guide nutritionnel complet est actuellement limité aux profils avec obésité modérée (ID 1) ou sans pathologie déclarée.'
+            ], 403);
+        }
+
         $plan = \App\Models\PlanNutritionnel::where('utilisateur_id', $userId)->first();
 
         if (!$plan || !$plan->pdf_path) {
@@ -462,6 +476,14 @@ class NutritionController extends Controller
 
         if (!$user) {
              return response()->json(['success' => false, 'message' => 'User not found'], 404);
+        }
+
+        // Restriction check
+        if ($user->maladie_chronique_id != 1 && !empty($user->maladie_chronique_id)) {
+            return response()->json([
+                'success' => false, 
+                'message' => 'La génération du guide nutritionnel complet est actuellement limitée aux profils avec obésité modérée (ID 1) ou sans pathologie déclarée.'
+            ], 403);
         }
 
         // 1. Metrics
@@ -552,9 +574,6 @@ class NutritionController extends Controller
              $responsesMap[$qid] = ['text' => $text];
         }
         
-        // We need to format the Q&A specifically for the "Evaluation Personnalisée" section of the PDF
-        // The PDF expects an array of ['question' => ..., 'reponse' => ..., 'recommandation' => ...]
-        // I will map the most important ones based on OK.txt
         $qaData = [];
         $questionsOfInterest = [
             67 => "Antécédents médicaux",
@@ -765,7 +784,7 @@ class NutritionController extends Controller
 
         // Obesity logic
         $imgThreshold = $isMale ? 25 : 32;
-        $isObeseIMG = $img < $imgThreshold;
+        $isObeseIMG = $img > $imgThreshold;
         $rthThreshold = $isMale ? 0.90 : 0.85;
         $isHighRTH = $rth > $rthThreshold;
         $isObeseIMC = $imc >= 30;

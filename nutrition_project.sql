@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : jeu. 25 déc. 2025 à 17:40
+-- Généré le : mer. 25 fév. 2026 à 18:39
 -- Version du serveur : 10.4.32-MariaDB
 -- Version de PHP : 8.2.12
 
@@ -85,7 +85,8 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (7, '2024_09_01_151253_create_plan_nutritionnels_table', 1),
 (8, '2024_11_08_203838_create_password_resets_table', 1),
 (9, '2025_02_19_102346_create_question_possible_answers_table', 1),
-(10, '2025_12_23_124213_add_notification_and_tdee_columns_to_utilisateurs_table', 2);
+(10, '2025_12_23_124213_add_notification_and_tdee_columns_to_utilisateurs_table', 2),
+(11, '2026_02_18_230756_add_pdf_path_to_plan_nutritionnels_table', 3);
 
 -- --------------------------------------------------------
 
@@ -132,7 +133,23 @@ INSERT INTO `personal_access_tokens` (`id`, `tokenable_type`, `tokenable_id`, `n
 (5, 'App\\Models\\Utilisateur', 3, 'API Token', '3bf16ef35b1fed9bd5cc31081e372172c9804422621a3cf05b14d2a73cc51b24', '[\"*\"]', NULL, NULL, '2025-12-11 23:40:06', '2025-12-11 23:40:06'),
 (6, 'App\\Models\\Utilisateur', 3, 'API Token', '64adc9414033295820a5221b2df0de1f778c62965a6bcd66b6b7c5c1a5f735a5', '[\"*\"]', '2025-12-12 17:33:25', NULL, '2025-12-12 17:29:03', '2025-12-12 17:33:25'),
 (7, 'App\\Models\\Utilisateur', 3, 'API Token', '45f48cfeafb6aa743f83e9cadebe1bf191e7b51ce7179e425ff4935d2cf45d8f', '[\"*\"]', '2025-12-14 22:16:21', NULL, '2025-12-14 21:29:47', '2025-12-14 22:16:21'),
-(8, 'App\\Models\\Utilisateur', 3, 'API Token', 'd391f1d66daa1f19906e05225616655d134d2aed8926eaa7a46eee046e5e9dfd', '[\"*\"]', NULL, NULL, '2025-12-15 16:35:47', '2025-12-15 16:35:47');
+(8, 'App\\Models\\Utilisateur', 3, 'API Token', 'd391f1d66daa1f19906e05225616655d134d2aed8926eaa7a46eee046e5e9dfd', '[\"*\"]', NULL, NULL, '2025-12-15 16:35:47', '2025-12-15 16:35:47'),
+(9, 'App\\Models\\Utilisateur', 3, 'API Token', 'ccdb052c6893a9bfbf8d886c1e95928461c12bb6771d4d14b66f7f9b58585d0e', '[\"*\"]', NULL, NULL, '2025-12-30 16:10:20', '2025-12-30 16:10:20'),
+(10, 'App\\Models\\Utilisateur', 3, 'API Token', 'eb089dbbc36a53a8e4e3070cd0184b44032a8cfdccb4bd1c89131367d347f062', '[\"*\"]', NULL, NULL, '2025-12-31 10:09:57', '2025-12-31 10:09:57'),
+(11, 'App\\Models\\Utilisateur', 3, 'API Token', 'a2f9996cd9a8efaa42f7c792be76758eb5ce592b477fdddc781d90a0fa91902d', '[\"*\"]', '2025-12-31 11:02:51', NULL, '2025-12-31 10:26:35', '2025-12-31 11:02:51'),
+(12, 'App\\Models\\Utilisateur', 4, 'auth_token', '57740dd586fbbeea3fe7d45ee903ff95587e17188ec2ab0456ef0ec340b6ce88', '[\"*\"]', NULL, NULL, '2025-12-31 12:09:48', '2025-12-31 12:09:48'),
+(13, 'App\\Models\\Utilisateur', 4, 'API Token', '16ba0649f022e9629816588047c14aa11ae111e1eec4f830ea1bf3bb788bf7d9', '[\"*\"]', '2025-12-31 12:18:54', NULL, '2025-12-31 12:10:15', '2025-12-31 12:18:54'),
+(14, 'App\\Models\\Utilisateur', 3, 'API Token', 'ad67f66e6498f7d6dc8c1f56bd42366353b8d31e3da089149d7ea82b8ef06fb0', '[\"*\"]', '2026-01-07 20:53:55', NULL, '2026-01-07 20:25:06', '2026-01-07 20:53:55'),
+(15, 'App\\Models\\Utilisateur', 3, 'API Token', '045566d86f7240b36e68dee624e6aeb05602bfe95324255016bb32ab83e587f2', '[\"*\"]', '2026-01-09 20:03:41', NULL, '2026-01-09 19:48:57', '2026-01-09 20:03:41'),
+(16, 'App\\Models\\Utilisateur', 3, 'API Token', '1f7dcae8673bf99d5be5ca58447a55c1c32df3da9a9e579f47dff931c80d7a84', '[\"*\"]', '2026-01-09 20:13:11', NULL, '2026-01-09 20:11:03', '2026-01-09 20:13:11'),
+(17, 'App\\Models\\Utilisateur', 3, 'API Token', 'bf38b342a8cf81bd11b0454460cac3c46669c5c3171feed5ee88af8b83ccee43', '[\"*\"]', '2026-01-17 11:32:44', NULL, '2026-01-17 11:31:50', '2026-01-17 11:32:44'),
+(18, 'App\\Models\\Utilisateur', 3, 'API Token', 'f8b8e6264103cb2a3cb3385ba894e0416977de033aad5ce47a0ed1e23087b627', '[\"*\"]', '2026-01-17 12:20:18', NULL, '2026-01-17 11:43:15', '2026-01-17 12:20:18'),
+(19, 'App\\Models\\Utilisateur', 3, 'API Token', '126cb0a09ca007edc7cf6aa3e989e4d4c617f87d8b1097b544dcd49b833e2c1b', '[\"*\"]', '2026-01-17 12:53:45', NULL, '2026-01-17 12:21:13', '2026-01-17 12:53:45'),
+(20, 'App\\Models\\Utilisateur', 3, 'API Token', '2bf2a9ca5c1221c4f59fd7427e0e2cfe9b7fb98c7479a47da02e5f05454d68c5', '[\"*\"]', '2026-01-17 13:19:50', NULL, '2026-01-17 13:00:06', '2026-01-17 13:19:50'),
+(21, 'App\\Models\\Utilisateur', 4, 'API Token', 'af82ac8cdb3aec789c06c8ef084a6faf4d527d34c33d5e72a3118187baa82008', '[\"*\"]', '2026-01-18 10:54:52', NULL, '2026-01-17 13:22:33', '2026-01-18 10:54:52'),
+(22, 'App\\Models\\Utilisateur', 4, 'API Token', 'da99d6b1fcb6bb7a3bae3b3963cf87a5a40fb39560f705ccac2064d4d7c7def0', '[\"*\"]', '2026-02-12 20:54:52', NULL, '2026-02-12 20:22:26', '2026-02-12 20:54:52'),
+(23, 'App\\Models\\Utilisateur', 4, 'API Token', 'f2f3b6ebedb6c5d36cd7e10bf7f29ec44b90c6304bf0d6fbaa6454d04b0de597', '[\"*\"]', '2026-02-17 22:37:22', NULL, '2026-02-17 21:46:40', '2026-02-17 22:37:22'),
+(24, 'App\\Models\\Utilisateur', 4, 'API Token', '1f8ee6718ce618b5bb74ac38ffcc3539f5256ad46d5662050274b28f6cc12128', '[\"*\"]', '2026-02-18 22:16:45', NULL, '2026-02-18 22:11:58', '2026-02-18 22:16:45');
 
 -- --------------------------------------------------------
 
@@ -144,9 +161,17 @@ CREATE TABLE `plan_nutritionnels` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `description` text NOT NULL,
   `utilisateur_id` bigint(20) UNSIGNED NOT NULL,
+  `pdf_path` varchar(255) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Déchargement des données de la table `plan_nutritionnels`
+--
+
+INSERT INTO `plan_nutritionnels` (`id`, `description`, `utilisateur_id`, `pdf_path`, `created_at`, `updated_at`) VALUES
+(1, 'Guide nutritionnel de 90 jours généré le 18/02/2026', 4, 'storage/pdfs/Guide_Nutritionnel_4_1771456438.pdf', '2026-02-18 22:14:05', '2026-02-18 22:14:05');
 
 -- --------------------------------------------------------
 
@@ -186,7 +211,7 @@ INSERT INTO `questions` (`id`, `texte_question`, `maladie_chronique_id`, `has_po
 (81, 'Combien de temps passez-vous en position assise chaque jour ?  ', 1, 1, NULL, NULL),
 (82, 'Quelles activités physiques appréciez-vous ? ', 1, 1, NULL, NULL),
 (83, 'Connaissez-vous votre fréquence cardiaque au repos ? ', 1, 1, NULL, NULL),
-(84, 'Si oui, veuillez- nous la donner ?', 1, 1, NULL, NULL),
+(84, 'Si oui, veuillez- nous la donner ?', 1, 0, NULL, '2025-12-31 10:55:06'),
 (85, 'Mangez-vous souvent par stress ou ennui ?', 1, 1, NULL, NULL),
 (86, 'Avez-vous tendance à finir votre assiette même si vous n’avez plus faim ?', 1, 1, NULL, NULL),
 (87, 'Avez-vous déjà suivi un régime alimentaire particulier ?', 1, 1, NULL, NULL),
@@ -220,9 +245,6 @@ INSERT INTO `questions` (`id`, `texte_question`, `maladie_chronique_id`, `has_po
 (115, 'Avez-vous tendance à finir votre assiette même si vous n’avez plus faim ?', 2, 1, NULL, NULL),
 (116, 'Avez-vous des habitudes alimentaires liées à des émotions, comme le stress ou la dépression ?', 2, 1, NULL, NULL),
 (117, 'Avez-vous déjà suivi un programme ou tenté de perdre du poids auparavant ?', 2, 1, NULL, NULL),
-(118, 'Quels sont vos objectifs à court et à long terme pour votre poids et votre santé ? ', 2, 1, NULL, NULL),
-(119, 'Selon votre objectif de perte de poids, quel niveau de changement êtes-vous prêt à suivre ?', 2, 1, NULL, NULL),
-(120, 'Avez-vous un réseau de soutien (famille, amis) pour vous aider dans votre parcours de perte de poids ?', 2, 1, NULL, NULL),
 (121, 'Souffrez-vous de maladies chroniques importantes pouvant être liées à votre poids ? ', 3, 1, NULL, NULL),
 (122, 'Avez-vous l’apnée du sommeil ? ', 3, 1, NULL, NULL),
 (123, 'Utilisez-vous un appareil CPAP pour l\'apnée du sommeil ?', 3, 1, NULL, NULL),
@@ -243,8 +265,6 @@ INSERT INTO `questions` (`id`, `texte_question`, `maladie_chronique_id`, `has_po
 (138, 'Avez-vous déjà participé à des groupes de soutien pour la perte de poids ou l\'obésité ?', 3, 1, NULL, NULL),
 (139, 'Comment faites-vous face aux remarques liées à votre poids ?', 3, 1, NULL, NULL),
 (140, 'Avez-vous envisagé une chirurgie bariatrique ou d\'autres interventions médicales pour gérer votre poids ?', 3, 1, NULL, NULL),
-(141, 'Quels sont vos objectifs de santé immédiats et à long terme ? ', 3, 1, NULL, NULL),
-(142, 'Selon votre objectif de perte de poids, quel niveau de changement êtes-vous prêt à suivre ?', 3, 1, NULL, NULL),
 (143, 'Quels aspects de votre vie vous motivent le plus pour changer vos habitudes alimentaires et physiques ?', 3, 0, NULL, NULL);
 
 -- --------------------------------------------------------
@@ -376,20 +396,6 @@ INSERT INTO `question_possible_answers` (`id`, `question_id`, `value`, `created_
 (268, 116, 'Non', NULL, NULL),
 (269, 117, 'Oui', NULL, NULL),
 (270, 117, 'Non', NULL, NULL),
-(271, 118, 'Perdre moins 5 kg à court terme et maintenir un poids sain à long terme', NULL, NULL),
-(272, 118, 'Perdre entre 5 et 10 kg à court terme et maintenir un poids sain à long terme', NULL, NULL),
-(273, 118, 'Perdre plus de 10 kg à court terme et maintenir un poids sain à long terme', NULL, NULL),
-(274, 119, 'Perdre moins 5 kg à court terme et maintenir un poids sain à long terme: Léger 300 Kcal', NULL, NULL),
-(275, 119, 'Perdre moins 5 kg à court terme et maintenir un poids sain à long terme: Moyen 400 Kcal', NULL, NULL),
-(276, 119, 'Perdre moins 5 kg à court terme et maintenir un poids sain à long terme: Serein 500 Kcal', NULL, NULL),
-(277, 119, 'Perdre entre 5 et 10kg à court terme et maintenir un poids sain à long terme: Léger 500 Kcal', NULL, NULL),
-(278, 119, 'Perdre entre 5 et 10kg à court terme et maintenir un poids sain à long terme: Moyen 600 Kcal', NULL, NULL),
-(279, 119, 'Perdre entre 5 et 10kg à court terme et maintenir un poids sain à long terme: Serein 700 Kcal', NULL, NULL),
-(280, 119, 'Perdre plus de 10kg à court terme et maintenir un poids sain à long terme: Léger 700 Kcal', NULL, NULL),
-(281, 119, 'Perdre plus de 10kg à court terme et maintenir un poids sain à long terme: Moyen 800 Kcal', NULL, NULL),
-(282, 119, 'Perdre plus de 10kg à court terme et maintenir un poids sain à long terme: Serein 900 Kcal', NULL, NULL),
-(283, 120, 'Oui', NULL, NULL),
-(284, 120, 'Non', NULL, NULL),
 (285, 121, 'Cardiaques', NULL, NULL),
 (286, 121, 'Rénales', NULL, NULL),
 (287, 123, 'Oui', NULL, NULL),
@@ -422,18 +428,6 @@ INSERT INTO `question_possible_answers` (`id`, `question_id`, `value`, `created_
 (314, 139, 'Je cherche un soutien (amis, famille, professionnels).', NULL, NULL),
 (315, 140, 'Oui', NULL, NULL),
 (316, 140, 'Non', NULL, NULL),
-(317, 141, 'Mon objectif immédiat est de perdre moins de 5 kg et à long terme améliorer ma condition physique', NULL, NULL),
-(318, 141, 'Mon objectif immédiat est de perdre entre 5 et 10 kg et à long terme améliorer ma condition physique', NULL, NULL),
-(319, 141, 'Mon objectif immédiat est de perdre plus de 10 kg et à long terme améliorer ma condition physique', NULL, NULL),
-(320, 142, 'Mon objectif immédiat est de perdre moins de 5 kg et à long terme améliorer ma condition physique: Léger 300 Kcal', NULL, NULL),
-(321, 142, 'Mon objectif immédiat est de perdre moins de 5 kg et à long terme améliorer ma condition physique: Moyen 400 Kcal', NULL, NULL),
-(322, 142, 'Mon objectif immédiat est de perdre moins de 5 kg et à long terme améliorer ma condition physique: Serein 500 Kcal', NULL, NULL),
-(323, 142, 'Mon objectif immédiat est de perdre entre 5 et 10 kg et à long terme améliorer ma condition physique: Léger 500 Kcal', NULL, NULL),
-(324, 142, 'Mon objectif immédiat est de perdre entre 5 et 10 kg et à long terme améliorer ma condition physique: Moyen 600 Kcal', NULL, NULL),
-(325, 142, 'Mon objectif immédiat est de perdre entre 5 et 10 kg et à long terme améliorer ma condition physique: Serein 700 Kcal', NULL, NULL),
-(326, 142, 'Mon objectif immédiat est de perdre plus de 10 kg et à long terme améliorer ma condition physique: Léger 700 Kcal', NULL, NULL),
-(327, 142, 'Mon objectif immédiat est de perdre plus de 10 kg et à long terme améliorer ma condition physique: Moyen 800 Kcal', NULL, NULL),
-(328, 142, 'Mon objectif immédiat est de perdre plus de 10 kg et à long terme améliorer ma condition physique: Serein 900 Kcal', NULL, NULL),
 (329, 70, 'Aucun de ces médicaments', NULL, NULL),
 (330, 75, 'Jamais', NULL, NULL),
 (331, 121, 'Respiratoires', NULL, NULL),
@@ -454,6 +448,38 @@ CREATE TABLE `reponses` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Déchargement des données de la table `reponses`
+--
+
+INSERT INTO `reponses` (`id`, `question_id`, `question_possible_answer_id`, `utilisateur_id`, `description`, `created_at`, `updated_at`) VALUES
+(27, 66, 157, 4, NULL, '2025-12-31 12:13:04', '2025-12-31 12:13:04'),
+(28, 67, NULL, 4, 'Hypertension artérielle', '2025-12-31 12:13:04', '2025-12-31 12:13:04'),
+(29, 68, 159, 4, NULL, '2025-12-31 12:13:04', '2025-12-31 12:13:04'),
+(30, 69, NULL, 4, 'Amlodipine', '2025-12-31 12:13:04', '2025-12-31 12:13:04'),
+(31, 70, 163, 4, NULL, '2025-12-31 12:13:04', '2025-12-31 12:13:04'),
+(32, 71, NULL, 4, 'Petit déjeuner équilibré, déjeuner protéiné, dîner léger.', '2025-12-31 12:13:04', '2025-12-31 12:13:04'),
+(33, 72, 166, 4, NULL, '2025-12-31 12:13:04', '2025-12-31 12:13:04'),
+(34, 73, 169, 4, NULL, '2025-12-31 12:13:04', '2025-12-31 12:13:04'),
+(35, 74, NULL, 4, 'Noix et fruits secs', '2025-12-31 12:13:04', '2025-12-31 12:13:04'),
+(36, 75, 172, 4, NULL, '2025-12-31 12:13:04', '2025-12-31 12:13:04'),
+(37, 76, 179, 4, NULL, '2025-12-31 12:13:04', '2025-12-31 12:13:04'),
+(38, 77, 183, 4, NULL, '2025-12-31 12:13:04', '2025-12-31 12:13:04'),
+(39, 78, 184, 4, NULL, '2025-12-31 12:13:04', '2025-12-31 12:13:04'),
+(40, 79, 186, 4, NULL, '2025-12-31 12:13:04', '2025-12-31 12:13:04'),
+(41, 80, 190, 4, NULL, '2025-12-31 12:13:04', '2025-12-31 12:13:04'),
+(42, 81, 195, 4, NULL, '2025-12-31 12:13:04', '2025-12-31 12:13:04'),
+(43, 82, 197, 4, NULL, '2025-12-31 12:13:04', '2025-12-31 12:13:04'),
+(44, 83, 200, 4, NULL, '2025-12-31 12:13:04', '2025-12-31 12:13:04'),
+(45, 84, NULL, 4, '72', '2025-12-31 12:13:04', '2025-12-31 12:13:04'),
+(46, 85, 202, 4, NULL, '2025-12-31 12:13:04', '2025-12-31 12:13:04'),
+(47, 86, 204, 4, NULL, '2025-12-31 12:13:04', '2025-12-31 12:13:04'),
+(48, 87, 207, 4, NULL, '2025-12-31 12:13:04', '2025-12-31 12:13:04'),
+(49, 88, NULL, 4, 'N/A', '2025-12-31 12:13:04', '2025-12-31 12:13:04'),
+(50, 89, 208, 4, NULL, '2025-12-31 12:13:04', '2025-12-31 12:13:04'),
+(51, 90, 211, 4, NULL, '2025-12-31 12:13:04', '2025-12-31 12:13:04'),
+(52, 91, 217, 4, NULL, '2025-12-31 12:13:04', '2025-12-31 12:13:04');
 
 -- --------------------------------------------------------
 
@@ -493,7 +519,8 @@ CREATE TABLE `utilisateurs` (
 INSERT INTO `utilisateurs` (`id`, `role`, `nom`, `prenom`, `age`, `sexe`, `poids`, `taille`, `email`, `mot_de_passe`, `tour_de_taille`, `tour_de_hanche`, `tour_du_cou`, `niveau_d_activite_physique`, `maladie_chronique_id`, `last_login_date`, `created_at`, `updated_at`, `tdee`, `img_notification`, `imc_notification`, `rth_notification`) VALUES
 (1, 'Administrateur', 'Admin', 'Nutrition', 20, 'M', 110, 110, 'adminnutrition@gmail.com', '$2y$12$1s8heSH.76pEtcQRlsiVbOfj3f6Zg/97LovFuDdNG3BttFmsLaZv2', 100.00, 100.00, 100.00, '2', NULL, NULL, NULL, NULL, NULL, 0, 0, 0),
 (2, 'Utilisateur', 'ATCHEGBE', 'Eneck', 27, 'M', 70, 171, 'Nutrition123@gmail.com', '$2y$12$OUOrZ4Eumype44O7a/4.a.rZj3DXA6II17wAqtdn3av8wggIEnym2', 34.00, 25.00, 20.00, 'Sédentaire', 1, '2025-12-11 21:40:18', '2025-12-03 14:09:13', '2025-12-11 20:41:57', NULL, 0, 0, 0),
-(3, 'Utilisateur', 'HUGOSS', 'Henry', 12, 'M', 70, 171, 'eckodance25@gmail.com', '$2y$12$nnHJh8zGu/hbLvQ.I4CQAuF1ULB2rrlvG0vr37H.wv1KIQHsUdgN2', 34.00, 25.00, 20.00, 'Sédentaire', 3, '2025-12-15 17:35:47', '2025-12-11 23:39:44', '2025-12-15 16:35:47', NULL, 0, 0, 0);
+(3, 'Utilisateur', 'HUGOSS', 'Henry', 12, 'M', 70, 171, 'adammadoeverild@gmail.com', '$2y$10$C9ljhU6.BfVeR0q.aXUDSux.u./Z/mMSv4oGITWMgkZiH6g8I.Nzu', 34.00, 25.00, 20.00, 'Sédentaire', 1, '2026-01-17 14:00:06', '2025-12-11 23:39:44', '2026-01-17 13:00:06', 2056.50, 0, 1, 1),
+(4, 'Utilisateur', 'Boss', 'Tomas', 18, 'M', 70, 171, 'adammadochrist321@gmail.com', '$2y$10$C9ljhU6.BfVeR0q.aXUDSux.u./Z/mMSv4oGITWMgkZiH6g8I.Nzu', 34.00, 25.00, 20.00, 'Sédentaire', 1, '2026-02-18 23:11:58', '2025-12-31 12:09:48', '2026-02-18 22:11:58', 2020.50, 1, 0, 1);
 
 --
 -- Index pour les tables déchargées
@@ -589,7 +616,7 @@ ALTER TABLE `maladie_chroniques`
 -- AUTO_INCREMENT pour la table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT pour la table `password_resets`
@@ -601,13 +628,13 @@ ALTER TABLE `password_resets`
 -- AUTO_INCREMENT pour la table `personal_access_tokens`
 --
 ALTER TABLE `personal_access_tokens`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- AUTO_INCREMENT pour la table `plan_nutritionnels`
 --
 ALTER TABLE `plan_nutritionnels`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT pour la table `questions`
@@ -625,13 +652,13 @@ ALTER TABLE `question_possible_answers`
 -- AUTO_INCREMENT pour la table `reponses`
 --
 ALTER TABLE `reponses`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=53;
 
 --
 -- AUTO_INCREMENT pour la table `utilisateurs`
 --
 ALTER TABLE `utilisateurs`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- Contraintes pour les tables déchargées
