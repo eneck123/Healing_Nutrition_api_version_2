@@ -4,10 +4,6 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
-use Illuminate\Support\Facades\Mail;
-use App\Mail\ObesityInconsistencyMail;
-use App\Mail\RthWarningMail;
-use App\Mail\ImgInconsistencyMail;
 
 use Illuminate\Support\Facades\DB;
 use App\Services\NutritionDataService;
@@ -16,13 +12,16 @@ class NutritionController extends Controller
 {
     protected $nutritionDataService;
     protected $noPathologyNutritionDataService;
+    protected $calculationService;
 
     public function __construct(
         NutritionDataService $nutritionDataService,
-        \App\Services\NoPathologyNutritionDataService $noPathologyNutritionDataService
+        \App\Services\NoPathologyNutritionDataService $noPathologyNutritionDataService,
+        \App\Services\NutritionCalculationService $calculationService
     ) {
         $this->nutritionDataService = $nutritionDataService;
         $this->noPathologyNutritionDataService = $noPathologyNutritionDataService;
+        $this->calculationService = $calculationService;
     }
     /**
      * @OA\Post(
@@ -85,7 +84,12 @@ class NutritionController extends Controller
              return response()->json(['success' => false, 'message' => 'User not found'], 404);
         }
 
-        return $this->performCalculation($user);
+        try {
+            $result = $this->calculationService->calculateForUser($user);
+            return response()->json($result);
+        } catch (\Exception $e) {
+            return response()->json(['success' => false, 'message' => $e->getMessage()], 400);
+        }
     }
 
     /**
@@ -144,9 +148,12 @@ class NutritionController extends Controller
     }
 
         // BMR/TDEE Calculation
-        $metrics = $this->calculateBasicMetrics($user);
-        if ($metrics instanceof \Illuminate\Http\JsonResponse) return $metrics;
-
+        try {
+            $metrics = $this->calculationService->getBasicMetrics($user);
+        } catch (\Exception $e) {
+            return response()->json(['success' => false, 'message' => $e->getMessage()], 400);
+        }
+        
         $tdee = $metrics['tdee'];
         $isMale = $metrics['is_male'];
 
@@ -487,8 +494,11 @@ class NutritionController extends Controller
         }
 
         // 1. Metrics
-        $metrics = $this->calculateBasicMetrics($user);
-        if ($metrics instanceof \Illuminate\Http\JsonResponse) return $metrics;
+        try {
+            $metrics = $this->calculationService->getBasicMetrics($user);
+        } catch (\Exception $e) {
+            return response()->json(['success' => false, 'message' => $e->getMessage()], 400);
+        }
         $tdee = $metrics['tdee'];
         $isMale = $metrics['is_male'];
 
@@ -681,152 +691,6 @@ class NutritionController extends Controller
         return $pdf->download('Guide_Nutritionnel_' . $user->nom . '.pdf');
     }
 
-    private function calculateBasicMetrics(\App\Models\Utilisateur $user)
-    {
-        $weight = $user->poids;
-        $height = $user->taille;
-        $gender = $user->sexe;
-        $age = $user->age;
-        $niveauPhysique = $user->niveau_d_activite_physique;
-
-        if (!$weight || !$height || !$gender) {
-             return response()->json(['success' => false, 'message' => 'Données incomplètes.'], 400);
-        }
-
-        $isMale = (strtoupper($gender) === 'M' || strtoupper($gender) === 'HOMME');
-        $bmr = $isMale ? (10 * $weight) + (6.25 * $height) - (5 * $age) + 5 
-                       : (10 * $weight) + (6.25 * $height) - (5 * $age) - 161;
-
-        $multipliers = [
-            "Sédentaire" => 1.2,
-            "Légèrement actif" => 1.4,
-            "Modérément actif" => 1.6,
-            "Très actif" => 1.7,
-            "Extrêmement actif" => 1.9,
-        ];
-        $tdee = $bmr * ($multipliers[$niveauPhysique] ?? 1.2);
-
-        // Calculate RTH for the intervention plan logic
-        $rth = ($user->tour_de_hanche > 0) ? round($user->tour_de_taille / $user->tour_de_hanche, 2) : 0;
-        $rthThreshold = $isMale ? 0.90 : 0.85;
-
-        // Calculate IMG
-        $waist = $user->tour_de_taille;
-        $neck = $user->tour_du_cou;
-        $hip = $user->tour_de_hanche;
-        $img = 0;
-        if ($isMale) {
-            if (($waist - $neck) > 0) $img = 86.010 * log10($waist - $neck) - 70.041 * log10($height) + 36.76;
-        } else {
-            if (($waist + $hip - $neck) > 0) $img = 163.205 * log10($waist + $hip - $neck) - 97.684 * log10($height) - 78.387;
-        }
-        $img = round($img, 2);
-
-        // Calculate IMC
-        $heightM = $height / 100;
-        $imc = round($weight / ($heightM * $heightM), 2);
-
-        return [
-            'bmr' => $bmr, 
-            'tdee' => $tdee, 
-            'is_male' => $isMale, 
-            'height' => $height, 
-            'weight' => $weight,
-            'rth' => $rth,
-            'rth_threshold' => $rthThreshold,
-            'imc' => $imc,
-            'img' => $img,
-            'interpretation_imc' => $this->getImcInterpretation($imc)
-        ];
-    }
-
-    private function getImcInterpretation($imc) {
-        if ($imc < 18.5) return 'Insuffisance pondérale';
-        if ($imc < 25) return 'Corpulence normale';
-        if ($imc < 30) return 'Surpoids';
-        if ($imc < 35) return 'Obésité modérée (Grade 1)';
-        if ($imc < 40) return 'Obésité sévère (Grade 2)';
-        return 'Obésité morbide (Grade 3)';
-    }
-
-    private function performCalculation(\App\Models\Utilisateur $user)
-    {        
-        $metrics = $this->calculateBasicMetrics($user);
-        if ($metrics instanceof \Illuminate\Http\JsonResponse) return $metrics;
-
-        $weight = $metrics['weight'];
-        $height = $metrics['height'];
-        $isMale = $metrics['is_male'];
-        $tdee = $metrics['tdee'];
-
-        // Save TDEE
-        $user->tdee = $tdee;
-        $user->save();
-
-        // IMC
-        $heightM = $height / 100;
-        $imc = round($weight / ($heightM * $heightM), 2);
-
-        // RTH
-        $rth = ($user->tour_de_hanche > 0) ? round($user->tour_de_taille / $user->tour_de_hanche, 2) : 0;
-
-        // IMG
-        $waist = $user->tour_de_taille;
-        $neck = $user->tour_du_cou;
-        $hip = $user->tour_de_hanche;
-        $img = 0;
-        if ($isMale) {
-            if (($waist - $neck) > 0) $img = 86.010 * log10($waist - $neck) - 70.041 * log10($height) + 36.76;
-        } else {
-            if (($waist + $hip - $neck) > 0) $img = 163.205 * log10($waist + $hip - $neck) - 97.684 * log10($height) - 78.387;
-        }
-        $img = round($img, 2);
-
-        // Obesity logic
-        $imgThreshold = $isMale ? 25 : 32;
-        $isObeseIMG = $img > $imgThreshold;
-        $rthThreshold = $isMale ? 0.90 : 0.85;
-        $isHighRTH = $rth > $rthThreshold;
-        $isObeseIMC = $imc >= 30;
-
-        $calculatedStatus = 'Normal';
-        if ($isObeseIMG || ($isObeseIMC && $isHighRTH)) $calculatedStatus = 'Obese';
-        elseif ($isObeseIMC) $calculatedStatus = 'Normal';
-
-        $obesityGrade = ($imc >= 40) ? 'Obésité morbide (Grade 3)' : (($imc >= 35) ? 'Obésité sévère (Grade 2)' : (($imc >= 30) ? 'Obésité modérée (Grade 1)' : 'Normal/Surpoids'));
-        $declaredType = $user->maladieChronique ? $user->maladieChronique->type : 'Inconnu';
-        
-        $isConsistent = ($calculatedStatus === 'Obese') ? (stripos($declaredType, 'Obésité') !== false || stripos($declaredType, 'Obesite') !== false) 
-                                                        : (stripos($declaredType, 'Obésité') === false && stripos($declaredType, 'Obesite') === false);
-
-        $imgNotification = false; $imcNotification = false; $rthNotification = true;
-        
-        if ($isObeseIMG) {
-             Mail::to($user->email)->send(new ImgInconsistencyMail($user->nom . ' ' . $user->prenom, ['gender' => $user->sexe, 'height' => $height, 'waist' => $waist, 'neck' => $neck, 'hip' => $hip], $img, $imgThreshold));
-             $imgNotification = true;
-        }
-        if (!$isConsistent) {
-             Mail::to($user->email)->send(new ObesityInconsistencyMail($user->nom . ' ' . $user->prenom, ['weight' => $weight, 'height' => $height, 'declared_type' => $declaredType], $imc, $obesityGrade));
-             $imcNotification = true;
-        }
-        Mail::to($user->email)->send(new RthWarningMail($user->nom . ' ' . $user->prenom, $rth, $isMale ? 'M' : 'F', $rthThreshold));
-
-        $user->update(['img_notification' => $imgNotification, 'imc_notification' => $imcNotification, 'rth_notification' => $rthNotification]);
-
-        return response()->json([
-            'success' => true,
-            'user_id' => $user->id,
-            'imc' => $imc,
-            'rth' => $rth,
-            'img' => $img,
-            'bmr' => round($metrics['bmr']),
-            'tdee' => round($tdee),
-            'status' => $calculatedStatus,
-            'grade_imc' => $obesityGrade,
-            'consistent' => $isConsistent,
-            'notifications' => ['img' => $imgNotification, 'imc' => $imcNotification, 'rth' => $rthNotification]
-        ]);
-    }
 
     private function calculateMacrosEnhanced($user, $activity, $deficit, $isWeightLoss, $isFitness, $apportCalorique, $weightLossRange, $pathologies)
     {

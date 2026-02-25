@@ -7,16 +7,15 @@ use App\Models\Utilisateur;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
-use App\Http\Controllers\NutritionController;
 
 class MaladieChroniqueController extends Controller
 {
-    protected $nutritionController;
+    protected $calculationService;
 
-    public function __construct(NutritionController $nutritionController)
+    public function __construct(\App\Services\NutritionCalculationService $calculationService)
     {
         $this->middleware('auth:api');
-        $this->nutritionController = $nutritionController;
+        $this->calculationService = $calculationService;
     }
     
     /**
@@ -35,10 +34,17 @@ class MaladieChroniqueController extends Controller
      *     ),
      *     @OA\Response(
      *         response=201,
-     *         description="User infos saved successfully",
+     *         description="Maladie chronique associée avec succès",
      *         @OA\JsonContent(
-     *             @OA\Property(property="message", type="string", example="User registered successfully"),
-     *             @OA\Property(property="user_id", type="integer", example=1)
+     *             @OA\Property(property="success", type="boolean", example=true),
+     *             @OA\Property(property="message", type="string", example="Type de maladie chronique enregistré..."),
+     *             @OA\Property(
+     *                 property="data",
+     *                 type="object",
+     *                 @OA\Property(property="maladie_chronique", type="object"),
+     *                 @OA\Property(property="utilisateur", type="object"),
+     *                 @OA\Property(property="nutrition_metrics", type="object")
+     *             )
      *         )
      *     ),
      * )
@@ -89,9 +95,16 @@ class MaladieChroniqueController extends Controller
             'type' => $maladieChronique->type
         ]);
 
-        // Trigger nutrition calculation and inconsistency checks
-        $calcResponse = $this->nutritionController->calculate($request);
-        $calcData = $calcResponse->getData(true);
+        // Trigger nutrition calculation directly via Service
+        try {
+            $calcData = $this->calculationService->calculateForUser($utilisateur);
+        } catch (\Exception $e) {
+            Log::error('Erreur lors du calcul nutritionnel après association de maladie', [
+                'error' => $e->getMessage(),
+                'user_id' => $utilisateur->id
+            ]);
+            $calcData = ['success' => false, 'message' => 'Calcul impossible : ' . $e->getMessage()];
+        }
 
         return response()->json([
             'success' => true,

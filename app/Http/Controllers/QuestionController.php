@@ -46,6 +46,13 @@ class QuestionController extends Controller
                 'message' => 'Vous devez ajouter une maladie chronique',
             ], 500);
         }
+
+        if ($utilisateur->img_notification || $utilisateur->imc_notification) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Les informations que vous avez remplies sur votre profil ne correspondent pas à l’obésité choisie. Vous ne pouvez pas accéder aux questionnaires de cette obésité. Veuillez modifier votre profil pour continuer.',
+            ], 403);
+        }
         $questions = Question::with('possibleAnswers')->where('maladie_chronique_id', $utilisateur->maladie_chronique_id)->get();
 
         return response()->json([
