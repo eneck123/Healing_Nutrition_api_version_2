@@ -82,7 +82,7 @@ class NutritionCalculationService
              $imgNotification = true;
         }
         
-        if (!$isConsistent) {
+        if (!$isObeseIMC) {
              Mail::to($user->email)->send(new ObesityInconsistencyMail($user->nom . ' ' . $user->prenom, ['weight' => $weight, 'height' => $height, 'declared_type' => $declaredType], $imc, $obesityGrade));
              $imcNotification = true;
         }
