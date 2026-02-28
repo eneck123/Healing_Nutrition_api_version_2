@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
-
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\DB;
 use App\Services\NutritionDataService;
 
@@ -94,7 +94,7 @@ class NutritionController extends Controller
 
     /**
      * @OA\Post(
-     *     path="/api/nutrition/recommendation",
+     *     path="/api/nutrition/recommandation",
      *     summary="Obtenir des recommandations nutritionnelles personnalisées",
      *     description="Calcule l'apport calorique quotidien et la répartition des macronutriments en fonction de l'objectif de l'utilisateur, de ses pathologies et de son niveau d'activité.",
      *     tags={"Nutrition"},
@@ -117,7 +117,7 @@ class NutritionController extends Controller
      *     )
      * )
      */
-    public function recommendation(Request $request)
+    public function recommandation(Request $request)
     {
         $userId = auth()->id();
 
