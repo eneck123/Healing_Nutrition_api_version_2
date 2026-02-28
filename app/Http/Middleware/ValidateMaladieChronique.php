@@ -11,7 +11,7 @@ class ValidateMaladieChronique
     public function handle(Request $request, Closure $next)
     {
         $typeMaladieChronique = $request->input('type_maladie_chronique');
-        $validTypes = ['Obésité modérée','Obésité sévère',' Obésité morbide'];
+        $validTypes = ['Obésité modérée','Obésité sévère'];
 
         if (!in_array($typeMaladieChronique, $validTypes)) {
             return response()->json([

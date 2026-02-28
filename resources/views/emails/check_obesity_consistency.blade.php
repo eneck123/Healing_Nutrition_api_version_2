@@ -34,10 +34,6 @@
                 <td>Obésité sévère (Grade 2)</td>
                 <td>35 ≤ IMC < 39,9</td>
             </tr>
-            <tr>
-                <td>Obésité morbide (Grade 3)</td>
-                <td>IMC ≥ 40</td>
-            </tr>
         </tbody>
     </table>
 

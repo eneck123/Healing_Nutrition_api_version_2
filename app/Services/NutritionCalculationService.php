@@ -67,10 +67,20 @@ class NutritionCalculationService
         $obesityGrade = $this->getImcInterpretation($imc);
         $declaredType = $user->maladieChronique ? $user->maladieChronique->type : 'Inconnu';
         
-        // Consistency check - detects any grade of obesity
+        // Consistency check niveau 1 : obèse vs non-obèse
         $isConsistent = ($calculatedStatus === 'Obese') 
             ? (stripos($declaredType, 'Obésité') !== false || stripos($declaredType, 'Obesite') !== false) 
             : (stripos($declaredType, 'Obésité') === false && stripos($declaredType, 'Obesite') === false);
+
+        // Consistency check niveau 2 : vérification du grade (modérée vs sévère)
+        $isGradeConsistent = true;
+        if ($isConsistent && $calculatedStatus === 'Obese') {
+            if (stripos($declaredType, 'modérée') !== false) {
+                $isGradeConsistent = stripos($obesityGrade, 'modérée') !== false;
+            } elseif (stripos($declaredType, 'sévère') !== false) {
+                $isGradeConsistent = stripos($obesityGrade, 'sévère') !== false;
+            }
+        }
 
         // Email notifications
         $imgNotification = false;
@@ -82,7 +92,7 @@ class NutritionCalculationService
              $imgNotification = true;
         }
         
-        if (!$isObeseIMC) {
+        if (!$isConsistent || !$isGradeConsistent) {
              Mail::to($user->email)->send(new ObesityInconsistencyMail($user->nom . ' ' . $user->prenom, ['weight' => $weight, 'height' => $height, 'declared_type' => $declaredType], $imc, $obesityGrade));
              $imcNotification = true;
         }
@@ -197,7 +207,6 @@ class NutritionCalculationService
         if ($imc < 25) return 'Corpulence normale';
         if ($imc < 30) return 'Surpoids';
         if ($imc < 35) return 'Obésité modérée (Grade 1)';
-        if ($imc < 40) return 'Obésité sévère (Grade 2)';
-        return 'Obésité morbide (Grade 3)';
+        return 'Obésité sévère (Grade 2)';
     }
 }

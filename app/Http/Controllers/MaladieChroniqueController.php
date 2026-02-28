@@ -62,7 +62,7 @@ class MaladieChroniqueController extends Controller
         }
 
         $request->validate([
-            'type_maladie_chronique' => 'required|string|in:obésité modérée,obésité sévère,obésité morbide',
+            'type_maladie_chronique' => 'required|string|in:obésité modérée,obésité sévère',
         ]);
 
         $maladieChronique = MaladieChronique::where('type', $request->type_maladie_chronique)->first();

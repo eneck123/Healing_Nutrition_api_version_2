@@ -19,7 +19,6 @@ class MaladieChroniqueSeeder extends Seeder
                 'types' => [
                     TypeMaladieChronique::OBESITE_MODEREE->value,
                     TypeMaladieChronique::OBESITE_SEVERE->value,
-                    TypeMaladieChronique::OBESITE_MORBIDE->value,
                 ]
             ],
             

@@ -99,12 +99,6 @@ class NutritionController extends Controller
      *     description="Calcule l'apport calorique quotidien et la répartition des macronutriments en fonction de l'objectif de l'utilisateur, de ses pathologies et de son niveau d'activité.",
      *     tags={"Nutrition"},
      *     security={{"BearerToken":{}}},
-     *     @OA\RequestBody(
-     *         required=false,
-     *         @OA\JsonContent(
-     *             @OA\Property(property="user_id", type="integer", example=1)
-     *         )
-     *     ),
      *     @OA\Response(
      *         response=200,
      *         description="Recommandations générées",
@@ -137,9 +131,6 @@ class NutritionController extends Controller
              return response()->json(['success' => false, 'message' => 'User not found'], 404);
         }
 
-        // Restriction to ID 1 (Obésité modérée) as requested by the user
-    // The advanced logic for questionnaires (Q66-Q91) is specific to this category.
-    // Also allowing users with no chronic disease ID (null or 0) for "no-pathology" logic.
     if ($user->maladie_chronique_id != 1 && !empty($user->maladie_chronique_id)) {
         return response()->json([
             'success' => false, 
