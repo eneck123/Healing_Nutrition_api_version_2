@@ -229,10 +229,15 @@
             <div class="regulatory-title">Notifications Réglementaires</div>
             <ul>
                 <li>Le plan nutritionnel proposé est prévu pour une durée maximale de 3 mois, soit 90 jours.</li>
-                <li>Pour les personnes ayant des antécédents médicaux et prenant des médicaments, <strong>ne cessez jamais votre traitement</strong>. Continuez de suivre votre prescription tout en respectant nos recommandations. En cas de problème, veuillez consulter votre médecin traitant.</li>
-                <li>Suivez scrupuleusement le plan nutritionnel et respectez les recommandations nutritionnelles indiquées.</li>
-                <li>Certaines recommandations peuvent inclure des propositions de repas à titre éducatif. L’essentiel est de respecter les apports en protéines, glucides et lipides définis pour chaque jour.</li>
-                <li>Pour les collations, suivez les instructions selon votre niveau d’activité :
+                <li>Pour les personnes ayant des antécédents médicaux et prenant des médicaments, ne cessez jamais votre traitement. Continuez de suivre votre prescription tout en respectant nos recommandations. En cas de problème avec le guide alimentaire et vos prescriptions, veuillez consulter votre médecin traitant.</li>
+                <li>Pour pouvoir suivre le guide alimentaire proposé en fonction de vos données personnelles appuyées de l’ensemble du système de Healing Nutrition, vous devez vous servir d’un outil pour peser les aliments comme celui de la balance alimentaire. En cas échéant, vous pouvez utiliser la technique du pesage de la mesures domestique approximatives.</li>
+                <li>Les valeurs nutritionnelles sont basées sur des aliments crus sauf indication contraire.</li>
+                <li>Les valeurs nutritionnelles indiquées dans ce guide sont basées sur le poids des aliments crus (sauf mention explicite). Pour les aliments cuits, la cuisson modifie le poids sans changer le contenu énergétique : il faut donc ajuster la portion en fonction du poids cru.</li>
+                <li>Suivez scrupuleusement le plan nutritionnel et respectez les recommandations nutritionnelles indiquées dans le guide alimentaire personnalisé ainsi que les recommandations du système suites à vos réponses aux questions.</li>
+                <li>Certaines recommandations du système suites à vos réponses aux questions peuvent inclure des propositions de repas journaliers. Ces repas ont un rôle éducatif et illustratif : l’utilisateur n’est pas tenu de les suivre. La validité du plan nutritionnel repose sur le respect des apports journaliers en macronutriments définis dans le guide alimentaire et les recommandations du système suites aux réponses obtenues des questions.</li>
+                <li>Les repas journaliers inclus dans certaines recommandations ne conditionnent pas la pertinence du plan nutritionnel. L’essentiel est de respecter les apports en protéines, glucides et lipides définis pour chaque jour dans le guide alimentaire personnalisé.</li>
+                <li>Les vidéos proposées ne correspondent pas toutes à tous les repas, mais elles aident à comprendre la préparation des aliments et d’autres plus complexes. Il peut être nécessaire de compléter ces informations par des recherches personnelles plus spécifiques.</li>
+                <li>Pour les collations indiquées dans le guide alimentaire, suivez les instructions selon votre niveau d’activité :
                     <ul>
                         <li>Sédentaire : 0 – 1 collation/jour</li>
                         <li>Légèrement actif : 1 collation/jour</li>
