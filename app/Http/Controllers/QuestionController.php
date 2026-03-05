@@ -50,7 +50,7 @@ class QuestionController extends Controller
         if ($utilisateur->img_notification || $utilisateur->imc_notification) {
             return response()->json([
                 'success' => false,
-                'message' => 'Les informations que vous avez remplies sur votre profil ne correspondent pas à l’obésité choisie. Vous ne pouvez pas accéder aux questionnaires de cette obésité. Veuillez modifier votre profil pour continuer.',
+                'message' => 'Après analyse de votre IMC et/ou IMG calculés à partir de vos données personnelles, votre profil ne correspond pas aux critères requis pour accéder aux questionnaires associés au type d\'obésité sélectionné. Pour cette raison, l\'accès à cette section est bloqué. Un/Des e-mail(s) explicatif(s) vous a été envoyé afin de vous informer des éléments importants concernant votre situation. Nous vous invitons à consulter votre messagerie afin de prendre connaissance des informations importantes qui vous ont été transmises avant toute nouvelle tentative d\'accès.',
             ], 403);
         }
         $questions = Question::with('possibleAnswers')->where('maladie_chronique_id', $utilisateur->maladie_chronique_id)->get();

@@ -49,6 +49,7 @@ class NutritionCalculationService
             if (($waist + $hip - $neck) > 0) $img = 163.205 * log10($waist + $hip - $neck) - 97.684 * log10($height) - 78.387;
         }
         $img = round($img, 2);
+        // $img = max(0, round($img, 2));
 
         // Obesity logic
         $imgThreshold = $isMale ? 25 : 32;
@@ -86,8 +87,15 @@ class NutritionCalculationService
         $imgNotification = false;
         $imcNotification = false;
         $rthNotification = true; // Always send RTH warning as per original logic
-        
-        if ($isObeseIMG) {
+
+        // Logique IMG : on compare l'IMG calculé au seuil selon le sexe.
+        // L'email est envoyé si l'IMG ne respecte pas le seuil attendu selon la déclaration de l'user.
+        // Si l'user déclare être obèse, son IMG devrait être >= seuil.
+        // Si l'user déclare NE PAS être obèse, son IMG devrait être < seuil.
+        $userDeclaredObese = stripos($declaredType, 'Obésité') !== false || stripos($declaredType, 'Obesite') !== false;
+        $imgMatchesDeclaration = $userDeclaredObese ? ($img >= $imgThreshold) : ($img < $imgThreshold);
+
+        if (!$imgMatchesDeclaration) {
              Mail::to($user->email)->send(new ImgInconsistencyMail($user->nom . ' ' . $user->prenom, ['gender' => $user->sexe, 'height' => $height, 'waist' => $waist, 'neck' => $neck, 'hip' => $hip], $img, $imgThreshold));
              $imgNotification = true;
         }
@@ -106,9 +114,9 @@ class NutritionCalculationService
             'rth_notification' => $rthNotification
         ]);
 
-        $message = "D’après vos mesures, votre profil est classé comme : $obesityGrade.";
-        if (!$isConsistent) {
-            $message .= " Attention, il y a une incohérence avec le type déclaré ($declaredType).";
+        $message = "D'après vos mesures, votre profil est classé comme : $obesityGrade.";
+        if (!$isConsistent || !$isGradeConsistent) {
+            $message .= " Vos données ne sont pas cohérentes avec votre déclaration.";
         } else {
             $message .= " Vos données sont cohérentes avec votre déclaration.";
         }
@@ -178,6 +186,7 @@ class NutritionCalculationService
                 $img = 163.205 * log10($user->tour_de_taille + $user->tour_de_hanche - $user->tour_du_cou) - 97.684 * log10($height) - 78.387;
         }
         $img = round($img, 2);
+        // $img = max(0, round($img, 2));
 
         $heightM = $height / 100;
         $imc = round($weight / ($heightM * $heightM), 2);
