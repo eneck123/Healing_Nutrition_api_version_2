@@ -1194,7 +1194,7 @@
                 },
                 "security": [
                     {
-                        "bearerAuth": []
+                        "BearerToken": []
                     }
                 ]
             }

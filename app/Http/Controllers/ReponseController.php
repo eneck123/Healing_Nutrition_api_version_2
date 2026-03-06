@@ -452,7 +452,7 @@ class ReponseController extends Controller
      *     path="/api/reponses/{id}",
      *     summary="Supprimer une réponse",
      *     tags={"Réponses"},
-     *     security={{"bearerAuth":{}}},
+     *     security={{"BearerToken":{}}},
      *     @OA\Parameter(
      *         name="id",
      *         in="path",
