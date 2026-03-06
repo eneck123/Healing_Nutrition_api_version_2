@@ -435,7 +435,7 @@
                                 "properties": {
                                     "type_maladie_chronique": {
                                         "type": "string",
-                                        "example": "Obésité"
+                                        "example": "obésité"
                                     }
                                 },
                                 "type": "object"
@@ -445,18 +445,32 @@
                 },
                 "responses": {
                     "201": {
-                        "description": "User infos saved successfully",
+                        "description": "Maladie chronique associée avec succès",
                         "content": {
                             "application/json": {
                                 "schema": {
                                     "properties": {
+                                        "success": {
+                                            "type": "boolean",
+                                            "example": true
+                                        },
                                         "message": {
                                             "type": "string",
-                                            "example": "User registered successfully"
+                                            "example": "Type de maladie chronique enregistré..."
                                         },
-                                        "user_id": {
-                                            "type": "integer",
-                                            "example": 1
+                                        "data": {
+                                            "properties": {
+                                                "maladie_chronique": {
+                                                    "type": "object"
+                                                },
+                                                "utilisateur": {
+                                                    "type": "object"
+                                                },
+                                                "nutrition_metrics": {
+                                                    "type": "object"
+                                                }
+                                            },
+                                            "type": "object"
                                         }
                                     },
                                     "type": "object"
@@ -580,30 +594,14 @@
                 ]
             }
         },
-        "/api/nutrition/recommendation": {
+        "/api/nutrition/recommandation": {
             "post": {
                 "tags": [
                     "Nutrition"
                 ],
                 "summary": "Obtenir des recommandations nutritionnelles personnalisées",
                 "description": "Calcule l'apport calorique quotidien et la répartition des macronutriments en fonction de l'objectif de l'utilisateur, de ses pathologies et de son niveau d'activité.",
-                "operationId": "7ff34cd0e4a5c7e662b0cc4076c9c82b",
-                "requestBody": {
-                    "required": false,
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "properties": {
-                                    "user_id": {
-                                        "type": "integer",
-                                        "example": 1
-                                    }
-                                },
-                                "type": "object"
-                            }
-                        }
-                    }
-                },
+                "operationId": "600ffa3d2657f6e764b854a2ae250b63",
                 "responses": {
                     "200": {
                         "description": "Recommandations générées",
@@ -643,6 +641,32 @@
                                 }
                             }
                         }
+                    }
+                },
+                "security": [
+                    {
+                        "BearerToken": []
+                    }
+                ]
+            }
+        },
+        "/api/nutrition/download-stored-pdf": {
+            "get": {
+                "tags": [
+                    "Nutrition"
+                ],
+                "summary": "Télécharger le dernier Guide Nutritionnel enregistré",
+                "description": "Récupère et télécharge le dernier fichier PDF généré enregistré en base de données pour l'utilisateur connecté.",
+                "operationId": "a5efcdea01224fde85912567ff22f337",
+                "responses": {
+                    "200": {
+                        "description": "Fichier PDF",
+                        "content": {
+                            "application/pdf": {}
+                        }
+                    },
+                    "404": {
+                        "description": "Plan non trouvé"
                     }
                 },
                 "security": [

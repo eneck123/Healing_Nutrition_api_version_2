@@ -29,7 +29,7 @@ class MaladieChroniqueController extends Controller
      *         required=true,
      *         @OA\JsonContent(
      *             required={"name", "email", "password"},
-     *             @OA\Property(property="type_maladie_chronique", type="string", example="Obésité")
+     *             @OA\Property(property="type_maladie_chronique", type="string", example="obésité")
      *         )
      *     ),
      *     @OA\Response(
