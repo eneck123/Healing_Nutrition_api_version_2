@@ -7,6 +7,7 @@ use App\Models\Question;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 
 /**
@@ -166,74 +167,124 @@ class ReponseController extends Controller
             return response()->json([
                 'success' => false,
                 'message' => 'Erreur de validation initiale',
-                'errors' => $validator->errors(),
+                'errors'  => $validator->errors(),
             ], 400);
         }
 
         $reponsesData = $request->input('reponses');
-        $errors = [];
-        $validReponses = [];
 
-        // Check for missing mandatory questions
-        $user = auth()->user();
-        if ($user && $user->maladie_chronique_id) {
-            $mandatoryQuestionIds = Question::where('maladie_chronique_id', $user->maladie_chronique_id)
-                ->where('has_possible_answers', true)
-                ->pluck('id')
-                ->toArray();
+        // ----------------------------------------------------------------
+        // ÉTAPE 1 : Charger toutes les questions de la maladie de l'utilisateur
+        // ----------------------------------------------------------------
+        $allQuestions = Question::where('maladie_chronique_id', $utilisateur->maladie_chronique_id)
+            ->get()
+            ->keyBy('id');
 
-            $submittedQuestionIds = array_column($reponsesData, 'question_id');
-            $missingQuestionIds = array_diff($mandatoryQuestionIds, $submittedQuestionIds);
+        // ----------------------------------------------------------------
+        // ÉTAPE 2 : Construire un map { question_id => réponse soumise }
+        // ----------------------------------------------------------------
+        $submittedMap = collect($reponsesData)->keyBy('question_id');
 
-            if (!empty($missingQuestionIds)) {
-                $missingQuestions = Question::whereIn('id', $missingQuestionIds)->pluck('texte_question');
-                return response()->json([
-                    'success' => false,
-                    'message' => 'Veuillez répondre à toutes les questions obligatoires.',
-                    'missing_questions' => $missingQuestions,
-                ], 400);
+        // ----------------------------------------------------------------
+        // ÉTAPE 3 : Filtrage silencieux des réponses enfants ignorées
+        // Si le parent a reçu une réponse différente de trigger_answer (ex: "Non"),
+        // on retire silencieusement la réponse enfant du payload.
+        // ----------------------------------------------------------------
+        foreach ($allQuestions as $question) {
+            if (!is_null($question->parent_question_id) && !is_null($question->trigger_answer)) {
+                $parentResponse = $submittedMap->get($question->parent_question_id);
+
+                if (!$parentResponse) {
+                    // Parent non répondu : enfant ignorée
+                    $submittedMap->forget($question->id);
+                    continue;
+                }
+
+                // Récupérer la valeur textuelle de la réponse parente
+                $parentAnswerValue = null;
+                if (!empty($parentResponse['question_possible_answer_id'])) {
+                    $possibleAnswer = \App\Models\QuestionPossibleAnswer::find(
+                        $parentResponse['question_possible_answer_id']
+                    );
+                    $parentAnswerValue = $possibleAnswer ? $possibleAnswer->value : null;
+                } elseif (!empty($parentResponse['reponse'])) {
+                    $parentAnswerValue = $parentResponse['reponse'];
+                }
+
+                // Si la réponse parente != trigger_answer → enfant ignorée silencieusement
+                if ($parentAnswerValue !== $question->trigger_answer) {
+                    $submittedMap->forget($question->id);
+                }
             }
         }
 
-        foreach ($reponsesData as $index => $responseData) {
+        // ----------------------------------------------------------------
+        // ÉTAPE 4 : Calculer les questions obligatoires actives
+        // = questions sans parent  +  questions enfants dont le parent a déclenché
+        // ----------------------------------------------------------------
+        $activeRequiredQuestionIds = $allQuestions->filter(function ($question) use ($submittedMap, $allQuestions) {
+            // Question indépendante : toujours obligatoire
+            if (is_null($question->parent_question_id)) {
+                return true;
+            }
+            // Question enfant : obligatoire seulement si elle est encore dans le map (non filtrée)
+            return $submittedMap->has($question->id);
+        })->pluck('id')->toArray();
+
+        // ----------------------------------------------------------------
+        // ÉTAPE 5 : Vérifier les questions obligatoires manquantes
+        // ----------------------------------------------------------------
+        $submittedQuestionIds = $submittedMap->keys()->toArray();
+        $missingQuestionIds   = array_diff($activeRequiredQuestionIds, $submittedQuestionIds);
+
+        if (!empty($missingQuestionIds)) {
+            $missingQuestions = Question::whereIn('id', $missingQuestionIds)->pluck('texte_question');
+            return response()->json([
+                'success'           => false,
+                'message'           => 'Veuillez répondre à toutes les questions obligatoires.',
+                'missing_questions' => $missingQuestions,
+            ], 422);
+        }
+
+        // ----------------------------------------------------------------
+        // ÉTAPE 6 : Valider chaque réponse individuellement
+        // ----------------------------------------------------------------
+        $errors       = [];
+        $validReponses = [];
+
+        foreach ($submittedMap as $questionId => $responseData) {
             if (!isset($responseData['question_id'])) {
-                $errors["reponses.{$index}.question_id"] = ["Le champ question_id est obligatoire pour l'élément $index."];
+                $errors[] = "question_id manquant dans une entrée.";
                 continue;
             }
 
-            $question = Question::find($responseData['question_id']);
+            $question = $allQuestions->get($questionId);
 
             if (!$question) {
-                $errors["reponses.{$index}.question_id"] = ["La question avec l'ID {$responseData['question_id']} n'existe pas."];
+                $errors[] = "La question avec l'ID {$questionId} n'existe pas ou ne correspond pas à votre profil.";
                 continue;
-            }
-
-            // Ensure question belongs to user's disease (security check)
-            if ($user && $user->maladie_chronique_id && $question->maladie_chronique_id != $user->maladie_chronique_id) {
-                 $errors["reponses.{$index}.question_id"] = ["La question '{$question->texte_question}' ne correspond pas à votre profil médical."];
-                 continue;
             }
 
             if ($question->has_possible_answers) {
                 if (empty($responseData['question_possible_answer_id'])) {
-                    $errors["reponses.{$index}.question_possible_answer_id"] = ["Veuillez sélectionner une option pour la question '{$question->texte_question}'."];
+                    $errors[] = "Veuillez sélectionner une option pour la question \u00ab {$question->texte_question} \u00bb.";
                 } else {
                     $validReponses[] = [
-                        'question_id' => $question->id,
-                        'utilisateur_id' => $utilisateurId,
+                        'question_id'                => $question->id,
+                        'utilisateur_id'             => $utilisateurId,
                         'question_possible_answer_id' => $responseData['question_possible_answer_id'],
-                        'description' => null, // Description can be null here
+                        'description'                => null,
                     ];
                 }
             } else {
                 if (empty($responseData['reponse'])) {
-                    $errors["reponses.{$index}.reponse"] = ["Veuillez fournir une réponse textuelle pour la question '{$question->texte_question}'."];
+                    $errors[] = "Veuillez fournir une réponse textuelle pour la question \u00ab {$question->texte_question} \u00bb.";
                 } else {
                     $validReponses[] = [
-                        'question_id' => $question->id,
-                        'utilisateur_id' => $utilisateurId,
+                        'question_id'                => $question->id,
+                        'utilisateur_id'             => $utilisateurId,
                         'question_possible_answer_id' => null,
-                        'description' => $responseData['reponse'], // Map 'reponse' input to 'description' column
+                        'description'                => $responseData['reponse'],
                     ];
                 }
             }
@@ -243,13 +294,18 @@ class ReponseController extends Controller
             return response()->json([
                 'success' => false,
                 'message' => 'Erreur de validation des réponses',
-                'errors' => $errors,
-            ], 400);
+                'errors'  => $errors,
+            ], 422);
         }
 
-        foreach ($validReponses as $reponseAttributes) {
-            Reponse::create($reponseAttributes);
-        }
+        // ----------------------------------------------------------------
+        // ÉTAPE 7 : Sauvegarde atomique — tout ou rien
+        // ----------------------------------------------------------------
+        DB::transaction(function () use ($validReponses) {
+            foreach ($validReponses as $reponseAttributes) {
+                Reponse::create($reponseAttributes);
+            }
+        });
 
         return response()->json([
             'success' => true,

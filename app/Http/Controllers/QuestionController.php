@@ -185,16 +185,44 @@ class QuestionController extends Controller
         }
 
         $answers = Reponse::where('utilisateur_id', $utilisateur->id)->get();
-        $questions = Question::where('maladie_chronique_id', $utilisateur->maladie_chronique_id)->get();
-        // foreach ($questions as $question) {
-        //     $question->possible_answers = QuestionPossibleAnswer::where('question_id', $question->id)->get();
-        // }
+        $allQuestions = Question::where('maladie_chronique_id', $utilisateur->maladie_chronique_id)->get();
+        
+        // Map des réponses par question ID
+        $submittedMap = $answers->keyBy('question_id');
+
+        // Calcul des questions obligatoires actives
+        $activeRequiredQuestions = $allQuestions->filter(function ($question) use ($submittedMap) {
+            // Indépendante -> Obligatoire
+            if (is_null($question->parent_question_id)) {
+                return true;
+            }
+
+            // Enfant -> Obligatoire seulement si le parent a déclenché "Oui" (trigger_answer)
+            $parentResponse = $submittedMap->get($question->parent_question_id);
+            if (!$parentResponse) {
+                return false;
+            }
+
+            $parentValue = null;
+            if ($parentResponse->question_possible_answer_id) {
+                $possibleAnswer = QuestionPossibleAnswer::find($parentResponse->question_possible_answer_id);
+                $parentValue = $possibleAnswer ? $possibleAnswer->value : null;
+            } else {
+                $parentValue = $parentResponse->description;
+            }
+
+            return $parentValue === $question->trigger_answer;
+        });
+
+        $totalRequired = $activeRequiredQuestions->count();
+        $totalSubmitted = $answers->intersectByKeys($activeRequiredQuestions->keyBy('id'))->count();
+
         return response()->json([
             'success' => true,
             'message' => 'Liste des reponses récupérée avec succès',
             'data' => [
                 'answers' => $answers,
-                'status' =>  $questions->count() == $answers->count() ? 'Complete' : 'Pending'
+                'status' =>  $totalSubmitted >= $totalRequired ? 'Complete' : 'Pending'
             ],
         ], 200);
     }

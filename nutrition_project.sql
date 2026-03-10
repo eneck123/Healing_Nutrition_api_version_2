@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : mer. 25 fév. 2026 à 18:39
+-- Généré le : mar. 10 mars 2026 à 14:08
 -- Version du serveur : 10.4.32-MariaDB
 -- Version de PHP : 8.2.12
 
@@ -56,8 +56,7 @@ CREATE TABLE `maladie_chroniques` (
 
 INSERT INTO `maladie_chroniques` (`id`, `nom`, `type`, `created_at`, `updated_at`) VALUES
 (1, 'Obésité', 'obésité modérée', NULL, NULL),
-(2, 'Obésité', 'obésité sévère', NULL, NULL),
-(3, 'Obésité', 'obésité morbide', NULL, NULL);
+(2, 'Obésité', 'obésité sévère', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -85,8 +84,9 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (7, '2024_09_01_151253_create_plan_nutritionnels_table', 1),
 (8, '2024_11_08_203838_create_password_resets_table', 1),
 (9, '2025_02_19_102346_create_question_possible_answers_table', 1),
-(10, '2025_12_23_124213_add_notification_and_tdee_columns_to_utilisateurs_table', 2),
-(11, '2026_02_18_230756_add_pdf_path_to_plan_nutritionnels_table', 3);
+(10, '2025_12_23_124213_add_notification_and_tdee_columns_to_utilisateurs_table', 1),
+(11, '2026_02_18_230756_add_pdf_path_to_plan_nutritionnels_table', 1),
+(12, '2026_03_10_120000_add_conditional_columns_to_questions_table', 1);
 
 -- --------------------------------------------------------
 
@@ -126,30 +126,8 @@ CREATE TABLE `personal_access_tokens` (
 --
 
 INSERT INTO `personal_access_tokens` (`id`, `tokenable_type`, `tokenable_id`, `name`, `token`, `abilities`, `last_used_at`, `expires_at`, `created_at`, `updated_at`) VALUES
-(1, 'App\\Models\\Utilisateur', 2, 'auth_token', '96f1209bf41550b7384ec85f6b6aee2f220c8d3f04d6d48b20c66be3612fb19d', '[\"*\"]', NULL, NULL, '2025-12-03 14:09:13', '2025-12-03 14:09:13'),
-(2, 'App\\Models\\Utilisateur', 2, 'API Token', '7b4af22b98d03977b8ac0ec2f36f1fc572df709d44de715b1910d940157d9670', '[\"*\"]', '2025-12-03 16:48:05', NULL, '2025-12-03 14:10:20', '2025-12-03 16:48:05'),
-(3, 'App\\Models\\Utilisateur', 2, 'API Token', 'e758be191953cfd3ade06f3d86c49ecfc943aca33f06163778441a121536ed42', '[\"*\"]', '2025-12-11 20:42:27', NULL, '2025-12-11 20:40:18', '2025-12-11 20:42:27'),
-(4, 'App\\Models\\Utilisateur', 3, 'auth_token', '36fc198eb5d1e37046890aaae1faf91a1be4d33e4a55b47c8033449adff93ccd', '[\"*\"]', NULL, NULL, '2025-12-11 23:39:44', '2025-12-11 23:39:44'),
-(5, 'App\\Models\\Utilisateur', 3, 'API Token', '3bf16ef35b1fed9bd5cc31081e372172c9804422621a3cf05b14d2a73cc51b24', '[\"*\"]', NULL, NULL, '2025-12-11 23:40:06', '2025-12-11 23:40:06'),
-(6, 'App\\Models\\Utilisateur', 3, 'API Token', '64adc9414033295820a5221b2df0de1f778c62965a6bcd66b6b7c5c1a5f735a5', '[\"*\"]', '2025-12-12 17:33:25', NULL, '2025-12-12 17:29:03', '2025-12-12 17:33:25'),
-(7, 'App\\Models\\Utilisateur', 3, 'API Token', '45f48cfeafb6aa743f83e9cadebe1bf191e7b51ce7179e425ff4935d2cf45d8f', '[\"*\"]', '2025-12-14 22:16:21', NULL, '2025-12-14 21:29:47', '2025-12-14 22:16:21'),
-(8, 'App\\Models\\Utilisateur', 3, 'API Token', 'd391f1d66daa1f19906e05225616655d134d2aed8926eaa7a46eee046e5e9dfd', '[\"*\"]', NULL, NULL, '2025-12-15 16:35:47', '2025-12-15 16:35:47'),
-(9, 'App\\Models\\Utilisateur', 3, 'API Token', 'ccdb052c6893a9bfbf8d886c1e95928461c12bb6771d4d14b66f7f9b58585d0e', '[\"*\"]', NULL, NULL, '2025-12-30 16:10:20', '2025-12-30 16:10:20'),
-(10, 'App\\Models\\Utilisateur', 3, 'API Token', 'eb089dbbc36a53a8e4e3070cd0184b44032a8cfdccb4bd1c89131367d347f062', '[\"*\"]', NULL, NULL, '2025-12-31 10:09:57', '2025-12-31 10:09:57'),
-(11, 'App\\Models\\Utilisateur', 3, 'API Token', 'a2f9996cd9a8efaa42f7c792be76758eb5ce592b477fdddc781d90a0fa91902d', '[\"*\"]', '2025-12-31 11:02:51', NULL, '2025-12-31 10:26:35', '2025-12-31 11:02:51'),
-(12, 'App\\Models\\Utilisateur', 4, 'auth_token', '57740dd586fbbeea3fe7d45ee903ff95587e17188ec2ab0456ef0ec340b6ce88', '[\"*\"]', NULL, NULL, '2025-12-31 12:09:48', '2025-12-31 12:09:48'),
-(13, 'App\\Models\\Utilisateur', 4, 'API Token', '16ba0649f022e9629816588047c14aa11ae111e1eec4f830ea1bf3bb788bf7d9', '[\"*\"]', '2025-12-31 12:18:54', NULL, '2025-12-31 12:10:15', '2025-12-31 12:18:54'),
-(14, 'App\\Models\\Utilisateur', 3, 'API Token', 'ad67f66e6498f7d6dc8c1f56bd42366353b8d31e3da089149d7ea82b8ef06fb0', '[\"*\"]', '2026-01-07 20:53:55', NULL, '2026-01-07 20:25:06', '2026-01-07 20:53:55'),
-(15, 'App\\Models\\Utilisateur', 3, 'API Token', '045566d86f7240b36e68dee624e6aeb05602bfe95324255016bb32ab83e587f2', '[\"*\"]', '2026-01-09 20:03:41', NULL, '2026-01-09 19:48:57', '2026-01-09 20:03:41'),
-(16, 'App\\Models\\Utilisateur', 3, 'API Token', '1f7dcae8673bf99d5be5ca58447a55c1c32df3da9a9e579f47dff931c80d7a84', '[\"*\"]', '2026-01-09 20:13:11', NULL, '2026-01-09 20:11:03', '2026-01-09 20:13:11'),
-(17, 'App\\Models\\Utilisateur', 3, 'API Token', 'bf38b342a8cf81bd11b0454460cac3c46669c5c3171feed5ee88af8b83ccee43', '[\"*\"]', '2026-01-17 11:32:44', NULL, '2026-01-17 11:31:50', '2026-01-17 11:32:44'),
-(18, 'App\\Models\\Utilisateur', 3, 'API Token', 'f8b8e6264103cb2a3cb3385ba894e0416977de033aad5ce47a0ed1e23087b627', '[\"*\"]', '2026-01-17 12:20:18', NULL, '2026-01-17 11:43:15', '2026-01-17 12:20:18'),
-(19, 'App\\Models\\Utilisateur', 3, 'API Token', '126cb0a09ca007edc7cf6aa3e989e4d4c617f87d8b1097b544dcd49b833e2c1b', '[\"*\"]', '2026-01-17 12:53:45', NULL, '2026-01-17 12:21:13', '2026-01-17 12:53:45'),
-(20, 'App\\Models\\Utilisateur', 3, 'API Token', '2bf2a9ca5c1221c4f59fd7427e0e2cfe9b7fb98c7479a47da02e5f05454d68c5', '[\"*\"]', '2026-01-17 13:19:50', NULL, '2026-01-17 13:00:06', '2026-01-17 13:19:50'),
-(21, 'App\\Models\\Utilisateur', 4, 'API Token', 'af82ac8cdb3aec789c06c8ef084a6faf4d527d34c33d5e72a3118187baa82008', '[\"*\"]', '2026-01-18 10:54:52', NULL, '2026-01-17 13:22:33', '2026-01-18 10:54:52'),
-(22, 'App\\Models\\Utilisateur', 4, 'API Token', 'da99d6b1fcb6bb7a3bae3b3963cf87a5a40fb39560f705ccac2064d4d7c7def0', '[\"*\"]', '2026-02-12 20:54:52', NULL, '2026-02-12 20:22:26', '2026-02-12 20:54:52'),
-(23, 'App\\Models\\Utilisateur', 4, 'API Token', 'f2f3b6ebedb6c5d36cd7e10bf7f29ec44b90c6304bf0d6fbaa6454d04b0de597', '[\"*\"]', '2026-02-17 22:37:22', NULL, '2026-02-17 21:46:40', '2026-02-17 22:37:22'),
-(24, 'App\\Models\\Utilisateur', 4, 'API Token', '1f8ee6718ce618b5bb74ac38ffcc3539f5256ad46d5662050274b28f6cc12128', '[\"*\"]', '2026-02-18 22:16:45', NULL, '2026-02-18 22:11:58', '2026-02-18 22:16:45');
+(1, 'App\\Models\\Utilisateur', 2, 'auth_token', '419e93285bd2ebdfe9f486fec2ffd2784b10860b7ff7acda2eca86f8ec044500', '[\"*\"]', NULL, NULL, '2026-03-10 11:48:01', '2026-03-10 11:48:01'),
+(2, 'App\\Models\\Utilisateur', 2, 'API Token', '64ae5a4c687a946f32765741f3547650ccb99cf0b8feb1193b732fe2fe66e312', '[\"*\"]', '2026-03-10 12:05:12', NULL, '2026-03-10 11:48:42', '2026-03-10 12:05:12');
 
 -- --------------------------------------------------------
 
@@ -166,13 +144,6 @@ CREATE TABLE `plan_nutritionnels` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
---
--- Déchargement des données de la table `plan_nutritionnels`
---
-
-INSERT INTO `plan_nutritionnels` (`id`, `description`, `utilisateur_id`, `pdf_path`, `created_at`, `updated_at`) VALUES
-(1, 'Guide nutritionnel de 90 jours généré le 18/02/2026', 4, 'storage/pdfs/Guide_Nutritionnel_4_1771456438.pdf', '2026-02-18 22:14:05', '2026-02-18 22:14:05');
-
 -- --------------------------------------------------------
 
 --
@@ -183,6 +154,8 @@ CREATE TABLE `questions` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `texte_question` varchar(255) NOT NULL,
   `maladie_chronique_id` bigint(20) UNSIGNED NOT NULL,
+  `parent_question_id` bigint(20) UNSIGNED DEFAULT NULL,
+  `trigger_answer` varchar(255) DEFAULT NULL,
   `has_possible_answers` tinyint(1) NOT NULL DEFAULT 0,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
@@ -192,80 +165,58 @@ CREATE TABLE `questions` (
 -- Déchargement des données de la table `questions`
 --
 
-INSERT INTO `questions` (`id`, `texte_question`, `maladie_chronique_id`, `has_possible_answers`, `created_at`, `updated_at`) VALUES
-(66, 'Avez-vous des antécédents de diabète de type 2, d\'hypertension artérielle  ou de maladies cardiovasculaires ? ', 1, 1, NULL, NULL),
-(67, 'Si oui, lequel ? ', 1, 0, NULL, NULL),
-(68, 'Prenez-vous actuellement des médicaments qui sont liés à votre antécédent précédent ?', 1, 1, NULL, NULL),
-(69, 'Si oui, lesquels ? ', 1, 0, NULL, NULL),
-(70, 'Prenez-vous actuellement l’un des types de médicaments suivants ?', 1, 1, NULL, NULL),
-(71, 'Pouvez-vous décrire une journée typique de vos repas et collations ?', 1, 0, NULL, NULL),
-(72, 'Combien de portions de fruits et légumes consommez-vous par jour ?', 1, 1, NULL, NULL),
-(73, 'Grignotez-vous entre les repas ? ', 1, 1, NULL, NULL),
-(74, 'Si oui, quels aliments consommez-vous ?', 1, 0, NULL, NULL),
-(75, 'A quelle fréquence consommez-vous des boissons sucrées ou alcoolisées ?', 1, 1, NULL, NULL),
-(76, 'Combien d\'heures de sommeil avez-vous par nuit ?', 1, 1, NULL, NULL),
-(77, 'Avez-vous l’apnée du sommeil ? ', 1, 1, NULL, NULL),
-(78, 'Avez-vous récemment fait un régime de perte du poids ? ', 1, 1, NULL, NULL),
-(79, 'Si oui, combien de poids avez-vous perdu ? ', 1, 1, NULL, NULL),
-(80, 'Combien de jours par semaine pratiquez-vous une activité physique ?', 1, 1, NULL, NULL),
-(81, 'Combien de temps passez-vous en position assise chaque jour ?  ', 1, 1, NULL, NULL),
-(82, 'Quelles activités physiques appréciez-vous ? ', 1, 1, NULL, NULL),
-(83, 'Connaissez-vous votre fréquence cardiaque au repos ? ', 1, 1, NULL, NULL),
-(84, 'Si oui, veuillez- nous la donner ?', 1, 0, NULL, '2025-12-31 10:55:06'),
-(85, 'Mangez-vous souvent par stress ou ennui ?', 1, 1, NULL, NULL),
-(86, 'Avez-vous tendance à finir votre assiette même si vous n’avez plus faim ?', 1, 1, NULL, NULL),
-(87, 'Avez-vous déjà suivi un régime alimentaire particulier ?', 1, 1, NULL, NULL),
-(88, 'Si oui, lequel, et a-t-il été efficace pour vous ? Pourquoi ?', 1, 0, NULL, NULL),
-(89, 'Quel est votre objectif principal en matière de santé ? ', 1, 1, NULL, NULL),
-(90, 'Combien de kg voulez-vous perdre ? ', 1, 1, NULL, NULL),
-(91, 'Selon votre objectif de perte de poids, quel niveau de changement êtes-vous prêt à suivre ?', 1, 1, NULL, NULL),
-(92, 'Avez-vous été diagnostiqué avec des problèmes de santé liés à l\'obésité, comme le diabète de type 2, l\'hypertension ou l\'hypercholestérolémie ? ', 2, 1, NULL, NULL),
-(93, 'Si oui lequel ?', 2, 0, NULL, NULL),
-(94, 'Avez-vous subi des opérations chirurgicales liées à votre poids comme une chirurgie bariatrique ?', 2, 1, NULL, NULL),
-(95, 'Avez-vous des restrictions alimentaires ? ', 2, 1, NULL, NULL),
-(96, 'Si oui, choisissez l\'option qui s\'appliquent ?', 2, 1, NULL, NULL),
-(97, 'Consommez-vous régulièrement des aliments riches en calories vides, comme les boissons sucrées, les fast-foods, ou les desserts ?', 2, 1, NULL, NULL),
-(98, 'Suivez-vous déjà un plan nutritionnel ou avez-vous consulté un diététicien auparavant ?', 2, 1, NULL, NULL),
-(99, 'Si oui, parlez-nous de ça brièvement en quelques lignes', 2, 0, NULL, NULL),
-(100, 'Buvez-vous régulièrement des boissons sucrées ou alcoolisées ? ', 2, 1, NULL, NULL),
-(101, 'Si oui, Quand ? Quelle quantité ?', 2, 0, NULL, NULL),
-(102, 'Combien d\' heures de sommeil avez-vous par nuit ? ', 2, 1, NULL, NULL),
-(103, 'Avez-vous l’apnée du sommeil ?', 2, 1, NULL, NULL),
-(104, 'Avez-vous des douleurs articulaires ou des limitations de mobilité ? ', 2, 1, NULL, NULL),
-(105, 'Si oui, A quelle fréquence ?', 2, 1, NULL, NULL),
-(106, 'Avez-vous récemment fait un régime de perte du poids ?', 2, 1, NULL, NULL),
-(107, 'Si oui, combien de poids avez-vous perdu ?', 2, 0, NULL, NULL),
-(108, 'Combien de jours par semaine pratiquez-vous une activité physique ? ', 2, 1, NULL, NULL),
-(109, 'Combien de temps passez-vous en position assise chaque jour ?  ', 2, 1, NULL, NULL),
-(110, 'Quelles activités physiques appréciez-vous ? ', 2, 1, NULL, NULL),
-(111, 'Connaissez-vous votre fréquence cardiaque au repos ? ', 2, 1, NULL, NULL),
-(112, 'Si oui, veuillez- nous la donner ?', 2, 0, NULL, NULL),
-(113, 'Comment décririez-vous votre ressenti personnel par rapport à votre poids ?', 2, 0, NULL, NULL),
-(114, 'Mangez-vous souvent par stress ou ennui ?', 2, 1, NULL, NULL),
-(115, 'Avez-vous tendance à finir votre assiette même si vous n’avez plus faim ?', 2, 1, NULL, NULL),
-(116, 'Avez-vous des habitudes alimentaires liées à des émotions, comme le stress ou la dépression ?', 2, 1, NULL, NULL),
-(117, 'Avez-vous déjà suivi un programme ou tenté de perdre du poids auparavant ?', 2, 1, NULL, NULL),
-(121, 'Souffrez-vous de maladies chroniques importantes pouvant être liées à votre poids ? ', 3, 1, NULL, NULL),
-(122, 'Avez-vous l’apnée du sommeil ? ', 3, 1, NULL, NULL),
-(123, 'Utilisez-vous un appareil CPAP pour l\'apnée du sommeil ?', 3, 1, NULL, NULL),
-(124, 'Avez-vous des difficultés à effectuer des activités quotidiennes de base en raison de votre poids ?', 3, 1, NULL, NULL),
-(125, 'Avez-vous récemment perdu ou pris du poids ?', 3, 1, NULL, NULL),
-(126, 'Si oui, combien et en combien de temps ? ', 3, 0, NULL, NULL),
-(127, 'Avez-vous des épisodes de compulsions alimentaires ou de boulimie ?', 3, 1, NULL, NULL),
-(128, 'Avez-vous déjà suivi des régimes très stricts ou des régimes en yo-yo ?', 3, 1, NULL, NULL),
-(129, 'Avez-vous des difficultés à contrôler les portions ou à manger de manière équilibrée ?', 3, 1, NULL, NULL),
-(130, 'Buvez-vous régulièrement des boissons sucrées ou alcoolisées ?', 3, 1, NULL, NULL),
-(131, 'Si oui, Quand ? Quelle quantité ? ', 3, 0, NULL, NULL),
-(132, 'Votre poids vous empêche-t-il de pratiquer certaines activités physiques ? ', 3, 1, NULL, NULL),
-(133, 'Quelle est votre capacité à vous déplacer de manière autonome (marche, escaliers, etc.) ?', 3, 1, NULL, NULL),
-(134, 'Avez-vous besoin d\'un équipement spécialisé pour vous aider à bouger ou à vous asseoir confortablement ?', 3, 1, NULL, NULL),
-(135, 'Quelle est votre fréquence cardiaque au repos (si vous la connaissez) ?', 3, 0, NULL, NULL),
-(136, 'Avez-vous un suivi psychologique ou psychiatrique en lien avec votre poids ou votre alimentation ?', 3, 1, NULL, NULL),
-(137, 'Si oui, parlez-nous en si cela ne vous gêne pas ', 3, 0, NULL, NULL),
-(138, 'Avez-vous déjà participé à des groupes de soutien pour la perte de poids ou l\'obésité ?', 3, 1, NULL, NULL),
-(139, 'Comment faites-vous face aux remarques liées à votre poids ?', 3, 1, NULL, NULL),
-(140, 'Avez-vous envisagé une chirurgie bariatrique ou d\'autres interventions médicales pour gérer votre poids ?', 3, 1, NULL, NULL),
-(143, 'Quels aspects de votre vie vous motivent le plus pour changer vos habitudes alimentaires et physiques ?', 3, 0, NULL, NULL);
+INSERT INTO `questions` (`id`, `texte_question`, `maladie_chronique_id`, `parent_question_id`, `trigger_answer`, `has_possible_answers`, `created_at`, `updated_at`) VALUES
+(1, 'Avez-vous des antécédents de diabète de type 2, d\'hypertension artérielle ou de maladies cardiovasculaires ?', 1, NULL, NULL, 1, '2026-03-10 11:34:05', '2026-03-10 11:34:05'),
+(2, 'Si oui, lequel ?', 1, 1, 'Oui', 0, '2026-03-10 11:34:05', '2026-03-10 11:34:05'),
+(3, 'Prenez-vous actuellement des médicaments qui sont liés à votre antécédent précédent ?', 1, NULL, NULL, 1, '2026-03-10 11:34:05', '2026-03-10 11:34:05'),
+(4, 'Si oui, lesquels ?', 1, 3, 'Oui', 0, '2026-03-10 11:34:05', '2026-03-10 11:34:05'),
+(5, 'Prenez-vous actuellement l\'un des types de médicaments suivants ?', 1, NULL, NULL, 1, '2026-03-10 11:34:05', '2026-03-10 11:34:05'),
+(6, 'Pouvez-vous décrire une journée typique de vos repas et collations ?', 1, NULL, NULL, 0, '2026-03-10 11:34:05', '2026-03-10 11:34:05'),
+(7, 'Combien de portions de fruits et légumes consommez-vous par jour ?', 1, NULL, NULL, 1, '2026-03-10 11:34:05', '2026-03-10 11:34:05'),
+(8, 'Grignotez-vous entre les repas ?', 1, NULL, NULL, 1, '2026-03-10 11:34:05', '2026-03-10 11:34:05'),
+(9, 'Si oui, quels aliments consommez-vous ?', 1, 8, 'Oui', 0, '2026-03-10 11:34:05', '2026-03-10 11:34:05'),
+(10, 'A quelle fréquence consommez-vous des boissons sucrées ou alcoolisées ?', 1, NULL, NULL, 1, '2026-03-10 11:34:05', '2026-03-10 11:34:05'),
+(11, 'Combien d\'heures de sommeil avez-vous par nuit ?', 1, NULL, NULL, 1, '2026-03-10 11:34:05', '2026-03-10 11:34:05'),
+(12, 'Avez-vous l\'apnée du sommeil ?', 1, NULL, NULL, 1, '2026-03-10 11:34:05', '2026-03-10 11:34:05'),
+(13, 'Avez-vous récemment fait un régime de perte du poids ?', 1, NULL, NULL, 1, '2026-03-10 11:34:05', '2026-03-10 11:34:05'),
+(14, 'Combien de jours par semaine pratiquez-vous une activité physique ?', 1, NULL, NULL, 1, '2026-03-10 11:34:05', '2026-03-10 11:34:05'),
+(15, 'Combien de temps passez-vous en position assise chaque jour ?', 1, NULL, NULL, 1, '2026-03-10 11:34:05', '2026-03-10 11:34:05'),
+(16, 'Quelles activités physiques appréciez-vous ?', 1, NULL, NULL, 1, '2026-03-10 11:34:05', '2026-03-10 11:34:05'),
+(17, 'Connaissez-vous votre fréquence cardiaque au repos ?', 1, NULL, NULL, 1, '2026-03-10 11:34:05', '2026-03-10 11:34:05'),
+(18, 'Si oui, veuillez- nous la donner ?', 1, 17, 'Oui', 0, '2026-03-10 11:34:05', '2026-03-10 11:34:05'),
+(19, 'Mangez-vous souvent par stress ou ennui ?', 1, NULL, NULL, 1, '2026-03-10 11:34:05', '2026-03-10 11:34:05'),
+(20, 'Avez-vous tendance à finir votre assiette même si vous n\'avez plus faim ?', 1, NULL, NULL, 1, '2026-03-10 11:34:05', '2026-03-10 11:34:05'),
+(21, 'Avez-vous déjà suivi un régime alimentaire particulier ?', 1, NULL, NULL, 1, '2026-03-10 11:34:05', '2026-03-10 11:34:05'),
+(22, 'Si oui, lequel, et a-t-il été efficace pour vous ? Pourquoi ?', 1, 21, 'Oui', 0, '2026-03-10 11:34:05', '2026-03-10 11:34:05'),
+(23, 'Quel est votre objectif principal en matière de santé ?', 1, NULL, NULL, 1, '2026-03-10 11:34:05', '2026-03-10 11:34:05'),
+(24, 'Combien de kg voulez-vous perdre ?', 1, NULL, NULL, 1, '2026-03-10 11:34:05', '2026-03-10 11:34:05'),
+(25, 'Selon votre objectif de perte de poids, quel niveau de changement êtes-vous prêt à suivre ?', 1, NULL, NULL, 1, '2026-03-10 11:34:05', '2026-03-10 11:34:05'),
+(26, 'Avez-vous été diagnostiqué avec des problèmes de santé liés à l\'obésité, comme le diabète de type 2, l\'hypertension ou l\'hypercholestérolémie ?', 2, NULL, NULL, 1, '2026-03-10 11:34:05', '2026-03-10 11:34:05'),
+(27, 'Si oui lequel ?', 2, 26, 'Oui', 0, '2026-03-10 11:34:05', '2026-03-10 11:34:05'),
+(28, 'Avez-vous subi des opérations chirurgicales liées à votre poids comme une chirurgie bariatrique ?', 2, NULL, NULL, 1, '2026-03-10 11:34:05', '2026-03-10 11:34:05'),
+(29, 'Avez-vous des restrictions alimentaires ?', 2, NULL, NULL, 1, '2026-03-10 11:34:05', '2026-03-10 11:34:05'),
+(30, 'Si oui, choisissez l\'option qui s\'appliquent ?', 2, 29, 'Oui', 1, '2026-03-10 11:34:05', '2026-03-10 11:34:05'),
+(31, 'Consommez-vous régulièrement des aliments riches en calories vides, comme les boissons sucrées, les fast-foods, ou les desserts ?', 2, NULL, NULL, 1, '2026-03-10 11:34:05', '2026-03-10 11:34:05'),
+(32, 'Suivez-vous déjà un plan nutritionnel ou avez-vous consulté un diététicien auparavant ?', 2, NULL, NULL, 1, '2026-03-10 11:34:05', '2026-03-10 11:34:05'),
+(33, 'Si oui, parlez-nous de ça brièvement en quelques lignes', 2, 32, 'Oui', 0, '2026-03-10 11:34:05', '2026-03-10 11:34:05'),
+(34, 'Buvez-vous régulièrement des boissons sucrées ou alcoolisées ?', 2, NULL, NULL, 1, '2026-03-10 11:34:05', '2026-03-10 11:34:05'),
+(35, 'Si oui, Quand ? Quelle quantité ?', 2, 34, 'Oui', 0, '2026-03-10 11:34:05', '2026-03-10 11:34:05'),
+(36, 'Combien d\' heures de sommeil avez-vous par nuit ?', 2, NULL, NULL, 1, '2026-03-10 11:34:05', '2026-03-10 11:34:05'),
+(37, 'Avez-vous l\'apnée du sommeil ?', 2, NULL, NULL, 1, '2026-03-10 11:34:05', '2026-03-10 11:34:05'),
+(38, 'Avez-vous des douleurs articulaires ou des limitations de mobilité ?', 2, NULL, NULL, 1, '2026-03-10 11:34:05', '2026-03-10 11:34:05'),
+(39, 'Si oui, A quelle fréquence ?', 2, 38, 'Oui', 1, '2026-03-10 11:34:05', '2026-03-10 11:34:05'),
+(40, 'Avez-vous récemment fait un régime de perte du poids ?', 2, NULL, NULL, 1, '2026-03-10 11:34:05', '2026-03-10 11:34:05'),
+(41, 'Si oui, combien de poids avez-vous perdu ?', 2, 40, 'Oui', 0, '2026-03-10 11:34:05', '2026-03-10 11:34:05'),
+(42, 'Combien de jours par semaine pratiquez-vous une activité physique ?', 2, NULL, NULL, 1, '2026-03-10 11:34:05', '2026-03-10 11:34:05'),
+(43, 'Combien de temps passez-vous en position assise chaque jour ?', 2, NULL, NULL, 1, '2026-03-10 11:34:05', '2026-03-10 11:34:05'),
+(44, 'Quelles activités physiques appréciez-vous ?', 2, NULL, NULL, 1, '2026-03-10 11:34:05', '2026-03-10 11:34:05'),
+(45, 'Connaissez-vous votre fréquence cardiaque au repos ?', 2, NULL, NULL, 1, '2026-03-10 11:34:05', '2026-03-10 11:34:05'),
+(46, 'Si oui, veuillez- nous la donner ?', 2, 45, 'Oui', 0, '2026-03-10 11:34:05', '2026-03-10 11:34:05'),
+(47, 'Comment décririez-vous votre ressenti personnel par rapport à votre poids ?', 2, NULL, NULL, 0, '2026-03-10 11:34:05', '2026-03-10 11:34:05'),
+(48, 'Mangez-vous souvent par stress ou ennui ?', 2, NULL, NULL, 1, '2026-03-10 11:34:05', '2026-03-10 11:34:05'),
+(49, 'Avez-vous tendance à finir votre assiette même si vous n\'avez plus faim ?', 2, NULL, NULL, 1, '2026-03-10 11:34:05', '2026-03-10 11:34:05'),
+(50, 'Avez-vous des habitudes alimentaires liées à des émotions, comme le stress ou la dépression ?', 2, NULL, NULL, 1, '2026-03-10 11:34:05', '2026-03-10 11:34:05'),
+(51, 'Avez-vous déjà suivi un programme ou tenté de perdre du poids auparavant ?', 2, NULL, NULL, 1, '2026-03-10 11:34:05', '2026-03-10 11:34:05');
 
 -- --------------------------------------------------------
 
@@ -286,152 +237,115 @@ CREATE TABLE `question_possible_answers` (
 --
 
 INSERT INTO `question_possible_answers` (`id`, `question_id`, `value`, `created_at`, `updated_at`) VALUES
-(157, 66, 'Oui', NULL, NULL),
-(158, 66, 'Non', NULL, NULL),
-(159, 68, 'Oui', NULL, NULL),
-(160, 68, 'Non', NULL, NULL),
-(161, 70, 'Insuline', NULL, NULL),
-(162, 70, 'Médicaments pour perdre du poids (ex : orlistat, liraglutide…)', NULL, NULL),
-(163, 70, 'Médicaments pour la tension artérielle (ex : IEC, ARA2, bêta-bloquants…)', NULL, NULL),
-(164, 70, 'Médicaments pour le cholestérol (ex : statines)', NULL, NULL),
-(165, 70, 'Médicaments pour baisser la glycémie (ex : metformine, glimepiride…)', NULL, NULL),
-(166, 72, '1-2', NULL, NULL),
-(167, 72, '3-4', NULL, NULL),
-(168, 72, '5 ou plus', NULL, NULL),
-(169, 73, 'Oui', NULL, NULL),
-(170, 73, 'Non', NULL, NULL),
-(171, 75, 'Tous les jours', NULL, NULL),
-(172, 75, 'Une fois par semaine', NULL, NULL),
-(173, 75, 'Occasionnellement', NULL, NULL),
-(178, 76, 'Moins de 6 h', NULL, NULL),
-(179, 76, '6h -7h', NULL, NULL),
-(180, 76, '8h -9h', NULL, NULL),
-(181, 76, 'Plus de 9h', NULL, NULL),
-(182, 77, 'Oui', NULL, NULL),
-(183, 77, 'Non', NULL, NULL),
-(184, 78, 'Oui', NULL, NULL),
-(185, 78, 'Non', NULL, NULL),
-(186, 79, 'Moins de 5 kg.', NULL, NULL),
-(187, 79, '5 - 10 kg.', NULL, NULL),
-(188, 79, 'Plus de 10 kg.', NULL, NULL),
-(189, 80, 'Aucun', NULL, NULL),
-(190, 80, '1j-3j', NULL, NULL),
-(191, 80, '4j-6j ', NULL, NULL),
-(192, 80, '7j', NULL, NULL),
-(193, 81, 'Moins de 4h', NULL, NULL),
-(194, 81, '4h-6h', NULL, NULL),
-(195, 81, '6h-8h', NULL, NULL),
-(196, 81, 'Plus de 8h', NULL, NULL),
-(197, 82, 'Marche', NULL, NULL),
-(198, 82, 'Yoga ', NULL, NULL),
-(199, 82, 'Autre', NULL, NULL),
-(200, 83, 'Oui', NULL, NULL),
-(201, 83, 'Non ', NULL, NULL),
-(202, 85, 'Oui', NULL, NULL),
-(203, 85, 'Non ', NULL, NULL),
-(204, 86, 'Oui', NULL, NULL),
-(205, 86, 'Non ', NULL, NULL),
-(206, 87, 'Oui', NULL, NULL),
-(207, 87, 'Non ', NULL, NULL),
-(208, 89, 'Perdre du poids', NULL, NULL),
-(209, 89, 'Améliorer votre forme physique  ', NULL, NULL),
-(210, 90, 'Moins de 5 kg.', NULL, NULL),
-(211, 90, '5 - 10 kg.', NULL, NULL),
-(212, 90, 'Plus de 10 kg.', NULL, NULL),
-(213, 91, 'Perdre moins de 5 Kg: Léger 300 kcal', NULL, NULL),
-(214, 91, 'Perdre moins de 5Kg: Moyen 400 kcal', NULL, NULL),
-(215, 91, 'Perdre moins de 5Kg: Serein 500 kcal', NULL, NULL),
-(216, 91, 'Perdre entre 5-10Kg: Léger 500 kcal', NULL, NULL),
-(217, 91, 'Perdre entre 5-10Kg: Moyen 600 kcal', NULL, NULL),
-(218, 91, 'Perdre entre 5-10Kg: Serein 700 kcal', NULL, NULL),
-(219, 91, 'Perdre plus de 10Kg: Léger 700 kcal', NULL, NULL),
-(220, 91, 'Perdre plus de 10Kg: Moyen 800 kcal', NULL, NULL),
-(221, 91, 'Perdre plus de 10Kg: Serein 900 kcal', NULL, NULL),
-(222, 92, 'Oui', NULL, NULL),
-(223, 92, 'Non', NULL, NULL),
-(224, 94, 'Oui', NULL, NULL),
-(225, 94, 'Non', NULL, NULL),
-(226, 95, 'Oui', NULL, NULL),
-(227, 95, 'Non', NULL, NULL),
-(228, 96, 'Allergies', NULL, NULL),
-(229, 96, 'Intolérances ', NULL, NULL),
-(230, 96, 'Préférences culturelles ', NULL, NULL),
-(231, 96, 'Religieuses', NULL, NULL),
-(232, 97, 'Oui', NULL, NULL),
-(233, 97, 'Non', NULL, NULL),
-(234, 98, 'Oui', NULL, NULL),
-(235, 98, 'Non', NULL, NULL),
-(236, 100, 'Oui', NULL, NULL),
-(237, 100, 'Non', NULL, NULL),
-(238, 102, 'Moins de 6 h', NULL, NULL),
-(239, 102, '6h -7h', NULL, NULL),
-(240, 102, '8h -9h', NULL, NULL),
-(241, 102, 'Plus de 9h', NULL, NULL),
-(242, 103, 'Oui', NULL, NULL),
-(243, 103, 'Non', NULL, NULL),
-(244, 104, 'Oui', NULL, NULL),
-(245, 104, 'Non', NULL, NULL),
-(246, 105, 'Tous les jours', NULL, NULL),
-(247, 105, 'Parfois', NULL, NULL),
-(248, 106, 'Oui', NULL, NULL),
-(249, 106, 'Non', NULL, NULL),
-(250, 108, 'Aucun', NULL, NULL),
-(251, 108, '1j-3j', NULL, NULL),
-(252, 108, '4j-6j', NULL, NULL),
-(253, 108, '7j', NULL, NULL),
-(254, 109, 'Moins de 4h', NULL, NULL),
-(255, 109, '4h-6h', NULL, NULL),
-(256, 109, '6h-8h', NULL, NULL),
-(257, 109, 'Plus de 8h', NULL, NULL),
-(258, 110, 'Marche', NULL, NULL),
-(259, 110, 'Yoga', NULL, NULL),
-(260, 110, 'Autre', NULL, NULL),
-(261, 111, 'Oui', NULL, NULL),
-(262, 111, 'Non', NULL, NULL),
-(263, 114, 'Oui', NULL, NULL),
-(264, 114, 'Non', NULL, NULL),
-(265, 115, 'Oui', NULL, NULL),
-(266, 115, 'Non', NULL, NULL),
-(267, 116, 'Oui', NULL, NULL),
-(268, 116, 'Non', NULL, NULL),
-(269, 117, 'Oui', NULL, NULL),
-(270, 117, 'Non', NULL, NULL),
-(285, 121, 'Cardiaques', NULL, NULL),
-(286, 121, 'Rénales', NULL, NULL),
-(287, 123, 'Oui', NULL, NULL),
-(288, 123, 'Non', NULL, NULL),
-(289, 124, 'Oui', NULL, NULL),
-(290, 124, 'Non', NULL, NULL),
-(291, 125, 'Oui', NULL, NULL),
-(292, 125, 'Non', NULL, NULL),
-(293, 126, 'Oui', NULL, NULL),
-(294, 126, 'Non', NULL, NULL),
-(295, 127, 'Oui', NULL, NULL),
-(296, 127, 'Non', NULL, NULL),
-(297, 128, 'Oui', NULL, NULL),
-(298, 128, 'Non', NULL, NULL),
-(299, 129, 'Oui', NULL, NULL),
-(300, 129, 'Non', NULL, NULL),
-(301, 130, 'Oui', NULL, NULL),
-(302, 130, 'Non', NULL, NULL),
-(303, 132, 'Oui', NULL, NULL),
-(304, 132, 'Non', NULL, NULL),
-(305, 134, 'Oui', NULL, NULL),
-(306, 134, 'Non', NULL, NULL),
-(307, 136, 'Oui', NULL, NULL),
-(308, 136, 'Non', NULL, NULL),
-(309, 138, 'Oui', NULL, NULL),
-(310, 138, 'Non', NULL, NULL),
-(311, 139, 'Je reste indifférent(e).', NULL, NULL),
-(312, 139, 'Je me sens stressé(e) ou frustré(e).', NULL, NULL),
-(313, 139, 'Je me sens triste ou découragé(e).', NULL, NULL),
-(314, 139, 'Je cherche un soutien (amis, famille, professionnels).', NULL, NULL),
-(315, 140, 'Oui', NULL, NULL),
-(316, 140, 'Non', NULL, NULL),
-(329, 70, 'Aucun de ces médicaments', NULL, NULL),
-(330, 75, 'Jamais', NULL, NULL),
-(331, 121, 'Respiratoires', NULL, NULL),
-(332, 121, 'Aucun', NULL, NULL);
+(1, 1, 'Oui', '2026-03-10 11:34:05', '2026-03-10 11:34:05'),
+(2, 1, 'Non', '2026-03-10 11:34:05', '2026-03-10 11:34:05'),
+(3, 3, 'Oui', '2026-03-10 11:34:05', '2026-03-10 11:34:05'),
+(4, 3, 'Non', '2026-03-10 11:34:05', '2026-03-10 11:34:05'),
+(5, 5, 'Insuline', '2026-03-10 11:34:05', '2026-03-10 11:34:05'),
+(6, 5, 'Médicaments pour perdre du poids (ex : orlistat, liraglutide…)', '2026-03-10 11:34:05', '2026-03-10 11:34:05'),
+(7, 5, 'Médicaments pour la tension artérielle (ex : IEC, ARA2, bêta-bloquants…)', '2026-03-10 11:34:05', '2026-03-10 11:34:05'),
+(8, 5, 'Médicaments pour le cholestérol (ex : statines)', '2026-03-10 11:34:05', '2026-03-10 11:34:05'),
+(9, 5, 'Médicaments pour baisser la glycémie (ex : metformine, glimepiride…)', '2026-03-10 11:34:05', '2026-03-10 11:34:05'),
+(10, 5, 'Aucun de ces médicaments', '2026-03-10 11:34:05', '2026-03-10 11:34:05'),
+(11, 7, '1-2', '2026-03-10 11:34:05', '2026-03-10 11:34:05'),
+(12, 7, '3-4', '2026-03-10 11:34:05', '2026-03-10 11:34:05'),
+(13, 7, '5 ou plus', '2026-03-10 11:34:05', '2026-03-10 11:34:05'),
+(14, 8, 'Oui', '2026-03-10 11:34:05', '2026-03-10 11:34:05'),
+(15, 8, 'Non', '2026-03-10 11:34:05', '2026-03-10 11:34:05'),
+(16, 10, 'Tous les jours', '2026-03-10 11:34:05', '2026-03-10 11:34:05'),
+(17, 10, 'Une fois par semaine', '2026-03-10 11:34:05', '2026-03-10 11:34:05'),
+(18, 10, 'Occasionnellement', '2026-03-10 11:34:05', '2026-03-10 11:34:05'),
+(19, 10, 'Jamais', '2026-03-10 11:34:05', '2026-03-10 11:34:05'),
+(20, 11, 'Moins de 6 h', '2026-03-10 11:34:05', '2026-03-10 11:34:05'),
+(21, 11, '6h -7h', '2026-03-10 11:34:05', '2026-03-10 11:34:05'),
+(22, 11, '8h -9h', '2026-03-10 11:34:05', '2026-03-10 11:34:05'),
+(23, 11, 'Plus de 9h', '2026-03-10 11:34:05', '2026-03-10 11:34:05'),
+(24, 12, 'Oui', '2026-03-10 11:34:05', '2026-03-10 11:34:05'),
+(25, 12, 'Non', '2026-03-10 11:34:05', '2026-03-10 11:34:05'),
+(26, 13, 'Oui', '2026-03-10 11:34:05', '2026-03-10 11:34:05'),
+(27, 13, 'Non', '2026-03-10 11:34:05', '2026-03-10 11:34:05'),
+(28, 14, 'Aucun', '2026-03-10 11:34:05', '2026-03-10 11:34:05'),
+(29, 14, '1j-3j', '2026-03-10 11:34:05', '2026-03-10 11:34:05'),
+(30, 14, '4j-6j', '2026-03-10 11:34:05', '2026-03-10 11:34:05'),
+(31, 14, '7j', '2026-03-10 11:34:05', '2026-03-10 11:34:05'),
+(32, 15, 'Moins de 4h', '2026-03-10 11:34:05', '2026-03-10 11:34:05'),
+(33, 15, '4h-6h', '2026-03-10 11:34:05', '2026-03-10 11:34:05'),
+(34, 15, '6h-8h', '2026-03-10 11:34:05', '2026-03-10 11:34:05'),
+(35, 15, 'Plus de 8h', '2026-03-10 11:34:05', '2026-03-10 11:34:05'),
+(36, 16, 'Marche', '2026-03-10 11:34:05', '2026-03-10 11:34:05'),
+(37, 16, 'Yoga', '2026-03-10 11:34:05', '2026-03-10 11:34:05'),
+(38, 16, 'Autre', '2026-03-10 11:34:05', '2026-03-10 11:34:05'),
+(39, 17, 'Oui', '2026-03-10 11:34:05', '2026-03-10 11:34:05'),
+(40, 17, 'Non', '2026-03-10 11:34:05', '2026-03-10 11:34:05'),
+(41, 19, 'Oui', '2026-03-10 11:34:05', '2026-03-10 11:34:05'),
+(42, 19, 'Non', '2026-03-10 11:34:05', '2026-03-10 11:34:05'),
+(43, 20, 'Oui', '2026-03-10 11:34:05', '2026-03-10 11:34:05'),
+(44, 20, 'Non', '2026-03-10 11:34:05', '2026-03-10 11:34:05'),
+(45, 21, 'Oui', '2026-03-10 11:34:05', '2026-03-10 11:34:05'),
+(46, 21, 'Non', '2026-03-10 11:34:05', '2026-03-10 11:34:05'),
+(47, 23, 'Perdre du poids', '2026-03-10 11:34:05', '2026-03-10 11:34:05'),
+(48, 23, 'Améliorer votre forme physique', '2026-03-10 11:34:05', '2026-03-10 11:34:05'),
+(49, 24, 'Moins de 5 kg.', '2026-03-10 11:34:05', '2026-03-10 11:34:05'),
+(50, 24, '5 - 10 kg.', '2026-03-10 11:34:05', '2026-03-10 11:34:05'),
+(51, 24, 'Plus de 10 kg.', '2026-03-10 11:34:05', '2026-03-10 11:34:05'),
+(52, 25, 'Perdre moins de 5 Kg: Léger 300 kcal', '2026-03-10 11:34:05', '2026-03-10 11:34:05'),
+(53, 25, 'Perdre moins de 5Kg: Moyen 400 kcal', '2026-03-10 11:34:05', '2026-03-10 11:34:05'),
+(54, 25, 'Perdre moins de 5Kg: Serein 500 kcal', '2026-03-10 11:34:05', '2026-03-10 11:34:05'),
+(55, 25, 'Perdre entre 5-10Kg: Léger 500 kcal', '2026-03-10 11:34:05', '2026-03-10 11:34:05'),
+(56, 25, 'Perdre entre 5-10Kg: Moyen 600 kcal', '2026-03-10 11:34:05', '2026-03-10 11:34:05'),
+(57, 25, 'Perdre entre 5-10Kg: Serein 700 kcal', '2026-03-10 11:34:05', '2026-03-10 11:34:05'),
+(58, 25, 'Perdre plus de 10Kg: Léger 700 kcal', '2026-03-10 11:34:05', '2026-03-10 11:34:05'),
+(59, 25, 'Perdre plus de 10Kg: Moyen 800 kcal', '2026-03-10 11:34:05', '2026-03-10 11:34:05'),
+(60, 25, 'Perdre plus de 10Kg: Serein 900 kcal', '2026-03-10 11:34:05', '2026-03-10 11:34:05'),
+(61, 26, 'Oui', '2026-03-10 11:34:05', '2026-03-10 11:34:05'),
+(62, 26, 'Non', '2026-03-10 11:34:05', '2026-03-10 11:34:05'),
+(63, 28, 'Oui', '2026-03-10 11:34:05', '2026-03-10 11:34:05'),
+(64, 28, 'Non', '2026-03-10 11:34:05', '2026-03-10 11:34:05'),
+(65, 29, 'Oui', '2026-03-10 11:34:05', '2026-03-10 11:34:05'),
+(66, 29, 'Non', '2026-03-10 11:34:05', '2026-03-10 11:34:05'),
+(67, 30, 'Allergies', '2026-03-10 11:34:05', '2026-03-10 11:34:05'),
+(68, 30, 'Intolérances', '2026-03-10 11:34:05', '2026-03-10 11:34:05'),
+(69, 30, 'Préférences culturelles', '2026-03-10 11:34:05', '2026-03-10 11:34:05'),
+(70, 30, 'Religieuses', '2026-03-10 11:34:05', '2026-03-10 11:34:05'),
+(71, 31, 'Oui', '2026-03-10 11:34:05', '2026-03-10 11:34:05'),
+(72, 31, 'Non', '2026-03-10 11:34:05', '2026-03-10 11:34:05'),
+(73, 32, 'Oui', '2026-03-10 11:34:05', '2026-03-10 11:34:05'),
+(74, 32, 'Non', '2026-03-10 11:34:05', '2026-03-10 11:34:05'),
+(75, 34, 'Oui', '2026-03-10 11:34:05', '2026-03-10 11:34:05'),
+(76, 34, 'Non', '2026-03-10 11:34:05', '2026-03-10 11:34:05'),
+(77, 36, 'Moins de 6 h', '2026-03-10 11:34:05', '2026-03-10 11:34:05'),
+(78, 36, '6h -7h', '2026-03-10 11:34:05', '2026-03-10 11:34:05'),
+(79, 36, '8h -9h', '2026-03-10 11:34:05', '2026-03-10 11:34:05'),
+(80, 36, 'Plus de 9h', '2026-03-10 11:34:05', '2026-03-10 11:34:05'),
+(81, 37, 'Oui', '2026-03-10 11:34:05', '2026-03-10 11:34:05'),
+(82, 37, 'Non', '2026-03-10 11:34:05', '2026-03-10 11:34:05'),
+(83, 38, 'Oui', '2026-03-10 11:34:05', '2026-03-10 11:34:05'),
+(84, 38, 'Non', '2026-03-10 11:34:05', '2026-03-10 11:34:05'),
+(85, 39, 'Tous les jours', '2026-03-10 11:34:05', '2026-03-10 11:34:05'),
+(86, 39, 'Parfois', '2026-03-10 11:34:05', '2026-03-10 11:34:05'),
+(87, 40, 'Oui', '2026-03-10 11:34:05', '2026-03-10 11:34:05'),
+(88, 40, 'Non', '2026-03-10 11:34:05', '2026-03-10 11:34:05'),
+(89, 42, 'Aucun', '2026-03-10 11:34:05', '2026-03-10 11:34:05'),
+(90, 42, '1j-3j', '2026-03-10 11:34:05', '2026-03-10 11:34:05'),
+(91, 42, '4j-6j', '2026-03-10 11:34:05', '2026-03-10 11:34:05'),
+(92, 42, '7j', '2026-03-10 11:34:05', '2026-03-10 11:34:05'),
+(93, 43, 'Moins de 4h', '2026-03-10 11:34:05', '2026-03-10 11:34:05'),
+(94, 43, '4h-6h', '2026-03-10 11:34:05', '2026-03-10 11:34:05'),
+(95, 43, '6h-8h', '2026-03-10 11:34:05', '2026-03-10 11:34:05'),
+(96, 43, 'Plus de 8h', '2026-03-10 11:34:05', '2026-03-10 11:34:05'),
+(97, 44, 'Marche', '2026-03-10 11:34:05', '2026-03-10 11:34:05'),
+(98, 44, 'Yoga', '2026-03-10 11:34:05', '2026-03-10 11:34:05'),
+(99, 44, 'Autre', '2026-03-10 11:34:05', '2026-03-10 11:34:05'),
+(100, 45, 'Oui', '2026-03-10 11:34:05', '2026-03-10 11:34:05'),
+(101, 45, 'Non', '2026-03-10 11:34:05', '2026-03-10 11:34:05'),
+(102, 48, 'Oui', '2026-03-10 11:34:05', '2026-03-10 11:34:05'),
+(103, 48, 'Non', '2026-03-10 11:34:05', '2026-03-10 11:34:05'),
+(104, 49, 'Oui', '2026-03-10 11:34:05', '2026-03-10 11:34:05'),
+(105, 49, 'Non', '2026-03-10 11:34:05', '2026-03-10 11:34:05'),
+(106, 50, 'Oui', '2026-03-10 11:34:05', '2026-03-10 11:34:05'),
+(107, 50, 'Non', '2026-03-10 11:34:05', '2026-03-10 11:34:05'),
+(108, 51, 'Oui', '2026-03-10 11:34:05', '2026-03-10 11:34:05'),
+(109, 51, 'Non', '2026-03-10 11:34:05', '2026-03-10 11:34:05');
 
 -- --------------------------------------------------------
 
@@ -448,38 +362,6 @@ CREATE TABLE `reponses` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Déchargement des données de la table `reponses`
---
-
-INSERT INTO `reponses` (`id`, `question_id`, `question_possible_answer_id`, `utilisateur_id`, `description`, `created_at`, `updated_at`) VALUES
-(27, 66, 157, 4, NULL, '2025-12-31 12:13:04', '2025-12-31 12:13:04'),
-(28, 67, NULL, 4, 'Hypertension artérielle', '2025-12-31 12:13:04', '2025-12-31 12:13:04'),
-(29, 68, 159, 4, NULL, '2025-12-31 12:13:04', '2025-12-31 12:13:04'),
-(30, 69, NULL, 4, 'Amlodipine', '2025-12-31 12:13:04', '2025-12-31 12:13:04'),
-(31, 70, 163, 4, NULL, '2025-12-31 12:13:04', '2025-12-31 12:13:04'),
-(32, 71, NULL, 4, 'Petit déjeuner équilibré, déjeuner protéiné, dîner léger.', '2025-12-31 12:13:04', '2025-12-31 12:13:04'),
-(33, 72, 166, 4, NULL, '2025-12-31 12:13:04', '2025-12-31 12:13:04'),
-(34, 73, 169, 4, NULL, '2025-12-31 12:13:04', '2025-12-31 12:13:04'),
-(35, 74, NULL, 4, 'Noix et fruits secs', '2025-12-31 12:13:04', '2025-12-31 12:13:04'),
-(36, 75, 172, 4, NULL, '2025-12-31 12:13:04', '2025-12-31 12:13:04'),
-(37, 76, 179, 4, NULL, '2025-12-31 12:13:04', '2025-12-31 12:13:04'),
-(38, 77, 183, 4, NULL, '2025-12-31 12:13:04', '2025-12-31 12:13:04'),
-(39, 78, 184, 4, NULL, '2025-12-31 12:13:04', '2025-12-31 12:13:04'),
-(40, 79, 186, 4, NULL, '2025-12-31 12:13:04', '2025-12-31 12:13:04'),
-(41, 80, 190, 4, NULL, '2025-12-31 12:13:04', '2025-12-31 12:13:04'),
-(42, 81, 195, 4, NULL, '2025-12-31 12:13:04', '2025-12-31 12:13:04'),
-(43, 82, 197, 4, NULL, '2025-12-31 12:13:04', '2025-12-31 12:13:04'),
-(44, 83, 200, 4, NULL, '2025-12-31 12:13:04', '2025-12-31 12:13:04'),
-(45, 84, NULL, 4, '72', '2025-12-31 12:13:04', '2025-12-31 12:13:04'),
-(46, 85, 202, 4, NULL, '2025-12-31 12:13:04', '2025-12-31 12:13:04'),
-(47, 86, 204, 4, NULL, '2025-12-31 12:13:04', '2025-12-31 12:13:04'),
-(48, 87, 207, 4, NULL, '2025-12-31 12:13:04', '2025-12-31 12:13:04'),
-(49, 88, NULL, 4, 'N/A', '2025-12-31 12:13:04', '2025-12-31 12:13:04'),
-(50, 89, 208, 4, NULL, '2025-12-31 12:13:04', '2025-12-31 12:13:04'),
-(51, 90, 211, 4, NULL, '2025-12-31 12:13:04', '2025-12-31 12:13:04'),
-(52, 91, 217, 4, NULL, '2025-12-31 12:13:04', '2025-12-31 12:13:04');
 
 -- --------------------------------------------------------
 
@@ -517,10 +399,8 @@ CREATE TABLE `utilisateurs` (
 --
 
 INSERT INTO `utilisateurs` (`id`, `role`, `nom`, `prenom`, `age`, `sexe`, `poids`, `taille`, `email`, `mot_de_passe`, `tour_de_taille`, `tour_de_hanche`, `tour_du_cou`, `niveau_d_activite_physique`, `maladie_chronique_id`, `last_login_date`, `created_at`, `updated_at`, `tdee`, `img_notification`, `imc_notification`, `rth_notification`) VALUES
-(1, 'Administrateur', 'Admin', 'Nutrition', 20, 'M', 110, 110, 'adminnutrition@gmail.com', '$2y$12$1s8heSH.76pEtcQRlsiVbOfj3f6Zg/97LovFuDdNG3BttFmsLaZv2', 100.00, 100.00, 100.00, '2', NULL, NULL, NULL, NULL, NULL, 0, 0, 0),
-(2, 'Utilisateur', 'ATCHEGBE', 'Eneck', 27, 'M', 70, 171, 'Nutrition123@gmail.com', '$2y$12$OUOrZ4Eumype44O7a/4.a.rZj3DXA6II17wAqtdn3av8wggIEnym2', 34.00, 25.00, 20.00, 'Sédentaire', 1, '2025-12-11 21:40:18', '2025-12-03 14:09:13', '2025-12-11 20:41:57', NULL, 0, 0, 0),
-(3, 'Utilisateur', 'HUGOSS', 'Henry', 12, 'M', 70, 171, 'adammadoeverild@gmail.com', '$2y$10$C9ljhU6.BfVeR0q.aXUDSux.u./Z/mMSv4oGITWMgkZiH6g8I.Nzu', 34.00, 25.00, 20.00, 'Sédentaire', 1, '2026-01-17 14:00:06', '2025-12-11 23:39:44', '2026-01-17 13:00:06', 2056.50, 0, 1, 1),
-(4, 'Utilisateur', 'Boss', 'Tomas', 18, 'M', 70, 171, 'adammadochrist321@gmail.com', '$2y$10$C9ljhU6.BfVeR0q.aXUDSux.u./Z/mMSv4oGITWMgkZiH6g8I.Nzu', 34.00, 25.00, 20.00, 'Sédentaire', 1, '2026-02-18 23:11:58', '2025-12-31 12:09:48', '2026-02-18 22:11:58', 2020.50, 1, 0, 1);
+(1, 'Administrateur', 'Admin', 'Nutrition', 20, 'M', 110, 110, 'adminnutrition@gmail.com', '$2y$12$9pL7KSlNDVUEytk0Nn2i9OeiD7thXspdTRI1a8beDCl5BNs3bXg92', 100.00, 100.00, 100.00, '2', NULL, NULL, NULL, NULL, NULL, 0, 0, 0),
+(2, 'Utilisateur', 'Dupont', 'Jean', 35, 'M', 95, 172, 'adammadochrist321@gmail.com', '$2y$12$/Wr3iwd0zw58UFAEDtpxdeO.LJ5PWBdLHr3yNm33Gd3Tm.MSF4qoS', 105.00, 110.00, 42.00, 'Modéré', 1, '2026-03-10 12:48:42', '2026-03-10 11:48:00', '2026-03-10 12:00:06', 2226.00, 0, 0, 1);
 
 --
 -- Index pour les tables déchargées
@@ -571,7 +451,8 @@ ALTER TABLE `plan_nutritionnels`
 --
 ALTER TABLE `questions`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `questions_maladie_chronique_id_foreign` (`maladie_chronique_id`);
+  ADD KEY `questions_maladie_chronique_id_foreign` (`maladie_chronique_id`),
+  ADD KEY `questions_parent_question_id_foreign` (`parent_question_id`);
 
 --
 -- Index pour la table `question_possible_answers`
@@ -610,13 +491,13 @@ ALTER TABLE `administrateurs`
 -- AUTO_INCREMENT pour la table `maladie_chroniques`
 --
 ALTER TABLE `maladie_chroniques`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT pour la table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT pour la table `password_resets`
@@ -628,37 +509,37 @@ ALTER TABLE `password_resets`
 -- AUTO_INCREMENT pour la table `personal_access_tokens`
 --
 ALTER TABLE `personal_access_tokens`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT pour la table `plan_nutritionnels`
 --
 ALTER TABLE `plan_nutritionnels`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT pour la table `questions`
 --
 ALTER TABLE `questions`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=144;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
 
 --
 -- AUTO_INCREMENT pour la table `question_possible_answers`
 --
 ALTER TABLE `question_possible_answers`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=333;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=110;
 
 --
 -- AUTO_INCREMENT pour la table `reponses`
 --
 ALTER TABLE `reponses`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=53;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT pour la table `utilisateurs`
 --
 ALTER TABLE `utilisateurs`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- Contraintes pour les tables déchargées
@@ -674,7 +555,8 @@ ALTER TABLE `plan_nutritionnels`
 -- Contraintes pour la table `questions`
 --
 ALTER TABLE `questions`
-  ADD CONSTRAINT `questions_maladie_chronique_id_foreign` FOREIGN KEY (`maladie_chronique_id`) REFERENCES `maladie_chroniques` (`id`) ON DELETE CASCADE;
+  ADD CONSTRAINT `questions_maladie_chronique_id_foreign` FOREIGN KEY (`maladie_chronique_id`) REFERENCES `maladie_chroniques` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `questions_parent_question_id_foreign` FOREIGN KEY (`parent_question_id`) REFERENCES `questions` (`id`) ON DELETE CASCADE;
 
 --
 -- Contraintes pour la table `question_possible_answers`

@@ -35,5 +35,21 @@ class Question extends Model
     {
         return $this->hasMany(QuestionPossibleAnswer::class);
     }
+
+    /**
+     * Relation vers la question parente (si question conditionnelle).
+     */
+    public function parent()
+    {
+        return $this->belongsTo(Question::class, 'parent_question_id');
+    }
+
+    /**
+     * Relation vers les questions enfants (questions conditionnelles déclenchées par cette question).
+     */
+    public function children()
+    {
+        return $this->hasMany(Question::class, 'parent_question_id');
+    }
 }
 
