@@ -11,7 +11,7 @@ class PlanNutritionnel extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['description', 'pdf_path', 'utilisateur_id'];
+    protected $fillable = ['description', 'pdf_path', 'utilisateur_id', 'submission_id'];
 
     public function utilisateur()
     {

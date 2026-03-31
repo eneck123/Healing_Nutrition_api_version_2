@@ -318,20 +318,24 @@ class QuestionsSeeder extends Seeder
         // ---------------------------------------------------------------
         $links = [
             // Obésité modérée
-            'mod_antecedents_lequel'           => ['parent' => 'mod_antecedents',          'trigger' => 'Oui'],
+            'mod_antecedents_lequel'             => ['parent' => 'mod_antecedents',            'trigger' => 'Oui'],
             'mod_medicaments_antecedent_lesquels' => ['parent' => 'mod_medicaments_antecedent', 'trigger' => 'Oui'],
-            'mod_grignotage_aliments'          => ['parent' => 'mod_grignotage',            'trigger' => 'Oui'],
-            'mod_frequence_cardiaque_valeur'   => ['parent' => 'mod_frequence_cardiaque',   'trigger' => 'Oui'],
-            'mod_regime_particulier_lequel'    => ['parent' => 'mod_regime_particulier',    'trigger' => 'Oui'],
+            'mod_grignotage_aliments'            => ['parent' => 'mod_grignotage',             'trigger' => 'Oui'],
+            'mod_frequence_cardiaque_valeur'     => ['parent' => 'mod_frequence_cardiaque',    'trigger' => 'Oui'],
+            'mod_regime_particulier_lequel'      => ['parent' => 'mod_regime_particulier',     'trigger' => 'Oui'],
+            // Les deux questions de perte de poids sont conditionnelles à l'objectif "Perdre du poids".
+            // Si l'utilisateur choisit "Améliorer votre forme physique", ces questions sont ignorées.
+            'mod_kg_a_perdre'                    => ['parent' => 'mod_objectif_sante',         'trigger' => 'Perdre du poids'],
+            'mod_niveau_changement'              => ['parent' => 'mod_objectif_sante',         'trigger' => 'Perdre du poids'],
 
             // Obésité sévère
-            'sev_problemes_sante_lequel'       => ['parent' => 'sev_problemes_sante',      'trigger' => 'Oui'],
-            'sev_restrictions_type'            => ['parent' => 'sev_restrictions',          'trigger' => 'Oui'],
-            'sev_plan_nutritionnel_detail'     => ['parent' => 'sev_plan_nutritionnel',     'trigger' => 'Oui'],
-            'sev_boissons_detail'              => ['parent' => 'sev_boissons',              'trigger' => 'Oui'],
-            'sev_douleurs_frequence'           => ['parent' => 'sev_douleurs',              'trigger' => 'Oui'],
-            'sev_regime_poids_perdu'           => ['parent' => 'sev_regime_recemment',     'trigger' => 'Oui'],
-            'sev_frequence_cardiaque_valeur'   => ['parent' => 'sev_frequence_cardiaque',  'trigger' => 'Oui'],
+            'sev_problemes_sante_lequel'         => ['parent' => 'sev_problemes_sante',       'trigger' => 'Oui'],
+            'sev_restrictions_type'              => ['parent' => 'sev_restrictions',           'trigger' => 'Oui'],
+            'sev_plan_nutritionnel_detail'       => ['parent' => 'sev_plan_nutritionnel',      'trigger' => 'Oui'],
+            'sev_boissons_detail'                => ['parent' => 'sev_boissons',               'trigger' => 'Oui'],
+            'sev_douleurs_frequence'             => ['parent' => 'sev_douleurs',               'trigger' => 'Oui'],
+            'sev_regime_poids_perdu'             => ['parent' => 'sev_regime_recemment',      'trigger' => 'Oui'],
+            'sev_frequence_cardiaque_valeur'     => ['parent' => 'sev_frequence_cardiaque',   'trigger' => 'Oui'],
         ];
 
         foreach ($links as $childKey => $link) {

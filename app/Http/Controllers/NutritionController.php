@@ -152,24 +152,50 @@ class NutritionController extends Controller
         $tdee = $metrics['tdee'];
         $isMale = $metrics['is_male'];
 
+        // ----------------------------------------------------------------
+        // Résolution du submission_id :
+        // Si fourni dans la requête → on filtre sur ce groupe de réponses précis.
+        // Sinon → on utilise le submission_id le plus récent de l'utilisateur.
+        // Cela garantit que chaque plan est basé sur une seule soumission de formulaire.
+        // ----------------------------------------------------------------
+        $submissionId = $request->input('submission_id');
+
+        if (!$submissionId) {
+            // Trouver le dernier submission_id de cet utilisateur
+            $latestReponse = \App\Models\Reponse::where('utilisateur_id', $userId)
+                ->whereNotNull('submission_id')
+                ->latest()
+                ->first();
+            $submissionId = $latestReponse ? $latestReponse->submission_id : null;
+        }
+
+        // Filtrer uniquement les réponses de cette soumission
+        $reponses = $submissionId
+            ? $user->reponse->where('submission_id', $submissionId)
+            : $user->reponse;
+
         // Extract Advanced Info from Reponses
-        $objective = 'Perte de poids';
+        $objective = '';
         $deficitValue = 0;
         $weightLossRange = 'Inconnu';
         $pathologies = ['diabetes' => false, 'hypertension' => false, 'cardio' => false];
         $responsesMap = [];
         $questionnaireObesite = [];
 
-        foreach ($user->reponse as $rep) {
+        $mapping = $this->resolveDynamicMapping($user->maladie_chronique_id);
+        $reverseMapping = array_flip($mapping);
+
+        foreach ($reponses as $rep) {
             $qid = $rep->question_id;
-            $question = DB::table('questions')->where('id', $qid)->first();
-            $questionText = $question ? $question->texte_question : 'Question ' . $qid;
+
+            // Utiliser le texte de la question déjà chargé via eager load (reponse.question)
+            $questionText = $rep->question ? $rep->question->texte_question : 'Question ' . $qid;
             
             $text = $rep->description ?: '';
             $answerId = $rep->question_possible_answer_id;
             
             if ($answerId) {
-                $possibleAnswer = DB::table('question_possible_answers')->where('id', $answerId)->first();
+                $possibleAnswer = \App\Models\QuestionPossibleAnswer::find($answerId);
                 if ($possibleAnswer) $text = $possibleAnswer->value;
             }
 
@@ -184,9 +210,6 @@ class NutritionController extends Controller
                 'question' => $questionText,
                 'reponse' => $text
             ];
-
-            $mapping = $this->getQuestionMapping($user->maladie_chronique_id);
-            $reverseMapping = array_flip($mapping);
 
             if (isset($reverseMapping[$qid])) {
                 $key = $reverseMapping[$qid];
@@ -215,6 +238,11 @@ class NutritionController extends Controller
                         break;
                 }
             }
+        }
+
+        // Si aucun objectif trouvé dans les réponses, fallback neutre
+        if (empty($objective)) {
+            $objective = 'Non renseigné';
         }
 
         $isWeightLoss = (stripos($objective, 'Perte') !== false || stripos($objective, 'Perdre') !== false);
@@ -255,6 +283,7 @@ class NutritionController extends Controller
 
         return response()->json([
             'success' => true,
+            'submission_id' => $submissionId,
             'user_profile' => [
                 'nom' => $user->nom,
                 'prenom' => $user->prenom,
@@ -283,105 +312,126 @@ class NutritionController extends Controller
             'menu_journalier' => $guideData['menu_journalier'],
             'facteurs_ajustement' => $guideData['facteurs'],
             'conseils_personnalises' => $guideData['conseils'],
-            'pdf_url' => $this->generateAndSavePdf($user, $metrics, $objective, $weightLossRange, $deficitValue, $apportCalorique, $macros, $guideData, $planIntervention)
+            'pdf_url' => $this->generateAndSavePdf($user, $metrics, $objective, $weightLossRange, $deficitValue, $apportCalorique, $macros, $guideData, $planIntervention, $submissionId, $reponses)
         ]);
     }
 
-    private function generateAndSavePdf($user, $metrics, $objective, $weightLossRange, $deficitValue, $apportCalorique, $macros, $guideData, $planIntervention)
+    private function generateAndSavePdf($user, $metrics, $objective, $weightLossRange, $deficitValue, $apportCalorique, $macros, $guideData, $planIntervention, $submissionId = null, $reponses = null)
     {
-        // Populate Q&A for PDF
+        // Utiliser les réponses filtrées par submission_id passées en paramètre.
+        // Si non fournies (appel legacy), fallback sur toutes les réponses de l'utilisateur.
+        if ($reponses === null) {
+            $reponses = $user->reponse;
+        }
+
         $qaData = [];
-        $mapping = $this->getQuestionMapping($user->maladie_chronique_id);
+        $mapping = $this->resolveDynamicMapping($user->maladie_chronique_id);
         
         $labels = [
-            'antecedents_diag' => "Antécédents médicaux et risques",
-            'antecedents_lequel' => "Détails des antécédents",
-            'chirurgie' => "Chirurgie bariatrique",
-            'restrictions' => "Restrictions alimentaires",
+            'antecedents_diag'        => "Antécédents médicaux et risques",
+            'antecedents_lequel'      => "Détails des antécédents",
+            'chirurgie'               => "Chirurgie bariatrique",
+            'restrictions'            => "Restrictions alimentaires",
             'restrictions_lesquelles' => "Détails des restrictions",
-            'calories_vides' => "Consommation d'aliments caloriques",
-            'plan_deja' => "Plan nutritionnel déjà suivi",
-            'plan_deja_texte' => "Détails du plan précédent",
-            'boissons' => "Boissons sucrées ou alcoolisées",
-            'boissons_details' => "Détails (Quand/Quantité)",
-            'sommeil' => "Heures de sommeil par nuit",
-            'apnee' => "Apnée du sommeil",
-            'douleurs' => "Douleurs articulaires",
-            'douleurs_frequence' => "Fréquence des douleurs",
-            'regime_recent' => "Régime de perte de poids récent",
-            'poids_perdu' => "Poids perdu (Historique)",
-            'jours_sport' => "Fréquence d'activité physique",
-            'sedentarite' => "Position assise chaque jour",
-            'activites_preferees' => "Activités physiques appréciées",
-            'fc_connaissance' => "Connaissance de la fréquence cardiaque",
-            'fc_valeur' => "Valeur de la FC au repos",
-            'ressenti' => "Ressenti par rapport au poids",
-            'stress_ennui' => "Manger par stress ou ennui",
-            'finir_assiette' => "Tendance à finir son assiette",
-            'emotions' => "Habitudes liées aux émotions",
-            'programme_deja' => "Tentatives de perte de poids passées",
+            'calories_vides'          => "Consommation d'aliments caloriques",
+            'plan_deja'               => "Plan nutritionnel déjà suivi",
+            'plan_deja_texte'         => "Détails du plan précédent",
+            'boissons'                => "Boissons sucrées ou alcoolisées",
+            'boissons_details'        => "Détails (Quand/Quantité)",
+            'sommeil'                 => "Heures de sommeil par nuit",
+            'apnee'                   => "Apnée du sommeil",
+            'douleurs'                => "Douleurs articulaires",
+            'douleurs_frequence'      => "Fréquence des douleurs",
+            'regime_recent'           => "Régime de perte de poids récent",
+            'poids_perdu'             => "Poids perdu (Historique)",
+            'jours_sport'             => "Fréquence d'activité physique",
+            'sedentarite'             => "Position assise chaque jour",
+            'activites_preferees'     => "Activités physiques appréciées",
+            'fc_connaissance'         => "Connaissance de la fréquence cardiaque",
+            'fc_valeur'               => "Valeur de la FC au repos",
+            'ressenti'                => "Ressenti par rapport au poids",
+            'stress_ennui'            => "Manger par stress ou ennui",
+            'finir_assiette'          => "Tendance à finir son assiette",
+            'emotions'                => "Habitudes liées aux émotions",
+            'programme_deja'          => "Tentatives de perte de poids passées",
         ];
 
         $responsesMap = [];
-        $pathologies = ['diabetes' => false, 'hypertension' => false, 'cardio' => false]; // Re-calculating if needed or passing
-        // Actually, we can reuse the logic from downloadPdf to populate pathologies if not passed, 
-        // but generateAndSavePdf is private and called from recommandation, where pathologies should be available?
-        // Wait, recommandation doesn't pass pathologies to generateAndSavePdf.
-        // Let's quickly re-check pathologies from responses within the loop.
+        $pathologies = ['diabetes' => false, 'hypertension' => false, 'cardio' => false];
+        $antecedentsQid = $mapping['antecedents_lequel'] ?? null;
 
-        foreach ($user->reponse as $rep) {
-            $qid = $rep->question_id;
+        foreach ($reponses as $rep) {
+            $qid  = $rep->question_id;
             $text = $rep->description ?: '';
+
+            // Utiliser l'eager load si disponible, sinon requête DB
             if ($rep->question_possible_answer_id) {
-                $pa = DB::table('question_possible_answers')->where('id', $rep->question_possible_answer_id)->first();
-                if ($pa) $text = $pa->value;
+                if ($rep->questionPossibleAnswer) {
+                    $text = $rep->questionPossibleAnswer->value;
+                } else {
+                    $possibleAnswer = \App\Models\QuestionPossibleAnswer::find($rep->question_possible_answer_id);
+                    if ($possibleAnswer) $text = $possibleAnswer->value;
+                }
             }
+
             $responsesMap[$qid] = ['text' => $text];
 
-            // Quick pathology check for getSevereRecommendation
-            if ($qid == ($mapping['antecedents_lequel'] ?? 67)) {
+            // Détection des pathologies
+            if ($antecedentsQid && $qid == $antecedentsQid) {
                 if (stripos($text, 'diabète') !== false) $pathologies['diabetes'] = true;
                 if (stripos($text, 'hypertension') !== false || stripos($text, 'tension') !== false) $pathologies['hypertension'] = true;
                 if (stripos($text, 'cardio') !== false || stripos($text, 'coeur') !== false) $pathologies['cardio'] = true;
             }
         }
 
-        foreach ($mapping as $key => $qid) {
-            if (isset($responsesMap[$qid]) && isset($labels[$key])) {
-                $respText = $responsesMap[$qid]['text'];
-                $recommendation = ($user->maladie_chronique_id == 2) 
-                    ? $this->getSevereRecommendation($key, $respText, $pathologies)
-                    : "Voir la section 'Plan d'intervention' pour les détails.";
-
-                $qaData[] = [
-                    'question' => $labels[$key],
-                    'reponse' => $respText,
-                    'recommandation' => $recommendation
-                ];
+        // Remplissage du questionnaire pour le PDF
+        foreach ($reponses as $rep) {
+            $text = $rep->description ?: '';
+            if ($rep->question_possible_answer_id) {
+                if ($rep->questionPossibleAnswer) {
+                    $text = $rep->questionPossibleAnswer->value;
+                } else {
+                    $pa = \App\Models\QuestionPossibleAnswer::find($rep->question_possible_answer_id);
+                    if ($pa) $text = $pa->value;
+                }
             }
+            
+            $qaData[] = [
+                'question'       => $rep->question ? $rep->question->texte_question : "Question {$rep->question_id}",
+                'reponse'        => $text,
+                'recommandation' => ($user->maladie_chronique_id == 2) 
+                    ? $this->getSevereRecommendation($rep->question_id, $text, $pathologies)
+                    : "Voir la section 'Plan d'intervention' pour les détails."
+            ];
         }
 
+        // Niveau de changement depuis les réponses filtrées
+        $niveauChangementQid = $mapping['niveau_changement'] ?? null;
+        $niveauChangementText = $niveauChangementQid && isset($responsesMap[$niveauChangementQid])
+            ? $responsesMap[$niveauChangementQid]['text']
+            : ($deficitValue . ' kcal');
+
         $data = [
-            'user' => $user,
+            'user'    => $user,
             'metrics' => $metrics,
-            'goals' => [
-                'objectif' => $objective,
-                'perte_poids' => $weightLossRange,
-                'niveau_changement' => $user->reponse->where('question_id', ($mapping['niveau_changement'] ?? 91))->first()->description ?? ($deficitValue . ' kcal')
+            'goals'   => [
+                'objectif'          => $objective,
+                'perte_poids'       => $weightLossRange,
+                'niveau_changement' => $niveauChangementText,
             ],
             'recommendations' => [
-                'calories' => round($apportCalorique),
+                'calories'       => round($apportCalorique),
                 'macros_p_percent' => $macros['distribution']['proteines_percent'],
                 'macros_g_percent' => $macros['distribution']['glucides_percent'],
                 'macros_l_percent' => $macros['distribution']['lipides_percent'],
-                'macros_p_grams' => $macros['grammes']['proteines'],
-                'macros_g_grams' => $macros['grammes']['glucides'],
-                'macros_l_grams' => $macros['grammes']['lipides'],
+                'macros_p_grams'   => $macros['grammes']['proteines'],
+                'macros_g_grams'   => $macros['grammes']['glucides'],
+                'macros_l_grams'   => $macros['grammes']['lipides'],
             ],
-            'qa' => $qaData, 
-            'menu' => $guideData['menu_journalier'],
+            'qa'                => $qaData,
+            'menu'              => $guideData['menu_journalier'],
             'plan_intervention' => $planIntervention,
-            'severe_advice' => ($user->maladie_chronique_id == 2) 
+            'severe_advice'     => ($user->maladie_chronique_id == 2) 
                 ? $this->severeObesityService->getGeneralAdvice(
                     $pathologies['diabetes'] ? 'diabete' : ($pathologies['hypertension'] ? 'hta' : ($pathologies['cardio'] ? 'cholesterol' : null))
                 ) : null,
@@ -390,7 +440,7 @@ class NutritionController extends Controller
         $viewName = $user->maladie_chronique_id == 2 ? 'pdf.nutrition_guide_severe' : 'pdf.nutrition_guide';
         $pdf = \Barryvdh\DomPDF\Facade\Pdf::loadView($viewName, $data);
         
-        // Save PDF
+        // Nom de fichier unique par soumission
         $fileName = 'Guide_Nutritionnel_' . $user->id . '_' . time() . '.pdf';
         $path = storage_path('app/public/pdfs');
         if (!file_exists($path)) {
@@ -399,27 +449,24 @@ class NutritionController extends Controller
         $fullPath = $path . '/' . $fileName;
         $pdf->save($fullPath);
 
-        // Save/Update database record
-        \App\Models\PlanNutritionnel::updateOrCreate(
-            ['utilisateur_id' => $user->id],
-            [
-                'description' => 'Guide nutritionnel de 90 jours généré le ' . date('d/m/Y'),
-                'pdf_path' => 'storage/pdfs/' . $fileName
-            ]
-        );
+        // Créer un NOUVEAU plan nutritionnel pour chaque soumission (pas updateOrCreate).
+        // Chaque soumission génère son propre plan distinct lié à son submission_id.
+        \App\Models\PlanNutritionnel::create([
+            'utilisateur_id' => $user->id,
+            'submission_id'  => $submissionId,
+            'description'    => 'Guide nutritionnel de 90 jours généré le ' . date('d/m/Y'),
+            'pdf_path'       => 'storage/pdfs/' . $fileName,
+        ]);
 
         // Send Email
         if ($user->email) {
             try {
                 \Illuminate\Support\Facades\Mail::to($user->email)->send(new \App\Mail\NutritionGuideMail($user, $fullPath));
             } catch (\Exception $e) {
-                // Log error but don't fail the request if email fails (optional)
                 \Illuminate\Support\Facades\Log::error("Failed to send nutrition guide email: " . $e->getMessage());
             }
         }
 
-        // Return URL (Assuming storage:link is run or a route exists to serve storage)
-        // For local dev, simpler to just return path or asset url if public
         return url('storage/pdfs/' . $fileName);
     }
 
@@ -556,7 +603,7 @@ class NutritionController extends Controller
             // For this implementation, I will call generateNutritionInterventionPlan to get the structured advice 
             // and I will also pass the raw Q&A.
 
-            $mapping = $this->getQuestionMapping($user->maladie_chronique_id);
+            $mapping = $this->resolveDynamicMapping($user->maladie_chronique_id);
             $reverseMapping = array_flip($mapping);
 
             if (isset($reverseMapping[$qid])) {
@@ -620,7 +667,7 @@ class NutritionController extends Controller
         }
         
         $qaData = [];
-        $mapping = $this->getQuestionMapping($user->maladie_chronique_id);
+        $mapping = $this->resolveDynamicMapping($user->maladie_chronique_id);
         
         $labels = [
             'antecedents_diag' => "Antécédents médicaux et risques",
@@ -858,7 +905,7 @@ class NutritionController extends Controller
     {
         $sections = [];
         $isFitness = false;
-        $mapping = $this->getQuestionMapping($user->maladie_chronique_id);
+        $mapping = $this->resolveDynamicMapping($user->maladie_chronique_id);
         $objId = $mapping['objectif_principal'] ?? 89;
 
         foreach ($user->reponse as $rep) {
@@ -993,7 +1040,7 @@ class NutritionController extends Controller
 
     private function getMedicationAdvice($responses, $diseaseId)
     {
-        $mapping = $this->getQuestionMapping($diseaseId);
+        $mapping = $this->resolveDynamicMapping($diseaseId);
         $q70 = $responses[$mapping['meds_types'] ?? 70]['text'] ?? '';
         $q69 = $responses[$mapping['meds_lies'] ?? 69]['text'] ?? '';
         
@@ -1063,7 +1110,7 @@ class NutritionController extends Controller
 
     private function getDietaryHabitsAdvice($responses, $diseaseId)
     {
-        $mapping = $this->getQuestionMapping($diseaseId);
+        $mapping = $this->resolveDynamicMapping($diseaseId);
         $q71 = $responses[$mapping['journee_typique'] ?? 71]['text'] ?? '';
         $q72 = $responses[$mapping['fruits_legumes'] ?? 72]['text'] ?? '';
         $q73 = $responses[$mapping['grignotage'] ?? 73]['text'] ?? '';
@@ -1115,7 +1162,7 @@ class NutritionController extends Controller
 
     private function getLifestyleAdvice($responses, $diseaseId)
     {
-        $mapping = $this->getQuestionMapping($diseaseId);
+        $mapping = $this->resolveDynamicMapping($diseaseId);
         $q76 = $responses[$mapping['sommeil'] ?? 76]['text'] ?? '';
         $q77 = $responses[$mapping['apnee'] ?? 77]['text'] ?? '';
         $q81 = $responses[$mapping['sedentarite'] ?? 81]['text'] ?? '';
@@ -1151,7 +1198,7 @@ class NutritionController extends Controller
 
     private function getPhysicalActivityAdvice($user, $responses, $diseaseId)
     {
-        $mapping = $this->getQuestionMapping($diseaseId);
+        $mapping = $this->resolveDynamicMapping($diseaseId);
         $q84 = $responses[$mapping['fc_valeur'] ?? 84]['text'] ?? '';
         $q81 = $responses[$mapping['sedentarite'] ?? 81]['text'] ?? '';
         $q82 = $responses[$mapping['activites_preferees'] ?? 82]['text'] ?? '';
@@ -1191,7 +1238,7 @@ class NutritionController extends Controller
 
     private function getWeightManagementHistoryAdvice($responses, $diseaseId)
     {
-        $mapping = $this->getQuestionMapping($diseaseId);
+        $mapping = $this->resolveDynamicMapping($diseaseId);
         $q79 = $responses[$mapping['regime_recent'] ?? 79]['text'] ?? ''; // Tentatives de perte de poids
         $q801 = $responses[$mapping['poids_perdu'] ?? 107]['text'] ?? ''; // Méthode utilisée ou Poids perdu
 
@@ -1210,7 +1257,7 @@ class NutritionController extends Controller
 
     private function getBehavioralAdvicePlan($responses, $diseaseId)
     {
-        $mapping = $this->getQuestionMapping($diseaseId);
+        $mapping = $this->resolveDynamicMapping($diseaseId);
         $q85 = $responses[$mapping['stress_ennui'] ?? 85]['text'] ?? '';
         $q86 = $responses[$mapping['finir_assiette'] ?? 86]['text'] ?? '';
 
@@ -1235,7 +1282,7 @@ class NutritionController extends Controller
 
     private function getPsychologicalAdvice($responses, $diseaseId)
     {
-        $mapping = $this->getQuestionMapping($diseaseId);
+        $mapping = $this->resolveDynamicMapping($diseaseId);
         $q87 = $responses[$mapping['regime_particulier'] ?? 87]['text'] ?? '';
         $q88 = $responses[$mapping['regime_efficacite'] ?? 88]['text'] ?? '';
         
@@ -1277,7 +1324,7 @@ class NutritionController extends Controller
 
     private function getHealthMonitoringAdvice($responses, $diseaseId)
     {
-        $mapping = $this->getQuestionMapping($diseaseId);
+        $mapping = $this->resolveDynamicMapping($diseaseId);
         $q83 = $responses[$mapping['fc_connaissance'] ?? 83]['text'] ?? '';
         $q84 = $responses[$mapping['fc_valeur'] ?? 84]['text'] ?? '';
         
@@ -1317,7 +1364,7 @@ class NutritionController extends Controller
      */
     private function getSevereRecommendation($key, $responseText, $pathologies)
     {
-        $mapping = $this->getQuestionMapping(2);
+        $mapping = $this->resolveDynamicMapping(2);
         $questionId = $mapping[$key] ?? null;
 
         if (!$questionId) return "aucun";
@@ -1331,66 +1378,77 @@ class NutritionController extends Controller
     }
 
     /**
-     * Retourne le mapping des IDs de questions par type de maladie.
+     * Résout les IDs de questions dynamiquement par leur texte pour éviter les cassures après re-seed.
      */
-    private function getQuestionMapping($diseaseId)
+    private function resolveDynamicMapping($diseaseId)
     {
-        if ($diseaseId == 1) { // Obésité Modérée
-            return [
-                'antecedents_lequel' => 67,
-                'meds_lies' => 69,
-                'meds_types' => 70,
-                'journee_typique' => 71,
-                'fruits_legumes' => 72,
-                'grignotage' => 73,
-                'aliments_grignotes' => 74,
-                'boissons' => 75,
-                'sommeil' => 76,
-                'apnee' => 77,
-                'regime_recent' => 79,
-                'poids_perdu' => 80,
-                'sedentarite' => 81,
-                'activites_preferees' => 82,
-                'fc_connaissance' => 83,
-                'fc_valeur' => 84,
-                'stress_ennui' => 85,
-                'finir_assiette' => 86,
-                'regime_particulier' => 87,
-                'regime_efficacite' => 88,
-                'objectif_principal' => 89,
-                'poids_a_perdre' => 90,
-                'niveau_changement' => 91,
-            ];
-        } elseif ($diseaseId == 2) { // Obésité Sévère
-            return [
-                'antecedents_diag' => 92,
-                'antecedents_lequel' => 93,
-                'chirurgie' => 94,
-                'restrictions' => 95,
-                'restrictions_lesquelles' => 96,
-                'calories_vides' => 97,
-                'plan_deja' => 98,
-                'plan_deja_texte' => 99,
-                'boissons' => 100,
-                'boissons_details' => 101,
-                'sommeil' => 102,
-                'apnee' => 103,
-                'douleurs' => 104,
-                'douleurs_frequence' => 105,
-                'regime_recent' => 106,
-                'poids_perdu' => 107,
-                'jours_sport' => 108,
-                'sedentarite' => 109,
-                'activites_preferees' => 110,
-                'fc_connaissance' => 111,
-                'fc_valeur' => 112,
-                'ressenti' => 113,
-                'stress_ennui' => 114,
-                'finir_assiette' => 115,
-                'emotions' => 116,
-                'programme_deja' => 117,
-            ];
+        $mappingTexts = [
+            1 => [ // Obésité Modérée
+                'antecedents_lequel'  => 'Si oui, lequel ?',
+                'meds_lies'           => 'Prenez-vous actuellement des médicaments qui sont liés à votre antécédent précédent ?',
+                'meds_types'          => 'Prenez-vous actuellement l\'un des types de médicaments suivants ?',
+                'journee_typique'     => 'Pouvez-vous décrire une journée typique de vos repas et collations ?',
+                'fruits_legumes'      => 'Combien de portions de fruits et légumes consommez-vous par jour ?',
+                'grignotage'          => 'Grignotez-vous entre les repas ?',
+                'aliments_grignotes'  => 'Si oui, quels aliments consommez-vous ?',
+                'boissons'            => 'A quelle fréquence consommez-vous des boissons sucrées ou alcoolisées ?',
+                'sommeil'             => 'Combien d\'heures de sommeil avez-vous par nuit ?',
+                'apnee'               => 'Avez-vous l\'apnée du sommeil ?',
+                'regime_recent'       => 'Avez-vous récemment fait un régime de perte du poids ?',
+                'sedentarite'         => 'Combien de temps passez-vous en position assise chaque jour ?',
+                'activites_preferees' => 'Quelles activités physiques appréciez-vous ?',
+                'fc_connaissance'     => 'Connaissez-vous votre fréquence cardiaque au repos ?',
+                'fc_valeur'           => 'Si oui, veuillez- nous la donner ?',
+                'stress_ennui'        => 'Mangez-vous souvent par stress ou ennui ?',
+                'finir_assiette'      => 'Avez-vous tendance à finir votre assiette même si vous n\'avez plus faim ?',
+                'regime_particulier'  => 'Avez-vous déjà suivi un régime alimentaire particulier ?',
+                'regime_efficacite'   => 'Si oui, lequel, et a-t-il été efficace pour vous ? Pourquoi ?',
+                'objectif_principal'  => 'Quel est votre objectif principal en matière de santé ?',
+                'poids_a_perdre'      => 'Combien de kg voulez-vous perdre ?',
+                'niveau_changement'   => 'Selon votre objectif de perte de poids, quel niveau de changement êtes-vous prêt à suivre ?',
+            ],
+            2 => [ // Obésité Sévère
+                'antecedents_diag'        => "Avez-vous été diagnostiqué avec des problèmes de santé liés à l'obésité, comme le diabète de type 2, l'hypertension ou l'hypercholestérolémie ?",
+                'antecedents_lequel'      => 'Si oui lequel ?',
+                'chirurgie'               => 'Avez-vous subi des opérations chirurgicales liées à votre poids comme une chirurgie bariatrique ?',
+                'restrictions'            => 'Avez-vous des restrictions alimentaires ?',
+                'restrictions_lesquelles' => 'Si oui, choisissez l\'option qui s\'appliquent ?',
+                'calories_vides'          => 'Consommez-vous régulièrement des aliments riches en calories vides, comme les boissons sucrées, les fast-foods, ou les desserts ?',
+                'plan_deja'               => 'Suivez-vous déjà un plan nutritionnel ou avez-vous consulté un diététicien auparavant ?',
+                'plan_deja_texte'         => 'Si oui, parlez-nous de ça brièvement en quelques lignes',
+                'boissons'                => 'Buvez-vous régulièrement des boissons sucrées ou alcoolisées ?',
+                'boissons_details'        => 'Si oui, Quand ? Quelle quantité ?',
+                'sommeil'                 => 'Combien d\' heures de sommeil avez-vous par nuit ?',
+                'apnee'                   => 'Avez-vous l\'apnée du sommeil ?',
+                'douleurs'                => 'Avez-vous des douleurs articulaires ou des limitations de mobilité ?',
+                'douleurs_frequence'      => 'Si oui, A quelle fréquence ?',
+                'regime_recent'           => 'Avez-vous récemment fait un régime de perte du poids ?',
+                'regime_poids_perdu'      => 'Si oui, combien de poids avez-vous perdu ?',
+                'jours_sport'             => 'Combien de jours par semaine pratiquez-vous une activité physique ?',
+                'sedentarite'             => 'Combien de temps passez-vous en position assise chaque jour ?',
+                'activites_preferees'     => 'Quelles activités physiques appréciez-vous ?',
+                'fc_connaissance'         => 'Connaissez-vous votre fréquence cardiaque au repos ?',
+                'fc_valeur'               => 'Si oui, veuillez- nous la donner ?',
+                'ressenti'                => 'Comment décririez-vous votre ressenti personnel par rapport à votre poids ?',
+                'stress_ennui'            => 'Mangez-vous souvent par stress ou ennui ?',
+                'finir_assiette'          => 'Avez-vous tendance à finir votre assiette même si vous n\'avez plus faim ?',
+                'emotions'                => 'Avez-vous des habitudes alimentaires liées à des émotions, comme le stress ou la dépression ?',
+                'programme_deja'          => 'Avez-vous déjà suivi un programme ou tenté de perdre du poids auparavant ?',
+            ]
+        ];
+
+        $texts = $mappingTexts[$diseaseId] ?? [];
+        $resolvedMapping = [];
+
+        foreach ($texts as $key => $text) {
+            $question = \App\Models\Question::where('maladie_chronique_id', $diseaseId)
+                ->where('texte_question', $text)
+                ->first();
+            if ($question) {
+                $resolvedMapping[$key] = $question->id;
+            }
         }
-        return [];
+
+        return $resolvedMapping;
     }
 }

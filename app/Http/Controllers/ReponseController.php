@@ -159,6 +159,11 @@ class ReponseController extends Controller
 
         $utilisateurId = $utilisateur->id;
 
+        // Générer un identifiant unique pour cette soumission de formulaire.
+        // Toutes les réponses de cette soumission partagent ce même submission_id,
+        // ce qui permet de générer des plans nutritionnels distincts pour chaque soumission.
+        $submissionId = \Illuminate\Support\Str::uuid()->toString();
+
         $validator = Validator::make($request->all(), [
             'reponses' => 'required|array',
         ]);
@@ -223,12 +228,30 @@ class ReponseController extends Controller
         // = questions sans parent  +  questions enfants dont le parent a déclenché
         // ----------------------------------------------------------------
         $activeRequiredQuestionIds = $allQuestions->filter(function ($question) use ($submittedMap, $allQuestions) {
-            // Question indépendante : toujours obligatoire
+            // 1. Question indépendante (pas de parent) : toujours obligatoire
             if (is_null($question->parent_question_id)) {
                 return true;
             }
-            // Question enfant : obligatoire seulement si elle est encore dans le map (non filtrée)
-            return $submittedMap->has($question->id);
+
+            // 2. Question enfant : obligatoire SI son parent a été répondu avec le trigger
+            $parentResponse = $submittedMap->get($question->parent_question_id);
+            if ($parentResponse) {
+                $parentAnswerValue = null;
+                if (!empty($parentResponse['question_possible_answer_id'])) {
+                    $possibleAnswer = \App\Models\QuestionPossibleAnswer::find(
+                        $parentResponse['question_possible_answer_id']
+                    );
+                    $parentAnswerValue = $possibleAnswer ? $possibleAnswer->value : null;
+                } elseif (!empty($parentResponse['reponse'])) {
+                    $parentAnswerValue = $parentResponse['reponse'];
+                }
+
+                if ($parentAnswerValue === $question->trigger_answer) {
+                    return true;
+                }
+            }
+
+            return false;
         })->pluck('id')->toArray();
 
         // ----------------------------------------------------------------
@@ -274,6 +297,7 @@ class ReponseController extends Controller
                         'utilisateur_id'             => $utilisateurId,
                         'question_possible_answer_id' => $responseData['question_possible_answer_id'],
                         'description'                => null,
+                        'submission_id'              => $submissionId,
                     ];
                 }
             } else {
@@ -285,6 +309,7 @@ class ReponseController extends Controller
                         'utilisateur_id'             => $utilisateurId,
                         'question_possible_answer_id' => null,
                         'description'                => $responseData['reponse'],
+                        'submission_id'              => $submissionId,
                     ];
                 }
             }
@@ -300,6 +325,8 @@ class ReponseController extends Controller
 
         // ----------------------------------------------------------------
         // ÉTAPE 7 : Sauvegarde atomique — tout ou rien
+        // Chaque soumission crée un nouveau groupe de réponses identifié par submission_id.
+        // Les réponses des soumissions précédentes sont conservées intactes.
         // ----------------------------------------------------------------
         DB::transaction(function () use ($validReponses) {
             foreach ($validReponses as $reponseAttributes) {
@@ -308,8 +335,9 @@ class ReponseController extends Controller
         });
 
         return response()->json([
-            'success' => true,
-            'message' => 'Réponses enregistrées avec succès',
+            'success'       => true,
+            'message'       => 'Réponses enregistrées avec succès',
+            'submission_id' => $submissionId,
         ], 201);
     }
 

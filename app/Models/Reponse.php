@@ -73,6 +73,7 @@ class Reponse extends Model
         'utilisateur_id',
         'question_possible_answer_id',
         'description',
+        'submission_id',
     ];
 
     public function question()
