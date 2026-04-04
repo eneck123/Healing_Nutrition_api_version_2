@@ -85,7 +85,7 @@ class NutritionController extends Controller
         $user = \App\Models\Utilisateur::with('maladieChronique')->find($userId);
 
         if (!$user) {
-             return response()->json(['success' => false, 'message' => 'User not found'], 404);
+            return response()->json(['success' => false, 'message' => 'User not found'], 404);
         }
 
         try {
@@ -132,15 +132,15 @@ class NutritionController extends Controller
         $user = \App\Models\Utilisateur::with(['maladieChronique', 'reponse.question'])->find($userId);
 
         if (!$user) {
-             return response()->json(['success' => false, 'message' => 'User not found'], 404);
+            return response()->json(['success' => false, 'message' => 'User not found'], 404);
         }
 
-    if ($user->maladie_chronique_id != 1 && $user->maladie_chronique_id != 2 && !empty($user->maladie_chronique_id)) {
-        return response()->json([
-            'success' => false, 
-            'message' => 'La logique de recommandation avancée est actuellement limitée aux profils avec obésité modérée (ID 1), obésité sévère (ID 2) ou sans pathologie déclarée.'
-        ], 403);
-    }
+        if ($user->maladie_chronique_id != 1 && $user->maladie_chronique_id != 2 && !empty($user->maladie_chronique_id)) {
+            return response()->json([
+                'success' => false,
+                'message' => 'La logique de recommandation avancée est actuellement limitée aux profils avec obésité modérée (ID 1), obésité sévère (ID 2) ou sans pathologie déclarée.'
+            ], 403);
+        }
 
         // BMR/TDEE Calculation
         try {
@@ -148,7 +148,7 @@ class NutritionController extends Controller
         } catch (\Exception $e) {
             return response()->json(['success' => false, 'message' => $e->getMessage()], 400);
         }
-        
+
         $tdee = $metrics['tdee'];
         $isMale = $metrics['is_male'];
 
@@ -190,13 +190,14 @@ class NutritionController extends Controller
 
             // Utiliser le texte de la question déjà chargé via eager load (reponse.question)
             $questionText = $rep->question ? $rep->question->texte_question : 'Question ' . $qid;
-            
+
             $text = $rep->description ?: '';
             $answerId = $rep->question_possible_answer_id;
-            
+
             if ($answerId) {
                 $possibleAnswer = \App\Models\QuestionPossibleAnswer::find($answerId);
-                if ($possibleAnswer) $text = $possibleAnswer->value;
+                if ($possibleAnswer)
+                    $text = $possibleAnswer->value;
             }
 
             $responsesMap[$qid] = [
@@ -226,15 +227,21 @@ class NutritionController extends Controller
                         }
                         break;
                     case 'antecedents_lequel':
-                        if (stripos($text, 'diabète') !== false) $pathologies['diabetes'] = true;
-                        if (stripos($text, 'hypertension') !== false || stripos($text, 'tension') !== false) $pathologies['hypertension'] = true;
-                        if (stripos($text, 'cardio') !== false || stripos($text, 'coeur') !== false) $pathologies['cardio'] = true;
+                        if (stripos($text, 'diabète') !== false)
+                            $pathologies['diabetes'] = true;
+                        if (stripos($text, 'hypertension') !== false || stripos($text, 'tension') !== false)
+                            $pathologies['hypertension'] = true;
+                        if (stripos($text, 'cardio') !== false || stripos($text, 'coeur') !== false)
+                            $pathologies['cardio'] = true;
                         break;
                     case 'meds_types':
                     case 'plan_deja_texte':
-                        if (stripos($text, 'Insuline') !== false || stripos($text, 'glycémie') !== false) $pathologies['diabetes'] = true;
-                        if (stripos($text, 'tension artérielle') !== false) $pathologies['hypertension'] = true;
-                        if (stripos($text, 'cholestérol') !== false || stripos($text, 'cardiaque') !== false) $pathologies['cardio'] = true;
+                        if (stripos($text, 'Insuline') !== false || stripos($text, 'glycémie') !== false)
+                            $pathologies['diabetes'] = true;
+                        if (stripos($text, 'tension artérielle') !== false)
+                            $pathologies['hypertension'] = true;
+                        if (stripos($text, 'cholestérol') !== false || stripos($text, 'cardiaque') !== false)
+                            $pathologies['cardio'] = true;
                         break;
                 }
             }
@@ -250,7 +257,7 @@ class NutritionController extends Controller
 
         // Apport Calorique Calculation
         $apportCalorique = $tdee - $deficitValue;
-        
+
         if ($isFitness) {
             $pct = ($tdee < 2000) ? 0.05 : (($tdee <= 3000) ? 0.04 : 0.03);
             $calcDeficit = round($tdee * $pct);
@@ -261,7 +268,7 @@ class NutritionController extends Controller
         // Safety Check
         $minThreshold = $isMale ? 1500 : 1200;
         $lowCalNotification = false;
-        
+
         if ($apportCalorique < $minThreshold) {
             $warningData = [
                 'gender' => $isMale ? 'Homme' : 'Femme',
@@ -326,34 +333,34 @@ class NutritionController extends Controller
 
         $qaData = [];
         $mapping = $this->resolveDynamicMapping($user->maladie_chronique_id);
-        
+
         $labels = [
-            'antecedents_diag'        => "Antécédents médicaux et risques",
-            'antecedents_lequel'      => "Détails des antécédents",
-            'chirurgie'               => "Chirurgie bariatrique",
-            'restrictions'            => "Restrictions alimentaires",
+            'antecedents_diag' => "Antécédents médicaux et risques",
+            'antecedents_lequel' => "Détails des antécédents",
+            'chirurgie' => "Chirurgie bariatrique",
+            'restrictions' => "Restrictions alimentaires",
             'restrictions_lesquelles' => "Détails des restrictions",
-            'calories_vides'          => "Consommation d'aliments caloriques",
-            'plan_deja'               => "Plan nutritionnel déjà suivi",
-            'plan_deja_texte'         => "Détails du plan précédent",
-            'boissons'                => "Boissons sucrées ou alcoolisées",
-            'boissons_details'        => "Détails (Quand/Quantité)",
-            'sommeil'                 => "Heures de sommeil par nuit",
-            'apnee'                   => "Apnée du sommeil",
-            'douleurs'                => "Douleurs articulaires",
-            'douleurs_frequence'      => "Fréquence des douleurs",
-            'regime_recent'           => "Régime de perte de poids récent",
-            'poids_perdu'             => "Poids perdu (Historique)",
-            'jours_sport'             => "Fréquence d'activité physique",
-            'sedentarite'             => "Position assise chaque jour",
-            'activites_preferees'     => "Activités physiques appréciées",
-            'fc_connaissance'         => "Connaissance de la fréquence cardiaque",
-            'fc_valeur'               => "Valeur de la FC au repos",
-            'ressenti'                => "Ressenti par rapport au poids",
-            'stress_ennui'            => "Manger par stress ou ennui",
-            'finir_assiette'          => "Tendance à finir son assiette",
-            'emotions'                => "Habitudes liées aux émotions",
-            'programme_deja'          => "Tentatives de perte de poids passées",
+            'calories_vides' => "Consommation d'aliments caloriques",
+            'plan_deja' => "Plan nutritionnel déjà suivi",
+            'plan_deja_texte' => "Détails du plan précédent",
+            'boissons' => "Boissons sucrées ou alcoolisées",
+            'boissons_details' => "Détails (Quand/Quantité)",
+            'sommeil' => "Heures de sommeil par nuit",
+            'apnee' => "Apnée du sommeil",
+            'douleurs' => "Douleurs articulaires",
+            'douleurs_frequence' => "Fréquence des douleurs",
+            'regime_recent' => "Régime de perte de poids récent",
+            'poids_perdu' => "Poids perdu (Historique)",
+            'jours_sport' => "Fréquence d'activité physique",
+            'sedentarite' => "Position assise chaque jour",
+            'activites_preferees' => "Activités physiques appréciées",
+            'fc_connaissance' => "Connaissance de la fréquence cardiaque",
+            'fc_valeur' => "Valeur de la FC au repos",
+            'ressenti' => "Ressenti par rapport au poids",
+            'stress_ennui' => "Manger par stress ou ennui",
+            'finir_assiette' => "Tendance à finir son assiette",
+            'emotions' => "Habitudes liées aux émotions",
+            'programme_deja' => "Tentatives de perte de poids passées",
         ];
 
         $responsesMap = [];
@@ -361,7 +368,7 @@ class NutritionController extends Controller
         $antecedentsQid = $mapping['antecedents_lequel'] ?? null;
 
         foreach ($reponses as $rep) {
-            $qid  = $rep->question_id;
+            $qid = $rep->question_id;
             $text = $rep->description ?: '';
 
             // Utiliser l'eager load si disponible, sinon requête DB
@@ -370,7 +377,8 @@ class NutritionController extends Controller
                     $text = $rep->questionPossibleAnswer->value;
                 } else {
                     $possibleAnswer = \App\Models\QuestionPossibleAnswer::find($rep->question_possible_answer_id);
-                    if ($possibleAnswer) $text = $possibleAnswer->value;
+                    if ($possibleAnswer)
+                        $text = $possibleAnswer->value;
                 }
             }
 
@@ -378,13 +386,16 @@ class NutritionController extends Controller
 
             // Détection des pathologies
             if ($antecedentsQid && $qid == $antecedentsQid) {
-                if (stripos($text, 'diabète') !== false) $pathologies['diabetes'] = true;
-                if (stripos($text, 'hypertension') !== false || stripos($text, 'tension') !== false) $pathologies['hypertension'] = true;
-                if (stripos($text, 'cardio') !== false || stripos($text, 'coeur') !== false) $pathologies['cardio'] = true;
+                if (stripos($text, 'diabète') !== false)
+                    $pathologies['diabetes'] = true;
+                if (stripos($text, 'hypertension') !== false || stripos($text, 'tension') !== false)
+                    $pathologies['hypertension'] = true;
+                if (stripos($text, 'cardio') !== false || stripos($text, 'coeur') !== false)
+                    $pathologies['cardio'] = true;
             }
         }
 
-        // Remplissage du questionnaire pour le PDF
+        $qaData = [];
         foreach ($reponses as $rep) {
             $text = $rep->description ?: '';
             if ($rep->question_possible_answer_id) {
@@ -392,16 +403,22 @@ class NutritionController extends Controller
                     $text = $rep->questionPossibleAnswer->value;
                 } else {
                     $pa = \App\Models\QuestionPossibleAnswer::find($rep->question_possible_answer_id);
-                    if ($pa) $text = $pa->value;
+                    if ($pa)
+                        $text = $pa->value;
                 }
             }
-            
+
+            $recommandation = '';
+            if ($user->maladie_chronique_id == 2) {
+                $recommandation = $this->getSevereRecommendation($rep->question_id, $text, $pathologies);
+            } else if ($user->maladie_chronique_id == 1) {
+                $recommandation = $this->getModerateRecommendation($rep->question_id, $text, $responsesMap, $pathologies);
+            }
+
             $qaData[] = [
-                'question'       => $rep->question ? $rep->question->texte_question : "Question {$rep->question_id}",
-                'reponse'        => $text,
-                'recommandation' => ($user->maladie_chronique_id == 2) 
-                    ? $this->getSevereRecommendation($rep->question_id, $text, $pathologies)
-                    : "Voir la section 'Plan d'intervention' pour les détails."
+                'question' => $rep->question ? $rep->question->texte_question : "Question {$rep->question_id}",
+                'reponse' => $text,
+                'recommandation' => $recommandation
             ];
         }
 
@@ -412,26 +429,27 @@ class NutritionController extends Controller
             : ($deficitValue . ' kcal');
 
         $data = [
-            'user'    => $user,
+            'user' => $user,
             'metrics' => $metrics,
-            'goals'   => [
-                'objectif'          => $objective,
-                'perte_poids'       => $weightLossRange,
+            'goals' => [
+                'objectif' => $objective,
+                'perte_poids' => $weightLossRange,
                 'niveau_changement' => $niveauChangementText,
             ],
             'recommendations' => [
-                'calories'       => round($apportCalorique),
+                'calories' => round($apportCalorique),
                 'macros_p_percent' => $macros['distribution']['proteines_percent'],
                 'macros_g_percent' => $macros['distribution']['glucides_percent'],
                 'macros_l_percent' => $macros['distribution']['lipides_percent'],
-                'macros_p_grams'   => $macros['grammes']['proteines'],
-                'macros_g_grams'   => $macros['grammes']['glucides'],
-                'macros_l_grams'   => $macros['grammes']['lipides'],
+                'macros_p_grams' => $macros['grammes']['proteines'],
+                'macros_g_grams' => $macros['grammes']['glucides'],
+                'macros_l_grams' => $macros['grammes']['lipides'],
             ],
-            'qa'                => $qaData,
-            'menu'              => $guideData['menu_journalier'],
-            'plan_intervention' => $planIntervention,
-            'severe_advice'     => ($user->maladie_chronique_id == 2) 
+            'qa' => $qaData,
+            'menu' => $guideData['menu_journalier'],
+            'plan_intervention' => [], // <-- Laissé vide car les reco sont passées dans $qa
+
+            'severe_advice' => ($user->maladie_chronique_id == 2)
                 ? $this->severeObesityService->getGeneralAdvice(
                     $pathologies['diabetes'] ? 'diabete' : ($pathologies['hypertension'] ? 'hta' : ($pathologies['cardio'] ? 'cholesterol' : null))
                 ) : null,
@@ -439,7 +457,7 @@ class NutritionController extends Controller
 
         $viewName = $user->maladie_chronique_id == 2 ? 'pdf.nutrition_guide_severe' : 'pdf.nutrition_guide';
         $pdf = \Barryvdh\DomPDF\Facade\Pdf::loadView($viewName, $data);
-        
+
         // Nom de fichier unique par soumission
         $fileName = 'Guide_Nutritionnel_' . $user->id . '_' . time() . '.pdf';
         $path = storage_path('app/public/pdfs');
@@ -453,9 +471,9 @@ class NutritionController extends Controller
         // Chaque soumission génère son propre plan distinct lié à son submission_id.
         \App\Models\PlanNutritionnel::create([
             'utilisateur_id' => $user->id,
-            'submission_id'  => $submissionId,
-            'description'    => 'Guide nutritionnel de 90 jours généré le ' . date('d/m/Y'),
-            'pdf_path'       => 'storage/pdfs/' . $fileName,
+            'submission_id' => $submissionId,
+            'description' => 'Guide nutritionnel de 90 jours généré le ' . date('d/m/Y'),
+            'pdf_path' => 'storage/pdfs/' . $fileName,
         ]);
 
         // Send Email
@@ -502,7 +520,7 @@ class NutritionController extends Controller
         // Restriction check
         if ($user->maladie_chronique_id != 1 && $user->maladie_chronique_id != 2 && !empty($user->maladie_chronique_id)) {
             return response()->json([
-                'success' => false, 
+                'success' => false,
                 'message' => 'Le téléchargement du guide nutritionnel complet est actuellement limité aux profils avec obésité modérée (ID 1), obésité sévère (ID 2) ou sans pathologie déclarée.'
             ], 403);
         }
@@ -557,13 +575,13 @@ class NutritionController extends Controller
         $user = \App\Models\Utilisateur::with(['maladieChronique', 'reponse.question'])->find($userId);
 
         if (!$user) {
-             return response()->json(['success' => false, 'message' => 'User not found'], 404);
+            return response()->json(['success' => false, 'message' => 'User not found'], 404);
         }
 
         // Restriction check
         if ($user->maladie_chronique_id != 1 && $user->maladie_chronique_id != 2 && !empty($user->maladie_chronique_id)) {
             return response()->json([
-                'success' => false, 
+                'success' => false,
                 'message' => 'La génération du guide nutritionnel complet est actuellement limitée aux profils avec obésité modérée (ID 1), obésité sévère (ID 2) ou sans pathologie déclarée.'
             ], 403);
         }
@@ -582,18 +600,19 @@ class NutritionController extends Controller
         $deficitValue = 0;
         $weightLossRange = 'Inconnu';
         $pathologies = ['diabetes' => false, 'hypertension' => false, 'cardio' => false];
-        $qa = []; 
+        $qa = [];
 
         foreach ($user->reponse as $rep) {
             $qid = $rep->question_id;
             $question = DB::table('questions')->where('id', $qid)->first();
             $questionText = $question ? $question->texte_question : 'Question ' . $qid;
-            
+
             $text = $rep->description ?: '';
             $answerId = $rep->question_possible_answer_id;
             if ($answerId) {
                 $possibleAnswer = DB::table('question_possible_answers')->where('id', $answerId)->first();
-                if ($possibleAnswer) $text = $possibleAnswer->value;
+                if ($possibleAnswer)
+                    $text = $possibleAnswer->value;
             }
 
             // Populate Q&A for PDF
@@ -609,21 +628,32 @@ class NutritionController extends Controller
             if (isset($reverseMapping[$qid])) {
                 $key = $reverseMapping[$qid];
                 switch ($key) {
-                    case 'objectif_principal': $objective = $text; break;
-                    case 'poids_a_perdre': $weightLossRange = $text; break;
-                    case 'niveau_changement': 
-                        if (preg_match('/(\d+)\s*kcal/i', $text, $matches)) $deficitValue = intval($matches[1]);
+                    case 'objectif_principal':
+                        $objective = $text;
                         break;
-                    case 'antecedents_lequel': 
-                        if (stripos($text, 'diabète') !== false) $pathologies['diabetes'] = true;
-                        if (stripos($text, 'hypertension') !== false || stripos($text, 'tension') !== false) $pathologies['hypertension'] = true;
-                        if (stripos($text, 'cardio') !== false || stripos($text, 'coeur') !== false) $pathologies['cardio'] = true;
+                    case 'poids_a_perdre':
+                        $weightLossRange = $text;
+                        break;
+                    case 'niveau_changement':
+                        if (preg_match('/(\d+)\s*kcal/i', $text, $matches))
+                            $deficitValue = intval($matches[1]);
+                        break;
+                    case 'antecedents_lequel':
+                        if (stripos($text, 'diabète') !== false)
+                            $pathologies['diabetes'] = true;
+                        if (stripos($text, 'hypertension') !== false || stripos($text, 'tension') !== false)
+                            $pathologies['hypertension'] = true;
+                        if (stripos($text, 'cardio') !== false || stripos($text, 'coeur') !== false)
+                            $pathologies['cardio'] = true;
                         break;
                     case 'meds_types':
                     case 'plan_deja_texte':
-                        if (stripos($text, 'Insuline') !== false || stripos($text, 'glycémie') !== false) $pathologies['diabetes'] = true;
-                        if (stripos($text, 'tension') !== false) $pathologies['hypertension'] = true;
-                        if (stripos($text, 'cholestérol') !== false || stripos($text, 'cardiaque') !== false) $pathologies['cardio'] = true;
+                        if (stripos($text, 'Insuline') !== false || stripos($text, 'glycémie') !== false)
+                            $pathologies['diabetes'] = true;
+                        if (stripos($text, 'tension') !== false)
+                            $pathologies['hypertension'] = true;
+                        if (stripos($text, 'cholestérol') !== false || stripos($text, 'cardiaque') !== false)
+                            $pathologies['cardio'] = true;
                         break;
                 }
             }
@@ -631,7 +661,7 @@ class NutritionController extends Controller
 
         $isWeightLoss = (stripos($objective, 'Perte') !== false || stripos($objective, 'Perdre') !== false);
         $isFitness = (stripos($objective, 'forme physique') !== false);
-        
+
         // 3. Calories
         $apportCalorique = $tdee - $deficitValue;
         if ($isFitness) {
@@ -646,7 +676,7 @@ class NutritionController extends Controller
 
         // 5. Menu
         $guideData = $this->generateDynamicFoodGuide($user, $macros['grammes'], $pathologies);
-        
+
         // 6. Detailed Q&A Recommendation Construction (Simulated from existing methods or logic)
         // Since we have specific methods for specific sections, we can build the Q&A array by matching QIDs
         // For the PDF, I will map the 'responses' to 'recommendations' using the logic available in various private methods
@@ -657,18 +687,19 @@ class NutritionController extends Controller
         // Re-gathering responses map for the plan generation correctly
         $responsesMap = [];
         foreach ($user->reponse as $rep) {
-             $qid = $rep->question_id;
-             $text = $rep->description ?: '';
-             if ($rep->question_possible_answer_id) {
-                 $pa = DB::table('question_possible_answers')->where('id', $rep->question_possible_answer_id)->first();
-                 if ($pa) $text = $pa->value;
-             }
-             $responsesMap[$qid] = ['text' => $text];
+            $qid = $rep->question_id;
+            $text = $rep->description ?: '';
+            if ($rep->question_possible_answer_id) {
+                $pa = DB::table('question_possible_answers')->where('id', $rep->question_possible_answer_id)->first();
+                if ($pa)
+                    $text = $pa->value;
+            }
+            $responsesMap[$qid] = ['text' => $text];
         }
-        
+
         $qaData = [];
         $mapping = $this->resolveDynamicMapping($user->maladie_chronique_id);
-        
+
         $labels = [
             'antecedents_diag' => "Antécédents médicaux et risques",
             'antecedents_lequel' => "Détails des antécédents",
@@ -701,7 +732,7 @@ class NutritionController extends Controller
         foreach ($mapping as $key => $qid) {
             if (isset($responsesMap[$qid]) && isset($labels[$key])) {
                 $respText = $responsesMap[$qid]['text'];
-                $recommendation = ($user->maladie_chronique_id == 2) 
+                $recommendation = ($user->maladie_chronique_id == 2)
                     ? $this->getSevereRecommendation($key, $respText, $pathologies)
                     : "Voir la section 'Plan d'intervention' pour les détails.";
 
@@ -735,7 +766,7 @@ class NutritionController extends Controller
             'menu' => $guideData['menu_journalier'],
             'plan_intervention' => $interventionPlan // We can pass this to the view to render specific advice blocks
         ];
-        
+
         // Enhance Q&A: Try to map the specific advice blocks from $interventionPlan to the Q&A if possible
         // For now, the "Plan d'intervention" section in the PDF can just iterate over $plan_intervention items.
 
@@ -748,7 +779,9 @@ class NutritionController extends Controller
     private function calculateMacrosEnhanced($user, $activity, $deficit, $isWeightLoss, $isFitness, $apportCalorique, $weightLossRange, $pathologies)
     {
         // Default Distribution (General Case / Fallback)
-        $pProt = 30; $pGlu = 40; $pLip = 30;
+        $pProt = 30;
+        $pGlu = 40;
+        $pLip = 30;
 
         $hasDiabetes = $pathologies['diabetes'];
         $hasHypertension = $pathologies['hypertension'];
@@ -764,128 +797,386 @@ class NutritionController extends Controller
             } elseif (stripos($weightLossRange, 'Moins de 5 kg') !== false) {
                 $range = 'low';
             } else {
-                if ($deficit >= 700) $range = 'high';
-                elseif ($deficit >= 500) $range = 'mid';
+                if ($deficit >= 700)
+                    $range = 'high';
+                elseif ($deficit >= 500)
+                    $range = 'mid';
             }
 
             if ($hasDiabetes) {
                 // TABLES 9, 12, 15
                 if ($range === 'low') { // Table 9
-                    if ($activity === "Sédentaire") { $pProt=30; $pGlu=35; $pLip=35; }
-                    elseif ($activity === "Légèrement actif") { $pProt=30; $pGlu=40; $pLip=30; }
-                    elseif ($activity === "Modérément actif") { $pProt=25; $pGlu=45; $pLip=30; }
-                    elseif ($activity === "Très actif") { $pProt=25; $pGlu=48; $pLip=27; }
-                    else { $pProt=25; $pGlu=50; $pLip=25; }
+                    if ($activity === "Sédentaire") {
+                        $pProt = 30;
+                        $pGlu = 35;
+                        $pLip = 35;
+                    } elseif ($activity === "Légèrement actif") {
+                        $pProt = 30;
+                        $pGlu = 40;
+                        $pLip = 30;
+                    } elseif ($activity === "Modérément actif") {
+                        $pProt = 25;
+                        $pGlu = 45;
+                        $pLip = 30;
+                    } elseif ($activity === "Très actif") {
+                        $pProt = 25;
+                        $pGlu = 48;
+                        $pLip = 27;
+                    } else {
+                        $pProt = 25;
+                        $pGlu = 50;
+                        $pLip = 25;
+                    }
                 } elseif ($range === 'mid') { // Table 12
-                    if ($activity === "Sédentaire") { $pProt=30; $pGlu=35; $pLip=35; } 
-                    elseif ($activity === "Légèrement actif") { $pProt=30; $pGlu=40; $pLip=30; }
-                    elseif ($activity === "Modérément actif") { $pProt=25; $pGlu=45; $pLip=30; }
-                    elseif ($activity === "Très actif") { $pProt=25; $pGlu=48; $pLip=27; }
-                    else { $pProt=25; $pGlu=50; $pLip=25; }
+                    if ($activity === "Sédentaire") {
+                        $pProt = 30;
+                        $pGlu = 35;
+                        $pLip = 35;
+                    } elseif ($activity === "Légèrement actif") {
+                        $pProt = 30;
+                        $pGlu = 40;
+                        $pLip = 30;
+                    } elseif ($activity === "Modérément actif") {
+                        $pProt = 25;
+                        $pGlu = 45;
+                        $pLip = 30;
+                    } elseif ($activity === "Très actif") {
+                        $pProt = 25;
+                        $pGlu = 48;
+                        $pLip = 27;
+                    } else {
+                        $pProt = 25;
+                        $pGlu = 50;
+                        $pLip = 25;
+                    }
                 } else { // Table 15
-                    if ($activity === "Sédentaire") { $pProt=30; $pGlu=35; $pLip=35; }
-                    elseif ($activity === "Légèrement actif") { $pProt=28; $pGlu=40; $pLip=32; }
-                    elseif ($activity === "Modérément actif") { $pProt=25; $pGlu=43; $pLip=32; }
-                    elseif ($activity === "Très actif") { $pProt=25; $pGlu=48; $pLip=27; }
-                    else { $pProt=25; $pGlu=50; $pLip=25; }
+                    if ($activity === "Sédentaire") {
+                        $pProt = 30;
+                        $pGlu = 35;
+                        $pLip = 35;
+                    } elseif ($activity === "Légèrement actif") {
+                        $pProt = 28;
+                        $pGlu = 40;
+                        $pLip = 32;
+                    } elseif ($activity === "Modérément actif") {
+                        $pProt = 25;
+                        $pGlu = 43;
+                        $pLip = 32;
+                    } elseif ($activity === "Très actif") {
+                        $pProt = 25;
+                        $pGlu = 48;
+                        $pLip = 27;
+                    } else {
+                        $pProt = 25;
+                        $pGlu = 50;
+                        $pLip = 25;
+                    }
                 }
             } elseif ($hasHypertension) {
                 // TABLES 10, 13, 16
                 if ($range === 'low') { // Table 10
-                    if ($activity === "Sédentaire") { $pProt=30; $pGlu=40; $pLip=30; }
-                    elseif ($activity === "Légèrement actif") { $pProt=28; $pGlu=44; $pLip=28; }
-                    elseif ($activity === "Modérément actif") { $pProt=25; $pGlu=45; $pLip=30; }
-                    elseif ($activity === "Très actif") { $pProt=25; $pGlu=48; $pLip=27; }
-                    else { $pProt=25; $pGlu=50; $pLip=25; }
+                    if ($activity === "Sédentaire") {
+                        $pProt = 30;
+                        $pGlu = 40;
+                        $pLip = 30;
+                    } elseif ($activity === "Légèrement actif") {
+                        $pProt = 28;
+                        $pGlu = 44;
+                        $pLip = 28;
+                    } elseif ($activity === "Modérément actif") {
+                        $pProt = 25;
+                        $pGlu = 45;
+                        $pLip = 30;
+                    } elseif ($activity === "Très actif") {
+                        $pProt = 25;
+                        $pGlu = 48;
+                        $pLip = 27;
+                    } else {
+                        $pProt = 25;
+                        $pGlu = 50;
+                        $pLip = 25;
+                    }
                 } elseif ($range === 'mid') { // Table 13
-                    if ($activity === "Sédentaire") { $pProt=29; $pGlu=41; $pLip=30; }
-                    elseif ($activity === "Légèrement actif") { $pProt=29; $pGlu=44; $pLip=30; }
-                    elseif ($activity === "Modérément actif") { $pProt=25; $pGlu=45; $pLip=30; }
-                    elseif ($activity === "Très actif") { $pProt=25; $pGlu=48; $pLip=27; }
-                    else { $pProt=25; $pGlu=50; $pLip=25; }
+                    if ($activity === "Sédentaire") {
+                        $pProt = 29;
+                        $pGlu = 41;
+                        $pLip = 30;
+                    } elseif ($activity === "Légèrement actif") {
+                        $pProt = 29;
+                        $pGlu = 44;
+                        $pLip = 30;
+                    } elseif ($activity === "Modérément actif") {
+                        $pProt = 25;
+                        $pGlu = 45;
+                        $pLip = 30;
+                    } elseif ($activity === "Très actif") {
+                        $pProt = 25;
+                        $pGlu = 48;
+                        $pLip = 27;
+                    } else {
+                        $pProt = 25;
+                        $pGlu = 50;
+                        $pLip = 25;
+                    }
                 } else { // Table 16
-                    if ($activity === "Sédentaire") { $pProt=30; $pGlu=40; $pLip=30; }
-                    elseif ($activity === "Légèrement actif") { $pProt=28; $pGlu=44; $pLip=28; }
-                    elseif ($activity === "Modérément actif") { $pProt=25; $pGlu=45; $pLip=30; }
-                    elseif ($activity === "Très actif") { $pProt=25; $pGlu=48; $pLip=27; }
-                    else { $pProt=25; $pGlu=50; $pLip=25; }
+                    if ($activity === "Sédentaire") {
+                        $pProt = 30;
+                        $pGlu = 40;
+                        $pLip = 30;
+                    } elseif ($activity === "Légèrement actif") {
+                        $pProt = 28;
+                        $pGlu = 44;
+                        $pLip = 28;
+                    } elseif ($activity === "Modérément actif") {
+                        $pProt = 25;
+                        $pGlu = 45;
+                        $pLip = 30;
+                    } elseif ($activity === "Très actif") {
+                        $pProt = 25;
+                        $pGlu = 48;
+                        $pLip = 27;
+                    } else {
+                        $pProt = 25;
+                        $pGlu = 50;
+                        $pLip = 25;
+                    }
                 }
             } elseif ($hasCardio) {
                 // TABLES 11, 14, 17
                 if ($range === 'low') { // Table 11
-                    if ($activity === "Sédentaire") { $pProt=30; $pGlu=40; $pLip=30; }
-                    elseif ($activity === "Légèrement actif") { $pProt=30; $pGlu=44; $pLip=26; }
-                    elseif ($activity === "Modérément actif") { $pProt=25; $pGlu=45; $pLip=30; }
-                    elseif ($activity === "Très actif") { $pProt=25; $pGlu=48; $pLip=27; }
-                    else { $pProt=25; $pGlu=50; $pLip=25; }
+                    if ($activity === "Sédentaire") {
+                        $pProt = 30;
+                        $pGlu = 40;
+                        $pLip = 30;
+                    } elseif ($activity === "Légèrement actif") {
+                        $pProt = 30;
+                        $pGlu = 44;
+                        $pLip = 26;
+                    } elseif ($activity === "Modérément actif") {
+                        $pProt = 25;
+                        $pGlu = 45;
+                        $pLip = 30;
+                    } elseif ($activity === "Très actif") {
+                        $pProt = 25;
+                        $pGlu = 48;
+                        $pLip = 27;
+                    } else {
+                        $pProt = 25;
+                        $pGlu = 50;
+                        $pLip = 25;
+                    }
                 } elseif ($range === 'mid') { // Table 14
-                    if ($activity === "Sédentaire") { $pProt=30; $pGlu=41; $pLip=29; }
-                    elseif ($activity === "Légèrement actif") { $pProt=28; $pGlu=45; $pLip=27; }
-                    elseif ($activity === "Modérément actif") { $pProt=25; $pGlu=45; $pLip=30; }
-                    elseif ($activity === "Très actif") { $pProt=25; $pGlu=48; $pLip=27; }
-                    else { $pProt=25; $pGlu=50; $pLip=25; }
+                    if ($activity === "Sédentaire") {
+                        $pProt = 30;
+                        $pGlu = 41;
+                        $pLip = 29;
+                    } elseif ($activity === "Légèrement actif") {
+                        $pProt = 28;
+                        $pGlu = 45;
+                        $pLip = 27;
+                    } elseif ($activity === "Modérément actif") {
+                        $pProt = 25;
+                        $pGlu = 45;
+                        $pLip = 30;
+                    } elseif ($activity === "Très actif") {
+                        $pProt = 25;
+                        $pGlu = 48;
+                        $pLip = 27;
+                    } else {
+                        $pProt = 25;
+                        $pGlu = 50;
+                        $pLip = 25;
+                    }
                 } else { // Table 17
-                    if ($activity === "Sédentaire") { $pProt=30; $pGlu=40; $pLip=30; }
-                    elseif ($activity === "Légèrement actif") { $pProt=28; $pGlu=45; $pLip=27; }
-                    elseif ($activity === "Modérément actif") { $pProt=25; $pGlu=45; $pLip=30; }
-                    elseif ($activity === "Très actif") { $pProt=25; $pGlu=48; $pLip=27; }
-                    else { $pProt=25; $pGlu=50; $pLip=25; }
+                    if ($activity === "Sédentaire") {
+                        $pProt = 30;
+                        $pGlu = 40;
+                        $pLip = 30;
+                    } elseif ($activity === "Légèrement actif") {
+                        $pProt = 28;
+                        $pGlu = 45;
+                        $pLip = 27;
+                    } elseif ($activity === "Modérément actif") {
+                        $pProt = 25;
+                        $pGlu = 45;
+                        $pLip = 30;
+                    } elseif ($activity === "Très actif") {
+                        $pProt = 25;
+                        $pGlu = 48;
+                        $pLip = 27;
+                    } else {
+                        $pProt = 25;
+                        $pGlu = 50;
+                        $pLip = 25;
+                    }
                 }
             } else {
                 // NO PATHOLOGY (Tables 21, 22, 23)
                 if ($range === 'low') { // Table 21
-                    if ($activity === "Sédentaire") { $pProt=30; $pGlu=35; $pLip=35; }
-                    elseif ($activity === "Légèrement actif") { $pProt=30; $pGlu=40; $pLip=30; }
-                    elseif ($activity === "Modérément actif") { $pProt=27; $pGlu=45; $pLip=28; }
-                    elseif ($activity === "Très actif") { $pProt=25; $pGlu=50; $pLip=25; }
-                    else { $pProt=25; $pGlu=55; $pLip=20; }
+                    if ($activity === "Sédentaire") {
+                        $pProt = 30;
+                        $pGlu = 35;
+                        $pLip = 35;
+                    } elseif ($activity === "Légèrement actif") {
+                        $pProt = 30;
+                        $pGlu = 40;
+                        $pLip = 30;
+                    } elseif ($activity === "Modérément actif") {
+                        $pProt = 27;
+                        $pGlu = 45;
+                        $pLip = 28;
+                    } elseif ($activity === "Très actif") {
+                        $pProt = 25;
+                        $pGlu = 50;
+                        $pLip = 25;
+                    } else {
+                        $pProt = 25;
+                        $pGlu = 55;
+                        $pLip = 20;
+                    }
                 } elseif ($range === 'mid') { // Table 22
-                    if ($activity === "Sédentaire") { $pProt=30; $pGlu=35; $pLip=35; }
-                    elseif ($activity === "Légèrement actif") { $pProt=30; $pGlu=40; $pLip=30; }
-                    elseif ($activity === "Modérément actif") { $pProt=26; $pGlu=45; $pLip=29; }
-                    elseif ($activity === "Très actif") { $pProt=25; $pGlu=50; $pLip=25; }
-                    else { $pProt=25; $pGlu=55; $pLip=20; }
+                    if ($activity === "Sédentaire") {
+                        $pProt = 30;
+                        $pGlu = 35;
+                        $pLip = 35;
+                    } elseif ($activity === "Légèrement actif") {
+                        $pProt = 30;
+                        $pGlu = 40;
+                        $pLip = 30;
+                    } elseif ($activity === "Modérément actif") {
+                        $pProt = 26;
+                        $pGlu = 45;
+                        $pLip = 29;
+                    } elseif ($activity === "Très actif") {
+                        $pProt = 25;
+                        $pGlu = 50;
+                        $pLip = 25;
+                    } else {
+                        $pProt = 25;
+                        $pGlu = 55;
+                        $pLip = 20;
+                    }
                 } else { // Table 23
-                    if ($activity === "Sédentaire") { $pProt=30; $pGlu=35; $pLip=35; }
-                    elseif ($activity === "Légèrement actif") { $pProt=30; $pGlu=40; $pLip=30; }
-                    elseif ($activity === "Modérément actif") { $pProt=27; $pGlu=45; $pLip=28; }
-                    elseif ($activity === "Très actif") { $pProt=25; $pGlu=50; $pLip=25; }
-                    else { $pProt=25; $pGlu=55; $pLip=20; }
+                    if ($activity === "Sédentaire") {
+                        $pProt = 30;
+                        $pGlu = 35;
+                        $pLip = 35;
+                    } elseif ($activity === "Légèrement actif") {
+                        $pProt = 30;
+                        $pGlu = 40;
+                        $pLip = 30;
+                    } elseif ($activity === "Modérément actif") {
+                        $pProt = 27;
+                        $pGlu = 45;
+                        $pLip = 28;
+                    } elseif ($activity === "Très actif") {
+                        $pProt = 25;
+                        $pGlu = 50;
+                        $pLip = 25;
+                    } else {
+                        $pProt = 25;
+                        $pGlu = 55;
+                        $pLip = 20;
+                    }
                 }
             }
         } elseif ($isFitness) {
             // FITNESS LOGIC
             if ($hasDiabetes) { // Tableau 28
-                if ($activity === "Sédentaire") { $pProt=27; $pGlu=35; $pLip=38; }
-                elseif ($activity === "Légèrement actif") { $pProt=27; $pGlu=38; $pLip=35; }
-                elseif ($activity === "Modérément actif") { $pProt=27; $pGlu=40; $pLip=33; }
-                elseif ($activity === "Très actif") { $pProt=27; $pGlu=43; $pLip=30; }
-                else { $pProt=27; $pGlu=45; $pLip=28; }
+                if ($activity === "Sédentaire") {
+                    $pProt = 27;
+                    $pGlu = 35;
+                    $pLip = 38;
+                } elseif ($activity === "Légèrement actif") {
+                    $pProt = 27;
+                    $pGlu = 38;
+                    $pLip = 35;
+                } elseif ($activity === "Modérément actif") {
+                    $pProt = 27;
+                    $pGlu = 40;
+                    $pLip = 33;
+                } elseif ($activity === "Très actif") {
+                    $pProt = 27;
+                    $pGlu = 43;
+                    $pLip = 30;
+                } else {
+                    $pProt = 27;
+                    $pGlu = 45;
+                    $pLip = 28;
+                }
             } elseif ($hasHypertension) { // Tableau 29
-                if ($activity === "Sédentaire") { $pProt=28; $pGlu=37; $pLip=30; }
-                elseif ($activity === "Légèrement actif") { $pProt=27; $pGlu=44; $pLip=29; }
-                elseif ($activity === "Modérément actif") { $pProt=25; $pGlu=45; $pLip=25; }
-                elseif ($activity === "Très actif") { $pProt=25; $pGlu=50; $pLip=22; }
-                else { $pProt=25; $pGlu=45; $pLip=20; }
+                if ($activity === "Sédentaire") {
+                    $pProt = 28;
+                    $pGlu = 37;
+                    $pLip = 30;
+                } elseif ($activity === "Légèrement actif") {
+                    $pProt = 27;
+                    $pGlu = 44;
+                    $pLip = 29;
+                } elseif ($activity === "Modérément actif") {
+                    $pProt = 25;
+                    $pGlu = 45;
+                    $pLip = 25;
+                } elseif ($activity === "Très actif") {
+                    $pProt = 25;
+                    $pGlu = 50;
+                    $pLip = 22;
+                } else {
+                    $pProt = 25;
+                    $pGlu = 45;
+                    $pLip = 20;
+                }
             } elseif ($hasCardio) { // Cardio (Tableau sans numéro)
-                if ($activity === "Sédentaire") { $pProt=27; $pGlu=37; $pLip=30; }
-                elseif ($activity === "Légèrement actif") { $pProt=28; $pGlu=42; $pLip=28; }
-                elseif ($activity === "Modérément actif") { $pProt=25; $pGlu=45; $pLip=25; }
-                elseif ($activity === "Très actif") { $pProt=25; $pGlu=45; $pLip=25; }
-                else { $pProt=25; $pGlu=45; $pLip=25; }
+                if ($activity === "Sédentaire") {
+                    $pProt = 27;
+                    $pGlu = 37;
+                    $pLip = 30;
+                } elseif ($activity === "Légèrement actif") {
+                    $pProt = 28;
+                    $pGlu = 42;
+                    $pLip = 28;
+                } elseif ($activity === "Modérément actif") {
+                    $pProt = 25;
+                    $pGlu = 45;
+                    $pLip = 25;
+                } elseif ($activity === "Très actif") {
+                    $pProt = 25;
+                    $pGlu = 45;
+                    $pLip = 25;
+                } else {
+                    $pProt = 25;
+                    $pGlu = 45;
+                    $pLip = 25;
+                }
             } else { // No pathology (Tableau 33) - Updated from recap.txt
-                if ($activity === "Sédentaire") { $pProt=30; $pGlu=35; $pLip=35; }
-                elseif ($activity === "Légèrement actif") { $pProt=30; $pGlu=40; $pLip=30; }
-                elseif ($activity === "Modérément actif") { $pProt=27; $pGlu=45; $pLip=28; }
-                elseif ($activity === "Très actif") { $pProt=25; $pGlu=50; $pLip=25; }
-                else { $pProt=25; $pGlu=55; $pLip=20; }
+                if ($activity === "Sédentaire") {
+                    $pProt = 30;
+                    $pGlu = 35;
+                    $pLip = 35;
+                } elseif ($activity === "Légèrement actif") {
+                    $pProt = 30;
+                    $pGlu = 40;
+                    $pLip = 30;
+                } elseif ($activity === "Modérément actif") {
+                    $pProt = 27;
+                    $pGlu = 45;
+                    $pLip = 28;
+                } elseif ($activity === "Très actif") {
+                    $pProt = 25;
+                    $pGlu = 50;
+                    $pLip = 25;
+                } else {
+                    $pProt = 25;
+                    $pGlu = 55;
+                    $pLip = 20;
+                }
             }
         }
 
         // Final conversion to Grams
-        $gProt = round(($apportCalorique * ($pProt/100)) / 4);
-        $gGlu = round(($apportCalorique * ($pGlu/100)) / 4);
-        $gLip = round(($apportCalorique * ($pLip/100)) / 9);
+        $gProt = round(($apportCalorique * ($pProt / 100)) / 4);
+        $gGlu = round(($apportCalorique * ($pGlu / 100)) / 4);
+        $gLip = round(($apportCalorique * ($pLip / 100)) / 9);
 
         return [
             'distribution' => [
@@ -987,7 +1278,7 @@ class NutritionController extends Controller
         ];
 
         $recommendation = $table[$activity] ?? "1 – 2 collations / jour";
-        
+
         $content = "🍎 GESTION DES COLLATIONS :\n";
         $content .= "En fonction de votre niveau d'activité ($activity), nous recommandons : **$recommendation**.\n";
         $content .= "Privilégiez les fruits frais, les noix de cajou nature ou un œuf dur.\n";
@@ -1043,7 +1334,7 @@ class NutritionController extends Controller
         $mapping = $this->resolveDynamicMapping($diseaseId);
         $q70 = $responses[$mapping['meds_types'] ?? 70]['text'] ?? '';
         $q69 = $responses[$mapping['meds_lies'] ?? 69]['text'] ?? '';
-        
+
         if (empty($q70) && empty($q69)) {
             $content = "❌ SI NON - Aucun médicament :\n";
             $content .= "• Prévention pure par l'alimentation et surveillance régulière de la glycémie.\n";
@@ -1203,19 +1494,19 @@ class NutritionController extends Controller
         $q81 = $responses[$mapping['sedentarite'] ?? 81]['text'] ?? '';
         $q82 = $responses[$mapping['activites_preferees'] ?? 82]['text'] ?? '';
         $q80 = $responses[$mapping['poids_perdu'] ?? 80]['text'] ?? '';
-        
+
         $activityLevel = $user->niveau_d_activite_physique;
         $age = $user->age ?? 30;
 
         // Tanaka Formula: FCmax = 208 - 0.7 * age
         $fcMax = round(208 - (0.7 * $age));
-        
+
         $content = "🏃 ACTIVITÉ PHYSIQUE ET POSTURES (WWW.txt) :\n\n";
         $content .= "🎯 VOS ZONES DE FRÉQUENCE CARDIAQUE (Tanaka) :\n";
         $content .= "• FC Maximale : $fcMax bpm.\n";
-        $content .= "• Zone 1 (50-60%) : " . round($fcMax*0.5) . "-" . round($fcMax*0.6) . " bpm (Échauffement/Récupération).\n";
-        $content .= "• Zone 2 (60-70%) : " . round($fcMax*0.6) . "-" . round($fcMax*0.7) . " bpm (Brûle-graisses/Endurance).\n";
-        $content .= "• Zone 3 (70-80%) : " . round($fcMax*0.7) . "-" . round($fcMax*0.8) . " bpm (Amélioration cardio).\n";
+        $content .= "• Zone 1 (50-60%) : " . round($fcMax * 0.5) . "-" . round($fcMax * 0.6) . " bpm (Échauffement/Récupération).\n";
+        $content .= "• Zone 2 (60-70%) : " . round($fcMax * 0.6) . "-" . round($fcMax * 0.7) . " bpm (Brûle-graisses/Endurance).\n";
+        $content .= "• Zone 3 (70-80%) : " . round($fcMax * 0.7) . "-" . round($fcMax * 0.8) . " bpm (Amélioration cardio).\n";
         $content .= "• Échelle RPE (1-10) : Visez un effort de 4-6 (essoufflement léger, peut parler).\n\n";
 
         if ($activityLevel === 'Sédentaire') {
@@ -1247,7 +1538,7 @@ class NutritionController extends Controller
         if (stripos($q79, 'Plusieurs') !== false || stripos($q79, 'Oui') !== false) {
             $content .= "• Historique : Le fameux 'effet yoyo' est souvent dû à des régimes trop restrictifs. Notre approche se veut durable.\n";
         }
-        
+
         if (!empty($q801)) {
             $content .= "• Analyse de vos méthodes passées ($q801) : Nous allons corriger les erreurs de répartition des macronutriments pour stabiliser votre métabolisme.\n";
         }
@@ -1285,9 +1576,9 @@ class NutritionController extends Controller
         $mapping = $this->resolveDynamicMapping($diseaseId);
         $q87 = $responses[$mapping['regime_particulier'] ?? 87]['text'] ?? '';
         $q88 = $responses[$mapping['regime_efficacite'] ?? 88]['text'] ?? '';
-        
+
         $content = "🤝 MOTIVATION ET PSYCHOLOGIE :\n\n";
-        
+
         if (stripos($q87, 'Oui') !== false) {
             $content .= "🧐 ANALYSE DE VOS RÉGIMES PASSÉS :\n";
             if (preg_match('/Restrictif|Hypocalorique|Privation/i', $q88)) {
@@ -1312,7 +1603,7 @@ class NutritionController extends Controller
         $content .= "✅ À PRIVILÉGIER : Igname, Patate douce, Riz complet, Fonio, Poisson frais, Avocat, Noix de cajou nature.\n";
         $content .= "❌ À LIMITER : Fritures (Aloco, beignets), Cubes bouillon (Jumbo), Pain blanc, Boissons gazeuses.\n";
         $content .= "🧂 RÉDUCTION DU SEL : Utilisez Ail, Oignon, Gingembre, Citron et Herbes pour le goût.\n\n";
-        
+
         $content .= "⚖️ NOTICES RÉGLEMENTAIRES :\n";
         $content .= "• Ce programme est un soutien nutritionnel et ne remplace pas une consultation médicale.\n";
         $content .= "• En cas de malaise ou douleur inhabituelle lors de l'activité physique, arrêtez immédiatement et consultez.\n\n";
@@ -1327,9 +1618,9 @@ class NutritionController extends Controller
         $mapping = $this->resolveDynamicMapping($diseaseId);
         $q83 = $responses[$mapping['fc_connaissance'] ?? 83]['text'] ?? '';
         $q84 = $responses[$mapping['fc_valeur'] ?? 84]['text'] ?? '';
-        
+
         $content = "📊 SURVEILLANCE SANTÉ :\n";
-        
+
         if (stripos($q83, 'Oui') !== false) {
             $content .= "• Votre fréquence cardiaque au repos (FCR) est de $q84 bpm. ";
             $content .= "Une baisse de la FCR avec le temps est signe d'une meilleure forme cardiovasculaire.\n";
@@ -1344,9 +1635,9 @@ class NutritionController extends Controller
     private function generateDynamicFoodGuide($user, $macroGrams, $pathologies)
     {
         $hasPathology = $pathologies['diabetes'] || $pathologies['hypertension'] || $pathologies['cardio'];
-        
-        $menus = $hasPathology 
-            ? $this->nutritionDataService->getMenus() 
+
+        $menus = $hasPathology
+            ? $this->nutritionDataService->getMenus()
             : $this->noPathologyNutritionDataService->getMenus();
 
         $generator = new \App\Services\MenuGenerator($macroGrams, $menus, $user->niveau_d_activite_physique, 90, $pathologies);
@@ -1360,21 +1651,151 @@ class NutritionController extends Controller
     }
 
     /**
-     * Génère une recommandation spécifique pour l'obésité sévère basée sur new.txt et la réponse.
+     * Génère une recommandation spécifique pour l'obésité sévère basée sur la question et la réponse.
      */
     private function getSevereRecommendation($key, $responseText, $pathologies)
     {
         $mapping = $this->resolveDynamicMapping(2);
         $questionId = $mapping[$key] ?? null;
 
-        if (!$questionId) return "aucun";
+        if (!$questionId)
+            return "aucun";
 
         $pathology = null;
-        if ($pathologies['diabetes']) $pathology = 'diabete';
-        elseif ($pathologies['hypertension']) $pathology = 'hta';
-        elseif ($pathologies['cardio']) $pathology = 'cholesterol';
+        if ($pathologies['diabetes'])
+            $pathology = 'diabete';
+        elseif ($pathologies['hypertension'])
+            $pathology = 'hta';
+        elseif ($pathologies['cardio'])
+            $pathology = 'cholesterol';
 
         return $this->severeObesityService->getRecommendation($questionId, $responseText, $pathology);
+    }
+
+    private function getModerateRecommendation($questionId, $text, $responsesMap, $pathologies)
+    {
+        $mapping = $this->resolveDynamicMapping(1);
+        $reverseMapping = array_flip($mapping);
+
+        if (!isset($reverseMapping[$questionId])) return '';
+        $key = $reverseMapping[$questionId];
+
+        $content = '';
+
+        switch ($key) {
+            case 'antecedents_lequel':
+                if ($pathologies['diabetes']) {
+                    $content .= "✅ Diabète type 2 présent : Privilégier les glucides à index glycémique bas, fractionner les repas, surveiller les portions de féculents, augmenter les fibres.\n";
+                }
+                if ($pathologies['hypertension']) {
+                    $content .= "❤️ HYPERTENSION ARTÉRIELLE : Réduire drastiquement le sel < 5g/jour, privilégier le potassium (banane, avocat, épinards), éviter les graisses saturées.\n";
+                }
+                if ($pathologies['cardio']) {
+                    $content .= "💙 MALADIES CARDIOVASCULAIRES : Réduire les graisses saturées et trans, privilégier les oméga-3 (poissons gras locaux).\n";
+                }
+                if (!$pathologies['diabetes'] && !$pathologies['hypertension'] && !$pathologies['cardio']) {
+                    $content .= "✅ Actuellement aucun antécédent majeur : Maintenir un mode de vie sain et préventif.";
+                }
+                break;
+
+            case 'meds_lies':
+            case 'meds_types':
+                $q70 = $responsesMap[$mapping['meds_types'] ?? 0]['text'] ?? '';
+                $q69 = $responsesMap[$mapping['meds_lies'] ?? 0]['text'] ?? '';
+                $combinedText = $q70 . ' ' . $q69;
+                
+                if (empty($q70) && empty($q69)) {
+                    if ($key == 'meds_types') $content .= "✅ Aucun traitement médicamenteux : Prévention par l'alimentation équilibrée.";
+                } else {
+                    if (preg_match('/Metformine|Glimepiride|Gliclazide|Sitagliptine|Dapagliflozine/i', $combinedText)) {
+                        $content .= "🟦 GLYCÉMIE : Prendre la Metformine au milieu du repas. Éviter les repas trop gras.\n";
+                    }
+                    if (preg_match('/Insuline/i', $combinedText)) {
+                        $content .= "🟨 INSULINE : Manger impérativement dans les 15-30 min après injection. Portions de glucides fixes.\n";
+                    }
+                    if (preg_match('/Diurétiques|Furosémide|IEC|Ramipril/i', $combinedText)) {
+                        $content .= "🟥 TENSION : Attention à l'apport en sel (zéro ajouté) et potassium selon le médicament.\n";
+                    }
+                    if (preg_match('/Statines/i', $combinedText)) {
+                        $content .= "🟩 CHOLESTÉROL : INTERDICTION ABSOLUE de consommer du pamplemousse.\n";
+                    }
+                }
+                break;
+
+            case 'fruits_legumes':
+                if (stripos($text, '1-2') !== false || stripos($text, '1 - 2') !== false) {
+                    $content .= "🥦 INSUFFISANT : Objectif 5 portions min. Commencez par papaye/concombre en collation.";
+                } elseif (stripos($text, '3-4') !== false || stripos($text, '3 - 4') !== false) {
+                    $content .= "🥦 BON DÉBUT : Optimisez vers 5-7 portions. Intégrez des légumes dans toutes les sauces.";
+                } elseif (stripos($text, '5') !== false || stripos($text, 'plus') !== false) {
+                    $content .= "🥦 EXCELLENT : Focus sur la variété (épinards, crucifères). Limitez les fruits à 2-3 max/jour.";
+                }
+                break;
+
+            case 'grignotage':
+                if (stripos($text, 'Oui') !== false) {
+                    $content .= "🍿 STRATÉGIE GRIGNOTAGE : Remplacez les grignotages gras/sucrés par des fruits frais ou des noix. Attention aux portions (30g max pour les noix).";
+                } else {
+                    $content .= "🍿 EXCELLENT : Ne pas grignoter permet à votre système digestif de se reposer entre les repas.";
+                }
+                break;
+
+            case 'boissons':
+                if (stripos($text, 'Tous les jours') !== false) {
+                    $content .= "🥤 SEVRAGE BOISSONS : Alterner 1 jour sucré/1 jour substitut (Eau coco). Visez l'élimination complète d'ici 4 semaines.";
+                } elseif (stripos($text, 'Une fois par semaine') !== false || stripos($text, 'De temps en temps') !== false) {
+                    $content .= "🥤 Consommation occasionnelle : Acceptable. Continuez à privilégier l'eau.";
+                }
+                break;
+
+            case 'sommeil':
+                if (stripos($text, 'Moins') !== false || stripos($text, '6h') !== false) {
+                    $content .= "😴 SOMMEIL INSUFFISANT : Le manque de sommeil augmente l'hormone de la faim. Visez 7-8h min pour faciliter la perte de poids.";
+                } else {
+                    $content .= "😴 BON SOMMEIL : Maintenez ce rythme, c'est excellent pour la récupération et votre métabolisme.";
+                }
+                break;
+
+            case 'apnee':
+                if (stripos($text, 'Oui') !== false) {
+                    $content .= "⚠️ APNÉE DU SOMMEIL : Perdre du poids réduit considérablement les symptômes. Dînez tôt et léger.";
+                }
+                break;
+
+            case 'sedentarite':
+                if (stripos($text, 'Plus de 8h') !== false || stripos($text, '6h-8h') !== false || stripos($text, '6h - 8h') !== false) {
+                    $content .= "🚶 SÉDENTARITÉ : Levez-vous 5 min toutes les heures. Faites une marche de 15 min après les repas pour faire chuter la glycémie.";
+                } else {
+                    $content .= "🚶 MOBILITÉ : Très bon niveau d'activité quotidienne.";
+                }
+                break;
+
+            case 'stress_ennui':
+                if (stripos($text, 'Oui') !== false) {
+                    $content .= "🧠 ALIMENTATION ÉMOTIONNELLE : Quand l'envie frappe, buvez un grand verre d'eau et attendez 15 min. L'envie passe souvent.";
+                }
+                break;
+
+            case 'finir_assiette':
+                if (stripos($text, 'Oui') !== false) {
+                    $content .= "🧠 SATIÉTÉ : Utilisez de plus petites assiettes. Mangez lentement : le cerveau met 20 minutes à ressentir la satiété.";
+                }
+                break;
+
+            case 'objectif_principal':
+                if (stripos($text, 'forme physique') !== false) {
+                    $content .= "🌟 FORME PHYSIQUE : Visez 2-3L d'eau/jour et favorisez une progression durable via l'entraînement musculaire et la récupération.";
+                } else {
+                    $content .= "🎯 OBJECTIF : Soyez patient(e). Visez 0.5 à 1kg par semaine pour une progression saine et sans effet yoyo.";
+                }
+                break;
+
+            case 'fc_valeur':
+                $content .= "❤️ FC REPOS : Idéalement, elle diminue avec l'amélioration cardiovasculaire. Notez ce chiffre et comparez-le dans 3 mois.";
+                break;
+        }
+
+        return $content;
     }
 
     /**
@@ -1384,56 +1805,56 @@ class NutritionController extends Controller
     {
         $mappingTexts = [
             1 => [ // Obésité Modérée
-                'antecedents_lequel'  => 'Si oui, lequel ?',
-                'meds_lies'           => 'Prenez-vous actuellement des médicaments qui sont liés à votre antécédent précédent ?',
-                'meds_types'          => 'Prenez-vous actuellement l\'un des types de médicaments suivants ?',
-                'journee_typique'     => 'Pouvez-vous décrire une journée typique de vos repas et collations ?',
-                'fruits_legumes'      => 'Combien de portions de fruits et légumes consommez-vous par jour ?',
-                'grignotage'          => 'Grignotez-vous entre les repas ?',
-                'aliments_grignotes'  => 'Si oui, quels aliments consommez-vous ?',
-                'boissons'            => 'A quelle fréquence consommez-vous des boissons sucrées ou alcoolisées ?',
-                'sommeil'             => 'Combien d\'heures de sommeil avez-vous par nuit ?',
-                'apnee'               => 'Avez-vous l\'apnée du sommeil ?',
-                'regime_recent'       => 'Avez-vous récemment fait un régime de perte du poids ?',
-                'sedentarite'         => 'Combien de temps passez-vous en position assise chaque jour ?',
+                'antecedents_lequel' => 'Si oui, lequel ?',
+                'meds_lies' => 'Prenez-vous actuellement des médicaments qui sont liés à votre antécédent précédent ?',
+                'meds_types' => 'Prenez-vous actuellement l\'un des types de médicaments suivants ?',
+                'journee_typique' => 'Pouvez-vous décrire une journée typique de vos repas et collations ?',
+                'fruits_legumes' => 'Combien de portions de fruits et légumes consommez-vous par jour ?',
+                'grignotage' => 'Grignotez-vous entre les repas ?',
+                'aliments_grignotes' => 'Si oui, quels aliments consommez-vous ?',
+                'boissons' => 'A quelle fréquence consommez-vous des boissons sucrées ou alcoolisées ?',
+                'sommeil' => 'Combien d\'heures de sommeil avez-vous par nuit ?',
+                'apnee' => 'Avez-vous l\'apnée du sommeil ?',
+                'regime_recent' => 'Avez-vous récemment fait un régime de perte du poids ?',
+                'sedentarite' => 'Combien de temps passez-vous en position assise chaque jour ?',
                 'activites_preferees' => 'Quelles activités physiques appréciez-vous ?',
-                'fc_connaissance'     => 'Connaissez-vous votre fréquence cardiaque au repos ?',
-                'fc_valeur'           => 'Si oui, veuillez- nous la donner ?',
-                'stress_ennui'        => 'Mangez-vous souvent par stress ou ennui ?',
-                'finir_assiette'      => 'Avez-vous tendance à finir votre assiette même si vous n\'avez plus faim ?',
-                'regime_particulier'  => 'Avez-vous déjà suivi un régime alimentaire particulier ?',
-                'regime_efficacite'   => 'Si oui, lequel, et a-t-il été efficace pour vous ? Pourquoi ?',
-                'objectif_principal'  => 'Quel est votre objectif principal en matière de santé ?',
-                'poids_a_perdre'      => 'Combien de kg voulez-vous perdre ?',
-                'niveau_changement'   => 'Selon votre objectif de perte de poids, quel niveau de changement êtes-vous prêt à suivre ?',
+                'fc_connaissance' => 'Connaissez-vous votre fréquence cardiaque au repos ?',
+                'fc_valeur' => 'Si oui, veuillez- nous la donner ?',
+                'stress_ennui' => 'Mangez-vous souvent par stress ou ennui ?',
+                'finir_assiette' => 'Avez-vous tendance à finir votre assiette même si vous n\'avez plus faim ?',
+                'regime_particulier' => 'Avez-vous déjà suivi un régime alimentaire particulier ?',
+                'regime_efficacite' => 'Si oui, lequel, et a-t-il été efficace pour vous ? Pourquoi ?',
+                'objectif_principal' => 'Quel est votre objectif principal en matière de santé ?',
+                'poids_a_perdre' => 'Combien de kg voulez-vous perdre ?',
+                'niveau_changement' => 'Selon votre objectif de perte de poids, quel niveau de changement êtes-vous prêt à suivre ?',
             ],
             2 => [ // Obésité Sévère
-                'antecedents_diag'        => "Avez-vous été diagnostiqué avec des problèmes de santé liés à l'obésité, comme le diabète de type 2, l'hypertension ou l'hypercholestérolémie ?",
-                'antecedents_lequel'      => 'Si oui lequel ?',
-                'chirurgie'               => 'Avez-vous subi des opérations chirurgicales liées à votre poids comme une chirurgie bariatrique ?',
-                'restrictions'            => 'Avez-vous des restrictions alimentaires ?',
+                'antecedents_diag' => "Avez-vous été diagnostiqué avec des problèmes de santé liés à l'obésité, comme le diabète de type 2, l'hypertension ou l'hypercholestérolémie ?",
+                'antecedents_lequel' => 'Si oui lequel ?',
+                'chirurgie' => 'Avez-vous subi des opérations chirurgicales liées à votre poids comme une chirurgie bariatrique ?',
+                'restrictions' => 'Avez-vous des restrictions alimentaires ?',
                 'restrictions_lesquelles' => 'Si oui, choisissez l\'option qui s\'appliquent ?',
-                'calories_vides'          => 'Consommez-vous régulièrement des aliments riches en calories vides, comme les boissons sucrées, les fast-foods, ou les desserts ?',
-                'plan_deja'               => 'Suivez-vous déjà un plan nutritionnel ou avez-vous consulté un diététicien auparavant ?',
-                'plan_deja_texte'         => 'Si oui, parlez-nous de ça brièvement en quelques lignes',
-                'boissons'                => 'Buvez-vous régulièrement des boissons sucrées ou alcoolisées ?',
-                'boissons_details'        => 'Si oui, Quand ? Quelle quantité ?',
-                'sommeil'                 => 'Combien d\' heures de sommeil avez-vous par nuit ?',
-                'apnee'                   => 'Avez-vous l\'apnée du sommeil ?',
-                'douleurs'                => 'Avez-vous des douleurs articulaires ou des limitations de mobilité ?',
-                'douleurs_frequence'      => 'Si oui, A quelle fréquence ?',
-                'regime_recent'           => 'Avez-vous récemment fait un régime de perte du poids ?',
-                'regime_poids_perdu'      => 'Si oui, combien de poids avez-vous perdu ?',
-                'jours_sport'             => 'Combien de jours par semaine pratiquez-vous une activité physique ?',
-                'sedentarite'             => 'Combien de temps passez-vous en position assise chaque jour ?',
-                'activites_preferees'     => 'Quelles activités physiques appréciez-vous ?',
-                'fc_connaissance'         => 'Connaissez-vous votre fréquence cardiaque au repos ?',
-                'fc_valeur'               => 'Si oui, veuillez- nous la donner ?',
-                'ressenti'                => 'Comment décririez-vous votre ressenti personnel par rapport à votre poids ?',
-                'stress_ennui'            => 'Mangez-vous souvent par stress ou ennui ?',
-                'finir_assiette'          => 'Avez-vous tendance à finir votre assiette même si vous n\'avez plus faim ?',
-                'emotions'                => 'Avez-vous des habitudes alimentaires liées à des émotions, comme le stress ou la dépression ?',
-                'programme_deja'          => 'Avez-vous déjà suivi un programme ou tenté de perdre du poids auparavant ?',
+                'calories_vides' => 'Consommez-vous régulièrement des aliments riches en calories vides, comme les boissons sucrées, les fast-foods, ou les desserts ?',
+                'plan_deja' => 'Suivez-vous déjà un plan nutritionnel ou avez-vous consulté un diététicien auparavant ?',
+                'plan_deja_texte' => 'Si oui, parlez-nous de ça brièvement en quelques lignes',
+                'boissons' => 'Buvez-vous régulièrement des boissons sucrées ou alcoolisées ?',
+                'boissons_details' => 'Si oui, Quand ? Quelle quantité ?',
+                'sommeil' => 'Combien d\' heures de sommeil avez-vous par nuit ?',
+                'apnee' => 'Avez-vous l\'apnée du sommeil ?',
+                'douleurs' => 'Avez-vous des douleurs articulaires ou des limitations de mobilité ?',
+                'douleurs_frequence' => 'Si oui, A quelle fréquence ?',
+                'regime_recent' => 'Avez-vous récemment fait un régime de perte du poids ?',
+                'regime_poids_perdu' => 'Si oui, combien de poids avez-vous perdu ?',
+                'jours_sport' => 'Combien de jours par semaine pratiquez-vous une activité physique ?',
+                'sedentarite' => 'Combien de temps passez-vous en position assise chaque jour ?',
+                'activites_preferees' => 'Quelles activités physiques appréciez-vous ?',
+                'fc_connaissance' => 'Connaissez-vous votre fréquence cardiaque au repos ?',
+                'fc_valeur' => 'Si oui, veuillez- nous la donner ?',
+                'ressenti' => 'Comment décririez-vous votre ressenti personnel par rapport à votre poids ?',
+                'stress_ennui' => 'Mangez-vous souvent par stress ou ennui ?',
+                'finir_assiette' => 'Avez-vous tendance à finir votre assiette même si vous n\'avez plus faim ?',
+                'emotions' => 'Avez-vous des habitudes alimentaires liées à des émotions, comme le stress ou la dépression ?',
+                'programme_deja' => 'Avez-vous déjà suivi un programme ou tenté de perdre du poids auparavant ?',
             ]
         ];
 
