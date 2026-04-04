@@ -93,11 +93,11 @@ class NutritionDataService
                     ]
                 ],
                 'collations' => [
-                    ['nom' => 'Arachides grillées non salées + orange', 'p' => 7.7, 'g' => 15.0, 'l' => 14.8],
-                    ['nom' => 'Boulettes de manioc cuit + melon', 'p' => 4.0, 'g' => 14.0, 'l' => 10.0],
-                    ['nom' => 'Bouillie de mil sans sucre + lait de coco', 'p' => 6.0, 'g' => 28.0, 'l' => 12.0],
-                    ['nom' => 'Yaourt nature + noix de coco râpée', 'p' => 5.0, 'g' => 7.0, 'l' => 3.5],
-                    ['nom' => 'Goyave + noix de cajou', 'p' => 3.5, 'g' => 12.0, 'l' => 7.0]
+                    ['nom' => 'Arachides grillées non salées + orange', 'base' => 115, 'p' => 7.7, 'g' => 15.0, 'l' => 14.8],
+                    ['nom' => 'Boulettes de manioc cuit + melon', 'base' => 120, 'p' => 4.0, 'g' => 14.0, 'l' => 10.0],
+                    ['nom' => 'Bouillie de mil sans sucre + lait de coco', 'base' => 150, 'p' => 6.0, 'g' => 28.0, 'l' => 12.0],
+                    ['nom' => 'Yaourt nature + noix de coco râpée', 'base' => 135, 'p' => 5.0, 'g' => 7.0, 'l' => 3.5],
+                    ['nom' => 'Goyave + noix de cajou', 'base' => 115, 'p' => 3.5, 'g' => 12.0, 'l' => 7.0]
                 ]
             ],
             'Légèrement actif' => [
@@ -177,11 +177,11 @@ class NutritionDataService
                     ]
                 ],
                 'collations' => [
-                    ['nom' => 'Akara grillé', 'p' => 5.0, 'g' => 8.0, 'l' => 2.0],
-                    ['nom' => 'Yaourt nature', 'p' => 5.0, 'g' => 7.0, 'l' => 3.0],
-                    ['nom' => 'Ananas', 'p' => 0.5, 'g' => 13.0, 'l' => 0.1],
-                    ['nom' => 'Galette de mil + lait caillé', 'p' => 4.0, 'g' => 28.0, 'l' => 2.0],
-                    ['nom' => 'Beignet de haricot petit + thé', 'p' => 3.0, 'g' => 15.0, 'l' => 2.0]
+                    ['nom' => 'Akara grillé', 'base' => 50, 'p' => 5.0, 'g' => 8.0, 'l' => 2.0],
+                    ['nom' => 'Yaourt nature', 'base' => 125, 'p' => 5.0, 'g' => 7.0, 'l' => 3.0],
+                    ['nom' => 'Ananas', 'base' => 150, 'p' => 0.5, 'g' => 13.0, 'l' => 0.1],
+                    ['nom' => 'Galette de mil + lait caillé', 'base' => 120, 'p' => 4.0, 'g' => 28.0, 'l' => 2.0],
+                    ['nom' => 'Beignet de haricot petit + thé', 'base' => 60, 'p' => 3.0, 'g' => 15.0, 'l' => 2.0]
                 ]
             ],
             'Modérément actif' => [
@@ -264,10 +264,10 @@ class NutritionDataService
                     ]
                 ],
                 'collations' => [
-                    ['nom' => 'Klui-klui (boulettes de cacahuète)', 'p' => 5.0, 'g' => 8.0, 'l' => 5.0],
-                    ['nom' => 'Banane plantain bouillie', 'p' => 1.0, 'g' => 27.0, 'l' => 0.3],
-                    ['nom' => 'Graines de tournesol locales', 'p' => 6.0, 'g' => 5.0, 'l' => 10.0],
-                    ['nom' => 'Jus de bissap sans sucre + dattes', 'p' => 0.5, 'g' => 10.0, 'l' => 0.2]
+                    ['nom' => 'Klui-klui (boulettes de cacahuète)', 'base' => 30, 'p' => 5.0, 'g' => 8.0, 'l' => 5.0],
+                    ['nom' => 'Banane plantain bouillie', 'base' => 100, 'p' => 1.0, 'g' => 27.0, 'l' => 0.3],
+                    ['nom' => 'Graines de tournesol locales', 'base' => 30, 'p' => 6.0, 'g' => 5.0, 'l' => 10.0],
+                    ['nom' => 'Jus de bissap sans sucre + dattes', 'base' => 250, 'p' => 0.5, 'g' => 10.0, 'l' => 0.2]
                 ]
             ],
             'Très actif' => [
@@ -354,10 +354,10 @@ class NutritionDataService
                     ]
                 ],
                 'collations' => [
-                    ['nom' => 'Mélange fruits secs locaux', 'p' => 2.0, 'g' => 15.0, 'l' => 5.0],
-                    ['nom' => 'Galette de mil', 'p' => 2.0, 'g' => 25.0, 'l' => 0.5],
-                    ['nom' => 'Eau de coco + noix', 'p' => 0.5, 'g' => 6.0, 'l' => 3.0],
-                    ['nom' => 'Beignets banane plantain au four', 'p' => 1.0, 'g' => 15.0, 'l' => 3.0]
+                    ['nom' => 'Mélange fruits secs locaux', 'base' => 40, 'p' => 2.0, 'g' => 15.0, 'l' => 5.0],
+                    ['nom' => 'Galette de mil', 'base' => 80, 'p' => 2.0, 'g' => 25.0, 'l' => 0.5],
+                    ['nom' => 'Eau de coco + noix', 'base' => 250, 'p' => 0.5, 'g' => 6.0, 'l' => 3.0],
+                    ['nom' => 'Beignets banane plantain au four', 'base' => 100, 'p' => 1.0, 'g' => 15.0, 'l' => 3.0]
                 ]
             ],
             'Extrêmement actif' => [
@@ -435,10 +435,10 @@ class NutritionDataService
                     ]
                 ],
                 'collations' => [
-                    ['nom' => 'Arachides grillées + orange', 'p' => 8.3, 'g' => 17.0, 'l' => 14.2],
-                    ['nom' => 'Bouillie légère de sorgho + lait', 'p' => 6.5, 'g' => 27.0, 'l' => 2.0],
-                    ['nom' => 'Igname bouillie + avocat', 'p' => 2.5, 'g' => 31.0, 'l' => 7.7],
-                    ['nom' => 'Arachides grillées + boisson moringa', 'p' => 7.8, 'g' => 4.5, 'l' => 15.6]
+                    ['nom' => 'Arachides grillées + orange', 'base' => 115, 'p' => 8.3, 'g' => 17.0, 'l' => 14.2],
+                    ['nom' => 'Bouillie légère de sorgho + lait', 'base' => 180, 'p' => 6.5, 'g' => 27.0, 'l' => 2.0],
+                    ['nom' => 'Igname bouillie + avocat', 'base' => 120, 'p' => 2.5, 'g' => 31.0, 'l' => 7.7],
+                    ['nom' => 'Arachides grillées + boisson moringa', 'base' => 230, 'p' => 7.8, 'g' => 4.5, 'l' => 15.6]
                 ]
             ]
         ];

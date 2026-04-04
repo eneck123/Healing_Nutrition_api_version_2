@@ -123,11 +123,11 @@ class MenuGenerator
                 // Add portions to the fallback menu consistent with the expected structure
                 foreach ($dayMenu['repas'] as $type => &$items) {
                     foreach ($items as &$item) {
-                        $item['portion_recommandee'] = $item['portion'] ?? 'Standard';
+                        $item['portion_recommandee'] = ($item['base'] ?? 100) . ' g';
                     }
                 }
                 foreach ($dayMenu['collations'] as &$item) {
-                     $item['portion'] = $item['portion'] ?? 'Standard';
+                     $item['portion'] = ($item['base'] ?? 100) . ' g';
                 }
             }
 
@@ -259,7 +259,7 @@ class MenuGenerator
         foreach ($snacks as $s) {
             $adjustedSnacks[] = [
                 'nom' => $s['nom'],
-                'portion' => 'Portion standard',
+                'portion' => ($s['base'] ?? 100) . ' g',
                 'details' => "Macros: {$s['p']}g P, {$s['g']}g G, {$s['l']}g L"
             ];
         }

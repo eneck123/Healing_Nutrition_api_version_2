@@ -90,10 +90,10 @@ class NoPathologyNutritionDataService
                     ]
                 ],
                 'collations' => [
-                    ['nom' => 'Noix de cajou + 1 petit fruit', 'p' => 4.8, 'g' => 20.0, 'l' => 12.2],
-                    ['nom' => 'Yaourt nature + ananas frais', 'p' => 6.3, 'g' => 19.0, 'l' => 3.7],
-                    ['nom' => 'Arachides bouillies', 'p' => 6.0, 'g' => 5.0, 'l' => 15.0],
-                    ['nom' => 'Mangue fraîche', 'p' => 1.2, 'g' => 25.0, 'l' => 0.6],
+                    ['nom' => 'Noix de cajou + 1 petit fruit', 'base' => 110, 'p' => 4.8, 'g' => 20.0, 'l' => 12.2],
+                    ['nom' => 'Yaourt nature + ananas frais', 'base' => 150, 'p' => 6.3, 'g' => 19.0, 'l' => 3.7],
+                    ['nom' => 'Arachides bouillies', 'base' => 50, 'p' => 6.0, 'g' => 5.0, 'l' => 15.0],
+                    ['nom' => 'Mangue fraîche', 'base' => 120, 'p' => 1.2, 'g' => 25.0, 'l' => 0.6],
                 ]
             ],
             'Légèrement actif' => [ // 30% Protéines, 40% Glucides, 30% Lipides
@@ -174,10 +174,10 @@ class NoPathologyNutritionDataService
                     ]
                 ],
                 'collations' => [
-                    ['nom' => 'Fruit de saison + arachides (25g)', 'p' => 9.0, 'g' => 28.0, 'l' => 14.2],
-                    ['nom' => 'Galette de soja locale', 'p' => 10.5, 'g' => 4.0, 'l' => 3.5],
-                    ['nom' => 'Noix de coco fraîche', 'p' => 1.0, 'g' => 5.0, 'l' => 3.0],
-                    ['nom' => 'Yaourt local', 'p' => 4.0, 'g' => 6.0, 'l' => 3.0],
+                    ['nom' => 'Fruit de saison + arachides (25g)', 'base' => 110, 'p' => 9.0, 'g' => 28.0, 'l' => 14.2],
+                    ['nom' => 'Galette de soja locale', 'base' => 60, 'p' => 10.5, 'g' => 4.0, 'l' => 3.5],
+                    ['nom' => 'Noix de coco fraîche', 'base' => 40, 'p' => 1.0, 'g' => 5.0, 'l' => 3.0],
+                    ['nom' => 'Yaourt local', 'base' => 125, 'p' => 4.0, 'g' => 6.0, 'l' => 3.0],
                 ]
             ],
             'Modérément actif' => [ // 27% Protéines, 45% Glucides, 28% Lipides
@@ -262,10 +262,10 @@ class NoPathologyNutritionDataService
                     ]
                 ],
                 'collations' => [
-                    ['nom' => 'Dattes + arachides', 'p' => 8.0, 'g' => 41.0, 'l' => 14.2],
-                    ['nom' => 'Smoothie fruits locaux', 'p' => 2.0, 'g' => 20.0, 'l' => 1.0],
-                    ['nom' => 'Mangue séchée + noix', 'p' => 5.5, 'g' => 45.0, 'l' => 14.2],
-                    ['nom' => 'Yaourt + granola maison', 'p' => 7.0, 'g' => 26.0, 'l' => 8.0],
+                    ['nom' => 'Dattes + arachides', 'base' => 60, 'p' => 8.0, 'g' => 41.0, 'l' => 14.2],
+                    ['nom' => 'Smoothie fruits locaux', 'base' => 250, 'p' => 2.0, 'g' => 20.0, 'l' => 1.0],
+                    ['nom' => 'Mangue séchée + noix', 'base' => 60, 'p' => 5.5, 'g' => 45.0, 'l' => 14.2],
+                    ['nom' => 'Yaourt + granola maison', 'base' => 150, 'p' => 7.0, 'g' => 26.0, 'l' => 8.0],
                 ]
             ],
             'Très actif' => [ // 25% Protéines, 50% Glucides, 25% Lipides
@@ -345,10 +345,10 @@ class NoPathologyNutritionDataService
                     ]
                 ],
                 'collations' => [
-                    ['nom' => 'Smoothie banane-arachide-lait', 'p' => 3.0, 'g' => 25.0, 'l' => 10.0],
-                    ['nom' => 'Pain + beurre d’arachide + fruits', 'p' => 34.5, 'g' => 60.0, 'l' => 52.2],
-                    ['nom' => 'Barre énergétique maison', 'p' => 5.0, 'g' => 40.0, 'l' => 12.0],
-                    ['nom' => 'Yaourt + granola', 'p' => 7.0, 'g' => 26.0, 'l' => 8.0],
+                    ['nom' => 'Smoothie banane-arachide-lait', 'base' => 300, 'p' => 3.0, 'g' => 25.0, 'l' => 10.0],
+                    ['nom' => 'Pain + beurre d’arachide + fruits', 'base' => 200, 'p' => 34.5, 'g' => 60.0, 'l' => 52.2],
+                    ['nom' => 'Barre énergétique maison', 'base' => 80, 'p' => 5.0, 'g' => 40.0, 'l' => 12.0],
+                    ['nom' => 'Yaourt + granola', 'base' => 150, 'p' => 7.0, 'g' => 26.0, 'l' => 8.0],
                 ]
             ],
             'Extrêmement actif' => [ // 25% Protéines, 55% Glucides, 20% Lipides
@@ -423,10 +423,10 @@ class NoPathologyNutritionDataService
                     ]
                 ],
                 'collations' => [
-                    ['nom' => 'Barre énergétique + banane + lait', 'p' => 7.0, 'g' => 80.0, 'l' => 14.0],
-                    ['nom' => 'Yaourt + granola + fruits + miel', 'p' => 14.5, 'g' => 121.0, 'l' => 8.1],
-                    ['nom' => 'Sandwich beurre d’arachide + confiture', 'p' => 10.0, 'g' => 50.0, 'l' => 20.0],
-                    ['nom' => 'Smoothie bowl', 'p' => 3.0, 'g' => 25.0, 'l' => 10.0],
+                    ['nom' => 'Barre énergétique + banane + lait', 'base' => 300, 'p' => 7.0, 'g' => 80.0, 'l' => 14.0],
+                    ['nom' => 'Yaourt + granola + fruits + miel', 'base' => 200, 'p' => 14.5, 'g' => 121.0, 'l' => 8.1],
+                    ['nom' => 'Sandwich beurre d’arachide + confiture', 'base' => 150, 'p' => 10.0, 'g' => 50.0, 'l' => 20.0],
+                    ['nom' => 'Smoothie bowl', 'base' => 250, 'p' => 3.0, 'g' => 25.0, 'l' => 10.0],
                 ]
             ]
         ];

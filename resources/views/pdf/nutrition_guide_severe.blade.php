@@ -188,9 +188,6 @@
                     </div>
                 @endif
             </div>
-            @if($loop->iteration % 8 == 0)
-                <div class="page-break"></div>
-            @endif
         @endforeach
     </div>
 
