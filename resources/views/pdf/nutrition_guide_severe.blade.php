@@ -194,50 +194,7 @@
         @endforeach
     </div>
 
-    <!-- 4. Plan d'Intervention - Conseils Généraux -->
-    @if(isset($severe_advice))
-        <div class="section">
-            <h1>Plan d'Intervention - Conseils Généraux</h1>
-
-            @if(isset($severe_advice['pathology_specific']))
-                <div class="highlight" style="border-left-color: #e74c3c; margin-bottom: 20px;">
-                    <span class="label">Note Prioritaire :</span> {{ $severe_advice['pathology_specific'] }}
-                </div>
-            @endif
-
-            <div class="highlight">
-                <h3 style="margin-top: 0;">Repas Type Béninois</h3>
-                <ul style="margin-bottom: 0;">
-                    @foreach($severe_advice['alimentation_type'] as $repas => $detail)
-                        <li><span class="label">{{ $repas }} :</span> {{ $detail }}</li>
-                    @endforeach
-                </ul>
-            </div>
-
-            <div style="margin-top: 15px;">
-                <h3>Hydratation</h3>
-                <p>{{ $severe_advice['hydratation'] }}</p>
-            </div>
-
-            <div class="info-grid" style="margin-top: 15px;">
-                <div class="info-row">
-                    <div class="info-cell"
-                        style="background-color: #fff5f5; border: 1px solid #feb2b2; padding: 10px; border-radius: 5px;">
-                        <h3 style="color: #c53030; margin-top: 0;">❌ À Éviter</h3>
-                        <p style="margin-bottom: 0;">{{ $severe_advice['a_eviter'] }}</p>
-                    </div>
-                    <div class="info-cell"
-                        style="background-color: #f0fff4; border: 1px solid #9ae6b4; padding: 10px; border-radius: 5px;">
-                        <h3 style="color: #276749; margin-top: 0;">✅ À Privilégier</h3>
-                        <p style="margin-bottom: 0;">{{ $severe_advice['a_privilegier'] }}</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="page-break"></div>
-    @endif
-
-    <!-- 5. Notifications réglementaires -->
+    <!-- 4. Notifications réglementaires -->
     <div class="section">
         <div class="regulatory-box">
             <div class="regulatory-title">Notifications réglementaires :</div>

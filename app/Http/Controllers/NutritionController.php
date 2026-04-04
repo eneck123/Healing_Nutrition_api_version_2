@@ -1669,7 +1669,7 @@ class NutritionController extends Controller
         elseif ($pathologies['cardio'])
             $pathology = 'cholesterol';
 
-        return $this->severeObesityService->getRecommendation($questionId, $responseText, $pathology);
+        return $this->severeObesityService->getRecommendation($key, $responseText, $pathology);
     }
 
     private function getModerateRecommendation($questionId, $text, $responsesMap, $pathologies)
