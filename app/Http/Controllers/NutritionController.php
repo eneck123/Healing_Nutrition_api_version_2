@@ -177,7 +177,7 @@ class NutritionController extends Controller
         // Extract Advanced Info from Reponses
         $objective = '';
         $deficitValue = 0;
-        $weightLossRange = 'Inconnu';
+        $weightLossRange = 'Non pris en charge par le système suite à votre réponse';
         $pathologies = ['diabetes' => false, 'hypertension' => false, 'cardio' => false];
         $responsesMap = [];
         $questionnaireObesite = [];
@@ -598,7 +598,7 @@ class NutritionController extends Controller
         // 2. Responses & Pathologies
         $objective = 'Perte de poids';
         $deficitValue = 0;
-        $weightLossRange = 'Inconnu';
+        $weightLossRange = 'Non pris en charge par le système suite à votre réponse';
         $pathologies = ['diabetes' => false, 'hypertension' => false, 'cardio' => false];
         $qa = [];
 
@@ -1653,13 +1653,15 @@ class NutritionController extends Controller
     /**
      * Génère une recommandation spécifique pour l'obésité sévère basée sur la question et la réponse.
      */
-    private function getSevereRecommendation($key, $responseText, $pathologies)
+    private function getSevereRecommendation($questionId, $responseText, $pathologies)
     {
         $mapping = $this->resolveDynamicMapping(2);
-        $questionId = $mapping[$key] ?? null;
+        // Reverse : question_id => slug
+        $reverseMapping = array_flip($mapping);
+        $key = $reverseMapping[$questionId] ?? null;
 
-        if (!$questionId)
-            return "aucun";
+        if (!$key)
+            return 'Aucun';
 
         $pathology = null;
         if ($pathologies['diabetes'])
@@ -1677,25 +1679,17 @@ class NutritionController extends Controller
         $mapping = $this->resolveDynamicMapping(1);
         $reverseMapping = array_flip($mapping);
 
-        if (!isset($reverseMapping[$questionId])) return '';
+        if (!isset($reverseMapping[$questionId]))
+            return '';
         $key = $reverseMapping[$questionId];
 
         $content = '';
 
         switch ($key) {
+            case 'antecedents_diag':
             case 'antecedents_lequel':
-                if ($pathologies['diabetes']) {
-                    $content .= "✅ Diabète type 2 présent : Privilégier les glucides à index glycémique bas, fractionner les repas, surveiller les portions de féculents, augmenter les fibres.\n";
-                }
-                if ($pathologies['hypertension']) {
-                    $content .= "❤️ HYPERTENSION ARTÉRIELLE : Réduire drastiquement le sel < 5g/jour, privilégier le potassium (banane, avocat, épinards), éviter les graisses saturées.\n";
-                }
-                if ($pathologies['cardio']) {
-                    $content .= "💙 MALADIES CARDIOVASCULAIRES : Réduire les graisses saturées et trans, privilégier les oméga-3 (poissons gras locaux).\n";
-                }
-                if (!$pathologies['diabetes'] && !$pathologies['hypertension'] && !$pathologies['cardio']) {
-                    $content .= "✅ Actuellement aucun antécédent majeur : Maintenir un mode de vie sain et préventif.";
-                }
+                $moderateService = app(\App\Services\ModerateObesityRecommendationService::class);
+                $content = $moderateService->getRecommendation($key, $text);
                 break;
 
             case 'meds_lies':
@@ -1703,95 +1697,48 @@ class NutritionController extends Controller
                 $q70 = $responsesMap[$mapping['meds_types'] ?? 0]['text'] ?? '';
                 $q69 = $responsesMap[$mapping['meds_lies'] ?? 0]['text'] ?? '';
                 $combinedText = $q70 . ' ' . $q69;
-                
-                if (empty($q70) && empty($q69)) {
-                    if ($key == 'meds_types') $content .= "✅ Aucun traitement médicamenteux : Prévention par l'alimentation équilibrée.";
+
+                if ((empty($q70) && empty($q69)) || str_contains(mb_strtolower($combinedText), 'non')) {
+                    if ($key == 'meds_types')
+                        $content = "✅ Aucun traitement médicamenteux : Prévention par l'alimentation équilibrée.";
                 } else {
-                    if (preg_match('/Metformine|Glimepiride|Gliclazide|Sitagliptine|Dapagliflozine/i', $combinedText)) {
-                        $content .= "🟦 GLYCÉMIE : Prendre la Metformine au milieu du repas. Éviter les repas trop gras.\n";
+                    $medsTable = [
+                        ['keywords' => ['Hydrochlorothiazide', 'Indapamide', 'Chlortalidone', 'diurétiques', 'thiazidiques'], 'line' => "Classe : Diurétiques thiazidiques (ex: Hydrochlorothiazide, Indapamide...)\nRôle : Diminuent le volume sanguin → réduisent la tension\nPoints spécifiques : Souvent utilisés en première intention chez les obèses\nConseils : Boire suffisamment d’eau. Consommer des aliments riches en potassium si autorisé (banane, épinards). Limiter le sel."],
+                        ['keywords' => ['Enalapril', 'Ramipril', 'Périndopril', 'Lisinopril', 'IEC', 'Inhibiteurs de l’enzyme de conversion'], 'line' => "Classe : Inhibiteurs de l’enzyme de conversion (IEC)\nRôle : Dilatent les vaisseaux, protègent cœur et reins\nPoints spécifiques : Indiqués si risque de diabète ou atteinte rénale\nConseils : Limiter le sel. Maintenir un poids stable. Favoriser fruits et légumes riches en fibres. Surveiller la fonction rénale et la tension."],
+                        ['keywords' => ['Losartan', 'Valsartan', 'Candesartan', 'Telmisartan', 'ARA II', 'ARA', 'Antagonistes'], 'line' => "Classe : Antagonistes des récepteurs de l’angiotensine II (ARA II)\nRôle : Proches des IEC mais mieux tolérés (moins de toux)\nPoints spécifiques : Très utilisés chez les obèses hypertendus\nConseils : Même conseils que les IEC. Maintenir activité physique régulière. Éviter l’excès de sel et d’alcool."],
+                        ['keywords' => ['Bisoprolol', 'Métoprolol', 'Carvedilol', 'Atenolol', 'Bêta-bloquants', 'Bloquants'], 'line' => "Classe : Bêta-bloquants (ex: Bisoprolol, Métoprolol...)\nRôle : Ralentissent le cœur et réduisent la tension\nPoints spécifiques : Utiles si cardiopathie associée, mais peuvent favoriser la prise de poids\nConseils : Contrôler l’apport calorique pour éviter prise de poids. Activité physique régulière adaptée. Limiter caféine et stimulants."],
+                        ['keywords' => ['Amlodipine', 'Nifédipine', 'Diltiazem', 'Vérapamil', 'Antagonistes calciques', 'calciques'], 'line' => "Classe : Antagonistes calciques (ex: Amlodipine, Nifédipine...)\nRôle : Dilatent les artères, réduisent la pression\nPoints spécifiques : Intéressants si HTA isolée (surtout chez les personnes âgées)\nConseils : Limiter le sel. Maintenir un poids stable. Activité physique régulière. Surveiller gonflement des chevilles (effet secondaire possible)."],
+                        ['keywords' => ['Doxazosine', 'Méthyldopa', 'Clonidine', 'Alpha-bloquants', 'Antihypertenseurs centraux', 'Autres'], 'line' => "Classe : Autres (Alpha-bloquants, Antihypertenseurs centraux)\nRôle : Utilisés rarement, en cas d’échec ou de situations spécifiques\nPoints spécifiques : Plus souvent réservés à des cas complexes\nConseils : Suivi médical strict. Éviter arrêt brutal. Maintenir alimentation équilibrée et activité physique adaptée. Surveillance tensionnelle régulière."],
+                        ['keywords' => ['Metformine'], 'line' => "Classe : Médicaments pour baisser la glycémie (Metformine)\nConseils Spécifiques : Prendre PENDANT ou APRÈS le repas. Boire suffisamment. Éviter repas trop gras pour limiter les troubles digestifs."],
+                        ['keywords' => ['Glimepiride', 'Gliclazide', 'Sitagliptine', 'Dapagliflozine', 'Sulfamides'], 'line' => "Classe : Autres médicaments de glycémie (Sulfamides, etc.)\nConseils Spécifiques : Risque d'hypoglycémie → ne jamais sauter un repas. Avoir toujours une source de glucides (jus, banane) à portée de main."],
+                        ['keywords' => ['Insuline'], 'line' => "Classe : Insuline\nConseils Critiques : Synchronisation PARFAITE insuline-repas obligatoire. Jamais sauter de repas. Mesurer la glycémie avant d'injecter."],
+                        ['keywords' => ['Orlistat', 'Xenical'], 'line' => "Classe : Médicaments pour perdre du poids (Orlistat)\nConseils Spécifiques : Limiter les graisses à 15g par repas max. Répartir les graisses sur les 3 repas. Cuisson sans gras à prioriser."],
+                        ['keywords' => ['Liraglutide', 'Victoza', 'Saxenda'], 'line' => "Classe : Médicaments pour perdre du poids (Liraglutide)\nConseils Spécifiques : Faire de petites portions car l'estomac se vide plus lentement. Fractionner en 5-6 petits repas, manger très lentement."],
+                        ['keywords' => ['Statines', 'Atorvastatine', 'Simvastatine', 'Rosuvastatine', 'Cholestérol'], 'line' => "Classe : Médicaments pour le cholestérol (Statines)\nInteraction Majeure : ÉVITER COMPLÈTEMENT LE JUS DE PAMPLEMOUSSE. Prise de préférence le soir. Attention aux douleurs musculaires."]
+                    ];
+
+                    $foundLines = [];
+                    foreach ($medsTable as $med) {
+                        foreach ($med['keywords'] as $keyword) {
+                            if (stripos($combinedText, $keyword) !== false) {
+                                $foundLines[] = $med['line'];
+                                break;
+                            }
+                        }
                     }
-                    if (preg_match('/Insuline/i', $combinedText)) {
-                        $content .= "🟨 INSULINE : Manger impérativement dans les 15-30 min après injection. Portions de glucides fixes.\n";
-                    }
-                    if (preg_match('/Diurétiques|Furosémide|IEC|Ramipril/i', $combinedText)) {
-                        $content .= "🟥 TENSION : Attention à l'apport en sel (zéro ajouté) et potassium selon le médicament.\n";
-                    }
-                    if (preg_match('/Statines/i', $combinedText)) {
-                        $content .= "🟩 CHOLESTÉROL : INTERDICTION ABSOLUE de consommer du pamplemousse.\n";
+
+                    if (count($foundLines) > 0) {
+                        $content = rtrim(implode("\n\n---\n\n", $foundLines));
+                    } else {
+                        // Regex fallback for legacy cases if no keyword matched perfectly but meds entered
+                        $content = "✅ Traitement spécifique mentionné : Respectez scrupuleusement les prescriptions médicales et évitez le jus de pamplemousse par précaution avec votre alimentation.";
                     }
                 }
                 break;
 
-            case 'fruits_legumes':
-                if (stripos($text, '1-2') !== false || stripos($text, '1 - 2') !== false) {
-                    $content .= "🥦 INSUFFISANT : Objectif 5 portions min. Commencez par papaye/concombre en collation.";
-                } elseif (stripos($text, '3-4') !== false || stripos($text, '3 - 4') !== false) {
-                    $content .= "🥦 BON DÉBUT : Optimisez vers 5-7 portions. Intégrez des légumes dans toutes les sauces.";
-                } elseif (stripos($text, '5') !== false || stripos($text, 'plus') !== false) {
-                    $content .= "🥦 EXCELLENT : Focus sur la variété (épinards, crucifères). Limitez les fruits à 2-3 max/jour.";
-                }
-                break;
-
-            case 'grignotage':
-                if (stripos($text, 'Oui') !== false) {
-                    $content .= "🍿 STRATÉGIE GRIGNOTAGE : Remplacez les grignotages gras/sucrés par des fruits frais ou des noix. Attention aux portions (30g max pour les noix).";
-                } else {
-                    $content .= "🍿 EXCELLENT : Ne pas grignoter permet à votre système digestif de se reposer entre les repas.";
-                }
-                break;
-
-            case 'boissons':
-                if (stripos($text, 'Tous les jours') !== false) {
-                    $content .= "🥤 SEVRAGE BOISSONS : Alterner 1 jour sucré/1 jour substitut (Eau coco). Visez l'élimination complète d'ici 4 semaines.";
-                } elseif (stripos($text, 'Une fois par semaine') !== false || stripos($text, 'De temps en temps') !== false) {
-                    $content .= "🥤 Consommation occasionnelle : Acceptable. Continuez à privilégier l'eau.";
-                }
-                break;
-
-            case 'sommeil':
-                if (stripos($text, 'Moins') !== false || stripos($text, '6h') !== false) {
-                    $content .= "😴 SOMMEIL INSUFFISANT : Le manque de sommeil augmente l'hormone de la faim. Visez 7-8h min pour faciliter la perte de poids.";
-                } else {
-                    $content .= "😴 BON SOMMEIL : Maintenez ce rythme, c'est excellent pour la récupération et votre métabolisme.";
-                }
-                break;
-
-            case 'apnee':
-                if (stripos($text, 'Oui') !== false) {
-                    $content .= "⚠️ APNÉE DU SOMMEIL : Perdre du poids réduit considérablement les symptômes. Dînez tôt et léger.";
-                }
-                break;
-
-            case 'sedentarite':
-                if (stripos($text, 'Plus de 8h') !== false || stripos($text, '6h-8h') !== false || stripos($text, '6h - 8h') !== false) {
-                    $content .= "🚶 SÉDENTARITÉ : Levez-vous 5 min toutes les heures. Faites une marche de 15 min après les repas pour faire chuter la glycémie.";
-                } else {
-                    $content .= "🚶 MOBILITÉ : Très bon niveau d'activité quotidienne.";
-                }
-                break;
-
-            case 'stress_ennui':
-                if (stripos($text, 'Oui') !== false) {
-                    $content .= "🧠 ALIMENTATION ÉMOTIONNELLE : Quand l'envie frappe, buvez un grand verre d'eau et attendez 15 min. L'envie passe souvent.";
-                }
-                break;
-
-            case 'finir_assiette':
-                if (stripos($text, 'Oui') !== false) {
-                    $content .= "🧠 SATIÉTÉ : Utilisez de plus petites assiettes. Mangez lentement : le cerveau met 20 minutes à ressentir la satiété.";
-                }
-                break;
-
-            case 'objectif_principal':
-                if (stripos($text, 'forme physique') !== false) {
-                    $content .= "🌟 FORME PHYSIQUE : Visez 2-3L d'eau/jour et favorisez une progression durable via l'entraînement musculaire et la récupération.";
-                } else {
-                    $content .= "🎯 OBJECTIF : Soyez patient(e). Visez 0.5 à 1kg par semaine pour une progression saine et sans effet yoyo.";
-                }
-                break;
-
-            case 'fc_valeur':
-                $content .= "❤️ FC REPOS : Idéalement, elle diminue avec l'amélioration cardiovasculaire. Notez ce chiffre et comparez-le dans 3 mois.";
+            default:
+                $moderateService = app(\App\Services\ModerateObesityRecommendationService::class);
+                $content = $moderateService->getRecommendation($key, $text);
                 break;
         }
 
@@ -1805,6 +1752,7 @@ class NutritionController extends Controller
     {
         $mappingTexts = [
             1 => [ // Obésité Modérée
+                'antecedents_diag' => 'Avez-vous des antécédents de diabète de type 2, d\'hypertension artérielle ou de maladies cardiovasculaires ?',
                 'antecedents_lequel' => 'Si oui, lequel ?',
                 'meds_lies' => 'Prenez-vous actuellement des médicaments qui sont liés à votre antécédent précédent ?',
                 'meds_types' => 'Prenez-vous actuellement l\'un des types de médicaments suivants ?',

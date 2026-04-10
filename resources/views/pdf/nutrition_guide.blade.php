@@ -194,7 +194,9 @@
         <div class="highlight">
             <p><strong>Objectif :</strong> {{ $goals['objectif'] }}</p>
             <p><strong>Perte souhaitée :</strong> {{ $goals['perte_poids'] }}</p>
-            <p><strong>Niveau d'engagement :</strong> {{ $goals['niveau_changement'] }}</p>
+            @if(stripos($goals['objectif'], 'Perte') !== false || stripos($goals['objectif'], 'Perdre') !== false)
+                <p><strong>Niveau d'engagement :</strong> {{ $goals['niveau_changement'] }}</p>
+            @endif
             <hr style="border: 0; border-top: 1px solid #ccc; margin: 10px 0;">
             <p style="font-size: 14px;"><strong>Apport Calorique Recommandé : {{ $recommendations['calories'] }}
                     kcal/jour</strong></p>
@@ -264,12 +266,11 @@
                 <div style="margin-left: 15px;">
                     <span style="color: #7f8c8d;">Votre réponse :</span> <strong>{{ $item['reponse'] }}</strong>
                 </div>
-                @if(!empty($item['recommandation']))
-                    <div
-                        style="margin-left: 15px; margin-top: 6px; padding: 8px 12px; background-color: #f0f7ff; border-left: 3px solid #3498db; border-radius: 3px; font-size: 11px; color: #2c3e50;">
-                        <span style="font-weight: bold; color: #2980b9;">Recommandation :</span> {{ $item['recommandation'] }}
-                    </div>
-                @endif
+                <div
+                    style="margin-left: 15px; margin-top: 6px; padding: 8px 12px; background-color: #f0f7ff; border-left: 3px solid #3498db; border-radius: 3px; font-size: 11px; color: #2c3e50;">
+                    <span style="font-weight: bold; color: #2980b9;">Recommandation </span><br>
+                    {!! !empty($item['recommandation']) && strtolower(trim($item['recommandation'])) !== 'Aucun' ? nl2br(e($item['recommandation'])) : 'Aucun' !!}
+                </div>
             </div>
         @endforeach
     </div>
