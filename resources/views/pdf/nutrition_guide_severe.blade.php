@@ -116,7 +116,7 @@
 <body>
 
     <div style="text-align: center; margin-bottom: 30px;">
-        <h1 style="border: none;">Structure Du Plan Nutritionnel Personnalisé – Obésité sévère</h1>
+        <h1 style="border: none;">Plan Nutritionnel Personnalisé – Obésité sévère</h1>
         <p style="font-size: 14px; color: #7f8c8d;">Généré par votre Assistant Nutritionnel</p>
     </div>
 
