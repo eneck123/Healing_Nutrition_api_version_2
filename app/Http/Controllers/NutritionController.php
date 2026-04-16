@@ -1126,7 +1126,7 @@ class NutritionController extends Controller
                     $pGlu = 45;
                     $pLip = 20;
                 }
-            } elseif ($hasCardio) { // Cardio (Tableau sans numéro)
+            } elseif ($hasCardio) { // Cardio
                 if ($activity === "Sédentaire") {
                     $pProt = 27;
                     $pGlu = 37;
@@ -1148,27 +1148,27 @@ class NutritionController extends Controller
                     $pGlu = 45;
                     $pLip = 25;
                 }
-            } else { // No pathology (Tableau 33) - Updated from recap.txt
+            } else { // No pathology (Tableau 33)
                 if ($activity === "Sédentaire") {
                     $pProt = 30;
                     $pGlu = 35;
                     $pLip = 35;
                 } elseif ($activity === "Légèrement actif") {
                     $pProt = 30;
-                    $pGlu = 40;
-                    $pLip = 30;
-                } elseif ($activity === "Modérément actif") {
-                    $pProt = 27;
-                    $pGlu = 45;
+                    $pGlu = 42;
                     $pLip = 28;
+                } elseif ($activity === "Modérément actif") {
+                    $pProt = 30;
+                    $pGlu = 48;
+                    $pLip = 22;
                 } elseif ($activity === "Très actif") {
-                    $pProt = 25;
-                    $pGlu = 50;
-                    $pLip = 25;
+                    $pProt = 30;
+                    $pGlu = 53;
+                    $pLip = 17;
                 } else {
-                    $pProt = 25;
-                    $pGlu = 55;
-                    $pLip = 20;
+                    $pProt = 30;
+                    $pGlu = 58;
+                    $pLip = 12;
                 }
             }
         }
@@ -1501,8 +1501,8 @@ class NutritionController extends Controller
         // Tanaka Formula: FCmax = 208 - 0.7 * age
         $fcMax = round(208 - (0.7 * $age));
 
-        $content = "🏃 ACTIVITÉ PHYSIQUE ET POSTURES (WWW.txt) :\n\n";
-        $content .= "🎯 VOS ZONES DE FRÉQUENCE CARDIAQUE (Tanaka) :\n";
+        $content = "ACTIVITÉ PHYSIQUE ET POSTURES :\n\n";
+        $content .= "VOS ZONES DE FRÉQUENCE CARDIAQUE (Tanaka) :\n";
         $content .= "• FC Maximale : $fcMax bpm.\n";
         $content .= "• Zone 1 (50-60%) : " . round($fcMax * 0.5) . "-" . round($fcMax * 0.6) . " bpm (Échauffement/Récupération).\n";
         $content .= "• Zone 2 (60-70%) : " . round($fcMax * 0.6) . "-" . round($fcMax * 0.7) . " bpm (Brûle-graisses/Endurance).\n";
