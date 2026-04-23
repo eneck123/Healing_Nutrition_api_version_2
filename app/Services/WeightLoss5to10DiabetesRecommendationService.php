@@ -1,0 +1,1602 @@
+<?php
+
+namespace App\Services;
+
+class WeightLoss5to10DiabetesRecommendationService implements RecommendationServiceInterface
+{
+    public function getRecommendation(string $key, string $answer, array $allAnswers = [], int $age = 30): string
+    {
+        switch ($key) {
+            case 'antecedents_diag':
+                return "Avez-vous des antécédents de diabète de type 2, d'hypertension ou de maladies cardiovasculaires?
+SI OUI:
+Conseils ciblés:
+•	Privilégier les cuissons sans ajout de sel (vapeur, bouilli, grillé)
+•	Remplacer le sel par des épices locales (piment doux, gingembre, ail, oignon)
+•	Limiter les aliments fumés et séchés riches en sodium
+•	Éviter l'huile de palme rouge, privilégier l'huile d'arachide en petite quantité
+•	Surveiller la tension artérielle régulièrement
+Adaptations des repas:
+•	Remplacer le poisson fumé par du poisson frais grillé ou bouilli
+•	Préparer les sauces avec moins d'huile (diviser par 2 la quantité habituelle)
+•	Utiliser le bissap sans sucre (excellent pour la tension)
+•	Privilégier: akassa nature, fonio, patate douce, igname bouillie
+•	Éviter: arachides salées, poisson très fumé, bouillons cubes
+SI NON:
+•	Continuer la prévention en adoptant une alimentation équilibrée
+•	Contrôler régulièrement la glycémie et la tension
+•	Maintenir une activité physique régulière
+
+
+
+Question: Quel antécédent spécifique avez-vous?
+DIABÈTE DE TYPE 2 
+•	Index glycémique bas: privilégier igname, patate douce, fonio, riz complet
+•	Fractionner les repas pour stabiliser la glycémie
+•	Associer toujours protéines + fibres + glucides
+•	Limiter drastiquement le sucre ajouté et les fruits très sucrés
+Repas adaptés:
+•	Collation anti-hypoglycémie: Arachides + pomme verte
+•	Petit-déjeuner: Akassa + œufs + avocat (pas de sucre dans la bouillie)
+•	Déjeuner: Pâte de maïs (portion contrôlée) + sauce gboma-dessi + poisson + beaucoup de légumes
+
+Question: Prenez-vous actuellement des médicaments liés à votre antécédent?
+SI OUI 
+ Conseils généraux:
+•	Prendre les médicaments à heures fixes avec les repas si prescrit
+•	Ne jamais arrêter sans avis médical
+•	Informer le médecin de tout effet secondaire
+•	Certains médicaments nécessitent des adaptations alimentaires spécifiques
+❌ SI NON - Aucun antécédent
+CONSEILS PRÉVENTIFS :
+•	Maintenir alimentation équilibrée actuelle
+•	Surveiller portions pour perte de poids progressive
+•	Privilégier aliments peu transformés
+•	Rester actif physiquement
+Question: Quels médicaments prenez-vous actuellement?
+MÉDICAMENTS POUR BAISSER LA GLYCÉMIE (Metformine, Glimepiride...):
+Conseils spécifiques:
+•	Metformine: Prendre pendant ou après les repas pour réduire troubles digestifs
+•	Risque d'hypoglycémie avec glimepiride: toujours avoir une collation
+•	Éviter alcool (interactions médicamenteuses)
+•	Répartir glucides sur 3 repas + 2 collations
+Adaptations repas:
+•	Avec Metformine (troubles digestifs possibles): 
+o	Petit-déjeuner: Akassa nature (facile à digérer) + œuf dur + papaye
+o	Éviter aliments trop gras ou épicés en début de traitement
+o	Privilégier: bouillie légère, igname bouillie, fonio, légumes cuits
+•	Avec Sulfamides (risque hypoglycémie): 
+o	Ne jamais sauter de repas
+o	Collation obligatoire: Arachides (20g) + orange
+o	Avoir toujours du sucre rapide (jus de fruits naturel) en cas de malaise
+INSULINE:
+Conseils spécifiques:
+•	Adapter doses selon glycémie et quantité de glucides
+•	Connaître le ratio insuline/glucides (avec l'aide du médecin)
+•	Horaires de repas réguliers essentiels
+•	Risque élevé d'hypoglycémie: toujours avoir du glucose
+Kit urgence hypoglycémie :
+•	Sachets de sucre (3 morceaux)
+•	Jus d'orange (150ml)
+•	Biscuits secs locaux (2-3 pièces)
+🟨 Insuline	Insuline rapide (Humalog), 
+Insuline lente (Lantus, Tresiba)	- Compter les glucides pour ajuster les doses
+- Éviter les sauts de repas
+- Prévoir collations en cas d’activité physique
+- Surveiller le poids (prise de poids possible)
+
+MÉDICAMENTS POUR PERDRE DU POIDS (Orlistat, Liraglutide...):
+Conseils spécifiques:
+•	Orlistat: Bloque absorption graisses → réduire lipides à 15g/repas
+•	Liraglutide/Sémaglutide: Réduit appétit → adapter portions, éviter nausées
+•	Supplémenter vitamines liposolubles (A, D, E, K) si orlistat
+Adaptations repas avec Orlistat:
+•	Limiter graisses strictement: 
+o	Petit-déjeuner: Bouillie maïs + lait écrémé (pas d'arachides ni avocat)
+o	Déjeuner: Riz + sauce tomate sans huile + poulet sans peau + légumes
+o	Dîner: Igname bouillie + sauce claire maigre + poisson grillé sans huile
+o	Éviter: arachides, noix de cajou, avocat, huiles, sauces grasses
+Adaptations avec Liraglutide/Sémaglutide:
+•	Petites portions (satiété rapide): 
+o	Petit-déjeuner: Akassa (80g) + œuf (1) + papaye (100g)
+o	Fractionner en 5-6 petits repas
+o	Éviter aliments gras (nausées accrues)
+o	Bien hydrater: bissap, eau citronnée, infusions
+MÉDICAMENTS POUR LA TENSION ARTÉRIELLE:
+IEC/ARA2:
+•	Augmenter potassium: banane plantain, avocat, patate douce, haricots
+•	Repas: Igname + haricots rouges + poisson + salade d'avocat
+BÊTA-BLOQUANTS:
+•	Risque hypoglycémie masquée: surveiller glycémie++
+•	Éviter caféine excessive
+•	Collations régulières
+Repas adaptés:
+•	Petit-déjeuner: Bouillie mil + banane + noix de cajou non salées
+•	Déjeuner: Fonio + sauce feuilles + poulet + patate douce
+•	Collation: Avocat (½) + pain complet (30g)
+MÉDICAMENTS POUR LE CHOLESTÉROL (Statines):
+Conseils spécifiques:
+•	Éviter pamplemousse (interaction avec statines)
+•	Privilégier fibres solubles: haricots, fonio, légumes verts
+•	Oméga-3: poissons gras
+•	Limiter cholestérol alimentaire: max 2-3 jaunes d'œufs/semaine
+Repas adaptés:
+•	Petit-déjeuner: Bouillie avoine (si disponible) ou mil + blanc d'œuf + papaye
+•	Déjeuner: Fonio + sauce tomate + sardines + haricots blancs + légumes verts
+•	Dîner: Patate douce + haricots rouges + maquereaux grillés + salade
+•	Collations: Pomme + noix (15g) / Carotte râpée
+Aliments à privilégier:
+•	Poissons gras: sardines, maquereaux, thon
+•	Fibres: fonio, haricots, légumes verts, gombo
+•	Noix non salées (modération)
+AUCUN DE CES MÉD";
+
+            case 'journee_typique':
+                return "ICAMENTS:
+•	Privilégier approche nutritionnelle préventive
+•	Contrôles réguliers glycémie/tension/cholestérol
+•	Mode de vie sain pour éviter médication future
+NB : Choisissez le type en fonction de la sélection d’user lors de répondre aux questions 
+ADAP";
+
+            case 'fruits_legumes':
+                return "TATIONS SELON LES HABITUDES ALIMENTAIRES
+Question: Pouvez-vous décrire une journée typique de vos repas et collations?
+Nous vous remercions pour nous avoir divulgué votre journée typique car cela va nous permettre de vous orienter dans nos conseils enfin de cerner vos réalités quotidiennes en matière de nutrition. 
+Question: Combien de portions de fruits et légumes consommez-vous par jour?
+1-2 PORTIONS (INSUFFISANT):
+Conseils urgents:
+•	Objectif: Minimum 5 portions/jour (3 légumes + 2 fruits)
+•	Stratégie progressive: Ajouter 1 portion/semaine jusqu'à atteindre objectif
+Plan d'action:
+•	Semaine 1-2: Ajouter salade à chaque déjeuner et dîner
+•	Semaine 3-4: Ajouter 1 fruit au petit-déjeuner
+•	Semaine 5-6: Ajouter légumes dans les sauces (gombo, feuilles, tomates)
+•	Semaine 7-8: Ajouter 1 fruit en collation
+Repas enrichis en légumes/fruits:
+•	Petit-déjeuner: Bouillie + papaye (150g) + jus naturel
+•	Déjeuner: Riz + sauce tomate (200g tomates fraîches) + haricots verts (150g) + salade verte (100g)
+•	Collation: Orange + carotte râpée
+•	Dîner: Igname + sauce gboma-dessi (300g légumes feuilles) + salade concombre-tomate
+Légumes béninois à intégrer:
+•	Feuilles: gboma, célosie, épinards locaux, feuilles d'amarante
+•	Gousses: gombo, haricots verts
+•	Racines: carottes, betteraves
+•	Autres: tomates, concombre, aubergines, piments doux
+
+3-4 PORTIONS (BON, PEUT MIEUX FAIRE):
+Conseils:
+•	Objectif: Atteindre 5-7 portions/jour
+•	Ajouter encore 1-2 portions
+Suggestions:
+•	Débuter chaque repas par une salade crue
+•	Doubler portion de légumes dans les sauces
+•	Ajouter fruit à chaque collation
+Repas optimisés:
+•	Petit-déjeuner: Bouillie + mangue (150g)
+•	Collation matin: Papaye (150g)
+•	Déjeuner: Grande salade entrée + riz + sauce avec beaucoup de légumes
+•	Collation après-midi: Orange + carotte
+•	Dîner: Igname + sauce feuilles (200g) + salade tomate-concombre
+5 PORTIONS OU PLUS (EXCELLENT):
+Conseils de maintien:
+•	Continuer cette excellente habitude
+•	Varier couleurs et types pour diversifier nutriments
+•	Privilégier légumes verts foncés (riches en nutriments)
+Pour aller plus loin:
+•	Viser 7-9 portions/jour
+•	Intégrer légumes à chaque repas ET collation
+•	Expérimenter n";
+
+            case 'grignotage':
+                return "ouvelles recettes béninoises
+Exemple journée 7-9 portions:
+•	Petit-déjeuner: Bouillie + papaye (150g) = 1 portion
+•	Collation matin: Mangue (150g) + carotte (100g) = 2 portions
+•	Déjeuner: Salade verte (150g) + sauce tomate-légumes (200g) + haricots verts (100g) = 3 portions
+•	Collation après-midi: Orange (1) + concombre (100g) = 2 portions
+•	Dîner: Sauce gboma (200g) + salade mixte (100g) = 2 portions TOTAL: 10 portions
+
+
+
+Question: Grignotez-vous entre les repas?
+SI OUI:
+Analyse du grignotage : Le grignotage peut être problématique selon CE que vous grignotez et POURQUOI.
+Si grignotage d'aliments sains (fruits, noix):
+•	Bon signe si portions contrôlées et planifiées
+•	Transformer en collations structurées (10h et 16h)
+•	Continuer mais quantifier: 1 fruit OU 20g noix
+Si grignotage d'aliments problématiques: À identifier et remplacer:
+Aliment problématique	Pourquoi éviter	Remplacement béninois sain
+Beignets, akara frits	Friture, glucides raffinés, calories	Akara cuit au four, arachides grillées
+Bonbons, sucreries	Pic glycémique, calories vides	Fruits frais (papaye, mangue, orange)
+Sodas, jus industriels	Sucres ajoutés massifs	Bissap sans sucre, eau citronnée
+Chips, crackers	Sel, graisses trans, calories	Noix de cajou non salées, plantain grillé
+Pains blancs seuls	Index glycémique élevé	Pain complet + avocat ou arachides
+Gâteaux industriels	Sucre, graisses saturées	Banane + noix, papaye + lait
+Stratégies anti-grignotage compulsif:
+1.	Identifier les déclencheurs: Ennui? Stress? Faim réelle?
+2.	S'hydrater d'abord: Souvent la soif est confondue avec la faim
+3.	Attendre 10 minutes: Demander \"Ai-je vraiment faim?\"
+4.	Collations structurées: Uniquement 10h et 16h, portions mesurées
+5.	Éliminer tentations: Ne pas acheter aliments problématiques
+Collations béninoises saines prêtes à l'emploi:
+•	Arachides grillées non salées (portion 20-30g dans petit sachet)
+•	Fruits lavés et coupés dans boîte (papaye, mangue, orange)
+•	Noix de cajou (portion 15-20g)
+•	Bissap maison sans sucre (bouteille 500ml)
+•	Plantain grillé préparé (50-70g selon activité)
+•	Œufs durs (préparés dimanche pour la semaine)
+Plan de transition (4 semaines):
+•	Semaine 1: Noter TOUT ce qui est grignoté (prise de conscience)
+•	Semaine 2: Remplacer";
+
+            case 'sommeil':
+                return "50% par options saines
+•	Semaine 3: Remplacer 75% par options saines
+•	Semaine 4: Grignotage = collations structurées uniquement
+SI NON:
+Excellent! Conseils de maintien:
+•	Continuer à respecter les 3 repas + 2 collations planifiées
+•	Si faim entre repas: boire eau, tisane, bissap sans sucre
+•	Rester vigilant lors de situations à risque (stress, ennui, fatigue)
+Prévention du grignotage futur:
+•	Repas suffisamment copieux et équilibrés
+•	Protéines à chaque repas (satiété prolongée)
+•	Boire 1,5-2L eau/jour
+•	Qualité du sommeil (voir section sommeil)
+Question: Si oui, quels aliments consommez-vous (grignotage)?
+Analyse personnalisée selon la réponse:
+CAS 1 - Grignotage de beignets, akara frits, pâtisseries: Problème majeur:
+•	Calories très élevées (1 beignet = 200-300 kcal)
+•	Graisses trans (friture)
+•	Glucides raffinés (pic glycémique)
+•	Aggrave diabète et obésité
+Plan d'élimination progressive:
+•	Semaine 1-2: Réduire de moitié la fréquence
+•	Semaine 3-4: Remplacer par version cuite au four (akara au four)
+•	Semaine 5: Éliminer complètement
+Alternatives béninoises:
+•	Akara cuit au four (recette: haricots mixés + oignon + piment, cuire 20min à 180°C)
+•	Galettes de mil au four
+•	Boule de mil nature (petite portion)
+CAS 2 - Grignotage de fruits uniquement: Bon choix MAIS attention:
+•	Fruits = glucides → contrôler portions (diabète)
+•	Maximum 2-3 fruits/jour
+•	Éviter jus de fruits (préférer fruits entiers)
+•	Associer avec protéine/lipide (ralentit absorption)
+Optimisation:
+•	Papaye (150g) + noix de cajou (10g) ✓
+•	Mangue seule (300g) ✗ (trop de sucre d'un coup)
+•	Orange (1) + arachides (15g) ✓
+CAS 3 - Grignotage de noix, arachides: Excellent choix MAIS:
+•	Calories denses: contrôler portions (20-30g maximum)
+•	Choisir non salées (tension artérielle)
+•	Varier: noix de cajou, arachides, amandes si disponibles
+Portions visuelles:
+•	20g noix = 1 petite poignée (main fermée)
+•	30g arachides = 2 cuillères à soupe bombées
+CAS 4 - Grignotage de produits sucrés (bonbons, chocolat, sodas): Problème critique pour diabète:
+•	Pic glycémique immédiat
+•	Calories vides (pas de nutriments)
+•	Renforce dépendance au sucre
+Stratégie de sevrage:
+•	Semaine 1: Identifier moments de consommation
+•	Semaine 2: Remplacer 1 consommation/2 par fruit
+•	Semaine 3: Remplacer toutes par fruits ou eau aromatisée
+•	Semaine 4: Élimination totale
+Alternatives pour envie de sucré:
+•	Bissap maison sans sucre (naturellement un peu sucré)
+•	Eau infusée (gingembre, citronnelle, menthe)
+•	Fruits frais bien mûrs (mangue, papaye, banane)
+•	Yaourt nature + papaye mixée
+CAS 5 - Grignotage de chips, crackers salés: Problèmes:
+•	Sodium excessif (h";
+
+            case 'boissons':
+                return "ypertension)
+•	Graisses trans
+•	Calories élevées
+•	Pic d'appétit (on ne peut pas s'arrêter)
+Alternatives:
+•	Plantain grillé au four (tranches fines, 15min à 200°C, sans huile)
+•	Noix de cajou non salées
+•	Bâtonnets de carotte et concombre + sauce yaourt maison
+•	Akassa grillé (petits morceaux croustillants)
+CAS 6 - Grignotage de pain/sandwichs: Problème:
+•	Glucides raffinés (pain blanc)
+•	Portions souvent excessives
+•	Satiété courte durée
+Améliorations:
+•	Remplacer pain blanc par pain complet
+•	Portions: maximum 30-40g
+•	Toujours avec protéine: avocat, œuf, poisson
+•	Exemple: Pain complet (30g) + avocat (30g) + œuf (1)
+Question: À quelle fréquence consommez-vous des boissons sucrées ou alcoolisées?
+TOUS LES JOURS (CRITIQUE):
+Boissons sucrées quotidiennes: Impact catastrophique sur diabète et obésité:
+•	1 soda (33cl) = 35g sucre = 7 morceaux de sucre
+•	Consommation quotidienne = +500 kcal/jour = +3500 kcal/semaine
+•	Pic glycémique violent
+•	Résistance à l'insuline accrue
+Plan d'élimination d'urgence (4 semaines):
+•	Semaine 1: Réduire de moitié + noter sensation (énergie, glycémie)
+•	Semaine 2: 1 verre/jour maximum, dilué avec eau
+•	Semaine 3: 3 verres/semaine maximum
+•	Semaine 4: Élimination complète
+Remplacements :
+•	Bissap maison sans sucre (préparation: fleurs séchées + eau + gingembre, réfrigérer)
+•	Eau citronnée (citron + eau fraîche + 1 feuille menthe)
+•	Infusion de citronnelle (chaude ou glacée)
+•	Jus de gingembre maison (sans sucre, dilué)
+•	Eau de coco naturelle (modération car glucides)
+•	Thé vert glacé maison (sans sucre)
+Si envie de sucré irrésistible:
+•	Bissap + 1 carré de stévia (édulcorant naturel)
+•	Eau pétillante + jus de citron vert + glace
+Alcool quotidien: Dangers multiples:
+•	Calories liquides (7 kcal/g alcool)
+•	Hypoglycémie retardée (dangereux avec diabète)
+•	Interaction médicaments (metformine, insuline)
+•	Dommages hépatiques
+•	Prise de poids abdominale
+Objectif: ARRÊT ou maximum 1-2 verres/semaine
+Plan de réduction:
+•	Semaine 1-2: Alterner 1 jour avec alcool / 1 jour sans
+•	Semaine 3-4: Maximum 4 jours/semaine
+•	Semaine 5-6: Maximum 2-3 jours/semaine
+•	Semaine 7-8: Maximum 1-2 jours/semaine
+Alternatives sociales:
+•	Bissap sans sucre dans verre élégant avec glace
+•	Jus de gingembre avec eau pétillante
+•	Cocktail sans alcool: jus d'ananas + bissap + menthe
+UNE FOIS PAR SEMAINE (ACCEPTABLE AVEC VIGILANCE):
+Boissons sucrées hebdomadaires: Acceptable MAIS:
+•	Considérer comme \"plaisir exceptionnel\"
+•	Portion limitée: 200ml maximum
+•	Privilégier jus naturels dilués plutôt que sodas
+•	Consommer pendant repas (ralentit absorption)
+Conseils d'optimisation:
+•	Si jus de fruits naturels: Diluer avec eau (50/50)
+•	Si occasion spéciale: Partager une bouteille à plusieurs
+•	Timing: Préférer après repas riche en fibres/protéines
+Boissons sucrées \"moins pires\":
+•	Jus de bissap maison peu sucré (contrôler sucre ajouté)
+•	Jus d'ananas frais dilué
+•	Eau de coco naturelle (pas de sucre ajouté)
+Alcool hebdomadaire: Acceptable avec précautions:
+•	Maximum 1-2 verres standard
+•	Jamais à jeun (hypoglycémie)
+•	Boire eau en même temps (1 verre eau pour 1 verre alcool)
+•	Surveiller glycémie avant et après
+•	Éviter alcools sucrés (cocktails, liqueurs)
+Choix moins risqués:
+•	Bière locale légère (1 petite bouteille)
+•	Vin rouge (1 verre de 150ml) – bénéfique en modération
+•	Éviter: sodabi fort, cocktails sucrés, liqueurs
+OCCASIONNELLEMENT (BON):
+Définition \"occasionnel\": 1-2 fois/mois maximum
+Conseils:
+•	Maintenir cette bonne habitude
+•	Lors de consommations: appliquer règles ci-dessus
+•	Reste vigilant (occasions peuvent devenir habitudes)
+Stratégies pour occasions:
+•	Fêtes/cérémonies: Apporter son bissap sans sucre
+•	Restaurants: Commander eau citronnée ou bissap non sucré
+•	Pressions sociales: \"Je préfère le bissap\" (culturellement acceptable)
+JAMAIS (EXCELLENT):
+Félicitations! Maintien de cette habitude:
+•	Continuer à privilégier eau, bissap sans sucre, infusions
+•	Avantage énorme pour gestion diabète et perte de poids
+•	Économies financières importantes
+•	Modèle pour l'entourage
+Recettes boissons santé:
+1. Bissap maison sans sucre
+•	100g fleurs de bissap séchées
+•	2L eau
+•	Gingembre frais (50g)
+•	Menthe (facultatif)
+•	Bouillir 15min, filtrer, réfrigérer
+2. Eau détox 
+•	1,5L eau
+•	1 citron en tranches
+•	Gingembre râpé (20g)
+•	Feuilles de menthe
+•	Laisser infuser 2h au frais
+3. Infusion de citronnelle
+•	Tiges de citronnelle fraîche
+•	Eau bouillante
+•	Infuser 10min
+•	Servir chaud ou froid
+4. Thé vert au gingembre
+•	Thé vert
+•	Gingembre frais râpé
+•	Citron
+•	Infuser 5min
+ADAPTATIONS SELON COMPORTEMENTS ET BIEN-ÊTRE
+Question: Combien d'heures de sommeil avez-vous par nuit?
+MOINS DE 6H (INSUFFISANT - IMPACT MAJEUR):
+Conséquences graves sur santé métabolique:
+•	Résistance insuline augmentée de 30%
+•	Hormones de faim perturbées (plus de ghréline, moins de leptine)
+•	Fringales glucides et gras
+•	Cortisol élevé (stockage graisse abdominale)
+•	Perte de poids très difficile
+•	Glycémie instable
+Plan d'amélioration sommeil (Priorité absolue!):
+Objectif: Atteindre 7-8h en 4 semaines
+Semaine 1-2: Hygiène de sommeil
+•	Coucher et lever à heures fixes (même week-end)
+•	Chambre fraîche, sombre, silencieuse
+•	Éviter écrans 1h avant coucher
+•	Rituel apaisant: lecture, prière, étirements doux
+Semaine 3-4: Optimisation progressive
+•	Avancer heure de coucher de 15min chaque 3 jours
+•	Exemple: Si coucher 1h → semaine 3: 00h45 → semaine 4: 00h30 → objectif: 23h
+Adaptations alimentaires pour meilleur sommeil:
+Dîner optimal (3h avant coucher):
+•	Option A: Igname bouillie (100g) + sauce claire + poisson (80g) + salade
+•	Option B: Fonio (100g) + sauce feuilles + poulet (80g) + légumes
+Pourquoi: Glucides complexes (igname, fonio) + tryptophane (poisson, poulet) = favorise sérotonine/mélatonine
+Collation 1h avant coucher (si faim):
+•	Lait tiède (200ml) + petite banane
+•	Tisane de citronnelle + 5 amandes
+•	Éviter: Café, thé, chocolat, repas lourds, alcool
+Aliments favorisant sommeil (à intégrer au dîner):
+•	Tryptophane: Poisson, poulet, œufs, lait, arachides
+•	Magnésium: Banane plantain, épinards, noix de cajou
+•	Glucides complexes: Igname, patate douce, fonio
+•	Vitamines B: Haricots, légumes verts feuilles
+Boissons apaisantes béninoises:
+•	Infusion de citronnelle tiède
+•	Lait tiède au gingembre doux
+•	Tisane de feuilles de corossol (si disponible)
+À éviter le soir:
+•	Café après 14h
+•	Thé noir après 16h
+•	Repas très gras ou épicés
+•	Grande quantité de liquides (réveils nocturnes)
+•	Activité physique intense 3h avant couche";
+
+            case 'apnee':
+                return "r
+6H-7H (LIMITE BASSE):
+Acceptable mais perfectible:
+•	Minimum fonctionnel mais pas optimal
+•	Viser 7-8h pour meilleurs résultats métaboliques
+Conseils:
+•	Appliquer hygiène de sommeil ci-dessus
+•	Gagner 30-60min supplémentaires
+•	Qualité compte autant que quantité
+Stratégies:
+•	Sieste courte 20min après déjeuner si possible (pas plus, perturberait nuit)
+•	Week-end: laisser corps récupérer (pas plus de 1h de plus qu'en semaine)
+Dîner optimisé:
+•	Option A: Patate douce  + haricots + poisson
+•	Option B: Fonio + sauce légère + poulet + épinards
+8H-9H (IDÉAL):
+Félicitations! Sommeil optimal pour:
+•	Régulation hormonale
+•	Gestion appétit
+•	Sensibilité insuline
+•	Récupération
+•	Perte de poids
+Maintien de cette excellente habitude:
+•	Continuer routine régulière
+•	Protéger ce temps de sommeil
+•	Ne pas sacrifier sommeil pour autres activités
+Dîner équilibré standard:
+•	Suivre les plans de repas selon niveau d'";
+
+            case 'sedentarite':
+                return "activité
+•	Pas de restrictions particulières
+•	Maintenir timing 3h avant coucher
+
+PLUS DE 9H (TROP - PEUT INDIQUER PROBLÈME):
+Attention - Sommeil excessif peut signaler:
+•	Apnée du sommeil (voir question suivante)
+•	Dépression
+•	Hypothyroïdie
+•	Mauvaise qualité de sommeil (pas réparateur)
+•	Effet médicamenteux
+Actions recommandées:
+1.	Consulter médecin pour bilan
+2.	Dépistage apnée du sommeil
+3.	Bilan thyroïdien (TSH)
+4.	Évaluer qualité sommeil (réveils nocturnes?)
+Si sommeil excessif malgré bon repos:
+•	Réduire progressivement à 8h
+•	Augmenter exposition lumière matinale
+•	Activité physique régulière (stimule énergie)
+Adaptations alimentaires:
+•	Petit-déjeuner énergisant obligatoire (pas sauter!)
+•	Éviter glucides rapides seuls (coup de pompe)
+•	Fractionner repas (stabilité énergie)
+Petit-déjeuner \"boost énergie\":
+•	Option A: Bouillie maïs + œufs (2) + noix + orange
+•	Option B: Akassa + avocat + sardines + papaye
+Question: Avez-vous l'apnée du sommeil?
+SI OUI (Condition médicale sérieuse):
+Impact majeur sur obésité et diabète:
+•	Arrêts respiratoires → stress oxydatif
+•	Fragmentation sommeil → hormones perturbées
+•	Fatigue chronique → sédentarité → prise de poids
+•	Résistance insuline aggravée
+•	Hypertension artérielle fréquente
+•	Risque cardiovasculaire élevé
+Cercle vicieux: Obésité ↔ Apnée du sommeil
+•	Obésité cause apnée (graisse cou comprime voies aériennes)
+•	Apnée aggrave obésité (fatigue, hormones, métabolisme)
+•	BONNE NOUVELLE: Perte de poids améliore apnée!
+Suivi médical obligatoire:
+•	Appareil CPAP si prescrit (le porter CHAQUE nuit!)
+•	Suivi ORL/pneumologue régulier
+•	Contrôle tension artérielle
+•	Surveillance glycémie renforcée
+Adaptations alimentaires spécifiques:
+1. Perdre du poids (priorité #1):
+•	Perte de 10% du poids corporel = Réduction 30% sévérité apnée
+•	Déficit calorique modéré (500 kcal/jour)
+•	Suivre plans repas niveau d'activité avec portions réduites de 10-15%
+2. Position de sommeil:
+•	Éviter dormir sur le dos (aggrave apnée)
+•	Dormir sur le côté
+•	Surélever tête de lit 15-20cm
+3. Aliments à éviter le soir:
+•	Alcool (relaxe muscles gorge → apnée)
+•	Repas très copieux (pression diaphragme)
+•	Aliments causant reflux (tomates, épices, gras)
+Dîner anti-apnée (léger, 4h avant coucher):
+•	Option A: Igname bouillie + poisson grillé + sal";
+
+            case 'regime_recent':
+                return "ade verte simple
+•	Option B: Fonio + poulet sans peau + légumes vapeur
+Petit-déjeuner important (compensate fatigue):
+•	Option A: Bouillie maïs + œufs (2) + noix + fruit
+•	Option B: Akassa + avocat + poisson + papaye
+Nutriments clés pour apnée:
+•	Magnésium (relaxation musculaire): noix de cajou, banane plantain, épinards, haricots
+•	Vitamine D (si carence): poissons gras, œufs, exposition soleil
+•	Oméga-3 (anti-inflammatoire): sardines, maquereaux
+•	Antioxydants (stress oxydatif): fruits et légumes colorés
+Boissons recommandées:
+•	Bissap sans sucre (anti-inflammatoire)
+•	Infusion de gingembre (anti-inflammatoire)
+•	Eau citronnée (détox)
+•	Éviter: Café après 14h, alcool, boissons sucrées
+Autres mesures:
+•	Perte de graisse cou et menton (exercices faciaux + perte poids générale)
+•	Éviter sédatifs/somnifères (aggravent apnée)
+•	Arrêt tabac absolu
+•	Activité physique régulière (améliore qualité sommeil)
+SI NON:
+Prévention de l'apnée:
+•	Maintenir poids santé (ou perdre si surpoids/obésité)
+•	Éviter alcool le soir
+•	Dormir sur le côté
+•	Traiter allergies/congestion nasale
+•	Ne pas fumer
+Signes d'alerte à surveiller:
+•	Ronflements forts
+•	Pauses respiratoires observées
+•	Fatigue matinale malgré sommeil
+•	Maux de tête matinaux
+•	Somnolence diurne excessive
+Si signes présents: Consulter pour dépistage
+Question: Avez-vous récemment fait un régime de perte de poids?
+SI OUI:
+Analyse selon résultats (voir question suivante): L'historique de régimes influence l'approche actuelle.
+Considérations importantes:
+1. Effet yo-yo:
+•	Régimes restrictifs → reprise de poids → métabolisme ralenti
+•	Chaque cycle rend perte suivante plus difficile
+•	Importance: approche durable, pas régime temporaire
+2. Métabolisme adaptatif:
+•	Corps s'adapte aux restrictions caloriques
+•	Métabolisme peut être ralenti si régimes répétés
+•	Solution: Perte lente et progressive (0,5-1 kg/semaine max)
+3. Aspects psychologiques:
+•	Frustration si échecs répétés
+•	Relation malsaine avec nourriture possible
+•	Besoin de soutien psychologique si nécessaire
+Approche différente cette fois:
+•	Pas un \"régime\" mais changement mode de vie permanent
+•	Pas d'aliments interdits, juste équilibre
+•	Flexibilité et durabilité
+•	Objectif: santé avant apparence
+Stratégie \"anti-yo-yo\":
+•	Perte très progressive: 2-4 kg/mois maximum
+•	Maintien 4-6 semaines entre paliers de perte
+•	Exemple: Perdre 3 kg → maintenir 1 mois → perdre 3 kg → etc.
+Adaptations selon historique:
+Si nombreux régimes échoués:
+•	Commencer très progressivement (petits changements)
+•	Focus habitudes avant poids (processus vs résultat)
+•	Suivi psychologique recommandé
+•	Célébrer victoires non-pondérales (énergie, glycémie, tour de taille)
+Repas \"anti-frustration\" (plaisir + santé):
+•	Déjeuner du dimanche: Riz (portion normale) + sauce préférée (moins d'huile) + viande grillée + légumes + petit plantain mûr
+•	Concept: Plaisir contrôlé, pas privation totale
+
+
+SI NON:
+Avantages:
+•	Pas de métabolisme ralenti par régimes précédents
+•	Pas de frustration accumulée
+•	Nouvelles habitudes sur base saine
+Approche préventive:
+•	Éviter pièges des régimes restrictifs
+•	Adopter changements progressifs et durables
+•	Ne jamais descendre sous besoins caloriques minimums
+Principes fondamentaux:
+•	Déficit calorique modéré (300-500 kcal/jour)
+•	Tous les groupes alimentaires présents
+•	Plaisir et variété
+•	Durabilité à long terme
+Question: Si oui, combien de poids avez-vous perdu?
+MOINS DE 5 KG:
+Analyse:
+•	Tentative modeste ou début de parcours
+•	Peut-être motivation insuffisante
+•	Ou approche pas assez structurée
+Leçons à tirer:
+•	Qu'est-ce qui a limité la perte?
+•	Quels obstacles rencontrés?
+•	Quelle durée du régime?
+Approche cette fois:
+•	Objectif réaliste: 5-10% du poids corporel en 6 mois
+•	Exemple: Si 90 kg → viser 4,5-9 kg en 6 mois (0,75-1,5 kg/mois)
+•	Plus structuré avec plans de repas précis
+•	Suivi régulier (pesée hebdomadaire, mesures mensuelles)
+Facteurs de succès:
+•	Planification repas (utiliser les plans fournis)
+•	Préparation à l'avance (batch cooking dimanche)
+•	Soutien social (famille informée, groupe soutien)
+•	Suivi professionnel (nutritionniste, médecin)
+Stratégie progressive:
+•	Mois 1-2: Établir nouvelles habitudes (pas focus poids)
+•	Mois 3-4: Perte effective commence
+•	Mois 5-6: Consolidation, ajustements
+Repas facilitant perte:
+•	Augmenter légumes (satière, peu calories)
+•	Protéines chaque repas (satiété)
+•	Réduire légèrement portions glucides (- 20%)
+•	Exemple déjeuner: Riz + sauce + poisson  + beaucoup de légumes
+5-10 KG (BON DÉBUT):
+Analyse:
+•	Engagement sérieux démontré
+•	Capacité à perdre du poids prouvée
+•	Probablement reprise ensuite (sinon pas ici)
+Questions clés:
+•	Pourquoi reprise de poids?
+•	Quelle durée pour perdre ces kilos?
+•	Qu'est-ce qui n'était pas durable?
+Leçons:
+•	Perte rapide → reprise rapide
+•	Régime trop restrictif → insoutenable
+•	Pas de phase de maintien → poids revient
+Approche améliorée cette fois:
+Phase 1 - Perte (4-6 mois):
+•	Objectif: Perdre 8-12 kg progressivement
+•	Rythme: 0,5-1 kg/semaine maximum
+•	Utiliser plans de repas adaptés
+Phase 2 - Stabilisation (CRUCIAL - souvent oubliée):
+•	Durée: 2-3 mois
+•	Maintenir nouveau poids
+•	Augmenter légèrement calories (+200 kcal/jour)
+•	Consolider nouvelles habitudes
+Phase 3 - Maintien à vie:
+•	Mode de vie permanent
+•	Pesée hebdomadaire
+•	Ajustements si poids remonte de 2 kg
+Prévention de la reprise:
+•	Jamais revenir aux anciennes habitudes
+•	1 \"écart\" par semaine OK (repas plaisir contrôlé)
+•	Activité physique régulière maintenue
+•	Vigilance continue sans obsession
+Repas phase de maintien (après perte):
+•	Portions légèrement augmentées vs phase perte
+•	Exemple: Riz (150g) au lieu de (120g)
+•	Tous les nutriments présents
+•	Flexibilité accrue mais structure maintenue
+PLUS DE 10 KG (PERTE SIGNIFICATIVE):
+Analyse:
+•	Très grande motivation et discipline démontrées
+•	Changements importants effectués
+•	Reprise de poids = frustration majeure probable
+Causes possibles de la reprise:
+1.	Perte trop rapide: > 1 kg/semaine → métabolisme ralenti
+2.	Régime trop restrictif: Insoutenable à long terme
+3.	Pas de phase de maintien: Retour brutal anciennes habitudes
+4.	Facteurs psychologiques: Stress, émotions, événement de vie
+5.	Facteurs métaboliques: Hormones, médicaments, santé
+Cette fois, approche différente OBLIGATOIRE:
+Analyse métabolique:
+•	Consulter endocrinologue (thyroïde? cortisol? insuline?)
+•	Bilan hormonal complet
+•	Adapter approche selon résultats
+Approche psychologique:
+•	Identifier déclencheurs émotionnels
+•	Thérapie comportementale si besoin
+•	Gestion stress (méditation, yoga, marche)
+•	Journal alimentaire ET émotionnel
+Perte ultra-progressive:
+•	Objectif: 0,5 kg/semaine MAXIMUM (pas plus!)
+•	2 kg/mois
+•	12 kg en 6 mois
+•	Pourquoi si lent? Préserver métabolisme, durabilité
+Structure stricte:
+•	Plans de repas suivis rigoureusement (utiliser ceux fournis)
+•	Horaires fixes
+•	Préparation avancée
+•	Pas d'improvisation
+Paliers de stabilisation:
+•	Tous les 5 kg perdus: PAUSE 4-6 semaines
+•	Maintenir ce nouveau poids
+•	Laisser corps s'adapter
+•	Puis reprendre perte
+Exemple parcours 90 kg → 75 kg (15 kg):
+•	Mois 1-2: 90 → 86 kg (-4 kg)
+•	Mois 3-4: Stabilisation à 86 kg
+•	Mois 5-6: 86 → 82 kg (-4 kg)
+•	Mois 7-8: Stabilisation à 82 kg
+•	Mois 9-11: 82 → 77 kg (-5 kg)
+•	Mois 12-14: Stabilisation à 77 kg
+•	Mois 15-16: 77 → 75 kg (-2 kg)
+•	Mois 17+: Maintien à vie à 75 kg
+Support professionnel indispensable:
+•	Nutritionniste (suivi mensuel minimum)
+•	Médecin (surveillance métabolique)
+•	Psychologue (si troubles comportement alimentaire)
+Repas ultra-structurés:
+•	Peser/mesurer aliments (précision)
+•	Pas d'estimation \"à l'œil\"
+•	Suivre plans fournis à la lettre au début
+•	Flexibilité introduite progressivement après 3 mois
+ADAPTATIONS SELON ACTIVITÉ PHYSIQUE
+Question: Combien de jours par semaine pratiquez-vous une activité physique?
+AUCUN (SÉDENTAIRE - URGENT À CHANGER):
+Impact catastrophique sur santé:
+•	Résistance insuline maximale
+•	Métabolisme très ralenti
+•	Perte muscle (sarcopénie précoce)
+•	Risque cardiovasculaire élevé
+•	Perte de poids quasi impossible sans activité
+•	Qualité de vie réduite
+Obstacles fréquents:
+•	Manque de temps
+•	Fatigue
+•	Douleurs articulaires (obésité)
+•	Pas d'habitude
+•	Manque motivation
+•	Coût (salle de sport)
+Plan de démarrage progressif (12 semaines):
+Semaines 1-2: Mini-mouvements quotidiens
+•	Marcher 10 minutes après chaque repas
+•	Montrer escaliers au lieu d'ascenseur
+•	Se lever toutes les heures (travail assis)
+•	Objectif: Créer habitude, pas performance
+Semaines 3-4: Augmenter durée
+•	Marcher 20 minutes/jour (10min matin + 10min soir)
+•	Ou 30 minutes d'un coup
+•	Rythme confortable (peut parler)
+•	Objectif: 3-4 jours minimum
+Semaines 5-6: Augmenter fréquence
+•	Marcher 30 minutes, 5 jours/semaine
+•	Ajouter étirements légers (10min) 2 fois/semaine
+•	Objectif: Régularité
+Semaines 7-8: Augmenter intensité
+•	Marcher 30-40 minutes, 5-6 jours/semaine
+•	Accélérer rythme par intervalles (2min rapide / 3min normal)
+•	Ajouter renforcement léger (squats, pompes murales) 2 fois/semaine
+•	Objectif: Variété et progression
+Semaines 9-12: Routine établie
+•	40-60 minutes activité modérée, 6 jours/semaine
+•	Variété: marche, vélo, natation, danse
+•	Renforcement 2-3 fois/semaine
+•	Objectif: Mode de vie actif permanent
+Activités gratuites adaptées au Bénin:
+•	Marche: Partout, gratuit, accessible
+•	Marche rapide matinale: Avant chaleur
+•	Danse traditionnelle: Plaisir + exercice
+•	Travaux ménagers actifs: Balayer, laver (compter comme activité!)
+•	Jardinage: Si espace disponible
+•	Exercices poids du corps: Squats, pompes, planches (YouTube gratuit)
+•	Natation: Si accès à plage/piscine
+Adaptation alimentaire pour débutant:
+•	Suivre plan \"Sédentaire\" au début
+•	Après 4 semaines activité: passer \"Légèrement actif\"
+•	Augmenter glucides légèrement si fatigue
+•	Collation pré-activité si besoin: Banane (1) 30min avant
+Motivation:
+•	Trouver partenaire d'exercice (voisin, famille, ami)
+•	Musique motivante
+•	Application de suivi (Google Fit gratuit)
+•	Objectifs réalistes et célébration progrès
+
+
+1 À 3 JOURS (DÉBUT PROMETTEUR):
+Analyse:
+•	Habitude commencée mais fragile
+•	Pas encore suffisant pour bénéfices optimaux
+•	Risque abandon élevé
+Objectif:
+•	Augmenter progressivement à 5 jours/semaine minimum
+Plan d'augmentation (8 semaines):
+•	Semaines 1-2: Ajouter 1 jour (total 4 jours)
+•	Semaines 3-4: Consolider 4 jours
+•	Semaines 5-6: Ajouter 1 jour (total 5 jours)
+•	Semaines 7-8: Consolider 5 jours
+Stratégies pour augmenter fréquence:
+•	Planifier dans agenda (comme rendez-vous)
+•	Varier activités (ne pas ennuyer)
+•	Courtes sessions OK (20min comptent!)
+•	Intégrer dans routine (marche pour aller au travail)
+Adaptation alimentaire:
+•	Suivre plan \"Légèrement actif\"
+•	Jours d'activité: collation pré-effort si besoin
+•	Jours sans activité: pas de collation supplémentaire
+Activités recommandées:
+•	3 jours marche rapide (30-40min)
+•	2 jours renforcement (20-30min)
+•	Ou: 3 jours activité mixte (cardio + renforcement)
+4 À 6 JOURS (TRÈS BON):
+Félicitations!
+•	Fréquence optimale atteinte
+•	Habitude bien établie
+•	Bénéfices santé importants
+Conseils d'optimisation:
+•	Varier intensités: 
+o	2-3 jours intensité modérée
+o	1-2 jours intensité élevée
+o	1-2 jours activité douce (récupération active)
+•	Varier types: 
+o	Cardio (marche, vélo, danse)
+o	Renforcement (poids du corps, bandes élastiques)
+o	Flexibilité (étirements, yoga)
+Structure semaine type:
+•	Lundi: Marche rapide 45min
+•	Mardi: Renforcement 30min
+•	Mercredi: Marche modérée 40min
+•	Jeudi: REPOS ou yoga léger
+•	Vendredi: Intervalles (marche rapide/lente) 40min
+•	Samedi: Renforcement 30min
+•	Dimanche: Marche longue 60min OU repos
+Adaptation alimentaire:
+•	Suivre plan \"Modérément actif\" ou \"Très actif\" selon intensité
+•	Bien répartir glucides autour des entraînements
+•	Hydratation: 2-3L/jour
+Collations spécifiques:
+•	Pré-entraînement (1h avant): Banane + quelques arachides
+•	Post-entraînement (30min après): Bissap + pain complet + œuf
+7 JOURS (ATTENTION SURENTRAÎNEMENT):
+Analyse:
+•	Motivation excellente
+•	MAIS: Risque surentraînement
+•	Récupération indispensable
+Recommandations:
+•	Inclure 1-2 jours \"récupération active\": Marche douce, étirements, yoga, pas d'intensité élevée
+•	Varier intensités obligatoire
+•	Écouter corps (fatigue, douleurs)
+•	Qualité > Quantité
+Structure semaine type équilibrée:
+•	5 jours activité modérée à intense
+•	2 jours récupération active (marche légère, yoga, étirements)
+Signes de surentraînement:
+•	Fatigue persistante
+•	Insomnie
+•	Baisse performance
+•	Douleurs articulaires
+•	Irritabilité
+•	Stagnation perte de poids
+•	Infections fréquentes
+Si signes présents: Réduire à 5 jours + 2 repos complets
+Adaptation alimentaire:
+•	Suivre plan \"Très actif\" ou \"Extrêmement actif\"
+•	Calories suffisantes (ne pas sous-alimenter!)
+•	Protéines augmentées: +10-20g/jour
+•	Glucides suffisants pour énergie
+Jours intensité élevée:
+•	Petit-déjeuner copieux (énergie)
+•	Collation pré-effort
+•	Collation post-effort (récupération)
+Jours récupération:
+•	Portions normales
+•	Focus protéines (réparation muscle)
+•	Hydratation optimale
+Question: Combien de temps passez-vous en position assise chaque jour?
+MOINS DE 4H (EXCELLENT):
+Félicitations!
+•	Mode de vie très actif
+•	Bénéfices métaboliques importants
+•	Risque cardiovasculaire réduit
+Maintien:
+•	Continuer ce mode de vie
+•	Aucune adaptation particulière nécessaire
+POURSUIVEZ 👍
+4H-6H (ACCEPTABLE):
+Bon équilibre:
+•	Limite haute acceptable
+•	Viser réduire si possible
+Stratégies d'amélioration:
+•	Pauses actives toutes les heures (marcher 5min)
+•	Téléphone: marcher pendant appels
+•	Réunions en marchant si possible
+•	Trajets courts à pied
+Aucune adaptation alimentaire spécifique
+6H-8H (PRÉOCCUPANT):
+Sédentarité élevée:
+•	Impact négatif sur métabolisme
+•	Augmente résistance insuline
+•	Ralentit perte de poids
+•	Risques cardi";
+
+            case 'activites_preferees':
+                return "ovasculaires
+Actions correctives urgentes:
+Au travail/domicile:
+•	Alarme toutes les 30min: Se lever 2-3min
+•	Appels téléphoniques: Debout ou en marchant
+•	Déjeuner: Marche de 10min après
+•	Télévision: Faire étirements, marche sur place, squats pendant publicités
+•	Bureau debout: Si possible (improviser avec livres)
+•	Réunions: Proposer marche pour petits groupes
+Exercices \"micro-mouvements\" à faire assis:
+•	Lever jambes alternativement (sous bureau)
+•	Contractions abdominales
+•	Rotations épaules
+•	Étirements nuque
+•	Faire toutes les 15min
+Objectif: Réduire à < 6h en 4 semaines
+Adaptation alimentaire:
+•	Réduire légèrement portions glucides (-10%)
+•	Augmenter légumes (volume, satiété, peu calories)
+•	Exemple: Riz (130g au lieu de 150g) + double portion légumes
+PLUS DE 8H (CRITIQUE - DANGER SANTÉ):
+Alerte rouge:
+•	Sédentarité extrême
+•	Équivalent tabagisme pour santé
+•	Résistance insuline majeure
+•	Risque mortalité cardiovasculaire augmenté de 90%
+•	Perte de poids très difficile
+Plan d'action d'urgence:
+Règle \"30-3\":
+•	Toutes les 30 minutes: Se lever 3 minutes
+•	Non négociable, même en réunion
+Repenser l'environnement:
+•	Travail: Bureau ajustable, réunions debout, marche téléphone
+•	Maison: Limiter TV/écrans, activités debout (cuisine, ménage actif)
+•	Transport: Descendre 2 arrêts avant, marcher davantage
+Objectifs progressifs:
+•	Semaine 1-2: Mesurer temps assis réel (révélateur!)
+•	Semaine 3-4: Réduire 1h (7h assis)
+•	Semaine 5-6: Réduire encore 1h (6h assis)
+•	Semaine 7-8: Réduire à 5h assis
+•	Objectif final: < 4h assis/jour
+Exercice obligatoire:
+•	60 minutes activité modérée/jour MINIMUM pour compenser
+•	Répartir: 30min matin + 30min soir
+•	Ou 3 x 20min dans la journée
+Adaptation alimentaire sévère:
+•	Suivre plan niveau d'activité INFÉRIEUR à réel
+•	Exemple: Si \"Légèrement actif\" normalement → suivre plan \"Sédentaire\"
+•	Réduire glucides de 20%
+•	Augmenter protéines de 10% (préserver muscle)
+Repas adaptés:
+•	Petit-déjeuner: Bouillie + œufs (2) + noix - pas de pain
+•	Déjeuner: Riz + sauce + poisson + BEAUCOUP légumes 
+•	Dîner: Igname + haricots + poisson + salade 
+•	Collations: Uniquement fruits et légumes (pas de noix)
+Suivi médical:
+•	Risque cardiovasculaire à évaluer
+•	Glycémie, tension, cholestérol à surveiller étroitement
+Question: Quelles activités physiques appréciez-vous?
+MARCHE:
+Excellent choix!
+•	Accessible partout
+•	Gratuit
+•	Faible impact (articulations)
+•	Social (peut se faire en groupe)
+•	Adapté à tous niveaux
+Optimisation marche pour perte de poids:
+Marche modérée (peut parler):
+•	4-5 km/h
+•	30-60 minutes
+•	5-6 jours/semaine
+•	Brûle: 150-250 kcal/session
+Marche rapide (conversation difficile):
+•	5-6 km/h
+•	20-40 minutes
+•	3-4 jours/semaine
+•	Brûle: 200-350 kcal/session
+Marche par intervalles (optimal diabète):
+•	2min rapide / 3min modéré
+•	Répéter 6-8 fois
+•	Total: 30-40 minutes
+•	Améliore sensibilité insuline ++
+Progression marche (12 semaines):
+•	Semaines 1-4: 30min/jour, rythme modéré, 5 jours
+•	Semaines 5-8: 40min/jour, avec 2-3 intervalles, 5-6 jours
+•	Semaines 9-12: 60min/jour, avec 5-6 intervalles, 6 jours
+Moments optimaux (climat Bénin):
+•	6h-7h: Avant chaleur, glycémie à jeun OK si médicaments adaptés
+•	17h-18h: Après-midi, après collation
+•	Éviter: 12h-15h (chaleur excessive)
+Conseils pratiques:
+•	Chaussures: Confortables, soutien cheville
+•	Hydratation: Eau avant, pendant (si > 45min), après
+•	Protection: Chapeau, crème solaire
+•	Sécurité: Zones éclairées, accompagné si possible
+Alimentation autour de la marche:
+Pré-marche (si > 45min):
+•	30-60min avant: Banane (1) OU Pain complet (30g) + arachides (10g)
+Post-marche:
+•	Hydratation: Bissap sans sucre OU eau citronnée
+•	Si près d'un repas: repas normal
+•	Si entre repas: Fruit + quelques noix
+YOGA:
+Excellent pour diabète et obésité!
+Bénéfices spécifiques:
+•	Réduit stress (cortisol) → moins de stockage graisse abdominale
+•	Améliore sensibilité insuline
+•	Augmente force et flexibilité
+•	Faible impact (préserve articulations)
+•	Favorise conscience corporelle
+•	Améliore sommeil
+Types de yoga adaptés:
+Hatha Yoga (débutants):
+•	Postures douces
+•	Respiration
+•	Méditation
+•	Parfait pour commencer
+Vinyasa (intermédiaire):
+•	Plus dynamique
+•	Enchaînements fluides
+•	Cardio léger
+•	Quand habitué
+Yoga restaurateur (toujours):
+•	Récupération
+•	Étirements profonds
+•	Gestion stress
+•	1-2 fois/semaine
+Programme type semaine:
+•	3 jours yoga (45-60min)
+•	3 jours marche (30-40min)
+•	1 jour repos
+Postures particulièrement bénéfiques diabète:
+•	Torsions (stimulent pancréas)
+•	Inversions douces (circulation)
+•	Respiration profonde (stress)
+•	Relaxation finale (cortisol)
+Où pratiquer au Bénin:
+•	Studios yoga (Cotonou)
+•	YouTube (gratuit, chaîne français)
+•	Applications (Down Dog, Yoga Studio)
+•	Cours communautaires
+•	Chez soi (tapis simple suffit)
+Alimentation autour du yoga:
+Avant yoga (2-3h avant):
+•	Repas léger digeste
+•	Exemple: Bouillie légère (150g) + fruit
+Après yoga:
+•	Repas normal
+•	Hydratation
+•	Pas de besoins spécifiques
+AUTRE (natation, vélo, danse, sport...):
+NATATION:
+Bénéfices exceptionnels:
+•	Zéro impact articulations (parfait si surpoids important)
+•	Travail complet corps
+•	Rafraîchissant (chaleur Bénin)
+•	Brûle beaucoup de ca";
+
+            case 'fc_connaissance':
+                return "lories
+Où nager Bénin:
+•	Piscines hôtels (abonnement)
+•	Plages (Fidjrossè, Grand Popo) - attention sécurité
+•	Clubs sportifs
+Programme natation:
+•	Débutant: 20-30min, 2-3 fois/semaine
+•	Intermédiaire: 40-50min, 3-4 fois/semaine
+•	Style: Brasse (plus facile), crawl (plus intense)
+Adaptation alimentaire:
+•	Collation 1h avant si session > 45min: Banane + quelques arachides
+•	Hydratation++ après (même dans l'eau, on transpire!)
+VÉLO:
+Bénéfices:
+•	Cardio excellent
+•	Renforce jambes
+•	Transport utile (économie)
+•	Faible impact
+Au Bénin:
+•	Vélo urbain (trajets courts)
+•	VTT si disponible (chemins)
+•	Vélo appartement (salle ou maison)
+Programme:
+•	3-5 fois/semaine
+•	30-60 minutes
+•	Intensité modérée
+Sécurité routière importante!
+DANSE:
+Excellent choix culturel!
+Bénéfices:
+•	Cardio intense
+•	Plaisir (ne ressemble pas à \"exercice\")
+•	Social
+•	Culturellement riche
+•	Brûle 200-400 kcal/heure
+Danses béninoises:
+•	Danse traditionnelle (adjogan, gota...)
+•	Zumba béninoise
+•	Danses populaires
+Où danser:
+•	Événements communautaires
+•	Chez soi (musique)
+•	Cours de danse
+•	Fêtes (compter comme exercice!)
+Programme:
+•	3-4 fois/semaine
+•	30-45 minutes
+•	Intensité modérée à élevée
+SPORTS COLLECTIFS (football, basketball...):
+Bénéfices:
+•	Motivation groupe
+•	Plaisir
+•	Compétition saine
+•	Intensité élevée
+Adaptation nécessaire:
+•	Vérifier glycémie avant/après
+•	Collation si besoin
+•	Hydratation importante
+•	Progressivité (risque blessure)
+RENFORCEMENT MUSCULAIRE (poids du corps, élastiques...):
+Essentiel pour diabète!
+Pourquoi crucial:
+•	Muscle consomme glucose (améliore glycémie)
+•	Augmente métabolisme de base
+•	Préserve masse musculaire pendant perte poids
+•	Renforce os
+•	Améliore posture
+Programme minimum:
+•	2-3 fois/semaine
+•	20-30 minutes
+•	Tous les grands groupes musculaires
+Exercices poids du corps (gratuit, maison):
+•	Jambes: Squats, fentes, montées de chaise
+•	Haut corps: Pompes (murales si difficile), dips sur chaise
+•	Core: Planche, relevé bassin
+•	Dos: Superman, rowing avec bouteille d'eau
+Routine simple 20min (3 fois/semaine):
+1.	Squats: 3 séries de 10-15
+2.	Pompes murales: 3 séries de 10-15
+3.	Planche: 3 fois 20-30 secondes
+4.	Fentes: 3 séries de 10 par jambe
+5.	Relevé bassin: 3 séries de 15
+Adaptation alimentaire renforcement:
+•	Protéines suffisantes: 1,2-1,6g/kg poids corporel/jour
+•	Post-entraînement (30min après): Repas avec protéines (œufs, poisson, poulet)
+•	Exemple: Œufs (2) + pain complet + avocat
+NB : Si user choisit autre activité physique qu’il préfère hormis marche et yoga, tu lui balance les autres activités se trouvant en haut pour mla question précédentes
+
+Question: Connaissez-vous votre fréquence cardiaque au repos?
+SI OUI (voir question suivante pour analyse selon valeur):
+Bonne démarche!
+•	Indicateur santé cardiovasculaire
+•	Permet ajuster intensité entraînement
+•	Suivre progression
+SI NON:
+Recommandation: Apprendre à la mesurer
+Méthode simple (sans équipement):
+1.	Au réveil, avant lever
+2.	Trouver pouls: Poignet (artère radiale) ou cou (carotide)
+3.	Compter battements pendant 60 secondes
+4.	OU: Compter 15 secondes x 4
+5.	Noter pendant 7 jours, faire moyenne
+Méthode avec smartphone:
+•	Applications gratuites (Instant Heart Rate)
+•	Caméra + flash détectent pouls
+•	Précis si bien fait
+Valeurs de référence (adultes):
+•	60-80 bpm: Normal
+•	< 60 bpm: Très bon (athlète) ou bradycardie (consulter si symptômes)
+•	> 80 bpm: Élevé (déconditionnement ou problème médical)
+Intérêt de connaître FC repos:
+•	Calculer FC cible pour exercice
+•	Surveiller progrès: FC diminue avec meilleure forme
+•	Détecter surentraînement: FC anormalement élevée = repos nécessaire
+•	Alerte santé: Changement soudain = consulter
+Formule Karvonen (FC cible entraînement):
+•	FC Max théorique = 220 - âge
+•	Réserve cardiaque = FC Max - FC repos
+•	FC cible modérée (60-70%) = (Réserve x 0,60 à 0,70) + FC repos
+•	FC cible intense (70-85%) = (Réserve x 0,70 à 0,85) + FC repos
+Exemple: 40 ans, FC repos 75 bpm
+•	FC Max = 220 - 40 = 180 bpm
+•	Réserve = 180 - 75 = 105 bpm
+•	FC modérée = (105 x 0,60) + 75 = 138 bpm à (105 x 0,70) + 75 = 148 bpm
+•	FC intense = (105 x 0,70) + 75 = 148 bpm à (105 x 0,85) + 75 = 164 bpm
+Aucune adaptation alimentaire spécifique
+Question: Si oui, veuillez nous la donner? (FC repos)
+o	Calcul de votre fréquence cardiaque maximale FC max : 
+Pour effectuer ce calcul, nous allons utiliser la formule de Tanaka qui est FCmax = 208 - (0.7 * âge) [Calculé dynamiquement : " . round(208 - (0.7 * $age)) . " bpm] dont l’unité est le bpm (battement par minute).
+Zones d'entraînement :
+ZONE 1 : Très légère (50-60% FCM)
+- Récupération active
+- Échauffement
+
+ZONE 2 : Légère (60-70% FCM) ⭐ OPTIMAL PERTE POIDS DURABLE
+- Utilisation graisses maximale
+- Conversation facile
+- Durée longue possible
+
+ZONE 3 : Modérée (70-80% FCM) ⭐ OPTIMAL SANTÉ CARDIO
+- Amélioration endurance
+- Conversation possible mais essoufflé
+
+ZONE 4 : Difficile (80-90% FCM)
+- Anaérobie, seuil lactique
+- Amélioration performance
+- Pas recommandé débutants
+
+ZONE 5 : Maximale (90-100% FCM)
+- Sprint, très court
+- Déconseillé sauf sportifs confirmés
+RECOMMANDATIONS DIABÈTE + OBÉSITÉ :
+Cible principale : ZONES 2-3 (60-80% FCM)
+•	Sécuritaire
+•	Efficace perte poids
+•	Améliore santé métabolique
+•	Durable
+Comment mesurer FC pendant exercice :
+•	Méthode manuelle : doigts sur poignet/cou, compter 15 sec x4
+•	Montre connectée : si disponible (Fitbit, Garmin, Apple Watch)
+•	Sensation subjective : échelle effort perçu
+
+Échelle effort perçu (si pas mesure FC) :
+1-2 : Très facile (repos, marche très lente)
+3-4 : Facile (conversation sans problème) → ZONE 2
+5-6 : Modéré (conversation possible, essoufflé léger) → ZONE 3
+7-8 : Difficile (mots courts seulement) → ZONE 4
+9-10 : Très difficile/maximal (impossible parler) → ZONE 5
+Cible : rester entre 4-6 sur échelle (Zones 2-3)
+⚠️ PRÉCAUTIONS SI BÊTA-BLOQUANTS :
+Si vous prenez bêta-bloquants (tension) :
+•	FC ne monte pas normalement
+•	Zones FC classiques non applicables
+•	Utiliser échelle effort perçu exclusivement
+•	Viser 4-6 sur 10
+•	Ne pas se fier à FC basse (trompeur)
+Surveillance :
+•	Glycémie et fréquence corrélées
+•	Si FCR de repos élevée (>80 bpm) : peut signaler stress, déconditionnement ou surchage pondérale, donc, ajuster l’activité progressivement.
+Analyse selon valeur fournie:
+< 50 BPM (BRADYCARDIE):
+Deux possibilités:
+1. Si athlète bien entraîné:
+•	Excellent signe!
+•	Cœur très efficace
+•	Pas d'inquiétude
+2. Si peu actif:
+•	Consulter médecin
+•	Peut indiquer: 
+o	Problème conduction cardiaque
+o	Hypothyroïdie
+o	Effet médicaments (bêta-bloquants)
+•	Action: Bilan cardiaque (ECG)
+Aucune adaptation alimentaire spécifique si asymptomatique
+50-60 BPM (TRÈS BON):
+Excellent état cardiovasculaire!
+•	Cœur efficace
+•	Bonne condition physique
+•	Continuer activités
+•	Ou résultat entraînement régulier
+Maintenir par:
+•	Exercice régulier 5-6 jours/semaine
+•	Activité cardio 30-60min
+•	Alimentation équilibrée
+60-70 BPM (TRÈS BON À NORMAL):
+Santé cardiovasculaire bonne
+•	Plage normale-optimale
+•	Marge d'amélioration possible
+Objectif: Abaisser vers 60 bpm avec entraînement
+Stratégie:
+•	Augm";
+
+            case 'stress_ennui':
+                return "enter fréquence exercice à 5-6 jours
+•	Ajouter intervalles haute intensité 2 fois/semaine
+•	Renforcement musculaire 2-3 fois/semaine
+Suivi: Mesurer FC repos 1 fois/semaine, devrait diminuer progressivement
+70-80 BPM (NORMAL MAIS PERFECTIBLE):
+Seuil haut de la normale
+•	Pas d'alerte médicale
+•	Mais peut et devrait être amélioré
+Actions:
+•	Exercice régulier obligatoire: 5-6 jours/semaine minimum
+•	Cardio modéré: 40-60 minutes
+•	Gestion stress: Méditation, yoga, respiration
+•	Sommeil: 7-8h/nuit
+•	Tabac: Arrêt absolu (si fumeur)
+Objectif: Descendre vers 65 bpm en 3-6 mois
+Adaptations mode de vie:
+•	Augmenter activité quotidienne (marche, escaliers)
+•	Réduire stimulants: Café limité à 2 tasses/jour avant 14h
+•	Hydratation: 2L eau/jour
+80-90 BPM (ÉLEVÉ - ATTENTION):
+Au-dessus de normal:
+•	Déconditionnement cardiovasculaire
+•	Possible début problèmes métaboliques
+•	Consultation médicale conseillée
+Causes possibles:
+•	Sédentarité
+•	Obésité
+•	Stress chronique
+•	Apnée du sommeil (si présente)
+•	Déshydratation
+•	Anémie
+•	Hyperthyroïdie
+•	Médicaments
+Actions urgentes:
+1. Bilan médical:
+•	Consultation cardiologue
+•	ECG repos
+•	Bilan thyroïde (TSH)
+•	Hémoglobine (anémie?)
+2. Exercice progressif obligatoire:
+•	Débuter marche quotidienne 20-30min
+•	Augmenter progressivement durée et intensité
+•	Objectif: FC devrait diminuer de 5-10 bpm en 2-3 mois
+3. Gestion stress:
+•	Techniques respiration (cohérence cardiaque)
+•	Méditation 10min/jour
+•	Yoga ou étirements
+4. Sommeil:
+•	7-8h/nuit non négociable
+•	Traiter apnée si présente
+Adaptations alimentaires:
+•	Réduire stimulants: Maximum 1 café/jour, avant 10h
+•	Magnésium: Noix de cajou (20g/jour), banane plantain, épinards, haricots
+•	Potassium: Banane plantain, avocat, patate douce
+•	Oméga-3: Sardines, maquereaux (2-3 fois/semaine)
+•	Hydratation: 2-3L eau/jour
+Repas cardio-protecteurs:
+•	Petit-déjeuner: Bouillie mil + banane + noix de cajou 
+•	Déjeuner: Fonio + sauce feuilles (épinards) + sardines + patate douce
+•	Dîner: Igname + haricots + maquereaux + salade avocat
+•	Collation: Banane plantain grillée + noix
+> 90 BPM (TRÈS ÉLEVÉ - URGENT):
+Tachycardie au repos - consulter rapidement!
+Causes sérieuses possibles:
+•	Problème cardiaque
+•	Hyperthyroïdie
+•	Anémie sévère
+•	Déshydratation chronique
+•	Infection
+•	Anxiété sévère
+•	Effet médicaments
+ACTIONS IMMÉDIATES:
+1. Consultation médicale urgente:
+•	Cardiologue dans la semaine
+•	ECG + Holter 24h
+•	Bilan complet: TSH, hémoglobine, électrolytes
+2. Éviter en attendant:
+•	Exercice intense (marche légère OK)
+•	Stimulants (café, thé, alcool)
+•	Stress
+•	Chaleur excessive
+3. Mesures immédiates:
+•	Hydratation optimale (2-3L/jour)
+•	Repos suffisant
+•	Gestion stress
+•	Sommeil 8h
+Exercice adapté (après avis médical):
+•	Marche très légère 15-20min
+•	Pas de fc cible (ne pas monter FC)
+•	Progression ultra lente
+Alimentation:
+•	Suivre recommandations 80-90 bpm
+•	Encore plus vigilant sur stimulants
+•	Sel modéré (ni trop ni trop peu)
+•	Électrolytes équilibrés
+Suivi: FC repos quotidienne, noter dans journal
+ADAPTATIONS SELON COMPORTEMENTS ALIMENTAIRES
+Question: Mangez-vous souvent par stress ou ennui?
+SI OUI (ALIMENTATION ÉMOTIONNELLE):
+Problème majeur pour perte de poids:
+•	Apports caloriques incontrôlés
+•	Choix aliments mauvais (confort food riche)
+•	Culpabilité → plus de stress → plus de nourriture (cercle vicieux)
+•	Perte de connexion signaux faim/satiété
+Identifier les déclencheurs:
+Stress:
+•	Travail, finances, famille, santé
+•";
+
+            case 'finir_assiette':
+                return "Moment: fin journée souvent
+•	Aliments: Sucrés, gras, réconfortants
+Ennui:
+•	Inactivité, temps libre non structuré
+•	Moment: soirées, week-ends
+•	Aliments: Grignotage continu
+Autres émotions:
+•	Tristesse, solitude, anxiété, colère, fatigue
+Stratégies alternatives (remplacer nourriture):
+POUR LE STRESS:
+1.	Respiration profonde (5min): Inspirer 4 sec, retenir 4 sec, expirer 4 sec
+2.	Marche (10-15min): Extérieur si possible
+3.	Écriture journal: Noter émotions, pas les manger
+4.	Appel ami/famille: Connexion sociale
+5.	Prière/méditation: Selon croyances
+6.	Musique apaisante: Playlist relaxation
+7.	Activité manuelle: Tressage, artisan at, jardinage
+POUR L'ENNUI:
+1.	Liste activités plaisir (préparer à l'avance): Lecture, puzzle, jeux, marche, visite ami
+2.	Projet créatif: Apprendre nouvelle compétence
+3.	Rangement/organisation: Occuper mains et esprit
+4.	Bénévolat: Aider autres, donner sens
+5.	Activité physique: Marche, danse, yoga
+Technique \"STOP\" (avant de manger émotionnellement):
+•	S (Stop): Arrêter, ne pas ouvrir frigo automatiquement
+•	T (Take a breath): Respirer profondément 3 fois
+•	O (Observe): \"Ai-je vraiment faim ou est-ce une émotion?\"
+•	P (Proceed mindfully): Décider consciemment: manger OU stratégie alternative
+Si décision de manger quand même:
+•	Portion contrôlée: Petit bol, pas paquet entier
+•	Choix sain: Fruit, légumes, noix (pas beignets, sucreries)
+•	Manger consciemment: Assis, lentement, sans distraction
+•	Pas de culpabilité: Un écart ne détruit pas tout, reprendre ensuite
+Restructuration environnement:
+•	Éliminer tentations: Ne pas acheter aliments \"émotionnels\"
+•	Aliments sains visibles: Fruits sur table, noix pré-portionnées
+•	Aliments problématiques cachés: Difficile d'accès (si impossble d'éliminer)
+Planification repas stricte:
+•	3 repas + 2 collations à heures fixes
+•	Repas suffisamment copieux (évite fringales)
+•	Si envie manger hors planning: ATTENDRE 15min, souvent passe
+Adaptations alimentaires:
+•	Repas riches en protéines: Satiété prolongée (moins de fringales émotionnelles)
+•	Glucides complexes: Stabilité glycémique et humeur
+•	Oméga-3: Améliore humeur (poissons gras 3 fois/semaine)
+•	Magnésium: Réduit stress (noix, banane plantain, épinards, haricots)
+Repas anti-stress:
+•	Petit-déjeuner: Bouillie mil + œufs (2) + noix de cajou (15g) + banane 
+o	Tryptophane (œufs) + magnésium (noix, banane) = apaisement
+•	Déjeuner: Fonio + sauce feuilles (épinards) + sardines + patate douce 
+o	Oméga-3 (sardines) + B6 (patate) = régulation humeur
+•	Dîner: Igname + haricots + maquereaux + avocat + sala";
+
+            case 'regime_particulier':
+                return "de 
+o	Protéines + bons gras = satiété nocturne
+Collations \"émotionnelles saines\" (si VRAIMENT besoin):
+•	Noix de cajou (15g) - manger lentement, une par une
+•	Carotte + concomb";
+
+            case 'regime_efficacite':
+                return "re (volume, croquant satisfaisant)
+•	Papaye (150g) - sucre naturel, pas culpabilisant
+•	Bissap sans sucre (réconfort liquide chaud/froid)
+Soutien psychologique:
+•	Thérapie comportementale (TCC) très efficace
+•	Groupe de soutien
+•	Application de pleine conscience (Headspace, Calm)
+SI NON:
+Excellent! Grande force pour réussite:
+•	Alimentation guidée par faim physiologique
+•	Contrôle meilleur
+•	Maintenir cette habitude
+Prévention:
+•	Rester vigilant périodes de stress
+•	Techniques de gestion stress préventives
+•	Activité physique régulière (régule humeur)
+•	Sommeil suffisant (régule hormones appétit/humeur)
+Question: Avez-vous tendance à finir votre assiette même si vous n'avez plus faim?
+SI OUI (PROBLÈME FRÉQUENT):
+Origines du comportement:
+•	Éducation: \"Ne gaspille pas\", \"Finis ton assiette\"
+•	Habitude culturelle
+•	Déconnexion signaux satiété
+•	Manger vite (cerveau n'a pas temps de signaler satiété)
+Conséquences:
+•	Apports caloriques excessifs (200-500 kcal supplémentaires/jour)
+•	Surcharge digestive
+•	Prise de poids ou stagnation perte
+•	Inconfort abdominal
+Stratégies de rééducation:
+1. RECONNAÎTRE SATIÉTÉ:
+•	Échelle faim 1-10: 
+o	1-2: Très faim, estomac gargouille
+o	3-4: Faim modérée
+o	5-6: Confortable, ni faim ni plein ← ARRÊTER ICI
+o	7-8: Légèrement trop mangé
+o	9-10: Inconfortablement plein
+•	Objectif: Arrêter à 6/10
+2. MANGER LENTEMENT:
+•	Poser couverts entre bouchées
+•	Mâcher 20-30 fois par bouchée
+•	Pause milieu de repas: 2-3min, évaluer faim
+•	Durée repas: Minimum 20min (satiété commence après 15-20min)
+3. PORTIONS ADAPTÉES DÈS LE DÉBUT:
+•	Utiliser assiettes plus petites (illusion visuelle)
+•	Méthode de la main: 
+o	Glucides: poing fermé
+o	Protéines: paume de main
+o	Légumes: 2 poings ou plus
+o	Lipides: pouce
+•	Se resservir si vraiment faim (mais attendre 10min)
+4. ACCEPTER DE LAISSER:
+•	Restes = pas de gaspillage: Conserver pour prochain repas
+•	Reprogrammer mental: \"Respecter mon corps > finir assiette\"
+•	Si portion restaurant trop grande: Demander emporter dès le début
+5. PLEINE CONSCIENCE (MINDFUL EATING):
+•	Manger sans distractions: Pas TV, téléphone, lecture
+•	Apprécier chaque bouchée: Goût, texture, température
+•	Écouter son corps: \"Ai-je encore faim?\"
+•	Gratitude: Remercier pour nourriture
+Exercice pratique (2 semaines):
+•	Semaine 1: Noter échelle de faim avant/après chaque repas
+•	Semaine 2: S'arrêter à 6/10, même si reste dans assiette
+Adaptations repas:
+•	Commencer par légumes/salade: Remplissent estomac, fibres
+•	Protéines en 2ème: Satiété
+•	Glucides en dernier: Si encore faim à ce stade
+•	Exemple ordre: 
+1.	Salade verte
+2.	Sauce avec légumes
+3.	Poisson/poulet
+4.	Riz/igname/pâte
+Portions visuelles initiales (pour ne pas trop se servir):
+•	Assiette de 23cm (moyenne): 
+o	1/2 légumes
+o	1/4 protéines
+o	1/4 glucides
+Gestion sociale/familiale:
+•	Expliquer entourage: \"Je travaille sur mes signaux de satiété\"
+•	Servir soi-même: Contrôle portions
+•	Refuser poliment resservir: \"C'était délicieux mais je suis satisfait\"
+SI NON:
+Excellente capacité d'écoute corporelle!
+•	Atout majeur pour gestion poids
+•	Continuer à respecter signaux satiété
+Maintien:
+•	Rester attentif même si habitude établie
+•	Vigilance lors de repas très appétissants (tentation finir)
+•	Continuer manger lentement et consciemment
+Question: Avez-vous déjà suivi un régime alimentaire particulier?
+Nous vous remercions pour votre réponse. Pour vous accompagner dans vos expériences, nous avons élaborer un cadre d’analyse qui vous aidera à comprendre l’efficacité de votre ancien régime et le pourquoi. 
+CADRE D'ANALYSE :
+VÉGÉTARIEN/VÉGÉTALIEN:
+•	Adapter protéines animales par légumineuses (haricots, pois, lentilles)
+•	Exemple: Riz + haricots rouges + légumes + avocat
+•	Supplémenter B12 si végétalien strict
+•	Fer: haricots + vitamine C (tomate, citron) pour absorption
+SANS GLUTEN (si intolérance/maladie cœliaque):
+•	Remplacer pâte/pain par: Riz, fonio, maïs, igname, patate douce
+•	Plans fournis déjà majoritairement sans gluten (base riz, tubercules)
+•	Vérifier sauces (pas de bouillons cube avec gluten)
+PALÉO/LOW CARB/KETO (si intérêt):
+•	Non recommandé pour diabète type 2 (controversé)
+•	Glucides complexes nécessaires (cerveau, énergie, fibres)
+•	Si insistance: Minimum 100-150g glucides/jour (pas moins!)
+JEÛNE INTERMITTENT:
+•	Peut être adapté SI: 
+o	Pas d'insuline (risque hypoglycémie)
+o	Pas de metformine seule à jeun (malaises)
+o	Suivi médical
+•	Fenêtre alimentaire: 12h-20h (saute petit-déjeuner)
+•	Adapter: 2 gros repas + 1 collation dans fenêtre
+•	Surveillance glycémie stricte
+Recommandation générale:
+•	Privilégier approche équilibrée (plans fournis)
+•	Régimes restrictifs = risque échec, carences
+•	Consulter médecin/nutritionniste si régime spécifique souhaité";
+
+            default:
+                return 'Aucun';
+        }
+    }
+}

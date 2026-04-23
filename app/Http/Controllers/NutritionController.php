@@ -412,7 +412,7 @@ class NutritionController extends Controller
             if ($user->maladie_chronique_id == 2) {
                 $recommandation = $this->getSevereRecommendation($rep->question_id, $text, $pathologies);
             } else if ($user->maladie_chronique_id == 1) {
-                $recommandation = $this->getModerateRecommendation($rep->question_id, $text, $responsesMap, $pathologies);
+                $recommandation = $this->getModerateRecommendation($rep->question_id, $text, $responsesMap, $pathologies, $user, $objective, $weightLossRange);
             }
 
             $qaData[] = [
@@ -448,6 +448,25 @@ class NutritionController extends Controller
             'qa' => $qaData,
             'menu' => $guideData['menu_journalier'],
             'plan_intervention' => [], // <-- Laissé vide car les reco sont passées dans $qa
+
+            'show_diabetes_fitness_extras' => (stripos($objective, 'forme physique') !== false && $pathologies['diabetes']),
+            'show_hypertension_fitness_extras' => (stripos($objective, 'forme physique') !== false && $pathologies['hypertension']),
+            'show_cardio_fitness_extras' => (stripos($objective, 'forme physique') !== false && $pathologies['cardio']),
+            'show_weight_loss_under_5_diabetes_extras' => (stripos($objective, 'perte') !== false || stripos($objective, 'perdre') !== false) && stripos($weightLossRange, 'moins de 5') !== false && $pathologies['diabetes'],
+            'show_weight_loss_under_5_hypertension_extras' => (stripos($objective, 'perte') !== false || stripos($objective, 'perdre') !== false) && stripos($weightLossRange, 'moins de 5') !== false && $pathologies['hypertension'],
+            'show_weight_loss_under_5_cardio_extras' => (stripos($objective, 'perte') !== false || stripos($objective, 'perdre') !== false) && stripos($weightLossRange, 'moins de 5') !== false && $pathologies['cardio'],
+            'show_weight_loss_5_10_diabetes_extras' => (stripos($objective, 'perte') !== false || stripos($objective, 'perdre') !== false) && stripos($weightLossRange, '5 - 10') !== false && $pathologies['diabetes'],
+            'show_weight_loss_5_10_hypertension_extras' => (stripos($objective, 'perte') !== false || stripos($objective, 'perdre') !== false) && stripos($weightLossRange, '5 - 10') !== false && $pathologies['hypertension'],
+            'show_weight_loss_5_10_cardio_extras' => (stripos($objective, 'perte') !== false || stripos($objective, 'perdre') !== false) && stripos($weightLossRange, '5 - 10') !== false && $pathologies['cardio'],
+            'show_weight_loss_over_10_diabetes_extras' => (stripos($objective, 'perte') !== false || stripos($objective, 'perdre') !== false) && stripos($weightLossRange, 'plus de 10') !== false && $pathologies['diabetes'],
+            'show_weight_loss_over_10_hypertension_extras' => (stripos($objective, 'perte') !== false || stripos($objective, 'perdre') !== false) && stripos($weightLossRange, 'plus de 10') !== false && $pathologies['hypertension'],
+            'show_weight_loss_over_10_cardio_extras' => (stripos($objective, 'perte') !== false || stripos($objective, 'perdre') !== false) && stripos($weightLossRange, 'plus de 10') !== false && $pathologies['cardio'],
+
+            'show_weight_loss_under_5_no_pathology_extras' => (stripos($objective, 'perte') !== false || stripos($objective, 'perdre') !== false) && stripos($weightLossRange, 'moins de 5') !== false && !$pathologies['diabetes'] && !$pathologies['hypertension'] && !$pathologies['cardio'],
+            'show_weight_loss_5_10_no_pathology_extras' => (stripos($objective, 'perte') !== false || stripos($objective, 'perdre') !== false) && stripos($weightLossRange, '5 - 10') !== false && !$pathologies['diabetes'] && !$pathologies['hypertension'] && !$pathologies['cardio'],
+            'show_weight_loss_over_10_no_pathology_extras' => (stripos($objective, 'perte') !== false || stripos($objective, 'perdre') !== false) && stripos($weightLossRange, 'plus de 10') !== false && !$pathologies['diabetes'] && !$pathologies['hypertension'] && !$pathologies['cardio'],
+            'show_fitness_no_pathology_extras' => (stripos($objective, 'forme physique') !== false && !$pathologies['diabetes'] && !$pathologies['hypertension'] && !$pathologies['cardio']),
+
 
             'severe_advice' => ($user->maladie_chronique_id == 2)
                 ? $this->severeObesityService->getGeneralAdvice(
@@ -764,7 +783,15 @@ class NutritionController extends Controller
             ],
             'qa' => $qaData, // Or populated better
             'menu' => $guideData['menu_journalier'],
-            'plan_intervention' => $interventionPlan // We can pass this to the view to render specific advice blocks
+            'plan_intervention' => $interventionPlan, // We can pass this to the view to render specific advice blocks
+            'show_diabetes_fitness_extras' => (stripos($objective, 'forme physique') !== false && $pathologies['diabetes']),
+            'show_hypertension_fitness_extras' => (stripos($objective, 'forme physique') !== false && $pathologies['hypertension']),
+            'show_cardio_fitness_extras' => (stripos($objective, 'forme physique') !== false && $pathologies['cardio']),
+            'show_weight_loss_under_5_diabetes_extras' => (stripos($objective, 'perte') !== false || stripos($objective, 'perdre') !== false) && stripos($weightLossRange, 'moins de 5') !== false && $pathologies['diabetes'],
+            'show_weight_loss_under_5_hypertension_extras' => (stripos($objective, 'perte') !== false || stripos($objective, 'perdre') !== false) && stripos($weightLossRange, 'moins de 5') !== false && $pathologies['hypertension'],
+            'show_weight_loss_under_5_cardio_extras' => (stripos($objective, 'perte') !== false || stripos($objective, 'perdre') !== false) && stripos($weightLossRange, 'moins de 5') !== false && $pathologies['cardio'],
+            'show_weight_loss_5_10_diabetes_extras' => (stripos($objective, 'perte') !== false || stripos($objective, 'perdre') !== false) && stripos($weightLossRange, '5 - 10') !== false && $pathologies['diabetes'],
+            'show_weight_loss_5_10_hypertension_extras' => (stripos($objective, 'perte') !== false || stripos($objective, 'perdre') !== false) && stripos($weightLossRange, '5 - 10') !== false && $pathologies['hypertension'],
         ];
 
         // Enhance Q&A: Try to map the specific advice blocks from $interventionPlan to the Q&A if possible
@@ -1674,7 +1701,7 @@ class NutritionController extends Controller
         return $this->severeObesityService->getRecommendation($key, $responseText, $pathology);
     }
 
-    private function getModerateRecommendation($questionId, $text, $responsesMap, $pathologies)
+    private function getModerateRecommendation($questionId, $text, $responsesMap, $pathologies, $user, $objective, $weightLossRange = '')
     {
         $mapping = $this->resolveDynamicMapping(1);
         $reverseMapping = array_flip($mapping);
@@ -1683,66 +1710,74 @@ class NutritionController extends Controller
             return '';
         $key = $reverseMapping[$questionId];
 
-        $content = '';
+        $age = $user->age ?? 30;
 
-        switch ($key) {
-            case 'antecedents_diag':
-            case 'antecedents_lequel':
-                $moderateService = app(\App\Services\ModerateObesityRecommendationService::class);
-                $content = $moderateService->getRecommendation($key, $text);
-                break;
-
-            case 'meds_lies':
-            case 'meds_types':
-                $q70 = $responsesMap[$mapping['meds_types'] ?? 0]['text'] ?? '';
-                $q69 = $responsesMap[$mapping['meds_lies'] ?? 0]['text'] ?? '';
-                $combinedText = $q70 . ' ' . $q69;
-
-                if ((empty($q70) && empty($q69)) || str_contains(mb_strtolower($combinedText), 'non')) {
-                    if ($key == 'meds_types')
-                        $content = "✅ Aucun traitement médicamenteux : Prévention par l'alimentation équilibrée.";
-                } else {
-                    $medsTable = [
-                        ['keywords' => ['Hydrochlorothiazide', 'Indapamide', 'Chlortalidone', 'diurétiques', 'thiazidiques'], 'line' => "Classe : Diurétiques thiazidiques (ex: Hydrochlorothiazide, Indapamide...)\nRôle : Diminuent le volume sanguin → réduisent la tension\nPoints spécifiques : Souvent utilisés en première intention chez les obèses\nConseils : Boire suffisamment d’eau. Consommer des aliments riches en potassium si autorisé (banane, épinards). Limiter le sel."],
-                        ['keywords' => ['Enalapril', 'Ramipril', 'Périndopril', 'Lisinopril', 'IEC', 'Inhibiteurs de l’enzyme de conversion'], 'line' => "Classe : Inhibiteurs de l’enzyme de conversion (IEC)\nRôle : Dilatent les vaisseaux, protègent cœur et reins\nPoints spécifiques : Indiqués si risque de diabète ou atteinte rénale\nConseils : Limiter le sel. Maintenir un poids stable. Favoriser fruits et légumes riches en fibres. Surveiller la fonction rénale et la tension."],
-                        ['keywords' => ['Losartan', 'Valsartan', 'Candesartan', 'Telmisartan', 'ARA II', 'ARA', 'Antagonistes'], 'line' => "Classe : Antagonistes des récepteurs de l’angiotensine II (ARA II)\nRôle : Proches des IEC mais mieux tolérés (moins de toux)\nPoints spécifiques : Très utilisés chez les obèses hypertendus\nConseils : Même conseils que les IEC. Maintenir activité physique régulière. Éviter l’excès de sel et d’alcool."],
-                        ['keywords' => ['Bisoprolol', 'Métoprolol', 'Carvedilol', 'Atenolol', 'Bêta-bloquants', 'Bloquants'], 'line' => "Classe : Bêta-bloquants (ex: Bisoprolol, Métoprolol...)\nRôle : Ralentissent le cœur et réduisent la tension\nPoints spécifiques : Utiles si cardiopathie associée, mais peuvent favoriser la prise de poids\nConseils : Contrôler l’apport calorique pour éviter prise de poids. Activité physique régulière adaptée. Limiter caféine et stimulants."],
-                        ['keywords' => ['Amlodipine', 'Nifédipine', 'Diltiazem', 'Vérapamil', 'Antagonistes calciques', 'calciques'], 'line' => "Classe : Antagonistes calciques (ex: Amlodipine, Nifédipine...)\nRôle : Dilatent les artères, réduisent la pression\nPoints spécifiques : Intéressants si HTA isolée (surtout chez les personnes âgées)\nConseils : Limiter le sel. Maintenir un poids stable. Activité physique régulière. Surveiller gonflement des chevilles (effet secondaire possible)."],
-                        ['keywords' => ['Doxazosine', 'Méthyldopa', 'Clonidine', 'Alpha-bloquants', 'Antihypertenseurs centraux', 'Autres'], 'line' => "Classe : Autres (Alpha-bloquants, Antihypertenseurs centraux)\nRôle : Utilisés rarement, en cas d’échec ou de situations spécifiques\nPoints spécifiques : Plus souvent réservés à des cas complexes\nConseils : Suivi médical strict. Éviter arrêt brutal. Maintenir alimentation équilibrée et activité physique adaptée. Surveillance tensionnelle régulière."],
-                        ['keywords' => ['Metformine'], 'line' => "Classe : Médicaments pour baisser la glycémie (Metformine)\nConseils Spécifiques : Prendre PENDANT ou APRÈS le repas. Boire suffisamment. Éviter repas trop gras pour limiter les troubles digestifs."],
-                        ['keywords' => ['Glimepiride', 'Gliclazide', 'Sitagliptine', 'Dapagliflozine', 'Sulfamides'], 'line' => "Classe : Autres médicaments de glycémie (Sulfamides, etc.)\nConseils Spécifiques : Risque d'hypoglycémie → ne jamais sauter un repas. Avoir toujours une source de glucides (jus, banane) à portée de main."],
-                        ['keywords' => ['Insuline'], 'line' => "Classe : Insuline\nConseils Critiques : Synchronisation PARFAITE insuline-repas obligatoire. Jamais sauter de repas. Mesurer la glycémie avant d'injecter."],
-                        ['keywords' => ['Orlistat', 'Xenical'], 'line' => "Classe : Médicaments pour perdre du poids (Orlistat)\nConseils Spécifiques : Limiter les graisses à 15g par repas max. Répartir les graisses sur les 3 repas. Cuisson sans gras à prioriser."],
-                        ['keywords' => ['Liraglutide', 'Victoza', 'Saxenda'], 'line' => "Classe : Médicaments pour perdre du poids (Liraglutide)\nConseils Spécifiques : Faire de petites portions car l'estomac se vide plus lentement. Fractionner en 5-6 petits repas, manger très lentement."],
-                        ['keywords' => ['Statines', 'Atorvastatine', 'Simvastatine', 'Rosuvastatine', 'Cholestérol'], 'line' => "Classe : Médicaments pour le cholestérol (Statines)\nInteraction Majeure : ÉVITER COMPLÈTEMENT LE JUS DE PAMPLEMOUSSE. Prise de préférence le soir. Attention aux douleurs musculaires."]
-                    ];
-
-                    $foundLines = [];
-                    foreach ($medsTable as $med) {
-                        foreach ($med['keywords'] as $keyword) {
-                            if (stripos($combinedText, $keyword) !== false) {
-                                $foundLines[] = $med['line'];
-                                break;
-                            }
-                        }
-                    }
-
-                    if (count($foundLines) > 0) {
-                        $content = rtrim(implode("\n\n---\n\n", $foundLines));
-                    } else {
-                        // Regex fallback for legacy cases if no keyword matched perfectly but meds entered
-                        $content = "✅ Traitement spécifique mentionné : Respectez scrupuleusement les prescriptions médicales et évitez le jus de pamplemousse par précaution avec votre alimentation.";
-                    }
-                }
-                break;
-
-            default:
-                $moderateService = app(\App\Services\ModerateObesityRecommendationService::class);
-                $content = $moderateService->getRecommendation($key, $text);
-                break;
+        if ($objective === 'Améliorer sa forme physique') {
+            if ($pathologies['diabetes']) {
+                $service = app(\App\Services\FitnessDiabetesRecommendationService::class);
+                return $service->getRecommendation($key, $text, $responsesMap, $age);
+            } elseif ($pathologies['hypertension']) {
+                $service = app(\App\Services\FitnessHypertensionRecommendationService::class);
+                return $service->getRecommendation($key, $text, $responsesMap, $age);
+            } elseif ($pathologies['cardio']) {
+                $service = app(\App\Services\FitnessCardioRecommendationService::class);
+                return $service->getRecommendation($key, $text, $responsesMap, $age);
+            } else {
+                $service = app(\App\Services\FitnessNoPathologyRecommendationService::class);
+                return $service->getRecommendation($key, $text, $responsesMap, $age);
+            }
         }
 
-        return $content;
+        if ($objective === 'Perdre du poids') {
+            if (str_contains(strtolower($weightLossRange), 'moins de 5')) {
+                if ($pathologies['diabetes']) {
+                    $service = app(\App\Services\WeightLossUnder5DiabetesRecommendationService::class);
+                    return $service->getRecommendation($key, $text, $responsesMap, $age);
+                } elseif ($pathologies['hypertension']) {
+                    $service = app(\App\Services\WeightLossUnder5HypertensionRecommendationService::class);
+                    return $service->getRecommendation($key, $text, $responsesMap, $age);
+                } elseif ($pathologies['cardio']) {
+                    $service = app(\App\Services\WeightLossUnder5CardioRecommendationService::class);
+                    return $service->getRecommendation($key, $text, $responsesMap, $age);
+                } else {
+                    $service = app(\App\Services\WeightLossUnder5NoPathologyRecommendationService::class);
+                    return $service->getRecommendation($key, $text, $responsesMap, $age);
+                }
+            } elseif (str_contains(strtolower($weightLossRange), '5') && str_contains(strtolower($weightLossRange), '10')) {
+                if ($pathologies['diabetes']) {
+                    $service = app(\App\Services\WeightLoss5to10DiabetesRecommendationService::class);
+                    return $service->getRecommendation($key, $text, $responsesMap, $age);
+                } elseif ($pathologies['hypertension']) {
+                    $service = app(\App\Services\WeightLoss5to10HypertensionRecommendationService::class);
+                    return $service->getRecommendation($key, $text, $responsesMap, $age);
+                } elseif ($pathologies['cardio']) {
+                    $service = app(\App\Services\WeightLoss5to10CardioRecommendationService::class);
+                    return $service->getRecommendation($key, $text, $responsesMap, $age);
+                } else {
+                    $service = app(\App\Services\WeightLoss5to10NoPathologyRecommendationService::class);
+                    return $service->getRecommendation($key, $text, $responsesMap, $age);
+                }
+            } elseif (str_contains(strtolower($weightLossRange), 'plus de 10')) {
+                if ($pathologies['diabetes']) {
+                    $service = app(\App\Services\WeightLossOver10DiabetesRecommendationService::class);
+                    return $service->getRecommendation($key, $text, $responsesMap, $age);
+                } elseif ($pathologies['hypertension']) {
+                    $service = app(\App\Services\WeightLossOver10HypertensionRecommendationService::class);
+                    return $service->getRecommendation($key, $text, $responsesMap, $age);
+                } elseif ($pathologies['cardio']) {
+                    $service = app(\App\Services\WeightLossOver10CardioRecommendationService::class);
+                    return $service->getRecommendation($key, $text, $responsesMap, $age);
+                } else {
+                    $service = app(\App\Services\WeightLossOver10NoPathologyRecommendationService::class);
+                    return $service->getRecommendation($key, $text, $responsesMap, $age);
+                }
+            }
+        }
+
+        // Toutes les tranches de poids pour l'obésité modérée sont maintenant couvertes par les nouveaux services.
+        // Si aucune correspondance n'est trouvée (objectif différent ou plage de poids non standard), on peut garder le fallback ou renvoyer vide.
+        $moderateService = app(\App\Services\ModerateObesityRecommendationService::class);
+        return $moderateService->getRecommendation($key, $text, $responsesMap);
     }
 
     /**
