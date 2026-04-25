@@ -479,7 +479,7 @@ class WeightLoss5To10DiabetesNutritionDataService implements NutritionDataServic
                             ['nom' => 'Riz', 'base' => 50, 'p' => 1.0, 'g' => 11.0, 'l' => 0.2],
                         ],
                         'Dîner' => [
-                            ['nom' => 'Fonio', 'base' => 200, 'p' => 6.0, '40.0', 'l' => 1.0],
+                            ['nom' => 'Fonio', 'base' => 200, 'p' => 6.0, 'g' => 40.0, 'l' => 1.0],
                             ['nom' => 'Sauce feuilles', 'base' => 200, 'p' => 5.0, 'g' => 10.0, 'l' => 6.0],
                             ['nom' => 'Viande', 'base' => 100, 'p' => 20.0, 'g' => 0.0, 'l' => 5.0],
                             ['nom' => 'Légumes', 'base' => 150, 'p' => 3.0, 'g' => 7.0, 'l' => 0.5],
