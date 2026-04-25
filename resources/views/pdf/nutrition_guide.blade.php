@@ -697,7 +697,6 @@
         </div>
     @endif
 
-
     @if($show_fitness_no_pathology_extras)
         <div class="page-break"></div>
         <div class="section">
@@ -733,6 +732,179 @@
                 "Votre transformation n'est pas un sprint, c'est un marathon. Chaque petit changement quotidien est une
                 victoire vers une meilleure santé."
             </p>
+        </div>
+    @endif
+
+    @if($show_weight_loss_5_10_diabetes_extras)
+        <div class="page-break"></div>
+        <div class="section">
+            <h1 style="color: #2c3e50; border-bottom: 2px solid #e67e22;">CONSEILS FINAUX TRANSVERSAUX (Profil Perte 5-10kg
+                + Diabète)</h1>
+
+            <div class="highlight" style="border-left: 4px solid #e67e22; margin-bottom: 20px;">
+                <h2 style="color: #d35400; margin-top: 0;">💧 HYDRATATION (Tous profils)</h2>
+                <p><strong>Objectif:</strong> 2-3L/jour (climat chaud Bénin)</p>
+                <p><strong>Répartition:</strong></p>
+                <ul>
+                    <li><strong>Réveil:</strong> 500ml eau tiède citronnée</li>
+                    <li><strong>Entre repas:</strong> 1,5-2L</li>
+                    <li><strong>Pendant repas:</strong> 200ml maximum (pas noyer digestion)</li>
+                    <li><strong>Avant coucher:</strong> 200ml (pas trop, réveils nocturnes)</li>
+                </ul>
+                <p><strong>Signes déshydratation:</strong> Urine foncée, Bouche sèche, Fatigue, Maux de tête, Constipation
+                </p>
+                <p><strong>Boissons à privilégier:</strong> Eau pure, Bissap sans sucre, Eau citronnée/gingembre, Infusions
+                    (citronnelle, menthe), Thé vert (modération)</p>
+                <p><strong>À limiter/éviter:</strong> Sodas (jamais), Jus industriels (jamais), Alcool (occasionnel
+                    uniquement), Café (max 2/jour, avant 14h)</p>
+            </div>
+
+            <div class="highlight" style="border-left: 4px solid #27ae60;">
+                <h2 style="color: #1e8449; margin-top: 0;">🧺 PRÉPARATION ET ORGANISATION</h2>
+                <p><strong>Batch Cooking (dimanche):</strong></p>
+                <ul>
+                    <li>Cuire riz/fonio/igname pour 3-4 jours</li>
+                    <li>Bouillir œufs (6-8) pour semaine</li>
+                    <li>Laver/couper légumes</li>
+                    <li>Préparer bissap sans sucre (2L)</li>
+                    <li>Griller arachides/plantain portions</li>
+                </ul>
+                <p><strong>Courses hebdomadaires:</strong></p>
+                <ul>
+                    <li>Liste structurée (évite achats impulsifs)</li>
+                    <li>Marché local: Légumes saison, poissons frais, noix</li>
+                    <li>Éviter rayons produits transformés</li>
+                </ul>
+                <p><strong>Portions pré-mesurées:</strong></p>
+                <ul>
+                    <li>Utiliser petits sachets/boîtes pour collations (20g noix, 30g arachides)</li>
+                    <li>Évite de manger directement dans le grand sac</li>
+                </ul>
+            </div>
+        </div>
+    @endif
+
+    @if($show_weight_loss_5_10_hypertension_extras)
+        <div class="page-break"></div>
+        <div class="section">
+            <h1 style="color: #2c3e50; border-bottom: 2px solid #2980b9;">SYNTHÈSE FINALE & RECOMMANDATIONS GÉNÉRALES
+                (Profil Perte 5-10kg + HTA)</h1>
+
+            <div class="highlight" style="border-left: 4px solid #2980b9;">
+                <h2 style="color: #2471a3; margin-top: 0;">🎯 PRINCIPES CLÉS RÉUSSITE</h2>
+                <ul>
+                    <li><strong>PROGRESSIVITÉ :</strong> Changements graduels (1-2 nouvelles habitudes/semaine). Perte poids
+                        0,5-1 kg/semaine. Activité physique intensification progressive. Patience (résultats durables =
+                        mois, pas jours).</li>
+                    <li><strong>PERSONNALISATION :</strong> Adapter selon réponses questionnaire. Écouter corps (signes
+                        faim, satiété, fatigue). Ajuster si résultats stagnent/régressent. Pas de "one-size-fits-all".</li>
+                    <li><strong>DURABILITÉ :</strong> Mode vie PERMANENT (pas régime temporaire). Plaisir alimentaire
+                        préservé (culture, goût). Aliments locaux accessibles économiquement. Soutenabilité sociale
+                        (famille, amis).</li>
+                    <li><strong>GLOBALITÉ :</strong> Nutrition + Activité + Sommeil + Stress + Social. Tous interconnectés.
+                        Négliger un aspect = limiter résultats globaux.</li>
+                    <li><strong>BIENVEILLANCE :</strong> Accepter écarts (10-20% repas). Pas de culpabilité destructrice.
+                        Reprendre après écart sans attendre lundi. Focus progrès, pas perfection.</li>
+                </ul>
+            </div>
+        </div>
+    @endif
+
+    @if($show_weight_loss_5_10_cardio_extras)
+        <div class="page-break"></div>
+        <div class="section">
+            <h1 style="color: #2c3e50; border-bottom: 2px solid #e74c3c;">CONSEILS GÉNÉRAUX TRANSVERSAUX (Profil Perte
+                5-10kg + Cardiovasculaire)</h1>
+
+            <div class="highlight" style="border-left: 4px solid #e74c3c; margin-bottom: 20px;">
+                <h2 style="color: #c0392b; margin-top: 0;">🥗 PRÉPARATIONS CULINAIRES SANTÉ</h2>
+                <ul>
+                    <li><strong>Cuissons recommandées :</strong> Bouilli, vapeur, grillé, braisé, en sauce légère.</li>
+                    <li><strong>À ÉVITER :</strong> Friture, huiles réutilisées, graisses brûlées (noirs/fumées).</li>
+                    <li><strong>Aromates naturels :</strong> Ail, gingembre, piment, oignon, basilic africain, poivre,
+                        citron, vinaigre, tomate fraîche.</li>
+                    <li><strong>Sel :</strong> ZÉRO sel ajouté (les aromates compensent naturellement).</li>
+                </ul>
+                <h2 style="color: #c0392b; margin-top: 20px;">📏 CONTRÔLE DES PORTIONS (Méthode de la main)</h2>
+                <ul>
+                    <li><strong>Protéines :</strong> Taille de la paume.</li>
+                    <li><strong>Féculents :</strong> Taille du poing fermé.</li>
+                    <li><strong>Légumes :</strong> 2 poignées ouvertes minimum.</li>
+                    <li><strong>Assiette divisée :</strong> 1/2 légumes, 1/4 protéines, 1/4 féculents.</li>
+                </ul>
+            </div>
+        </div>
+    @endif
+
+    @if($show_weight_loss_over_10_diabetes_extras)
+        <div class="page-break"></div>
+        <div class="section">
+            <h1 style="color: #2c3e50; border-bottom: 2px solid #27ae60;">CONSEILS TRANSVERSAUX (Profil Perte >10kg +
+                Diabète)</h1>
+
+            <div class="highlight" style="border-left: 4px solid #27ae60; margin-bottom: 20px;">
+                <h2 style="color: #1e8449; margin-top: 0;">🍯 GESTION DES SUCRES ET GLUCIDES</h2>
+                <ul>
+                    <li><strong>Réduire les sucres rapides :</strong> Éliminer sodas, jus industriels, pâtisseries,
+                        confitures, bonbons.</li>
+                    <li><strong>Favoriser les fibres :</strong> Légumineuses (haricots), légumes verts (épinards, gombo),
+                        céréales complètes (riz complet), fonio. Les fibres ralentissent l'absorption des sucres.</li>
+                    <li><strong>Fractionnement :</strong> Répartir les glucides sur 3 repas et éventuellement 1 à 2
+                        collations pour éviter les pics de glycémie.</li>
+                    <li><strong>Manger lentement :</strong> Mastiquer au moins 20 fois chaque bouchée pour donner le temps
+                        au cerveau de recevoir les signaux de satiété.</li>
+                </ul>
+                <h2 style="color: #1e8449; margin-top: 20px;">🏃 ACTIVITÉ PHYSIQUE RÉGULIÈRE</h2>
+                <ul>
+                    <li>Objectif : 30 minutes de marche rapide après le repas principal (améliore la sensibilité à
+                        l'insuline).</li>
+                </ul>
+            </div>
+        </div>
+    @endif
+
+    @if($show_weight_loss_over_10_hypertension_extras)
+        <div class="page-break"></div>
+        <div class="section">
+            <h2 style="color: #c0392b; border-bottom: 2px solid #e74c3c; padding-bottom: 10px; font-size: 20px;">
+                <i class="fas fa-heartbeat"></i> RÉCAPITULATIF FINAL & CONSEILS GLOBAUX (>10kg + HTA)
+            </h2>
+
+            <div style="background-color: #fcebeb; padding: 15px; border-left: 4px solid #c0392b; margin-bottom: 20px;">
+                <h4 style="color: #c0392b; margin-bottom: 5px; margin-top: 0;">Principes Universels Réussite :</h4>
+                <ul>
+                    <li><strong>HYDRATATION :</strong> 2-3L eau/jour minimum (climat chaud). Urine jaune clair = bien
+                        hydraté.</li>
+                    <li><strong>SOMMEIL :</strong> 7-8h/nuit minimum. Un manque de sommeil augmente le cortisol et favorise
+                        le stockage des graisses.</li>
+                    <li><strong>ZÉRO SEL AJOUTÉ :</strong> Supprimer le sel de table et les bouillons industriels. Utiliser
+                        les épices locales pour le goût.</li>
+                    <li><strong>DURABILITÉ :</strong> Ne pas viser un régime temporaire mais un style de vie permanent.
+                        Accepter les écarts occasionnels et reprendre immédiatement.</li>
+                </ul>
+            </div>
+        </div>
+    @endif
+
+    @if($show_weight_loss_over_10_cardio_extras)
+        <div class="page-break"></div>
+        <div class="section">
+            <h1 style="color: #2c3e50; border-bottom: 2px solid #e74c3c;">CONSEILS GÉNÉRAUX TRANSVERSAUX (>10kg +
+                Cardiovasculaire)</h1>
+
+            <div class="highlight" style="border-left: 4px solid #e74c3c; margin-bottom: 20px;">
+                <h2 style="color: #c0392b; margin-top: 0;">🛡️ PROTECTION CARDIO-VASCULAIRE</h2>
+                <ul>
+                    <li><strong>Lipides :</strong> Privilégier les graisses polyinsaturées (poissons gras localement
+                        disponibles : sardines, maquereau). Limiter drastiquement l'huile de palme et les beurres.</li>
+                    <li><strong>ZÉRO Friture :</strong> Ne jamais réutiliser les huiles de cuisson. Privilégier
+                        systématiquement vapeur et grillé.</li>
+                    <li><strong>Fibres solubles :</strong> Consommer quotidiennement des haricots, du niébé ou de l'avoine
+                        pour aider à capturer le cholestérol alimentaire.</li>
+                    <li><strong>Arrêt Alcool :</strong> L'alcool augmente les triglycérides et la tension artérielle. En
+                        phase de perte importante (>10kg), l'abstinence est fortement recommandée.</li>
+                </ul>
+            </div>
         </div>
     @endif
 
@@ -1027,178 +1199,6 @@
         exact, mais elles sont essentielles pour comprendre les techniques de préparation recommandées par notre
         système.</p>
     </div>
-    @if($show_weight_loss_5_10_diabetes_extras)
-        <div class="page-break"></div>
-        <div class="section">
-            <h1 style="color: #2c3e50; border-bottom: 2px solid #e67e22;">CONSEILS FINAUX TRANSVERSAUX (Profil Perte 5-10kg
-                + Diabète)</h1>
-
-            <div class="highlight" style="border-left: 4px solid #e67e22; margin-bottom: 20px;">
-                <h2 style="color: #d35400; margin-top: 0;">💧 HYDRATATION (Tous profils)</h2>
-                <p><strong>Objectif:</strong> 2-3L/jour (climat chaud Bénin)</p>
-                <p><strong>Répartition:</strong></p>
-                <ul>
-                    <li><strong>Réveil:</strong> 500ml eau tiède citronnée</li>
-                    <li><strong>Entre repas:</strong> 1,5-2L</li>
-                    <li><strong>Pendant repas:</strong> 200ml maximum (pas noyer digestion)</li>
-                    <li><strong>Avant coucher:</strong> 200ml (pas trop, réveils nocturnes)</li>
-                </ul>
-                <p><strong>Signes déshydratation:</strong> Urine foncée, Bouche sèche, Fatigue, Maux de tête, Constipation
-                </p>
-                <p><strong>Boissons à privilégier:</strong> Eau pure, Bissap sans sucre, Eau citronnée/gingembre, Infusions
-                    (citronnelle, menthe), Thé vert (modération)</p>
-                <p><strong>À limiter/éviter:</strong> Sodas (jamais), Jus industriels (jamais), Alcool (occasionnel
-                    uniquement), Café (max 2/jour, avant 14h)</p>
-            </div>
-
-            <div class="highlight" style="border-left: 4px solid #27ae60;">
-                <h2 style="color: #1e8449; margin-top: 0;">🧺 PRÉPARATION ET ORGANISATION</h2>
-                <p><strong>Batch Cooking (dimanche):</strong></p>
-                <ul>
-                    <li>Cuire riz/fonio/igname pour 3-4 jours</li>
-                    <li>Bouillir œufs (6-8) pour semaine</li>
-                    <li>Laver/couper légumes</li>
-                    <li>Préparer bissap sans sucre (2L)</li>
-                    <li>Griller arachides/plantain portions</li>
-                </ul>
-                <p><strong>Courses hebdomadaires:</strong></p>
-                <ul>
-                    <li>Liste structurée (évite achats impulsifs)</li>
-                    <li>Marché local: Légumes saison, poissons frais, noix</li>
-                    <li>Éviter rayons produits transformés</li>
-                </ul>
-                <p><strong>Portions pré-mesurées:</strong></p>
-                <ul>
-                    <li>Utiliser petits sachets/boîtes pour collations (20g noix, 30g arachides)</li>
-                    <li>Évite de manger directement dans le grand sac</li>
-                </ul>
-            </div>
-        </div>
-    @endif
-
-    @if($show_weight_loss_5_10_hypertension_extras)
-        <div class="page-break"></div>
-        <div class="section">
-            <h1 style="color: #2c3e50; border-bottom: 2px solid #2980b9;">SYNTHÈSE FINALE & RECOMMANDATIONS GÉNÉRALES
-                (Profil Perte 5-10kg + HTA)</h1>
-
-            <div class="highlight" style="border-left: 4px solid #2980b9;">
-                <h2 style="color: #2471a3; margin-top: 0;">🎯 PRINCIPES CLÉS RÉUSSITE</h2>
-                <ul>
-                    <li><strong>PROGRESSIVITÉ :</strong> Changements graduels (1-2 nouvelles habitudes/semaine). Perte poids
-                        0,5-1 kg/semaine. Activité physique intensification progressive. Patience (résultats durables =
-                        mois, pas jours).</li>
-                    <li><strong>PERSONNALISATION :</strong> Adapter selon réponses questionnaire. Écouter corps (signes
-                        faim, satiété, fatigue). Ajuster si résultats stagnent/régressent. Pas de "one-size-fits-all".</li>
-                    <li><strong>DURABILITÉ :</strong> Mode vie PERMANENT (pas régime temporaire). Plaisir alimentaire
-                        préservé (culture, goût). Aliments locaux accessibles économiquement. Soutenabilité sociale
-                        (famille, amis).</li>
-                    <li><strong>GLOBALITÉ :</strong> Nutrition + Activité + Sommeil + Stress + Social. Tous interconnectés.
-                        Négliger un aspect = limiter résultats globaux.</li>
-                    <li><strong>BIENVEILLANCE :</strong> Accepter écarts (10-20% repas). Pas de culpabilité destructrice.
-                        Reprendre après écart sans attendre lundi. Focus progrès, pas perfection.</li>
-                </ul>
-            </div>
-        </div>
-    @endif
-
-    @if($show_weight_loss_5_10_cardio_extras)
-        <div class="page-break"></div>
-        <div class="section">
-            <h1 style="color: #2c3e50; border-bottom: 2px solid #e74c3c;">CONSEILS GÉNÉRAUX TRANSVERSAUX (Profil Perte
-                5-10kg + Cardiovasculaire)</h1>
-
-            <div class="highlight" style="border-left: 4px solid #e74c3c; margin-bottom: 20px;">
-                <h2 style="color: #c0392b; margin-top: 0;">🥗 PRÉPARATIONS CULINAIRES SANTÉ</h2>
-                <ul>
-                    <li><strong>Cuissons recommandées :</strong> Bouilli, vapeur, grillé, braisé, en sauce légère.</li>
-                    <li><strong>À ÉVITER :</strong> Friture, huiles réutilisées, graisses brûlées (noirs/fumées).</li>
-                    <li><strong>Aromates naturels :</strong> Ail, gingembre, piment, oignon, basilic africain, poivre,
-                        citron, vinaigre, tomate fraîche.</li>
-                    <li><strong>Sel :</strong> ZÉRO sel ajouté (les aromates compensent naturellement).</li>
-                </ul>
-                <h2 style="color: #c0392b; margin-top: 20px;">📏 CONTRÔLE DES PORTIONS (Méthode de la main)</h2>
-                <ul>
-                    <li><strong>Protéines :</strong> Taille de la paume.</li>
-                    <li><strong>Féculents :</strong> Taille du poing fermé.</li>
-                    <li><strong>Légumes :</strong> 2 poignées ouvertes minimum.</li>
-                    <li><strong>Assiette divisée :</strong> 1/2 légumes, 1/4 protéines, 1/4 féculents.</li>
-                </ul>
-            </div>
-        </div>
-    @endif
-
-    @if($show_weight_loss_over_10_diabetes_extras)
-        <div class="page-break"></div>
-        <div class="section">
-            <h1 style="color: #2c3e50; border-bottom: 2px solid #27ae60;">CONSEILS TRANSVERSAUX (Profil Perte >10kg +
-                Diabète)</h1>
-
-            <div class="highlight" style="border-left: 4px solid #27ae60; margin-bottom: 20px;">
-                <h2 style="color: #1e8449; margin-top: 0;">🍯 GESTION DES SUCRES ET GLUCIDES</h2>
-                <ul>
-                    <li><strong>Réduire les sucres rapides :</strong> Éliminer sodas, jus industriels, pâtisseries,
-                        confitures, bonbons.</li>
-                    <li><strong>Favoriser les fibres :</strong> Légumineuses (haricots), légumes verts (épinards, gombo),
-                        céréales complètes (riz complet), fonio. Les fibres ralentissent l'absorption des sucres.</li>
-                    <li><strong>Fractionnement :</strong> Répartir les glucides sur 3 repas et éventuellement 1 à 2
-                        collations pour éviter les pics de glycémie.</li>
-                    <li><strong>Manger lentement :</strong> Mastiquer au moins 20 fois chaque bouchée pour donner le temps
-                        au cerveau de recevoir les signaux de satiété.</li>
-                </ul>
-                <h2 style="color: #1e8449; margin-top: 20px;">🏃 ACTIVITÉ PHYSIQUE RÉGULIÈRE</h2>
-                <ul>
-                    <li>Objectif : 30 minutes de marche rapide après le repas principal (améliore la sensibilité à
-                        l'insuline).</li>
-                </ul>
-            </div>
-        </div>
-    @endif
-
-    @if($show_weight_loss_over_10_hypertension_extras)
-        <div class="page-break"></div>
-        <div class="section">
-            <h2 style="color: #c0392b; border-bottom: 2px solid #e74c3c; padding-bottom: 10px; font-size: 20px;">
-                <i class="fas fa-heartbeat"></i> RÉCAPITULATIF FINAL & CONSEILS GLOBAUX (>10kg + HTA)
-            </h2>
-
-            <div style="background-color: #fcebeb; padding: 15px; border-left: 4px solid #c0392b; margin-bottom: 20px;">
-                <h4 style="color: #c0392b; margin-bottom: 5px; margin-top: 0;">Principes Universels Réussite :</h4>
-                <ul>
-                    <li><strong>HYDRATATION :</strong> 2-3L eau/jour minimum (climat chaud). Urine jaune clair = bien
-                        hydraté.</li>
-                    <li><strong>SOMMEIL :</strong> 7-8h/nuit minimum. Un manque de sommeil augmente le cortisol et favorise
-                        le stockage des graisses.</li>
-                    <li><strong>ZÉRO SEL AJOUTÉ :</strong> Supprimer le sel de table et les bouillons industriels. Utiliser
-                        les épices locales pour le goût.</li>
-                    <li><strong>DURABILITÉ :</strong> Ne pas viser un régime temporaire mais un style de vie permanent.
-                        Accepter les écarts occasionnels et reprendre immédiatement.</li>
-                </ul>
-            </div>
-        </div>
-    @endif
-
-    @if($show_weight_loss_over_10_cardio_extras)
-        <div class="page-break"></div>
-        <div class="section">
-            <h1 style="color: #2c3e50; border-bottom: 2px solid #e74c3c;">CONSEILS GÉNÉRAUX TRANSVERSAUX (>10kg +
-                Cardiovasculaire)</h1>
-
-            <div class="highlight" style="border-left: 4px solid #e74c3c; margin-bottom: 20px;">
-                <h2 style="color: #c0392b; margin-top: 0;">🛡️ PROTECTION CARDIO-VASCULAIRE</h2>
-                <ul>
-                    <li><strong>Lipides :</strong> Privilégier les graisses polyinsaturées (poissons gras localement
-                        disponibles : sardines, maquereau). Limiter drastiquement l'huile de palme et les beurres.</li>
-                    <li><strong>ZÉRO Friture :</strong> Ne jamais réutiliser les huiles de cuisson. Privilégier
-                        systématiquement vapeur et grillé.</li>
-                    <li><strong>Fibres solubles :</strong> Consommer quotidiennement des haricots, du niébé ou de l'avoine
-                        pour aider à capturer le cholestérol alimentaire.</li>
-                    <li><strong>Arrêt Alcool :</strong> L'alcool augmente les triglycérides et la tension artérielle. En
-                        phase de perte importante (>10kg), l'abstinence est fortement recommandée.</li>
-                </ul>
-            </div>
-        </div>
-    @endif
 </body>
 
 </html>
