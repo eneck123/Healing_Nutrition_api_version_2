@@ -2,9 +2,9 @@
 
 namespace App\Services;
 
-class NoPathologyNutritionDataService
+class NoPathologyNutritionDataService implements NutritionDataServiceInterface
 {
-    public function getMenus()
+    public function getMenus(): array
     {
         return [
             'Sédentaire' => [ // 30% Protéines, 35% Glucides, 35% Lipides

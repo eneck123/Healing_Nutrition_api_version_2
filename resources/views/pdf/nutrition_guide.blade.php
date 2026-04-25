@@ -740,8 +740,8 @@
 
     <!-- 5. Guide Alimentaire 90 Jours -->
     <div class="section">
-        <h1>Guide Alimentaire sur 90 Jours</h1>
-        <p>Ce plan est conçu pour être suivi sur 3 mois. Il respecte vos besoins caloriques et vos préférences.</p>
+        <h1>Guide Alimentaire sur 30 Jours</h1>
+        <p>Ce plan est conçu pour être suivi sur 1 mois. Il respecte vos besoins caloriques et vos préférences.</p>
 
         <!-- Affichage des menus (Groupé par semaine ou jour selon l'espace) -->
         <!-- Pour éviter un PDF de 500 pages, on peut afficher un modèle type ou la liste complète. Ici affichons les 14 premiers jours en détail et résumons le reste si besoin, ou tout si demandé. -->
@@ -810,7 +810,12 @@
         <div class="regulatory-box">
             <div class="regulatory-title">Notifications Réglementaires</div>
             <ul>
-                <li>Le plan nutritionnel proposé est prévu pour une durée maximale de 3 mois, soit 90 jours.</li>
+                <li>Le plan nutritionnel proposé est prévu pour une durée maximale d'un mois, soit 30 jours.</li>
+                <li>Ce plan nutritionnel ne remplace pas un suivi Professionnel car en étant un plan san suivi,
+                    il vous a été conçu pour renforcer votre autonomie, fournir une alimentation de vos ressources
+                    locales
+                    et culturelles et permettre d'accroître votre motivation personnelle.
+                </li>
                 <li>Pour les personnes ayant des antécédents médicaux et prenant des médicaments, ne cessez jamais votre
                     traitement. Continuez de suivre votre prescription tout en respectant nos recommandations. En cas de
                     problème avec le guide alimentaire et vos prescriptions, veuillez consulter votre médecin traitant.

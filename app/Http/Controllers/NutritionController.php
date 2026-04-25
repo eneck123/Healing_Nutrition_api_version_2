@@ -6,24 +6,17 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\DB;
-use App\Services\NutritionDataService;
 use App\Services\SevereObesityRecommendationService;
 
 class NutritionController extends Controller
 {
-    protected $nutritionDataService;
-    protected $noPathologyNutritionDataService;
     protected $calculationService;
     protected $severeObesityService;
 
     public function __construct(
-        NutritionDataService $nutritionDataService,
-        \App\Services\NoPathologyNutritionDataService $noPathologyNutritionDataService,
         \App\Services\NutritionCalculationService $calculationService,
         SevereObesityRecommendationService $severeObesityService
     ) {
-        $this->nutritionDataService = $nutritionDataService;
-        $this->noPathologyNutritionDataService = $noPathologyNutritionDataService;
         $this->calculationService = $calculationService;
         $this->severeObesityService = $severeObesityService;
     }
@@ -103,6 +96,13 @@ class NutritionController extends Controller
      *     description="Calcule l'apport calorique quotidien et la répartition des macronutriments en fonction de l'objectif de l'utilisateur, de ses pathologies et de son niveau d'activité.",
      *     tags={"Nutrition"},
      *     security={{"BearerToken":{}}},
+     *     @OA\RequestBody(
+     *         description="Données pour la génération du plan. Si submission_id est omis, la dernière soumission est utilisée.",
+     *         required=false,
+     *         @OA\JsonContent(
+     *             @OA\Property(property="submission_id", type="string", example="550e8400-e29b-41d4-a716-446655440000", description="ID de la soumission du questionnaire")
+     *         )
+     *     ),
      *     @OA\Response(
      *         response=200,
      *         description="Recommandations générées",
@@ -286,7 +286,7 @@ class NutritionController extends Controller
 
         // NEW: Generate Intervention Plan and Food Guide
         $planIntervention = $this->generateNutritionInterventionPlan($user, $metrics, $responsesMap, $pathologies);
-        $guideData = $this->generateDynamicFoodGuide($user, $macros['grammes'], $pathologies);
+        $guideData = $this->generateDynamicFoodGuide($user, $macros['grammes'], $pathologies, $objective, $weightLossRange);
 
         return response()->json([
             'success' => true,
@@ -1659,21 +1659,18 @@ class NutritionController extends Controller
         return ['titre' => "Surveillance Santé", 'contenu' => $content];
     }
 
-    private function generateDynamicFoodGuide($user, $macroGrams, $pathologies)
+    private function generateDynamicFoodGuide($user, $macroGrams, $pathologies, $objective = '', $weightLossRange = '')
     {
-        $hasPathology = $pathologies['diabetes'] || $pathologies['hypertension'] || $pathologies['cardio'];
+        $dataService = \App\Services\NutritionDataFactory::make($objective, $pathologies, $weightLossRange);
+        $menus = $dataService->getMenus();
 
-        $menus = $hasPathology
-            ? $this->nutritionDataService->getMenus()
-            : $this->noPathologyNutritionDataService->getMenus();
-
-        $generator = new \App\Services\MenuGenerator($macroGrams, $menus, $user->niveau_d_activite_physique, 90, $pathologies);
+        $generator = new \App\Services\MenuGenerator($macroGrams, $menus, $user->niveau_d_activite_physique, 30, $pathologies);
         $result = $generator->generate();
 
         return [
             'menu_journalier' => $result['menu'],
             'facteurs' => $result['average_factors'],
-            'conseils' => "Votre guide alimentaire sur 90 jours a été généré via notre algorithme de précision. Les portions sont ajustées dynamiquement pour votre TDEE et vos objectifs."
+            'conseils' => "Votre guide alimentaire sur 30 jours a été généré via notre algorithme de précision. Les portions sont ajustées dynamiquement pour votre TDEE et vos objectifs cliniques spécifiquement pour un profil {$user->niveau_d_activite_physique}."
         ];
     }
 

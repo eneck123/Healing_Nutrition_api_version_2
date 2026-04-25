@@ -2,9 +2,9 @@
 
 namespace App\Services;
 
-class NutritionDataService
+class NutritionDataService implements NutritionDataServiceInterface
 {
-    public function getMenus()
+    public function getMenus(): array
     {
         return [
             'Sédentaire' => [
