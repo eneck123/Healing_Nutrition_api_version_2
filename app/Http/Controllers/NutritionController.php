@@ -1771,10 +1771,7 @@ class NutritionController extends Controller
             }
         }
 
-        // Toutes les tranches de poids pour l'obésité modérée sont maintenant couvertes par les nouveaux services.
-        // Si aucune correspondance n'est trouvée (objectif différent ou plage de poids non standard), on peut garder le fallback ou renvoyer vide.
-        $moderateService = app(\App\Services\ModerateObesityRecommendationService::class);
-        return $moderateService->getRecommendation($key, $text, $responsesMap);
+        return "";
     }
 
     /**

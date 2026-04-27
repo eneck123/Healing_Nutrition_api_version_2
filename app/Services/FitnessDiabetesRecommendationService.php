@@ -710,7 +710,7 @@ Au lieu de gâteaux :
 •	Fruits secs (modération 30g)
 •	Boules de mil non sucrées
 Au lieu de bonbons :
-•	Frui";
+•	Fruit";
 
             case 'boissons':
                 return "ts secs naturellement sucrés (dattes 2-3)
