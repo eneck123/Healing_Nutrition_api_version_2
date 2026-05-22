@@ -150,13 +150,39 @@ class MenuGenerator
 
     protected function adjustDailyMenu(array $dailyMeals, array $snacks, bool $relax = false): ?array
     {
-        // Wrapper for the scaling logic to handle single attempt
-        
+        $hasDiabetes = $this->pathologies['diabetes'] ?? false;
         $isCardio = $this->pathologies['cardio'] ?? false;
         $isHypertension = $this->pathologies['hypertension'] ?? false;
 
-        if ($isHypertension && !$isCardio) {
-            // Stratégie Hypertension
+        // PRIORITÉ DIABÈTE (Priorité maximale aux Glucides)
+        if ($hasDiabetes) {
+            $result = $this->scaleAndValidate($dailyMeals, $snacks, false);
+            if ($result) return $result;
+
+            if ($relax) {
+                // Relaxation hiérarchique Diabète : 1. Lipides, 2. Protéines, 3. Glucides (dernier recours)
+                $res1 = $this->scaleAndValidate($dailyMeals, $snacks, true, 1);
+                if ($res1) return $res1;
+                $res2 = $this->scaleAndValidate($dailyMeals, $snacks, true, 2);
+                if ($res2) return $res2;
+                $res3 = $this->scaleAndValidate($dailyMeals, $snacks, true, 3);
+                if ($res3) return $res3;
+            }
+        } elseif ($isCardio) {
+            // PRIORITÉ CARDIO (Priorité maximale aux Lipides)
+            $result = $this->scaleAndValidate($dailyMeals, $snacks, false);
+            if ($result) return $result;
+
+            if ($relax) {
+                $r1 = $this->scaleAndValidate($dailyMeals, $snacks, true, 1);
+                if ($r1) return $r1;
+                $r2 = $this->scaleAndValidate($dailyMeals, $snacks, true, 2);
+                if ($r2) return $r2;
+                $r3 = $this->scaleAndValidate($dailyMeals, $snacks, true, 3);
+                if ($r3) return $r3;
+            }
+        } elseif ($isHypertension) {
+            // PRIORITÉ HYPERTENSION
             $result = $this->scaleAndValidate($dailyMeals, $snacks, false);
             if ($result) return $result;
 
@@ -165,13 +191,15 @@ class MenuGenerator
                 if ($res1) return $res1;
                 $res2 = $this->scaleAndValidate($dailyMeals, $snacks, true, 2);
                 if ($res2) return $res2;
+                $res3 = $this->scaleAndValidate($dailyMeals, $snacks, true, 3);
+                if ($res3) return $res3;
             }
         } else {
-            // Stratégie Cardio / Défaut
+            // STRATÉGIE SANS PATHOLOGIES (Défaut) - Glucides > Protéines > Lipides
             $result = $this->scaleAndValidate($dailyMeals, $snacks, false);
             if ($result) return $result;
-
             if ($relax) {
+                // Relaxation hiérarchique : 1. Protéines, 2. Lipides, 3. Glucides (dernier recours)
                 $r1 = $this->scaleAndValidate($dailyMeals, $snacks, true, 1);
                 if ($r1) return $r1;
                 $r2 = $this->scaleAndValidate($dailyMeals, $snacks, true, 2);
@@ -187,11 +215,11 @@ class MenuGenerator
     protected function getSnackCount(): int
     {
         switch ($this->activity) {
-            case 'Sédentaire': return 1; // Toujours au moins 1 collation pour la flexibilité
+            case 'Sédentaire': return rand(0, 1);
             case 'Légèrement actif': return 1;
             case 'Modérément actif': return rand(1, 2);
             case 'Très actif': return 2;
-            case 'Extrêmement actif': return 3; // Plus de collations pour les très actifs
+            case 'Extrêmement actif': return 2;
             default: return 1;
         }
     }
@@ -226,26 +254,21 @@ class MenuGenerator
         $fP = $targetP / max(1, $baseTotals['p']);
         $fL = $targetL / max(1, $baseTotals['l']);
 
+        // Facteur final = min des facteurs (Méthode par priorité appliquée)
+        $fFinal = min($fG, $fP, $fL);
+
         // 5. Validation par priorité
-        if (!$this->isValid($fG, $fP, $fL, $relax, $relaxLevel)) {
+        if (!$this->isValid($fFinal, $fFinal, $fFinal, $relax, $relaxLevel)) {
             return null;
         }
 
-        // 6. Application des facteurs ajustés
-        // On s'assure que les facteurs ne sont pas trop extrêmes pour la palatabilité
-        $fG = max(0.4, min(1.8, $fG));
-        $fP = max(0.4, min(1.8, $fP));
-        $fL = max(0.4, min(1.8, $fL));
+        // 6. Application du facteur final ajusté
+        $f = max(0.4, min(1.8, $fFinal));
 
         $adjustedMeals = [];
         foreach ($meals as $moment => $items) {
             $momentAdjusted = [];
             foreach ($items as $item) {
-                // Déterminer le macro dominant pour choisir le facteur
-                $f = $fL; // Par défaut
-                if ($item['g'] > 15 && $item['g'] > $item['p'] * 1.5) $f = $fG;
-                elseif ($item['p'] > 5 && $item['p'] > $item['g']) $f = $fP;
-
                 $momentAdjusted[] = [
                     'nom' => $item['nom'],
                     'portion_recommandee' => round($item['base'] * $f) . ' g',
@@ -265,20 +288,19 @@ class MenuGenerator
         }
 
         return [
-            'type' => 'Ajusté',
+            'type' => $relax ? 'Ajusté (Relaxé Niv. '.$relaxLevel.')' : 'Ajusté (Optimal)',
             'repas' => $adjustedMeals,
             'collations' => $adjustedSnacks,
-            'factors' => ['glucides' => $fG, 'proteines' => $fP, 'lipides' => $fL]
+            'factors' => ['glucides' => $f, 'proteines' => $f, 'lipides' => $f]
         ];
     }
 
     protected function isValid(float $fG, float $fP, float $fL, bool $relax, int $relaxLevel = 0): bool
     {
+        $hasDiabetes = $this->pathologies['diabetes'] ?? false;
         $isCardio = $this->pathologies['cardio'] ?? false;
         $isHypertension = $this->pathologies['hypertension'] ?? false;
 
-        // Normalisation : on évalue l'équilibre relatif, pas l'échelle absolue
-        // Cela permet au système de fonctionner quel que soit le TDEE de l'utilisateur
         $avgFactor = ($fG + $fP + $fL) / 3;
         if ($avgFactor < 0.01) return false;
 
@@ -286,63 +308,82 @@ class MenuGenerator
         $nP = $fP / $avgFactor;
         $nL = $fL / $avgFactor;
 
-        // === STRATÉGIE HYPERTENSION (Spécifiée par le message utilisateur) ===
-        if ($isHypertension && !$isCardio) {
-            // Glucides : Priorité absolue, on ne relâche pas ici
-            $gMin = 0.80; $gMax = 1.13; $gRejet = 1.18;
-            
-            // Lipides et Protéines : Variables d'ajustement
-            $lMin = 0.70; $lMax = 1.15; $lRejet = 1.25;
-            $pMin = 0.82; $pMax = 1.30;
+        // === STRATÉGIE DIABÈTE (Selon document utilisateur) ===
+        if ($hasDiabetes) {
+            // 1. Glucides (Priorité maximale - Contrôle glycémique)
+            $gMin = 0.85; $gMax = 1.05; $gRejet = 1.10;
+            // 2. Protéines (Satiété et maintien musculaire)
+            $pMin = 0.85; $pMax = 1.20;
+            // 3. Lipides (Variable d'ajustement)
+            $lMin = 0.70; $lMax = 1.15; $lRejet = 1.20;
 
-            if ($relaxLevel === 1) { // 1. Relâcher Lipides
-                $lMin = 0.65;
-            } elseif ($relaxLevel === 2) { // 2. Relâcher Protéines
-                $lMin = 0.65;
-                $pMin = 0.75;
+            // Seuils avant relaxation
+            $currLMin = 0.75; $currPMin = 0.90; $currGMin = 0.90;
+
+            if ($relax) {
+                if ($relaxLevel >= 1) $currLMin = 0.70; // 1. Relâcher Lipides
+                if ($relaxLevel >= 2) $currPMin = 0.85; // 2. Relâcher Protéines
+                if ($relaxLevel >= 3) $currGMin = 0.85; // 3. Relâcher Glucides (Dernier recours)
             }
 
-            // Filtrage Glucides (Priorité)
-            if ($nG > $gRejet) return false;
-            if ($nG < $gMin || $nG > $gMax) return false;
-
-            // Filtrage Lipides
-            if ($nL < $lMin || $nL > $lRejet) return false;
-
+            // Filtrage Glucides (Priorité absolue)
+            if ($nG > $gRejet || $nG < $currGMin || $nG > $gMax) return false;
             // Filtrage Protéines
-            if ($nP < $pMin || $nP > $pMax) return false;
+            if ($nP < $currPMin || $nP > $pMax) return false;
+            // Filtrage Lipides
+            if ($nL < $currLMin || $nL > $lRejet) return false;
 
             return true;
         }
 
-        // === STRATÉGIE PAR DÉFAUT / CARDIO (L2.txt) ===
-        // Lipides (Priorité absolue)
-        $lMin = 0.85; $lMax = 1.08; $lRejet = 1.12;
-        // Glucides
-        $gMin = 0.80; $gMax = 1.12; $gRejet = 1.18;
-        // Protéines
-        $pMin = 0.75; $pMax = 1.25;
+        // === STRATÉGIE HYPERTENSION (Selon document utilisateur) ===
+        if ($isHypertension && !$isCardio) {
+            $lMin = 0.85; $lMax = 1.05; $lRejet = 1.10;
+            $gMin = 0.80; $gMax = 1.10; $gRejet = 1.15;
+            $pMin = 0.75; $pMax = 1.20;
 
-        // Relaxation progressive par défaut
+            $currLMin = 0.90; $currGMin = 0.85; $currPMin = 0.80;
+
+            if ($relax) {
+                if ($relaxLevel >= 1) $currPMin = 0.75;
+                if ($relaxLevel >= 2) $currGMin = 0.80;
+                if ($relaxLevel >= 3) $currLMin = 0.85;
+            }
+
+            if ($nL < $currLMin || $nL > $lMax) {
+                if ($nL > $lRejet) return false;
+                if (!$relax) return false;
+            }
+            if ($nG > $gRejet) return false;
+            if (!$relax && ($nG < $currGMin || $nG > $gMax)) return false;
+            if (!$relax && ($nP < $currPMin || $nP > $pMax)) return false;
+
+            return true;
+        }
+
+        // === STRATÉGIE SANS PATHOLOGIES (Défaut) - Selon document utilisateur ===
+        // 1. Glucides (Priorité maximale - Déficit calorique)
+        $gMin = 0.75; $gMax = 1.15; $gRejet = 1.15;
+        // 2. Protéines (Satiété / Muscle)
+        $pMin = 0.70; $pMax = 1.25;
+        // 3. Lipides (Variable d'ajustement)
+        $lMin = 0.70; $lMax = 1.20; $lRejet = 1.25;
+
+        // Seuils avant relaxation
+        $currGMin = 0.85; $currPMin = 0.80; $currLMin = 0.80;
+
         if ($relax) {
-            if ($relaxLevel >= 1 || $relaxLevel === 0) $pMin = 0.68; // Niveau 1 : Protéines
-            if ($relaxLevel >= 2) $gMin = 0.72; // Niveau 2 : Glucides
-            if ($relaxLevel >= 3) $lMin = 0.82; // Niveau 3 : Lipides
+            if ($relaxLevel >= 1) $currPMin = 0.70; // 1. Relâcher Protéines
+            if ($relaxLevel >= 2) $currLMin = 0.70; // 2. Relâcher Lipides
+            if ($relaxLevel >= 3) $currGMin = 0.75; // 3. Relâcher Glucides (Besoin extrême)
         }
 
-        // Filtrage Lipides (Hard filter)
-        if ($nL < $lMin || $nL > $lMax) {
-            if ($nL > $lRejet) return false;
-            // Si pas relaxé, on rejette le hors-fenêtre minime
-            if (!$relax) return false;
-        }
-
-        // Filtrage Glucides
-        if ($nG > $gRejet) return false;
-        if (!$relax && ($nG < $gMin || $nG > $gMax)) return false;
-
+        // Filtrage Glucides (Hard filter)
+        if ($nG > $gRejet || $nG < $currGMin || $nG > $gMax) return false;
         // Filtrage Protéines
-        if (!$relax && ($nP < $pMin || $nP > $pMax)) return false;
+        if ($nP < $currPMin || $nP > $pMax) return false;
+        // Filtrage Lipides
+        if ($nL < $currLMin || $nL > $lMax) return false;
 
         return true;
     }

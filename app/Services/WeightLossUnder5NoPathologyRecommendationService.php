@@ -202,14 +202,14 @@ Exemple de répartition idéale :
 •	Déjeuner : Grande salade + légumes dans sauce = 2-3 portions
 •	Collation PM : Crudités (carotte, concombre) = 1 portion
 •	Dîner : Soupe de légumes + légumes vapeur = 2 portions
-TOTAL : 8-9 portions ✅
+TOTAL : 8-9 portions
 Variété à rechercher :
 •	Légumes verts : Épinards, amarante, chou, laitue, haricots verts
 •	Légumes oranges : Carotte, patate douce, potiron
 •	Légumes autres : Tomate, concombre, aubergine, poivron, oignon
 •	Fruits variés : Papaye, mangue, orange, banane, ananas, pomme
 5 PORTIONS OU PLUS (EXCELLENT)
-🌟 Très bien ! Maintenir et optimiser
+ Très bien ! Maintenir et optimiser
 Conseils d'optimisation :
 1.	Varier les couleurs : 
 o	Arc-en-ciel dans l'assiette = nutriments variés
@@ -1403,10 +1403,10 @@ Impact :
 •	Surcharge digestive
 •	Gain poids progressif
 Réapprentissage écoute satiété :
-1. Reconnaître signaux faim/satiét�";
+1. Reconnaître signaux faim/satiét�";
 
             case 'regime_particulier':
-                return "� :
+                return "� :
 Échelle faim (1-10) :
 1.	Affamé, étourdi
 2.	Très faim, irritable

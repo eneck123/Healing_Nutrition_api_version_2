@@ -409,10 +409,11 @@ class NutritionController extends Controller
             }
 
             $recommandation = '';
+            $qText = $rep->question ? $rep->question->texte_question : '';
             if ($user->maladie_chronique_id == 2) {
-                $recommandation = $this->getSevereRecommendation($rep->question_id, $text, $pathologies);
+                $recommandation = $this->getSevereRecommendation($qText, $text, $pathologies);
             } else if ($user->maladie_chronique_id == 1) {
-                $recommandation = $this->getModerateRecommendation($rep->question_id, $text, $responsesMap, $pathologies, $user, $objective, $weightLossRange);
+                $recommandation = $this->getModerateRecommendation($qText, $text, $responsesMap, $pathologies, $user, $objective, $weightLossRange);
             }
 
             $qaData[] = [
@@ -751,9 +752,12 @@ class NutritionController extends Controller
         foreach ($mapping as $key => $qid) {
             if (isset($responsesMap[$qid]) && isset($labels[$key])) {
                 $respText = $responsesMap[$qid]['text'];
+                $question = \App\Models\Question::find($qid);
+                $qText = $question ? $question->texte_question : '';
+
                 $recommendation = ($user->maladie_chronique_id == 2)
-                    ? $this->getSevereRecommendation($key, $respText, $pathologies)
-                    : "Voir la section 'Plan d'intervention' pour les détails.";
+                    ? $this->getSevereRecommendation($qText, $respText, $pathologies)
+                    : $this->getModerateRecommendation($qText, $respText, $responsesMap, $pathologies, $user, $objective, $weightLossRange);
 
                 $qaData[] = [
                     'question' => $labels[$key],
@@ -1677,101 +1681,81 @@ class NutritionController extends Controller
     /**
      * Génère une recommandation spécifique pour l'obésité sévère basée sur la question et la réponse.
      */
-    private function getSevereRecommendation($questionId, $responseText, $pathologies)
+    private function getSevereRecommendation($questionText, $answerText, $pathologies)
     {
-        $mapping = $this->resolveDynamicMapping(2);
-        // Reverse : question_id => slug
-        $reverseMapping = array_flip($mapping);
-        $key = $reverseMapping[$questionId] ?? null;
-
-        if (!$key)
+        if (empty($questionText))
             return 'Aucun';
 
-        $pathology = null;
+        // Priorité des pathologies pour l'obésité sévère
+        $pathoSlug = 'none';
         if ($pathologies['diabetes'])
-            $pathology = 'diabete';
+            $pathoSlug = 'diabete';
         elseif ($pathologies['hypertension'])
-            $pathology = 'hta';
+            $pathoSlug = 'hta';
         elseif ($pathologies['cardio'])
-            $pathology = 'cholesterol';
+            $pathoSlug = 'cholesterol';
 
-        return $this->severeObesityService->getRecommendation($key, $responseText, $pathology);
+        $recommendation = \App\Models\Recommendation::where('maladie_chronique_id', 2)
+            ->where('question_text', $questionText)
+            ->where(function ($q) use ($answerText) {
+                $q->where('answer_value', $answerText)->orWhereNull('answer_value');
+            })
+            ->where(function ($q) use ($pathoSlug) {
+                $q->where('pathology', $pathoSlug)->orWhere('pathology', 'all');
+            })
+            ->orderByRaw('answer_value IS NOT NULL DESC') // Priorité au match exact
+            ->first();
+
+        return $recommendation ? $recommendation->content : 'Aucune recommandation spécifique.';
     }
 
-    private function getModerateRecommendation($questionId, $text, $responsesMap, $pathologies, $user, $objective, $weightLossRange = '')
+    private function getModerateRecommendation($questionText, $answerText, $responsesMap, $pathologies, $user, $objective, $weightLossRange = '')
     {
-        $mapping = $this->resolveDynamicMapping(1);
-        $reverseMapping = array_flip($mapping);
-
-        if (!isset($reverseMapping[$questionId]))
+        if (empty($questionText))
             return '';
-        $key = $reverseMapping[$questionId];
 
-        $age = $user->age ?? 30;
+        // 1. Déterminer le slug de l'objectif
+        $objSlug = (stripos($objective, 'forme physique') !== false) ? 'fitness' : 'weight_loss';
 
-        if ($objective === 'Améliorer sa forme physique') {
-            if ($pathologies['diabetes']) {
-                $service = app(\App\Services\FitnessDiabetesRecommendationService::class);
-                return $service->getRecommendation($key, $text, $responsesMap, $age);
-            } elseif ($pathologies['hypertension']) {
-                $service = app(\App\Services\FitnessHypertensionRecommendationService::class);
-                return $service->getRecommendation($key, $text, $responsesMap, $age);
-            } elseif ($pathologies['cardio']) {
-                $service = app(\App\Services\FitnessCardioRecommendationService::class);
-                return $service->getRecommendation($key, $text, $responsesMap, $age);
-            } else {
-                $service = app(\App\Services\FitnessNoPathologyRecommendationService::class);
-                return $service->getRecommendation($key, $text, $responsesMap, $age);
-            }
+        // 2. Déterminer le slug de la tranche de poids
+        $rangeSlug = 'all';
+        if ($objSlug === 'weight_loss') {
+            if (stripos($weightLossRange, 'moins de 5') !== false)
+                $rangeSlug = 'under_5';
+            elseif (stripos($weightLossRange, '5') !== false && stripos($weightLossRange, '10') !== false)
+                $rangeSlug = '5_10';
+            elseif (stripos($weightLossRange, 'plus de 10') !== false)
+                $rangeSlug = 'over_10';
         }
 
-        if ($objective === 'Perdre du poids') {
-            if (str_contains(strtolower($weightLossRange), 'moins de 5')) {
-                if ($pathologies['diabetes']) {
-                    $service = app(\App\Services\WeightLossUnder5DiabetesRecommendationService::class);
-                    return $service->getRecommendation($key, $text, $responsesMap, $age);
-                } elseif ($pathologies['hypertension']) {
-                    $service = app(\App\Services\WeightLossUnder5HypertensionRecommendationService::class);
-                    return $service->getRecommendation($key, $text, $responsesMap, $age);
-                } elseif ($pathologies['cardio']) {
-                    $service = app(\App\Services\WeightLossUnder5CardioRecommendationService::class);
-                    return $service->getRecommendation($key, $text, $responsesMap, $age);
-                } else {
-                    $service = app(\App\Services\WeightLossUnder5NoPathologyRecommendationService::class);
-                    return $service->getRecommendation($key, $text, $responsesMap, $age);
-                }
-            } elseif (str_contains(strtolower($weightLossRange), '5') && str_contains(strtolower($weightLossRange), '10')) {
-                if ($pathologies['diabetes']) {
-                    $service = app(\App\Services\WeightLoss5to10DiabetesRecommendationService::class);
-                    return $service->getRecommendation($key, $text, $responsesMap, $age);
-                } elseif ($pathologies['hypertension']) {
-                    $service = app(\App\Services\WeightLoss5to10HypertensionRecommendationService::class);
-                    return $service->getRecommendation($key, $text, $responsesMap, $age);
-                } elseif ($pathologies['cardio']) {
-                    $service = app(\App\Services\WeightLoss5to10CardioRecommendationService::class);
-                    return $service->getRecommendation($key, $text, $responsesMap, $age);
-                } else {
-                    $service = app(\App\Services\WeightLoss5to10NoPathologyRecommendationService::class);
-                    return $service->getRecommendation($key, $text, $responsesMap, $age);
-                }
-            } elseif (str_contains(strtolower($weightLossRange), 'plus de 10')) {
-                if ($pathologies['diabetes']) {
-                    $service = app(\App\Services\WeightLossOver10DiabetesRecommendationService::class);
-                    return $service->getRecommendation($key, $text, $responsesMap, $age);
-                } elseif ($pathologies['hypertension']) {
-                    $service = app(\App\Services\WeightLossOver10HypertensionRecommendationService::class);
-                    return $service->getRecommendation($key, $text, $responsesMap, $age);
-                } elseif ($pathologies['cardio']) {
-                    $service = app(\App\Services\WeightLossOver10CardioRecommendationService::class);
-                    return $service->getRecommendation($key, $text, $responsesMap, $age);
-                } else {
-                    $service = app(\App\Services\WeightLossOver10NoPathologyRecommendationService::class);
-                    return $service->getRecommendation($key, $text, $responsesMap, $age);
-                }
-            }
-        }
+        // 3. Déterminer le slug de la pathologie (Priorité : Diabète > Hypertension > Cardio > None)
+        $pathoSlug = 'none';
+        if ($pathologies['diabetes'])
+            $pathoSlug = 'diabetes';
+        elseif ($pathologies['hypertension'])
+            $pathoSlug = 'hypertension';
+        elseif ($pathologies['cardio'])
+            $pathoSlug = 'cardio';
 
-        return "";
+        // 4. Requête en base de données
+        $recommendation = \App\Models\Recommendation::where('maladie_chronique_id', 1)
+            ->where('question_text', $questionText)
+            ->where(function ($q) use ($answerText) {
+                $q->where('answer_value', $answerText)->orWhereNull('answer_value');
+            })
+            ->where(function ($q) use ($objSlug) {
+                $q->where('objective', $objSlug)->orWhere('objective', 'both');
+            })
+            ->where(function ($q) use ($rangeSlug) {
+                $q->where('weight_loss_range', $rangeSlug)->orWhere('weight_loss_range', 'all');
+            })
+            ->where(function ($q) use ($pathoSlug) {
+                $q->where('pathology', $pathoSlug)->orWhere('pathology', 'all');
+            })
+            ->orderByRaw('answer_value IS NOT NULL DESC') // Priorité au match exact
+            ->first();
+
+        return $recommendation ? $recommendation->content : "";
     }
 
     /**
