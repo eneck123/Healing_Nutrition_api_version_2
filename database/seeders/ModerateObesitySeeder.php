@@ -2679,7 +2679,28 @@ o	Privilégier: bouillie légère, igname bouillie, fonio, légumes cuits
 o	Ne jamais sauter de repas
 o	Collation obligatoire: Arachides (20g) + orange
 o	Avoir toujours du sucre rapide (jus de fruits naturel) en cas de malaise",
-                                'hypertension' => "Aucun",
+                                'hypertension' => "METFORMINE (anti-diabétique oral) :
+Interactions alimentaires :
+•	Prendre avec repas pour limiter troubles digestifs
+•	Peut réduire absorption vitamine B12 : compenser par aliments riches (poissons, œufs, produits laitiers)
+•	Éviter alcool (risque acidose lactique)
+Ajustements :
+•	Si nausées : fractionner davantage, privilégier aliments faciles à digérer
+•	Augmenter sources B12 : maquereau, sardines, œufs, yaourt
+•	Collations digestes : banane plantain bouillie, riz complet, papaye
+
+GLIMEPIRIDE ou autres sulfamides (anti-diabétiques) :	
+Risque hypoglycémie :
+•	Ne JAMAIS sauter de repas
+•	Collations régulières essentielles
+•	Avoir toujours glucides rapides disponibles (fruit, jus)
+•	Horaires repas réguliers
+Ajustements :
+•	3 repas + 3 collations obligatoires
+•	Collation avant coucher si dîner tôt
+•	Glucides complexes à chaque repas
+•	Surveiller signes hypoglycémie
+",
                                 'cardio' => "Aucun"
                             ],
                             'over_10' => [
@@ -3772,14 +3793,25 @@ Astuces augmentation :
 •	Commencer repas par salade
 •	Soupe de légumes 3-4 fois/semaine
 ",
-                                'diabetes' => "Analyse : INSUFFISANT - Augmentation progressive nécessaire
-•	Objectif : passer à 5 portions minimum
-•	Augmenter progressivement (1 portion/semaine)
-•	Commencer par fruits appréciés
-•	Intégrer légumes dans plats familiers
-Propositions :
-•	Collation matin : Papaye + concombre
-•	Collation soir : Carotte râpée + mangue verte",
+                                'diabetes' => "Conseils urgents:
+•	Objectif: Minimum 5 portions/jour (3 légumes + 2 fruits)
+•	Stratégie progressive: Ajouter 1 portion/semaine jusqu'à atteindre objectif
+Plan d'action:
+•	Semaine 1-2: Ajouter salade à chaque déjeuner et dîner
+•	Semaine 3-4: Ajouter 1 fruit au petit-déjeuner
+•	Semaine 5-6: Ajouter légumes dans les sauces (gombo, feuilles, tomates)
+•	Semaine 7-8: Ajouter 1 fruit en collation
+Repas enrichis en légumes/fruits:
+•	Petit-déjeuner: Bouillie + papaye (150g) + jus naturel
+•	Déjeuner: Riz + sauce tomate (200g tomates fraîches) + haricots verts (150g) + salade verte (100g)
+•	Collation: Orange + carotte râpée
+•	Dîner: Igname + sauce gboma-dessi (300g légumes feuilles) + salade concombre-tomate
+Légumes béninois à intégrer:
+•	Feuilles: gboma, célosie, épinards locaux, feuilles d'amarante
+•	Gousses: gombo, haricots verts
+•	Racines: carottes, betteraves
+•	Autres: tomates, concombre, aubergines, piments doux
+",
                                 'hypertension' => "Aucun",
                                 'cardio' => "Aucun"
                             ],
@@ -4154,13 +4186,20 @@ Rotation hebdomadaire :
 •	Légumes crucifères (chou) : 2-3 fois
 •	Fruits variés chaque jour
 ",
-                                'diabetes' => "Évaluation : MOYEN - Amélioration souhaitable
-Situation : Vous consommez déjà des fruits/légumes, mais pas assez pour bénéfices optimaux
-Objectif : Passer à 5-7 portions/jour
-Conseils Ciblés :
-1. Augmenter portion légumes aux repas principaux
-2. Ajouter 2ème fruit
-3. Intégrer légumes crus en collations",
+                                'diabetes' => "Conseils:
+•	Objectif: Atteindre 5-7 portions/jour
+•	Ajouter encore 1-2 portions
+Suggestions:
+•	Débuter chaque repas par une salade crue
+•	Doubler portion de légumes dans les sauces
+•	Ajouter fruit à chaque collation
+Repas optimisés:
+•	Petit-déjeuner: Bouillie + mangue (150g)
+•	Collation matin: Papaye (150g)
+•	Déjeuner: Grande salade entrée + riz + sauce avec beaucoup de légumes
+•	Collation après-midi: Orange + carotte
+•	Dîner: Igname + sauce feuilles (200g) + salade tomate-concombre
+",
                                 'hypertension' => "Aucun",
                                 'cardio' => "Aucun"
                             ],
@@ -4381,13 +4420,21 @@ Portions idéales selon activité :
 •	Très actif : 8-10 portions
 •	Extrêmement actif : 10-12 portions
 ",
-                                'diabetes' => "Évaluation : EXCELLENT - Maintenir et diversifier
-Félicitations : Vous atteignez les recommandations internationales !
-Priorités qualité :
-•	Légumes verts foncés : épinards, gboma dessi
-•	Légumes crucifères : chou
-•	Légumes oranges : carottes, patate douce
-•	Avocat : bon gras mais 1/jour max",
+                                'diabetes' => "Conseils de maintien:
+•	Continuer cette excellente habitude
+•	Varier couleurs et types pour diversifier nutriments
+•	Privilégier légumes verts foncés (riches en nutriments)
+Pour aller plus loin:
+•	Viser 7-9 portions/jour
+•	Intégrer légumes à chaque repas ET collation
+•	Expérimenter nouvelles recettes béninoises
+Exemple journée 7-9 portions:
+•	Petit-déjeuner: Bouillie + papaye (150g) = 1 portion
+•	Collation matin: Mangue (150g) + carotte (100g) = 2 portions
+•	Déjeuner: Salade verte (150g) + sauce tomate-légumes (200g) + haricots verts (100g) = 3 portions
+•	Collation après-midi: Orange (1) + concombre (100g) = 2 portions
+•	Dîner: Sauce gboma (200g) + salade mixte (100g) = 2 portions TOTAL: 10 portions
+",
                                 'hypertension' => "Aucun",
                                 'cardio' => "Aucun"
                             ],
@@ -4877,7 +4924,7 @@ Organisation :
 •	2 collations prévues (même si non consommées)
 •	Toujours collation d'urgence disponible (fruit, noix)
 ",
-                            'diabetes' => "FExcellent! Conseils de maintien:
+                            'diabetes' => "Excellent! Conseils de maintien:
 •	Continuer à respecter les 3 repas + 2 collations planifiées
 •	Si faim entre repas: boire eau, tisane, bissap sans sucre
 •	Rester vigilant lors de situations à risque (stress, ennui, fatigue)
