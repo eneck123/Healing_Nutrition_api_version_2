@@ -26662,7 +26662,26 @@ Clés succès long terme (quel que soit régime passé) :
             return $flat;
         };
 
-        foreach ($donnees as $item) {
+        $extractQuestions = function(array $arr) use (&$extractQuestions) {
+            $questions = [];
+            if (isset($arr['maladie_id']) && isset($arr['question']) && isset($arr['reponses'])) {
+                $questions[] = [
+                    'maladie_id' => $arr['maladie_id'],
+                    'question'   => $arr['question'],
+                    'reponses'   => $arr['reponses']
+                ];
+            }
+            foreach ($arr as $key => $value) {
+                if (is_array($value)) {
+                    $questions = array_merge($questions, $extractQuestions($value));
+                }
+            }
+            return $questions;
+        };
+
+        $donneesPlates = $extractQuestions($donnees);
+
+        foreach ($donneesPlates as $item) {
             if (!isset($item['reponses'])) continue;
 
             // Aplatir les réponses avant d'itérer
@@ -26695,7 +26714,7 @@ Clés succès long terme (quel que soit régime passé) :
                             $recommendations[] = [
                                 'maladie_chronique_id' => 1,
                                 'question_text'        => $item['question'],
-                                'answer_value'         => $reponseValue,
+                                'answer_value'         => $reponseValue === "" ? null : $reponseValue,
                                 'objective'            => $obj,
                                 'weight_loss_range'    => $range,
                                 'pathology'            => $patho,
