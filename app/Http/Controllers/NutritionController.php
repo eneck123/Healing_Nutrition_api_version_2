@@ -1755,7 +1755,16 @@ class NutritionController extends Controller
             ->orderByRaw('answer_value IS NOT NULL DESC') // Priorité au match exact
             ->first();
 
-        return $recommendation ? $recommendation->content : "";
+        $content = $recommendation ? $recommendation->content : "";
+
+        // Remplacement dynamique de la variable {valeur_tanaka} par le vrai calcul
+        if (!empty($content) && strpos($content, '{valeur_tanaka}') !== false) {
+            $age = $user->age ?? 30; // Âge par défaut si non renseigné
+            $fcMax = round(208 - (0.7 * $age));
+            $content = str_replace('{valeur_tanaka}', $fcMax, $content);
+        }
+
+        return $content;
     }
 
     /**

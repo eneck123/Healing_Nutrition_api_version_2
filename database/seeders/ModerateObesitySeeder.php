@@ -570,8 +570,7 @@ Adaptations alimentaires :
 •	Éviter le pamplemousse si statines (interaction médicamenteuse)"
                         ]
                     ],
-                ],
-                'Non' => [
+                    'Non' => [
                     'weight_loss' => [
                         'under_5' => [
                             'none' => "Aucun",
@@ -4784,8 +4783,7 @@ Timing optimal :
 •	Collation 2 : 16h-16h30"
                         ]
                     ],
-                ],
-                'Non' => [
+                    'Non' => [
                     'weight_loss' => [
                         'under_5' => [
                             'none' => "Excellent ! Maintenir cette habitude
@@ -10893,8 +10891,7 @@ Aliments anti-inflammatoires béninois à privilégier :
 •	Fruits rouges locaux"
                         ]
                     ],
-                ],
-                'Non' => [
+                    'Non' => [
                     'weight_loss' => [
                         'under_5' => [
                             'none' => "Positif pour la santé
@@ -11379,8 +11376,7 @@ Conseils :
 •	Hydratation maximale (peau)"
                         ]
                     ],
-                ],
-                'Non' => [
+                    'Non' => [
                     'weight_loss' => [
                         'under_5' => [
                             'none' => "Aucun",
@@ -19286,8 +19282,7 @@ Suivi progrès :
 •	Signe de bonne adaptation cardiovasculaire"
                             ]
                         ],
-                    ],
-                    'Non' => [
+                        'Non' => [
                         'weight_loss' => [
                             'under_5' => [
                                 'none' => "Apprendre à la mesurer :
@@ -19666,7 +19661,9 @@ Objectif : Connaître sa FC repos puis utiliser pour optimiser entraînement (vo
                         null => [
                             'weight_loss' => [
                                 'under_5' => [
-                                    'none' => "Utilité pour entraînement et santé :
+                                    'none' => "FCmax estimée selon la formule de Tanaka (208 - 0.7 x âge) : {valeur_tanaka} bpm.
+
+Utilité pour entraînement et santé :
 Valeurs normales :
 •	Adultes : 60-100 bpm
 •	Sportifs : 40-60 bpm
@@ -19704,7 +19701,9 @@ FC élevée (>85 bpm) :
 •	Antioxydants : Fruits/légumes colorés
 •	Magnésium : Légumes verts, noix, bananes
 •	Limiter : Caféine, alcool, sel",
-                                    'diabetes' => "VALEUR FRÉQUENCE CARDIAQUE REPOS (FCR) :
+                                    'diabetes' => "FCmax estimée selon la formule de Tanaka (208 - 0.7 x âge) : {valeur_tanaka} bpm.
+
+VALEUR FRÉQUENCE CARDIAQUE REPOS (FCR) :
                                 Normale : 60-100 bpm Athlétique : 40-60 bpm Préoccupante si : >100 bpm (tachycardie repos)
                                 Facteurs influençant FCR :
                                 •	Condition physique (↓ si entraîné)
@@ -19767,7 +19766,9 @@ FC élevée (>85 bpm) :
                                 Surveillance :
                                 •	Glycémie et fréquence corrélées
                                 •	Si FCR de repos élevée (>80 bpm) : peut signaler stress, déconditionnement ou surchage pondérale, donc, ajuster l’activité progressivement.",
-                                    'hypertension' => "Interprétation Fréquence Cardiaque Repos (FCR) :
+                                    'hypertension' => "FCmax estimée selon la formule de Tanaka (208 - 0.7 x âge) : {valeur_tanaka} bpm.
+
+Interprétation Fréquence Cardiaque Repos (FCR) :
 < 60 bpm :
 •	Excellent (athlète)
 •	Rare si sédentaire/obésité
@@ -19815,7 +19816,9 @@ Durant Exercice :
 •	Viser zone modérée débutant
 •	Progresser vers zone intense
 ",
-                                    'cardio' => "Conseils:
+                                    'cardio' => "FCmax estimée selon la formule de Tanaka (208 - 0.7 x âge) : {valeur_tanaka} bpm.
+
+Conseils:
 •	Utiliser pour ajuster l'effort en : 
 •	Déterminant la fréquence cardiaque maximale (FCmax) : Formule de Tanaka (plus précise pour certains adultes) : FCmax ≈ 208 − 0,7 × âge.
 •	Utilisant cette formule pour calculer la fréquence cardiauqe maximale et par la suite définir la zones d’effort cible pour user enfin de lui faire les recommandations pour l’activité physique et nutritionnelles en te basant sur le tableau suivant :
@@ -19855,7 +19858,9 @@ o	L’intensité des efforts doit rester adaptée à l’état cardiovasculaire 
 "
                                 ],
                                 '5_10' => [
-                                    'none' => "Importance : La fréquence cardiaque au repos (FCR) est un excellent indicateur de santé cardiovasculaire et de condition physique.
+                                    'none' => "FCmax estimée selon la formule de Tanaka (208 - 0.7 x âge) : {valeur_tanaka} bpm.
+
+Importance : La fréquence cardiaque au repos (FCR) est un excellent indicateur de santé cardiovasculaire et de condition physique.
 INTERPRÉTATION FCR (adultes) :
 < 60 bpm ✅ EXCELLENT (athlétique)
 •	Condition cardiovasculaire excellente
@@ -19961,7 +19966,9 @@ Exemple :
 •	Après 6 mois : 70-75 bpm
 Motivation : Chaque battement en moins = cœur plus fort et efficace !
 ",
-                                    'diabetes' => "o	Calcul de votre fréquence cardiaque maximale FC max : 
+                                    'diabetes' => "FCmax estimée selon la formule de Tanaka (208 - 0.7 x âge) : {valeur_tanaka} bpm.
+
+o	Calcul de votre fréquence cardiaque maximale FC max : 
                                 Pour effectuer ce calcul, nous allons utiliser la formule de Tanaka qui est FCmax = 208 − (0,7× âge) dont l’unité est le bpm (battement par minute).
                                 Zones d'entraînement :
                                 ZONE 1 : Très légère (50-60% FCM)
@@ -20140,7 +20147,9 @@ Motivation : Chaque battement en moins = cœur plus fort et efficace !
                                 •	Sel modéré (ni trop ni trop peu)
                                 •	Électrolytes équilibrés
                                 Suivi: FC repos quotidienne, noter dans journal",
-                                    'hypertension' => "UTILISATION POUR ENTRAÎNEMENT :
+                                    'hypertension' => "FCmax estimée selon la formule de Tanaka (208 - 0.7 x âge) : {valeur_tanaka} bpm.
+
+UTILISATION POUR ENTRAÎNEMENT :
 o	Calcul de votre fréquence cardiaque maximale FC max : 
 Pour effectuer ce calcul, nous allons utiliser la formule de Tanaka qui est FCmax = 208 − (0,7× âge) dont l’unité est le bpm (battement par minute).
 •	Pour effectuer ce calcul, nous allons utiliser la formule de Tanaka qui est FCmax = 208 − (0,7× âge) dont l’unité est le bpm (battement par minute). Ensuite pour vous aller suivre votre zone cible en fonction de votre niveau d’activité pour suivre des recommandations suivantes qui se résume dans le tableau suivant : 
@@ -20238,7 +20247,9 @@ Si sédentaire <50 bpm :
 •	Consulter cardiologue (éliminer troubles conduction)
 •	Possible médication (bêta-bloquants peuvent ralentir excessivement)
 ",
-                                    'cardio' => "•	Déterminant la fréquence cardiaque maximale (FCmax) : Formule de Tanaka (plus précise pour certains adultes) : FCmax ≈ 208 − 0,7 × âge.
+                                    'cardio' => "FCmax estimée selon la formule de Tanaka (208 - 0.7 x âge) : {valeur_tanaka} bpm.
+
+•	Déterminant la fréquence cardiaque maximale (FCmax) : Formule de Tanaka (plus précise pour certains adultes) : FCmax ≈ 208 − 0,7 × âge.
 •	Utilisant cette formule pour calculer la fréquence cardiauqe maximale et par la suite définir la zones d’effort cible pour user enfin de lui faire les recommandations pour l’activité physique et nutritionnelles en te basant sur le tableau suivant :
 
 Niveau d’activité	% FCmax cible	Zone d’effort	Activité physique recommandée	Recommandations nutritionnelles
@@ -20304,7 +20315,9 @@ Adaptations alimentaires:
 •	Magnésium: arachides, épinards, haricots (régulation cardiaque)"
                                 ],
                                 'over_10' => [
-                                    'none' => "INTERPRÉTATION SELON LA VALEUR :
+                                    'none' => "FCmax estimée selon la formule de Tanaka (208 - 0.7 x âge) : {valeur_tanaka} bpm.
+
+INTERPRÉTATION SELON LA VALEUR :
 FC REPOS NORMALE : 60-100 bpm
 ❌ FC > 90 bpm (élevée)
 Signification :
@@ -20401,7 +20414,9 @@ Attention :
 •	Si athlète entraîné : Normal
 •	Si sédentaire : Consulter médecin (problème électrique cœur ?)
 ",
-                                    'diabetes' => "VALEUR FRÉQUENCE CARDIAQUE REPOS (FCR) :
+                                    'diabetes' => "FCmax estimée selon la formule de Tanaka (208 - 0.7 x âge) : {valeur_tanaka} bpm.
+
+VALEUR FRÉQUENCE CARDIAQUE REPOS (FCR) :
 Normale : 60-100 bpm Athlétique : 40-60 bpm Préoccupante si : >100 bpm (tachycardie repos)
 Facteurs influençant FCR :
 •	Condition physique (↓ si entraîné)
@@ -20465,7 +20480,9 @@ Surveillance :
 •	Glycémie et fréquence corrélées
 •	Si FCR de repos élevée (>80 bpm) : peut signaler stress, déconditionnement ou surchage pondérale, donc, ajuster l’activité progressivement.
 ",
-                                    'hypertension' => "Interprétation Fréquence Cardiaque Repos (FCR) :
+                                    'hypertension' => "FCmax estimée selon la formule de Tanaka (208 - 0.7 x âge) : {valeur_tanaka} bpm.
+
+Interprétation Fréquence Cardiaque Repos (FCR) :
 < 60 bpm :
 •	Excellent (athlète)
 •	Rare si sédentaire/obésité
@@ -20513,7 +20530,9 @@ Durant Exercice :
 •	Viser zone modérée débutant
 •	Progresser vers zone intense
 ",
-                                    'cardio' => "•	Déterminant la fréquence cardiaque maximale (FCmax) : Formule de Tanaka (plus précise pour certains adultes) : FCmax ≈ 208 − 0,7 × âge.
+                                    'cardio' => "FCmax estimée selon la formule de Tanaka (208 - 0.7 x âge) : {valeur_tanaka} bpm.
+
+•	Déterminant la fréquence cardiaque maximale (FCmax) : Formule de Tanaka (plus précise pour certains adultes) : FCmax ≈ 208 − 0,7 × âge.
 •	Utilisant cette formule pour calculer la fréquence cardiauqe maximale et par la suite définir la zones d’effort cible pour user enfin de lui faire les recommandations pour l’activité physique et nutritionnelles en te basant sur le tableau suivant :
 Niveau d’activité	% FCmax cible	Zone d’effort	Activité physique recommandée	Recommandations nutritionnelles
 Sédentaire	50–60 %	Zone de récupération légère	Marche douce, étirements, vélo léger	Favoriser les fibres (fruits, légumes, légumineuses), limiter les graisses saturées et le sel, boire suffisamment d’eau
@@ -20569,7 +20588,9 @@ Adaptations alimentaires:
                                 ],
                             ],
                             'fitness' => [
-                                'none' => "Utilisation pour l'entraînement :
+                                'none' => "FCmax estimée selon la formule de Tanaka (208 - 0.7 x âge) : {valeur_tanaka} bpm.
+
+Utilisation pour l'entraînement :
 •	Déterminant la fréquence cardiaque maximale (FCmax) : Formule de Tanaka (plus précise pour certains adultes) : FCmax ≈ 208 − 0,7 × âge.
 Zones d'entraînement :
 1.	Zone récupération (50-60% FCmax) : Échauffement, récupération
@@ -20718,7 +20739,9 @@ Si ATHLÈTE avec FCR <60 bpm :
 •	Continuer activité
 •	Surveiller symptômes (fatigue excessive, malaise)
 ",
-                                'diabetes' => "•	SI votre RÉPONSE : 65 bpm
+                                'diabetes' => "FCmax estimée selon la formule de Tanaka (208 - 0.7 x âge) : {valeur_tanaka} bpm.
+
+•	SI votre RÉPONSE : 65 bpm
 Évaluation : EXCELLENT - Santé cardiovasculaire bonne
 Interprétation :
 •	Normal-optimal
@@ -20815,7 +20838,9 @@ Suivi :
 •	Objectif -2 bpm/mois
 •	6-12 mois atteindre <80 bpm
 •	Consultations régulières",
-                                'hypertension' => "Interprétation fréquence cardiaque repos (FCR) :
+                                'hypertension' => "FCmax estimée selon la formule de Tanaka (208 - 0.7 x âge) : {valeur_tanaka} bpm.
+
+Interprétation fréquence cardiaque repos (FCR) :
 Normal adulte : 60-100 bpm Athlète entraîné : 40-60 bpm Élevée : > 100 bpm (tachycardie)
 FCR et santé cardiovasculaire :
 •	FCR basse (50-60 bpm) = condition cardiovasculaire excellente, efficacité cardiaque
@@ -20862,7 +20887,9 @@ Conseils ciblés FCR connue :
 3.	Zones : Respecter zones adaptées (éviter surentraînement/risques)
 4.	HTA : TA + FC surveillées ensemble (cardio contrôlé)
 5.	Médicaments : Bêta-bloquants abaissent FC (zones d'entraînement inadaptées - utiliser perception effort plutôt)",
-                                'cardio' => "Aucun"
+                                'cardio' => "FCmax estimée selon la formule de Tanaka (208 - 0.7 x âge) : {valeur_tanaka} bpm.
+
+Aucun"
                             ]
                         ]
                     ]
@@ -22589,8 +22616,7 @@ Suivi des progrès :
 "
                             ]
                         ],
-                    ],
-                    'Non' => [
+                        'Non' => [
                         'weight_loss' => [
                             'under_5' => [
                                 'none' => "Excellent ! Relation saine avec nourriture
@@ -24054,8 +24080,7 @@ Suivi des progrès :
 •	Semaine 8 : 80%+ des repas arrêtés à satiété 6/10"
                             ]
                         ],
-                    ],
-                    'Non' => [
+                        'Non' => [
                         'weight_loss' => [
                             'under_5' => [
                                 'none' => "Compétence précieuse pour poids santé
@@ -24718,8 +24743,7 @@ Exemple régime diabétique béninois :
 •	Épices locales (gingembre, ail, piment)"
                             ]
                         ],
-                    ],
-                    'Non' => [
+                        'Non' => [
                         'weight_loss' => [
                             'under_5' => [
                                 'none' => "Aucun",
@@ -26589,28 +26613,73 @@ Clés succès long terme (quel que soit régime passé) :
                     ],
                 ],
             ],
-        ];
+        ]]]]]]]]];
 
-        // LOGIQUE D'INSERTION OPTIMISÉE POUR ID 1
+        // LOGIQUE D'INSERTION CORRIGÉE POUR ID 1
         $recommendations = [];
-        $objectives = ['weight_loss', 'fitness'];
-        $ranges = ['under_5', '5_10', 'over_10'];
-        $pathologies = ['none', 'diabetes', 'hypertension', 'cardio', 'diabete', 'hta', 'cholesterol'];
+        $objectives   = ['weight_loss', 'fitness'];
+        $ranges       = ['under_5', '5_10', 'over_10'];
+        // CORRECTION 1 : uniquement les clés réellement présentes dans $donnees
+        $pathologies  = ['none', 'diabetes', 'hypertension', 'cardio'];
+
+        /**
+         * CORRECTION 2 : aplatissement récursif des réponses imbriquées.
+         *
+         * Certaines questions ont une structure à deux niveaux :
+         *   'reponses' => [
+         *       'Oui' => [ 'weight_loss' => [...], 'fitness' => [...] ],  // feuille directe
+         *       'Non' => [
+         *           'Perdre moins de 5Kg: Léger 300 kcal' => [ 'weight_loss' => [...], 'fitness' => [...] ],
+         *           ...                                                    // feuilles imbriquées
+         *       ],
+         *   ]
+         *
+         * La boucle simple ne descendait qu'un seul niveau et manquait toutes les feuilles imbriquées.
+         * Cette fonction récursive les remonte toutes à plat.
+         *
+         * Une "feuille" est reconnue par la présence d'au moins une des clés 'weight_loss' ou 'fitness'.
+         */
+        $flattenReponses = function (array $reponses) use (&$flattenReponses): array {
+            $flat = [];
+            foreach ($reponses as $key => $value) {
+                if (!is_array($value)) {
+                    // Valeur scalaire : on la garde telle quelle
+                    $flat[$key] = $value;
+                    continue;
+                }
+                // C'est une feuille si elle contient 'weight_loss' ou 'fitness'
+                $isFeuille = isset($value['weight_loss']) || isset($value['fitness']);
+                if ($isFeuille) {
+                    $flat[$key] = $value;
+                } else {
+                    // Niveau intermédiaire : on descend récursivement
+                    foreach ($flattenReponses($value) as $subKey => $subValue) {
+                        // Préfixer la clé pour garder la traçabilité (ex: "Non > Perdre moins de 5Kg: Léger 300 kcal")
+                        $flat[$key . ' > ' . $subKey] = $subValue;
+                    }
+                }
+            }
+            return $flat;
+        };
 
         foreach ($donnees as $item) {
             if (!isset($item['reponses'])) continue;
 
-            foreach ($item['reponses'] as $reponseValue => $data) {
-                // STRUCTURE POUR L'OBÉSITÉ MODÉRÉE (ID 1)
+            // Aplatir les réponses avant d'itérer
+            $reponsesPlates = $flattenReponses($item['reponses']);
+
+            foreach ($reponsesPlates as $reponseValue => $data) {
                 foreach ($objectives as $obj) {
                     $targetRanges = ($obj === 'fitness') ? ['all'] : $ranges;
                     foreach ($targetRanges as $range) {
                         foreach ($pathologies as $patho) {
                             $finalContent = "Aucun";
+
                             if (is_string($data)) {
                                 $finalContent = $data;
                             } elseif (is_array($data)) {
                                 $targetData = null;
+
                                 if ($obj === 'fitness' && isset($data['fitness'])) {
                                     $targetData = $data['fitness'];
                                 } elseif ($obj === 'weight_loss' && isset($data['weight_loss'][$range])) {
@@ -26618,20 +26687,21 @@ Clés succès long terme (quel que soit régime passé) :
                                 }
 
                                 if (is_array($targetData)) {
+                                    // CORRECTION 3 : on cherche uniquement les clés existantes
                                     $finalContent = $targetData[$patho] ?? $targetData['default'] ?? "Aucun";
                                 }
                             }
 
                             $recommendations[] = [
                                 'maladie_chronique_id' => 1,
-                                'question_text' => $item['question'],
-                                'answer_value' => $reponseValue,
-                                'objective' => $obj,
-                                'weight_loss_range' => $range,
-                                'pathology' => $patho,
-                                'content' => $finalContent,
-                                'created_at' => now(),
-                                'updated_at' => now(),
+                                'question_text'        => $item['question'],
+                                'answer_value'         => $reponseValue,
+                                'objective'            => $obj,
+                                'weight_loss_range'    => $range,
+                                'pathology'            => $patho,
+                                'content'              => $finalContent,
+                                'created_at'           => now(),
+                                'updated_at'           => now(),
                             ];
                         }
                     }
@@ -26639,10 +26709,11 @@ Clés succès long terme (quel que soit régime passé) :
             }
         }
 
+        // Insertion par lots de 100 pour éviter les dépassements de mémoire / limites SQL
         foreach (array_chunk($recommendations, 100) as $chunk) {
             \App\Models\Recommendation::insert($chunk);
         }
 
-        $this->command->info("Toutes les recommandations modérées (ID 1) sont prêtes !");
+        $this->command->info(count($recommendations) . " recommandations modérées (ID 1) insérées avec succès !");
     }
 }
