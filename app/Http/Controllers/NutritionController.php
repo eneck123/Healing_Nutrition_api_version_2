@@ -283,10 +283,21 @@ class NutritionController extends Controller
 
         // Macronutrients Distribution
         $macros = $this->calculateMacrosEnhanced($user, $user->niveau_d_activite_physique, $deficitValue, $isWeightLoss, $isFitness, $apportCalorique, $weightLossRange, $pathologies);
-
-        // NEW: Generate Intervention Plan and Food Guide
         $planIntervention = $this->generateNutritionInterventionPlan($user, $metrics, $responsesMap, $pathologies);
-        $guideData = $this->generateDynamicFoodGuide($user, $macros['grammes'], $pathologies, $objective, $weightLossRange);
+
+        // Pour l'obésité sévère (ID 2), le menu journalier algorithmique n'est pas applicable.
+        // Le plan de recommandations est géré via la table recommendations (seeder SevereObesitySeeder).
+        $isSevereObesity = ($user->maladie_chronique_id == 2);
+
+        if ($isSevereObesity) {
+            $guideData = [
+                'menu_journalier' => null,
+                'facteurs'        => null,
+                'conseils'        => 'Pour l\'obésité sévère, les recommandations alimentaires personnalisées sont intégrées dans votre plan d\'intervention ci-dessus. Veuillez consulter un diététicien-nutritionniste pour un menu journalier adapté à votre situation clinique spécifique.',
+            ];
+        } else {
+            $guideData = $this->generateDynamicFoodGuide($user, $macros['grammes'], $pathologies, $objective, $weightLossRange);
+        }
 
         return response()->json([
             'success' => true,
@@ -313,7 +324,7 @@ class NutritionController extends Controller
                     'Activité physique' => 'total en heures (ou nombre de séances)',
                     'Humeur' => 'bonne humeur, neutre ou fatigué·e/irritable'
                 ],
-                'utilisation' => 'À remplir chaque fin de semaine (par ex. dimanche matin) pour surveiller les tendances : stagnation, fatigue, besoin d’ajustement.'
+                'utilisation' => 'À remplir chaque fin de semaine (par ex. dimanche matin) pour surveiller les tendances : stagnation, fatigue, besoin d\'ajustement.'
             ],
             'plan_intervention' => $planIntervention,
             'menu_journalier' => $guideData['menu_journalier'],
@@ -1689,11 +1700,11 @@ class NutritionController extends Controller
         // Priorité des pathologies pour l'obésité sévère
         $pathoSlug = 'none';
         if ($pathologies['diabetes'])
-            $pathoSlug = 'diabete';
+            $pathoSlug = 'diabetes';
         elseif ($pathologies['hypertension'])
-            $pathoSlug = 'hta';
+            $pathoSlug = 'hypertension';
         elseif ($pathologies['cardio'])
-            $pathoSlug = 'cholesterol';
+            $pathoSlug = 'hypercholestérolémie';
 
         $recommendation = \App\Models\Recommendation::where('maladie_chronique_id', 2)
             ->where('question_text', $questionText)

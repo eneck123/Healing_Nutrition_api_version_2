@@ -10,11 +10,11 @@ class SevereObesityRecommendationService
             if (isset($item['question_id']) && $item['question_id'] == 93) {
                 $resp = mb_strtolower($item['reponse']);
                 if (str_contains($resp, 'diabète'))
-                    return 'diabete';
-                if (str_contains($resp, 'hypertension') || str_contains($resp, 'hta'))
-                    return 'hta';
+                    return 'diabetes';
+                if (str_contains($resp, 'hypertension') || str_contains($resp, 'hypertension'))
+                    return 'hypertension';
                 if (str_contains($resp, 'cholestérol'))
-                    return 'cholesterol';
+                    return 'hypercholestérolémie';
             }
         }
         return null;
@@ -82,17 +82,17 @@ class SevereObesityRecommendationService
      */
     public function getGeneralAdvice(?string $pathology): string
     {
-        if ($pathology === 'diabete') {
+        if ($pathology === 'diabetes') {
             return " PRIORITÉS POUR VOTRE PROFIL : OBÉSITÉ SÉVÈRE + DIABÈTE DE TYPE 2\n\n" .
                 "Votre situation nécessite une surveillance rigoureuse. L'objectif principal est de stabiliser votre glycémie pour prévenir les complications (reins, yeux, pieds, cœur) tout en amorçant une perte de poids progressive (0,5 à 1 kg par semaine).\n" .
                 " Règle d'or : JAMAIS de sucres rapides seuls. Toujours associer les glucides à des fibres (légumes) et des protéines.";
         }
-        if ($pathology === 'hta') {
+        if ($pathology === 'hypertension') {
             return " PRIORITÉS POUR VOTRE PROFIL : OBÉSITÉ SÉVÈRE + HYPERTENSION\n\n" .
                 "La priorité absolue est la réduction de la pression artérielle pour protéger votre cœur et vos artères.\n" .
                 " Règle d'or : Réduire drastiquement le sel (bouillons cubes, sel de table) et augmenter le potassium (fruits et légumes).";
         }
-        if ($pathology === 'cholesterol') {
+        if ($pathology === 'hypercholestérolémie') {
             return " PRIORITÉS POUR VOTRE PROFIL : OBÉSITÉ SÉVÈRE + HYPERCHOLESTÉROLÉMIE\n\n" .
                 "L'objectif est de réduire le 'mauvais' cholestérol (LDL) et de protéger vos vaisseaux.\n" .
                 " Règle d'or : Remplacer les graisses saturées (huile de palme excessive, fritures) par des graisses insaturées et augmenter les fibres.";
@@ -104,7 +104,7 @@ class SevereObesityRecommendationService
 
     private function getAntecedentsAdvice(bool $isYes, ?string $pathology): string
     {
-        if ($pathology === 'diabete') {
+        if ($pathology === 'diabetes') {
             if ($isYes) {
                 return "Conseils et recommandations :\nLe diabète de type 2 associé à l'obésité sévère nécessite une prise en charge globale et rigoureuse. La priorité est de stabiliser la glycémie tout en favorisant une perte de poids progressive (0,5 à 1 kg/semaine). Il faut absolument éviter les sucres rapides, les farines raffinées, les boissons sucrées et les aliments à index glycémique élevé. La régularité des repas (3 repas par jour à heures fixes, sans grignotage) est essentielle pour éviter les pics glycémiques.\n\n" .
                     " Proposition de repas béninois adaptés :\n" .
@@ -116,7 +116,7 @@ class SevereObesityRecommendationService
                 return "Conseils : Même en l'absence de comorbidité diagnostiquée, l'obésité sévère représente un risque important. Il est fortement recommandé de consulter un médecin pour un bilan complet (glycémie, tension artérielle, cholestérol, bilan rénal et hépatique). Une prise en charge préventive nutritionnelle doit être amorcée immédiatement.";
             }
         }
-        if ($pathology === 'hta') {
+        if ($pathology === 'hypertension') {
             return "Conseils et recommandations :\n• Réduire drastiquement la consommation de sel (< 5 g/jour, soit environ 1 cuillère à café)\n• Éviter les condiments très salés, les bouillons en cube (Maggi, etc.) en grande quantité\n• Consommer des aliments riches en potassium : bananes, haricots, légumes verts\n• Prendre les médicaments antihypertenseurs de façon régulière sans interruption\n• Surveiller la tension artérielle quotidiennement, matin et soir\n• Éviter le stress, le tabac et l'alcool qui aggravent l'hypertension\n• Pratiquer des exercices de relaxation ou de respiration profonde\n\n" .
                 " Propositions de repas adaptés (hypertension) :\n" .
                 "Petit-déjeuner : Bouillie de mil ou de sorgho non salée + fruit frais (papaye)\n" .
@@ -125,7 +125,7 @@ class SevereObesityRecommendationService
                 "Collation matin : Papaye fraîche ou mangue\n" .
                 "Collation soir : Noix de cajou non salées (petite quantité)";
         }
-        if ($pathology === 'cholesterol') {
+        if ($pathology === 'hypercholestérolémie') {
             return "Hypercholestérolémie : Conseils spécifiques :\n• Consulter un cardiologue et un endocrinologue en priorité pour un bilan lipidique complet (LDL, HDL, triglycérides) et un bilan cardiovasculaire\n• Adopter un régime pauvre en graisses saturées et en cholestérol alimentaire\n• Réduire les huiles de palme en excès, les fritures répétées et les abats qui sont très fréquents dans l'alimentation béninoise\n• Privilegier les huiles végétales insaturées\n• Augmenter la consommation de fibres solubles\n• Ne jamais arrêter les statines sans avis médical\n• Surveiller la glycémie car l'hypercholestérolémie est souvent associée au prédiabète.";
         }
         return "Conseil : L'obésité sévère représente un risque important. Consultez un médecin pour un bilan complet. Une prise en charge préventive est essentielle.";
@@ -135,9 +135,9 @@ class SevereObesityRecommendationService
     {
         if ($isYes) {
             $base = "Conseils : Après une chirurgie bariatrique, le régime alimentaire est très spécifique. Les repas doivent être fractionnés en 5 à 6 petites prises par jour. Les aliments doivent être bien mâchés, à texture molle au début. Il faut éviter les boissons pendant les repas, et veiller aux apports en protéines, vitamines et minéraux (carence en B12, fer, calcium fréquente). Un suivi médical et diététique régulier est obligatoire.\n\n";
-            if ($pathology === 'diabete') {
+            if ($pathology === 'diabetes') {
                 $base .= " Propositions adaptées (post-opératoire) :\n• Purée de haricots bien cuits (niébé mixé) en petite portion\n• Bouillie légère d'igname avec un peu de poisson effiloché\n• Soupe mixée de légumes locaux (carotte, courgette, épinards)";
-            } elseif ($pathology === 'hta') {
+            } elseif ($pathology === 'hypertension') {
                 $base .= " Propositions de repas adaptés (post-chirurgie bariatrique) :\n" .
                     "Repas 1 (7h) : Bouillie de maïs très lisse et fluide, non sucrée\n" .
                     "Repas 2 (10h) : Purée de haricots noirs très fine + quelques gouttes d'huile d'olive\n" .
@@ -156,18 +156,18 @@ class SevereObesityRecommendationService
         $ans = mb_strtolower($answer);
         if (str_contains($ans, 'allergies')) {
             $text = "Conseils : Identifier précisément l'allergène (arachide, gluten, lactose, fruits de mer, etc.) et l'éliminer totalement de l'alimentation. Consulter un allergologue et un diététicien pour trouver des substituts adaptés.";
-            if ($pathology === 'diabete') {
+            if ($pathology === 'diabetes') {
                 $text .= "\n\n Exemple (allergie aux arachides) : Remplacer les sauces à base d'arachide par des sauces à base de graines de courge (egusi), de sésame ou de tomates fraîches.";
-            } elseif ($pathology === 'hta') {
+            } elseif ($pathology === 'hypertension') {
                 $text .= "\n\n Exemple d'adaptation de repas (allergie aux arachides) :\nDéjeuner : Sauce gombo + poisson grillé + igname bouillie\nDîner : Sauce tomate maison + haricots + riz complet (petite portion)";
             }
             return $text;
         }
         if (str_contains($ans, 'intolérances')) {
             $text = "Conseils : Les intolérances alimentaires peuvent parfois être tolérées en petites quantités. En cas d'intolérance au lactose, opter pour le lait de soja ou de coco non sucré. En cas d'intolérance au gluten, évitez le blé, l'orge, le seigle.";
-            if ($pathology === 'diabete') {
+            if ($pathology === 'diabetes') {
                 $text .= "\n\n Exemples :\n• Akassa (base de maïs fermenté) : sans gluten, adapté\n• Pâte de maïs blanc : sans gluten, bonne option";
-            } elseif ($pathology === 'hta') {
+            } elseif ($pathology === 'hypertension') {
                 $text .= "\n\n Repas béninois adaptés (intolérance au gluten) :\nPetit-déjeuner : Bouillie de mil ou de sorgho + fruits frais\nDéjeuner : Pâte de maïs (akassa) + sauce légumes + poisson";
             }
             return $text;
@@ -185,9 +185,9 @@ class SevereObesityRecommendationService
     {
         if ($isYes) {
             $base = "Conseils et recommandations : Les aliments à calories vides (boissons sucrées, fast-foods, desserts industriels, chips) sont particulièrement dangereux car ils provoquent des pics glycémiques et favorisent le stockage des graisses. Il est indispensable de les éliminer progressivement.";
-            if ($pathology === 'diabete') {
+            if ($pathology === 'diabetes') {
                 $base .= "\n\nStratégie de substitution :\n• Au lieu d'une boisson sucrée → eau de coco naturelle fraîche ou eau infusée au gingembre\n• Au lieu de biscuits industriels → quelques cacahuètes non salées ou tranche de fruit frais\n• Au lieu de fast-food → sandwich à base de galette de maïs avec poulet grillé et légumes";
-            } elseif ($pathology === 'hta') {
+            } elseif ($pathology === 'hypertension') {
                 $base .= "\n\n Collations saines de substitution :\nÀ privilégier : Eau fraîche, jus de citron maison sans sucre, patate douce bouillie, poignée de noix de cajou ou arachides non salées.";
             }
             return $base;
@@ -199,7 +199,7 @@ class SevereObesityRecommendationService
     {
         if (mb_strtolower($answer) !== 'non' && !empty($answer)) {
             $text = "Conseils : La reprise de poids après l'arrêt d'un régime est un phénomène très courant appelé \"effet yo-yo\". Il traduit souvent un régime trop restrictif ou non adapté au mode de vie.";
-            if ($pathology === 'hta') {
+            if ($pathology === 'hypertension') {
                 $text .= "\n\n• Reprendre le suivi avec le diététicien en expliquant les difficultés rencontrées\n• Demander un plan nutritionnel adapté aux aliments locaux béninois\n• Comprendre que la fatigue initiale est transitoire\n• La régularité est plus efficace que les régimes stricts.";
             }
             return $text;
@@ -210,10 +210,10 @@ class SevereObesityRecommendationService
     private function getBoissonsAdvice(bool $isYes, ?string $pathology): string
     {
         if ($isYes) {
-            if ($pathology === 'diabete') {
+            if ($pathology === 'diabetes') {
                 return "Cas 1 — Boissons sucrées : Une canette de soda contient 7 à 10 morceaux de sucre. C'est une catastrophe glycémique. Remplacer par de l'eau pure, eau de coco fraîche ou infusions locales (bissap sans sucre).\n" .
                     "Cas 2 — Boissons alcoolisées : L'alcool perturbe la glycémie et favorise la résistance à l'insuline. Il est fortement conseillé d'arrêter totalement.";
-            } elseif ($pathology === 'hta') {
+            } elseif ($pathology === 'hypertension') {
                 return "Cas A — Boissons sucrées : Chaque verre = 150 kcal vides. Objectif final : 0 boisson sucrée industrielle par jour.\n" .
                     "Cas B — Alcool : L'alcool est calorique et mauvais pour la tension. La bière augmente la triglycéridémie et favorise le stockage abdominal.";
             }
