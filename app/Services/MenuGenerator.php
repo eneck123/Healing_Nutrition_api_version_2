@@ -8,40 +8,48 @@ class MenuGenerator
     protected array $baseMenu;
     protected string $activity;
     protected int $days;
-
     protected array $pathologies;
 
-    // Flattened meal pools
     protected array $breakfasts = [];
-    protected array $lunches = [];
-    protected array $dinners = [];
+    protected array $lunches    = [];
+    protected array $dinners    = [];
     protected array $collations = [];
 
-    public function __construct(array $userMacros, array $baseMenu, string $activity, int $days = 90, array $pathologies = [])
-    {
-        $this->userMacros = $userMacros; 
-        $this->activity = $activity;
-        // Correctly filter base menu by activity level
-        $this->baseMenu = $baseMenu[$activity] ?? ($baseMenu['Sédentaire'] ?? []);
-        $this->days = $days;
+    private const WINDOW_SIZE = 6;
+
+    public function __construct(
+        array  $userMacros,
+        array  $baseMenu,
+        string $activity,
+        int    $days,
+        array  $pathologies = []
+    ) {
+        $this->userMacros  = $userMacros;
+        $this->activity    = $activity;
+        $this->baseMenu    = $baseMenu[$activity] ?? ($baseMenu['Sédentaire'] ?? []);
+        $this->days        = 30;
         $this->pathologies = $pathologies;
 
         $this->flattenMeals();
     }
 
-    protected function flattenMeals()
+    // -------------------------------------------------------------------------
+    // APLATISSEMENT DES REPAS
+    // -------------------------------------------------------------------------
+
+    protected function flattenMeals(): void
     {
-        // Extract all unique meal options from the base menu structure
         foreach (['jour1', 'jour2'] as $day) {
             if (!isset($this->baseMenu[$day])) continue;
-            
+
             foreach (['Option A', 'Option B'] as $option) {
                 if (!isset($this->baseMenu[$day][$option])) continue;
-                
+
                 $meals = $this->baseMenu[$day][$option];
+
                 if (isset($meals['Petit-déjeuner'])) $this->breakfasts[] = $meals['Petit-déjeuner'];
-                if (isset($meals['Déjeuner'])) $this->lunches[] = $meals['Déjeuner'];
-                if (isset($meals['Dîner'])) $this->dinners[] = $meals['Dîner'];
+                if (isset($meals['Déjeuner']))       $this->lunches[]    = $meals['Déjeuner'];
+                if (isset($meals['Dîner']))          $this->dinners[]    = $meals['Dîner'];
             }
         }
 
@@ -50,183 +58,246 @@ class MenuGenerator
         }
     }
 
-    /**
-     * Génère les menus pour la durée spécifiée
-     */
+    // -------------------------------------------------------------------------
+    // GÉNÉRATION PRINCIPALE
+    // -------------------------------------------------------------------------
+
     public function generate(): array
     {
-        $menu90Jours = [];
+        $menuJours     = [];
         $globalFactors = ['g' => 0, 'p' => 0, 'l' => 0];
 
-        // Generate all possible unique combinations indices [b, l, d]
-        $combinations = [];
         $bCount = count($this->breakfasts);
         $lCount = count($this->lunches);
         $dCount = count($this->dinners);
 
         if ($bCount === 0 || $lCount === 0 || $dCount === 0) {
-            // Fallback if data is missing
             return ['menu' => [], 'average_factors' => $globalFactors];
         }
 
+        $allCombinations = [];
         for ($b = 0; $b < $bCount; $b++) {
             for ($l = 0; $l < $lCount; $l++) {
                 for ($d = 0; $d < $dCount; $d++) {
-                    $combinations[] = [$b, $l, $d];
+                    $allCombinations[] = [$b, $l, $d];
                 }
             }
         }
 
-        // Shuffle to randomize the order of unique days
-        shuffle($combinations);
+        $sequence = $this->buildCycleSequence($allCombinations, $this->days);
 
-        for ($i = 1; $i <= $this->days; $i++) {
-            // Pick a combination. If we run out, loop back to the start (smart repetition)
-            $comboIndex = ($i - 1) % count($combinations);
-            $indices = $combinations[$comboIndex];
-
+        foreach ($sequence as $dayIndex => $indices) {
             $dailyMeals = [
                 'Petit-déjeuner' => $this->breakfasts[$indices[0]],
-                'Déjeuner' => $this->lunches[$indices[1]],
-                'Dîner' => $this->dinners[$indices[2]]
+                'Déjeuner'       => $this->lunches[$indices[1]],
+                'Dîner'          => $this->dinners[$indices[2]],
             ];
 
-            // Generate snacks
-            $snackCount = $this->getSnackCount();
-            $snacks = [];
-            if ($snackCount > 0 && !empty($this->collations)) {
-                // Random snacks each day to add variety even if main meals repeat
-                $selectedIndices = (array) array_rand($this->collations, min($snackCount, count($this->collations)));
-                foreach ($selectedIndices as $idx) {
-                    $snacks[] = $this->collations[$idx];
-                }
-            }
+            $snacks = $this->pickSnacks();
 
-            // Adjust portions
-            $dayMenu = $this->adjustDailyMenu($dailyMeals, $snacks);
+            $dayMenu = $this->adjustDailyMenu($dailyMeals, $snacks)
+                ?? $this->buildFallbackMenu($dailyMeals, $snacks);
 
-            if (!$dayMenu) {
-                 // Retry with relaxed constraints
-                 $dayMenu = $this->adjustDailyMenu($dailyMeals, $snacks, true);
-            }
+            $menuJours[] = array_merge(['jour' => $dayIndex + 1], $dayMenu);
 
-            if (!$dayMenu) {
-                // Fallback: If still no combination works, we return the base combination without adjustment
-                // This ensures the user gets A menu, even if it's not perfectly macro-optimized
-                $dayMenu = [
-                    'type' => 'Standard (Non optimisé)',
-                    'repas' => $dailyMeals,
-                    'collations' => $snacks,
-                    'factors' => ['glucides' => 1.0, 'proteines' => 1.0, 'lipides' => 1.0]
-                ];
-                
-                // Add portions to the fallback menu consistent with the expected structure
-                foreach ($dayMenu['repas'] as $type => &$items) {
-                    foreach ($items as &$item) {
-                        $item['portion_recommandee'] = ($item['base'] ?? 100) . ' g';
-                    }
-                }
-                foreach ($dayMenu['collations'] as &$item) {
-                     $item['portion'] = ($item['base'] ?? 100) . ' g';
-                }
-            }
-
-            $menu90Jours[] = array_merge(['jour' => $i], $dayMenu);
-
-            $globalFactors['g'] += $dayMenu['factors']['glucides'] ?? 1.0;
+            $globalFactors['g'] += $dayMenu['factors']['glucides']  ?? 1.0;
             $globalFactors['p'] += $dayMenu['factors']['proteines'] ?? 1.0;
-            $globalFactors['l'] += $dayMenu['factors']['lipides'] ?? 1.0;
+            $globalFactors['l'] += $dayMenu['factors']['lipides']   ?? 1.0;
         }
 
         return [
-            'menu' => $menu90Jours,
+            'menu'            => $menuJours,
             'average_factors' => [
-                'glucides' => round($globalFactors['g'] / $this->days, 3),
+                'glucides'  => round($globalFactors['g'] / $this->days, 3),
                 'proteines' => round($globalFactors['p'] / $this->days, 3),
-                'lipides' => round($globalFactors['l'] / $this->days, 3),
-            ]
+                'lipides'   => round($globalFactors['l'] / $this->days, 3),
+            ],
         ];
     }
 
-    protected function adjustDailyMenu(array $dailyMeals, array $snacks, bool $relax = false): ?array
+    // -------------------------------------------------------------------------
+    // FENÊTRE GLISSANTE
+    // -------------------------------------------------------------------------
+
+    private function buildCycleSequence(array $allCombinations, int $days): array
     {
-        $hasDiabetes = $this->pathologies['diabetes'] ?? false;
-        $isCardio = $this->pathologies['cardio'] ?? false;
-        $isHypertension = $this->pathologies['hypertension'] ?? false;
+        shuffle($allCombinations);
 
-        // PRIORITÉ DIABÈTE (Priorité maximale aux Glucides)
-        if ($hasDiabetes) {
-            $result = $this->scaleAndValidate($dailyMeals, $snacks, false);
-            if ($result) return $result;
+        $sequence   = [];
+        $recentB    = [];
+        $recentL    = [];
+        $recentD    = [];
+        $pool       = $allCombinations;
+        $usedInPool = [];
 
-            if ($relax) {
-                // Relaxation hiérarchique Diabète : 1. Lipides, 2. Protéines, 3. Glucides (dernier recours)
-                $res1 = $this->scaleAndValidate($dailyMeals, $snacks, true, 1);
-                if ($res1) return $res1;
-                $res2 = $this->scaleAndValidate($dailyMeals, $snacks, true, 2);
-                if ($res2) return $res2;
-                $res3 = $this->scaleAndValidate($dailyMeals, $snacks, true, 3);
-                if ($res3) return $res3;
+        for ($day = 0; $day < $days; $day++) {
+
+            if (empty($pool)) {
+                $pool       = $allCombinations;
+                $usedInPool = [];
+                shuffle($pool);
             }
-        } elseif ($isCardio) {
-            // PRIORITÉ CARDIO (Priorité maximale aux Lipides)
-            $result = $this->scaleAndValidate($dailyMeals, $snacks, false);
-            if ($result) return $result;
 
-            if ($relax) {
-                $r1 = $this->scaleAndValidate($dailyMeals, $snacks, true, 1);
-                if ($r1) return $r1;
-                $r2 = $this->scaleAndValidate($dailyMeals, $snacks, true, 2);
-                if ($r2) return $r2;
-                $r3 = $this->scaleAndValidate($dailyMeals, $snacks, true, 3);
-                if ($r3) return $r3;
-            }
-        } elseif ($isHypertension) {
-            // PRIORITÉ HYPERTENSION
-            $result = $this->scaleAndValidate($dailyMeals, $snacks, false);
-            if ($result) return $result;
+            $chosen    = null;
+            $bestScore = PHP_INT_MAX;
+            $bestIndex = -1;
 
-            if ($relax) {
-                $res1 = $this->scaleAndValidate($dailyMeals, $snacks, true, 1);
-                if ($res1) return $res1;
-                $res2 = $this->scaleAndValidate($dailyMeals, $snacks, true, 2);
-                if ($res2) return $res2;
-                $res3 = $this->scaleAndValidate($dailyMeals, $snacks, true, 3);
-                if ($res3) return $res3;
+            foreach ($pool as $idx => $combo) {
+                $comboKey = implode('-', $combo);
+                if (isset($usedInPool[$comboKey])) continue;
+
+                $score = 0;
+                if (in_array($combo[0], $recentB, true)) $score++;
+                if (in_array($combo[1], $recentL, true)) $score++;
+                if (in_array($combo[2], $recentD, true)) $score++;
+
+                if ($score === 0) {
+                    $chosen    = $combo;
+                    $bestIndex = $idx;
+                    break;
+                }
+
+                if ($score < $bestScore) {
+                    $bestScore = $score;
+                    $chosen    = $combo;
+                    $bestIndex = $idx;
+                }
             }
-        } else {
-            // STRATÉGIE SANS PATHOLOGIES (Défaut) - Glucides > Protéines > Lipides
-            $result = $this->scaleAndValidate($dailyMeals, $snacks, false);
-            if ($result) return $result;
-            if ($relax) {
-                // Relaxation hiérarchique : 1. Protéines, 2. Lipides, 3. Glucides (dernier recours)
-                $r1 = $this->scaleAndValidate($dailyMeals, $snacks, true, 1);
-                if ($r1) return $r1;
-                $r2 = $this->scaleAndValidate($dailyMeals, $snacks, true, 2);
-                if ($r2) return $r2;
-                $r3 = $this->scaleAndValidate($dailyMeals, $snacks, true, 3);
-                if ($r3) return $r3;
+
+            if ($chosen === null) {
+                $chosen    = reset($pool);
+                $bestIndex = key($pool);
+            }
+
+            $sequence[]                        = $chosen;
+            $usedInPool[implode('-', $chosen)] = true;
+
+            $recentB[] = $chosen[0];
+            $recentL[] = $chosen[1];
+            $recentD[] = $chosen[2];
+
+            if (count($recentB) > self::WINDOW_SIZE) array_shift($recentB);
+            if (count($recentL) > self::WINDOW_SIZE) array_shift($recentL);
+            if (count($recentD) > self::WINDOW_SIZE) array_shift($recentD);
+
+            unset($pool[$bestIndex]);
+            $pool = array_values($pool);
+        }
+
+        return $sequence;
+    }
+
+    // -------------------------------------------------------------------------
+    // COLLATIONS
+    // -------------------------------------------------------------------------
+
+    private function pickSnacks(): array
+    {
+        $snackCount = $this->getSnackCount();
+        $snacks     = [];
+
+        if ($snackCount > 0 && !empty($this->collations)) {
+            $selectedIndices = (array) array_rand(
+                $this->collations,
+                min($snackCount, count($this->collations))
+            );
+            foreach ($selectedIndices as $idx) {
+                $snacks[] = $this->collations[$idx];
             }
         }
-        
-        return null;
+
+        return $snacks;
     }
 
     protected function getSnackCount(): int
     {
-        switch ($this->activity) {
-            case 'Sédentaire': return rand(0, 1);
-            case 'Légèrement actif': return 1;
-            case 'Modérément actif': return rand(1, 2);
-            case 'Très actif': return 2;
-            case 'Extrêmement actif': return 2;
-            default: return 1;
-        }
+        return match ($this->activity) {
+            'Sédentaire'        => rand(0, 1),
+            'Légèrement actif'  => 1,
+            'Modérément actif'  => rand(1, 2),
+            'Très actif',
+            'Extrêmement actif' => 2,
+            default             => 1,
+        };
     }
 
-    protected function scaleAndValidate(array $meals, array $snacks, bool $relax, int $relaxLevel = 0): ?array
+    // -------------------------------------------------------------------------
+    // AJUSTEMENT DES PORTIONS — POINT D'ENTRÉE
+    // -------------------------------------------------------------------------
+
+    /**
+     * Tente d'ajuster le menu journalier en appliquant un relâchement progressif
+     * des contraintes selon la pathologie détectée.
+     *
+     * Ordre de relâchement par pathologie :
+     *
+     *  Diabète          : Lipides (70%→65%) → Protéines (85%→80%) [jamais glucides en premier]
+     *  Hypertension     : Protéines (75%→70%) → Glucides (80%→75%) → Lipides en dernier recours
+     *  Cardio           : Protéines (75%→70%) → Glucides (80%→75%) → Lipides en dernier recours
+     *  Sans pathologie  : Protéines (70%→65%) → Lipides (70%→65%) → Glucides seulement si extrême
+     */
+    protected function adjustDailyMenu(array $dailyMeals, array $snacks): ?array
     {
-        // 1. Calculer les macros des snacks (fixes)
+        // relaxLevel 0 = contraintes strictes, niveaux suivants = relâchement progressif
+        foreach ([0, 1, 2, 3] as $relaxLevel) {
+            $result = $this->scaleAndValidate($dailyMeals, $snacks, $relaxLevel);
+            if ($result !== null) {
+                return $result;
+            }
+        }
+
+        return null;
+    }
+
+    // -------------------------------------------------------------------------
+    // MENU DE SECOURS
+    // -------------------------------------------------------------------------
+
+    private function buildFallbackMenu(array $dailyMeals, array $snacks): array
+    {
+        $repas = [];
+        foreach ($dailyMeals as $type => $items) {
+            $adjusted = [];
+            foreach ($items as $item) {
+                $adjusted[] = array_merge($item, [
+                    'portion_recommandee' => ($item['base'] ?? 100) . ' g',
+                ]);
+            }
+            $repas[$type] = $adjusted;
+        }
+
+        $collations = [];
+        foreach ($snacks as $item) {
+            $collations[] = array_merge($item, [
+                'portion' => ($item['base'] ?? 100) . ' g',
+            ]);
+        }
+
+        return [
+            'type'       => 'Standard (Non optimisé)',
+            'repas'      => $repas,
+            'collations' => $collations,
+            'factors'    => ['glucides' => 1.0, 'proteines' => 1.0, 'lipides' => 1.0],
+        ];
+    }
+
+    // -------------------------------------------------------------------------
+    // CALCUL & VALIDATION
+    // -------------------------------------------------------------------------
+
+    /**
+     * Calcule les facteurs spécifiques par macronutriment (Image 1 & 3) :
+     *   fG = G_cible / G_comb
+     *   fP = P_cible / P_comb
+     *   fL = L_cible / L_comb
+     *   facteur_final = min(fG, fP, fL)
+     *
+     * Les collations sont soustraites des cibles AVANT le calcul du facteur
+     * (elles ne participent pas au calcul du facteur d'ajustement principal).
+     */
+    protected function scaleAndValidate(array $meals, array $snacks, int $relaxLevel = 0): ?array
+    {
+        // 1. Macros fixes des collations (hors calcul du facteur)
         $snackTotals = ['g' => 0, 'p' => 0, 'l' => 0];
         foreach ($snacks as $s) {
             $snackTotals['g'] += $s['g'];
@@ -234,12 +305,12 @@ class MenuGenerator
             $snackTotals['l'] += $s['l'];
         }
 
-        // 2. Déterminer les cibles pour les repas principaux
-        $targetG = max(0, $this->userMacros['glucides'] - $snackTotals['g']);
+        // 2. Cibles nettes pour les repas principaux
+        $targetG = max(0, $this->userMacros['glucides']  - $snackTotals['g']);
         $targetP = max(0, $this->userMacros['proteines'] - $snackTotals['p']);
-        $targetL = max(0, $this->userMacros['lipides'] - $snackTotals['l']);
+        $targetL = max(0, $this->userMacros['lipides']   - $snackTotals['l']);
 
-        // 3. Calculer les totaux de base des repas choisis
+        // 3. Totaux de base de la combinaison (G_comb, P_comb, L_comb)
         $baseTotals = ['g' => 0, 'p' => 0, 'l' => 0];
         foreach ($meals as $items) {
             foreach ($items as $it) {
@@ -249,30 +320,33 @@ class MenuGenerator
             }
         }
 
-        // 4. Calculer les facteurs initiaux
+        // 4. Facteurs spécifiques par macronutriment
         $fG = $targetG / max(1, $baseTotals['g']);
         $fP = $targetP / max(1, $baseTotals['p']);
         $fL = $targetL / max(1, $baseTotals['l']);
 
-        // Facteur final = min des facteurs (Méthode par priorité appliquée)
-        $fFinal = min($fG, $fP, $fL);
-
-        // 5. Validation par priorité
-        if (!$this->isValid($fFinal, $fFinal, $fFinal, $relax, $relaxLevel)) {
+        // 5. Validation par priorité selon la pathologie
+        if (!$this->isValid($fG, $fP, $fL, $relaxLevel)) {
             return null;
         }
 
-        // 6. Application du facteur final ajusté
-        $f = max(0.4, min(1.8, $fFinal));
+        // 6. facteur_final = min(fG, fP, fL), clampé entre 0.4 et 1.8
+        $fFinal = max(0.4, min(1.8, min($fG, $fP, $fL)));
 
+        // 7. Application du facteur
         $adjustedMeals = [];
         foreach ($meals as $moment => $items) {
             $momentAdjusted = [];
             foreach ($items as $item) {
                 $momentAdjusted[] = [
-                    'nom' => $item['nom'],
-                    'portion_recommandee' => round($item['base'] * $f) . ' g',
-                    'details' => "Macros: ".round($item['p']*$f,1)."g P, ".round($item['g']*$f,1)."g G, ".round($item['l']*$f,1)."g L"
+                    'nom'                 => $item['nom'],
+                    'portion_recommandee' => round($item['base'] * $fFinal) . ' g',
+                    'details'             => sprintf(
+                        'Macros: %.1fg P, %.1fg G, %.1fg L',
+                        $item['p'] * $fFinal,
+                        $item['g'] * $fFinal,
+                        $item['l'] * $fFinal
+                    ),
                 ];
             }
             $adjustedMeals[$moment] = $momentAdjusted;
@@ -281,109 +355,258 @@ class MenuGenerator
         $adjustedSnacks = [];
         foreach ($snacks as $s) {
             $adjustedSnacks[] = [
-                'nom' => $s['nom'],
+                'nom'     => $s['nom'],
                 'portion' => ($s['base'] ?? 100) . ' g',
-                'details' => "Macros: {$s['p']}g P, {$s['g']}g G, {$s['l']}g L"
+                'details' => "Macros: {$s['p']}g P, {$s['g']}g G, {$s['l']}g L",
             ];
         }
 
+        $label = $relaxLevel === 0
+            ? 'Ajusté (Optimal)'
+            : 'Ajusté (Relaxé Niv. ' . $relaxLevel . ')';
+
         return [
-            'type' => $relax ? 'Ajusté (Relaxé Niv. '.$relaxLevel.')' : 'Ajusté (Optimal)',
-            'repas' => $adjustedMeals,
+            'type'       => $label,
+            'repas'      => $adjustedMeals,
             'collations' => $adjustedSnacks,
-            'factors' => ['glucides' => $f, 'proteines' => $f, 'lipides' => $f]
+            'factors'    => [
+                'glucides'  => $fFinal,
+                'proteines' => $fFinal,
+                'lipides'   => $fFinal,
+            ],
         ];
     }
 
-    protected function isValid(float $fG, float $fP, float $fL, bool $relax, int $relaxLevel = 0): bool
+    // -------------------------------------------------------------------------
+    // VALIDATION PAR PRIORITÉ SELON PATHOLOGIE
+    // -------------------------------------------------------------------------
+
+    /**
+     * Délègue la validation au bloc correspondant à la pathologie.
+     *
+     * Les facteurs fG, fP, fL représentent le ratio cible/base pour chaque macro.
+     * On vérifie que chaque facteur se situe dans la fenêtre de tolérance admise
+     * au niveau de relâchement courant.
+     *
+     * relaxLevel :
+     *   0 → contraintes strictes (seuils nominaux)
+     *   1 → relâchement macro de priorité basse
+     *   2 → relâchement macro de priorité intermédiaire
+     *   3 → relâchement macro de priorité haute (dernier recours)
+     */
+    protected function isValid(float $fG, float $fP, float $fL, int $relaxLevel = 0): bool
     {
-        $hasDiabetes = $this->pathologies['diabetes'] ?? false;
-        $isCardio = $this->pathologies['cardio'] ?? false;
+        // Rejet si facteurs nuls ou négatifs
+        if ($fG <= 0 || $fP <= 0 || $fL <= 0) {
+            return false;
+        }
+
+        $hasDiabetes    = $this->pathologies['diabetes']     ?? false;
+        $isCardio       = $this->pathologies['cardio']       ?? false;
         $isHypertension = $this->pathologies['hypertension'] ?? false;
 
-        $avgFactor = ($fG + $fP + $fL) / 3;
-        if ($avgFactor < 0.01) return false;
-
-        $nG = $fG / $avgFactor;
-        $nP = $fP / $avgFactor;
-        $nL = $fL / $avgFactor;
-
-        // === STRATÉGIE DIABÈTE (Selon document utilisateur) ===
         if ($hasDiabetes) {
-            // 1. Glucides (Priorité maximale - Contrôle glycémique)
-            $gMin = 0.85; $gMax = 1.05; $gRejet = 1.10;
-            // 2. Protéines (Satiété et maintien musculaire)
-            $pMin = 0.85; $pMax = 1.20;
-            // 3. Lipides (Variable d'ajustement)
-            $lMin = 0.70; $lMax = 1.15; $lRejet = 1.20;
-
-            // Seuils avant relaxation
-            $currLMin = 0.75; $currPMin = 0.90; $currGMin = 0.90;
-
-            if ($relax) {
-                if ($relaxLevel >= 1) $currLMin = 0.70; // 1. Relâcher Lipides
-                if ($relaxLevel >= 2) $currPMin = 0.85; // 2. Relâcher Protéines
-                if ($relaxLevel >= 3) $currGMin = 0.85; // 3. Relâcher Glucides (Dernier recours)
-            }
-
-            // Filtrage Glucides (Priorité absolue)
-            if ($nG > $gRejet || $nG < $currGMin || $nG > $gMax) return false;
-            // Filtrage Protéines
-            if ($nP < $currPMin || $nP > $pMax) return false;
-            // Filtrage Lipides
-            if ($nL < $currLMin || $nL > $lRejet) return false;
-
-            return true;
+            return $this->isValidDiabetes($fG, $fP, $fL, $relaxLevel);
         }
 
-        // === STRATÉGIE HYPERTENSION (Selon document utilisateur) ===
-        if ($isHypertension && !$isCardio) {
-            $lMin = 0.85; $lMax = 1.05; $lRejet = 1.10;
-            $gMin = 0.80; $gMax = 1.10; $gRejet = 1.15;
-            $pMin = 0.75; $pMax = 1.20;
-
-            $currLMin = 0.90; $currGMin = 0.85; $currPMin = 0.80;
-
-            if ($relax) {
-                if ($relaxLevel >= 1) $currPMin = 0.75;
-                if ($relaxLevel >= 2) $currGMin = 0.80;
-                if ($relaxLevel >= 3) $currLMin = 0.85;
-            }
-
-            if ($nL < $currLMin || $nL > $lMax) {
-                if ($nL > $lRejet) return false;
-                if (!$relax) return false;
-            }
-            if ($nG > $gRejet) return false;
-            if (!$relax && ($nG < $currGMin || $nG > $gMax)) return false;
-            if (!$relax && ($nP < $currPMin || $nP > $pMax)) return false;
-
-            return true;
+        if ($isCardio) {
+            return $this->isValidCardio($fG, $fP, $fL, $relaxLevel);
         }
 
-        // === STRATÉGIE SANS PATHOLOGIES (Défaut) - Selon document utilisateur ===
-        // 1. Glucides (Priorité maximale - Déficit calorique)
-        $gMin = 0.75; $gMax = 1.15; $gRejet = 1.15;
-        // 2. Protéines (Satiété / Muscle)
-        $pMin = 0.70; $pMax = 1.25;
-        // 3. Lipides (Variable d'ajustement)
-        $lMin = 0.70; $lMax = 1.20; $lRejet = 1.25;
-
-        // Seuils avant relaxation
-        $currGMin = 0.85; $currPMin = 0.80; $currLMin = 0.80;
-
-        if ($relax) {
-            if ($relaxLevel >= 1) $currPMin = 0.70; // 1. Relâcher Protéines
-            if ($relaxLevel >= 2) $currLMin = 0.70; // 2. Relâcher Lipides
-            if ($relaxLevel >= 3) $currGMin = 0.75; // 3. Relâcher Glucides (Besoin extrême)
+        if ($isHypertension) {
+            return $this->isValidHypertension($fG, $fP, $fL, $relaxLevel);
         }
 
-        // Filtrage Glucides (Hard filter)
-        if ($nG > $gRejet || $nG < $currGMin || $nG > $gMax) return false;
-        // Filtrage Protéines
-        if ($nP < $currPMin || $nP > $pMax) return false;
-        // Filtrage Lipides
-        if ($nL < $currLMin || $nL > $lMax) return false;
+        return $this->isValidDefault($fG, $fP, $fL, $relaxLevel);
+    }
+
+    // -------------------------------------------------------------------------
+    // BLOC DIABÈTE
+    // -------------------------------------------------------------------------
+
+    /**
+     * Priorités : Glucides (1er) → Protéines (2e) → Lipides (variable)
+     *
+     * Seuils nominaux (Image 2) :
+     *   Glucides  : ≥ 90 %,  ≤ 110 % (rejet > 110 %)
+     *   Protéines : ≥ 85 %,  ≤ 120 %
+     *   Lipides   : ≥ 70 %,  ≤ 120 % (rejet > 120 %)
+     *
+     * Relâchement progressif (jamais les glucides en premier) :
+     *   Niveau 1 → Lipides    : min 70 % → 65 %
+     *   Niveau 2 → Protéines  : min 85 % → 80 %
+     *   Niveau 3 → Glucides   : min 90 % → 85 %  (dernier recours)
+     */
+    private function isValidDiabetes(float $fG, float $fP, float $fL, int $relaxLevel): bool
+    {
+        // --- Glucides : priorité 1, hard filter ---
+        $gMin = $relaxLevel >= 3 ? 0.85 : 0.90;
+        $gMax = 1.10;
+        $gRejet = 1.10;
+
+        if ($fG > $gRejet || $fG < $gMin || $fG > $gMax) {
+            return false;
+        }
+
+        // --- Protéines : priorité 2 ---
+        $pMin = $relaxLevel >= 2 ? 0.80 : 0.85;
+        $pMax = 1.20;
+
+        if ($fP < $pMin || $fP > $pMax) {
+            return false;
+        }
+
+        // --- Lipides : variable d'ajustement, relâché en premier ---
+        $lMin = $relaxLevel >= 1 ? 0.65 : 0.70;
+        $lMax = 1.20;
+        $lRejet = 1.20;
+
+        if ($fL > $lRejet || $fL < $lMin || $fL > $lMax) {
+            return false;
+        }
+
+        return true;
+    }
+
+    // -------------------------------------------------------------------------
+    // BLOC HYPERTENSION
+    // -------------------------------------------------------------------------
+
+    /**
+     * Priorités : Lipides (1er) → Glucides (2e) → Protéines (variable)
+     *
+     * Seuils nominaux :
+     *   Lipides   : ≥ 85 %,  ≤ 105 % (rejet > 110 %)   — hard filter
+     *   Glucides  : ≥ 80 %,  ≤ 110 % (rejet > 115 %)
+     *   Protéines : ≥ 75 %,  ≤ 120 %
+     *
+     * Relâchement progressif (lipides en dernier) :
+     *   Niveau 1 → Protéines  : min 75 % → 70 %
+     *   Niveau 2 → Glucides   : min 80 % → 75 %
+     *   Niveau 3 → Lipides    : min 85 % → 80 %  (dernier recours, très léger)
+     */
+    private function isValidHypertension(float $fG, float $fP, float $fL, int $relaxLevel): bool
+    {
+        // --- Lipides : priorité absolue, hard filter ---
+        $lMin   = $relaxLevel >= 3 ? 0.80 : 0.85;
+        $lMax   = 1.05;
+        $lRejet = 1.10;
+
+        if ($fL > $lRejet || $fL < $lMin || $fL > $lMax) {
+            return false;
+        }
+
+        // --- Glucides : priorité 2 ---
+        $gMin   = $relaxLevel >= 2 ? 0.75 : 0.80;
+        $gMax   = 1.10;
+        $gRejet = 1.15;
+
+        if ($fG > $gRejet || $fG < $gMin || $fG > $gMax) {
+            return false;
+        }
+
+        // --- Protéines : variable d'ajustement, relâchée en premier ---
+        $pMin = $relaxLevel >= 1 ? 0.70 : 0.75;
+        $pMax = 1.20;
+
+        if ($fP < $pMin || $fP > $pMax) {
+            return false;
+        }
+
+        return true;
+    }
+
+    // -------------------------------------------------------------------------
+    // BLOC CARDIO
+    // -------------------------------------------------------------------------
+
+    /**
+     * Priorités : Lipides (1er) → Glucides (2e) → Protéines (variable)
+     *
+     * Seuils nominaux :
+     *   Lipides   : ≥ 80 %,  ≤ 100 % (rejet > 105 %)   — hard filter
+     *   Glucides  : ≥ 75 %,  ≤ 110 % (rejet > 115 %)
+     *   Protéines : ≥ 70 %,  ≤ 120 %
+     *
+     * Relâchement progressif (lipides en dernier) :
+     *   Niveau 1 → Protéines  : min 70 % → 65 %
+     *   Niveau 2 → Glucides   : min 75 % → 70 %
+     *   Niveau 3 → Lipides    : min 80 % → 75 %  (dernier recours, très léger)
+     */
+    private function isValidCardio(float $fG, float $fP, float $fL, int $relaxLevel): bool
+    {
+        // --- Lipides : priorité absolue, hard filter ---
+        $lMin   = $relaxLevel >= 3 ? 0.75 : 0.80;
+        $lMax   = 1.00;
+        $lRejet = 1.05;
+
+        if ($fL > $lRejet || $fL < $lMin || $fL > $lMax) {
+            return false;
+        }
+
+        // --- Glucides : priorité 2 ---
+        $gMin   = $relaxLevel >= 2 ? 0.70 : 0.75;
+        $gMax   = 1.10;
+        $gRejet = 1.15;
+
+        if ($fG > $gRejet || $fG < $gMin || $fG > $gMax) {
+            return false;
+        }
+
+        // --- Protéines : variable d'ajustement, relâchée en premier ---
+        $pMin = $relaxLevel >= 1 ? 0.65 : 0.70;
+        $pMax = 1.20;
+
+        if ($fP < $pMin || $fP > $pMax) {
+            return false;
+        }
+
+        return true;
+    }
+
+    // -------------------------------------------------------------------------
+    // BLOC SANS PATHOLOGIE (obésité générale)
+    // -------------------------------------------------------------------------
+
+    /**
+     * Priorités : Glucides (1er) → Protéines (2e) → Lipides (variable)
+     *
+     * Seuils nominaux :
+     *   Glucides  : ≥ 75 %,  ≤ 115 % (rejet > 115 %)   — hard filter
+     *   Protéines : ≥ 70 %,  ≤ 125 %
+     *   Lipides   : ≥ 70 %,  ≤ 120 %  — jamais rejet immédiat
+     *
+     * Relâchement progressif (glucides en dernier) :
+     *   Niveau 1 → Protéines  : min 70 % → 65 %
+     *   Niveau 2 → Lipides    : min 70 % → 65 %
+     *   Niveau 3 → Glucides   : min 75 % → 70 %  (besoin extrême seulement)
+     */
+    private function isValidDefault(float $fG, float $fP, float $fL, int $relaxLevel): bool
+    {
+        // --- Glucides : priorité 1, hard filter ---
+        $gMin   = $relaxLevel >= 3 ? 0.70 : 0.75;
+        $gMax   = 1.15;
+        $gRejet = 1.15;
+
+        if ($fG > $gRejet || $fG < $gMin) {
+            return false;
+        }
+
+        // --- Protéines : priorité 2, relâchée en premier ---
+        $pMin = $relaxLevel >= 1 ? 0.65 : 0.70;
+        $pMax = 1.25;
+
+        if ($fP < $pMin || $fP > $pMax) {
+            return false;
+        }
+
+        // --- Lipides : variable d'ajustement flexible ---
+        $lMin = $relaxLevel >= 2 ? 0.65 : 0.70;
+        $lMax = 1.20;
+
+        if ($fL < $lMin || $fL > $lMax) {
+            return false;
+        }
 
         return true;
     }
