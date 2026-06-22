@@ -51,7 +51,15 @@ class MaladieChroniqueController extends Controller
     */
     public function store(Request $request)
     {
-        $utilisateur = Utilisateur::find(Auth::id());
+        //$utilisateur = Utilisateur::find(Auth::id());
+         $utilisateur = $request->user();
+
+        if (!$utilisateur) {
+        return response()->json([
+            'success' => false,
+            'message' => 'Utilisateur non authentifié',
+        ], 401);
+        } 
         
         if (!$utilisateur) {
             Log::warning('Tentative d\'association de maladie chronique sans utilisateur authentifié');
