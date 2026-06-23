@@ -3,7 +3,7 @@
 
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>Plan Nutritionnel Personnalisé - Obésité Sévère</title>
+    <title>PLAN NUTRITIONNEL PERSONNALISE - Obésité Sévère</title>
     <style>
         body {
             font-family: DejaVu Sans, sans-serif;
@@ -116,7 +116,7 @@
 <body>
 
     <div style="text-align: center; margin-bottom: 30px;">
-        <h1 style="border: none;">Plan Nutritionnel – Obésité sévère</h1>
+        <h1 style="border: none;">Plan Nutritionnel Personnalisé – Obésité sévère</h1>
         <p style="font-size: 14px; color: #7f8c8d;">Généré par votre Assistant Nutritionnel</p>
     </div>
 
@@ -141,7 +141,7 @@
                 <div class="info-cell"><span class="label">Tour de hanche :</span> {{ $user->tour_de_hanche }} cm</div>
             </div>
             <div class="info-row">
-                <div class="info-cell"><span class="label">Tour de cou :</span> {{ $user->tour_du_cou ?? 'N/A' }} cm
+                <div class="info-cell"><span class="label">Tour du cou :</span> {{ $user->tour_du_cou ?? 'N/A' }} cm
                 </div>
                 <div class="info-cell"><span class="label">Niveau d’activité :</span>
                     {{ $user->niveau_d_activite_physique }} (@php
@@ -163,9 +163,9 @@
         <h1>Collecte des données complètes sur le patient</h1>
         <div class="highlight">
             <ul>
-                <li><span class="label">Indice de masse corporelle (IMC) :</span> {{ $metrics['imc'] }} kg/m²
+                <li><span class="label">Indice de Masse Corporelle (IMC) :</span> {{ $metrics['imc'] }} kg/m²
                     ({{ $metrics['interpretation_imc'] }})</li>
-                <li><span class="label">Rapport tour de taille/ tour de hanche (RTH) :</span> {{ $metrics['rth'] }} cm
+                <li><span class="label">Rapport Taille/ Hanche (RTH) :</span> {{ $metrics['rth'] }} cm
                 </li>
                 <li><span class="label">Indice de Masse Grasse (IMG) :</span> {{ $metrics['img'] }} %</li>
             </ul>

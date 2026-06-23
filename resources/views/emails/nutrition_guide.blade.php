@@ -17,13 +17,13 @@
     <ul>
         <li>Votre bilan santé complet</li>
         <li>Vos objectifs et macros</li>
-        <li>Un plan d'intervention détaillé</li>
+        <li>Votre guide d'intervention nutritionnelle détaillée</li>
     </ul>
 
     <p>Nous vous souhaitons beaucoup de succès dans votre parcours.</p>
 
     <p>Cordialement,<br>
-        L'équipe Nutrition</p>
+        L'équipe Healing Nutrition</p>
 </body>
 
 </html>

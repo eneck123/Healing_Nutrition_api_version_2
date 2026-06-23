@@ -142,7 +142,7 @@
 <body>
 
     <div style="text-align: center; margin-bottom: 30px;">
-        <h1 style="border: none;">PLAN NUTRITIONNEL PERSONNALISÉ – Obésité Modérée</h1>
+        <h1 style="border: none;">PLAN NUTRITIONNEL PERSONNALISE – Obésité Modérée</h1>
         <p style="font-size: 14px; color: #7f8c8d;">Généré par votre Assistant Nutritionnel</p>
     </div>
 
@@ -285,13 +285,11 @@
                     </li>
                     <li><strong>Progression :</strong> Changements graduels (pas révolution)</li>
                     <li><strong>Soutenabilité :</strong> Alimentation viable À VIE</li>
-                    <li><strong>Équilibre :</strong> Macro selon Tableau 1 (voir section Recommandation calorique), variété
-                        aliments</li>
                     <li><strong>Activité physique :</strong> Non-négociable, quotidienne</li>
                     <li><strong>Sommeil :</strong> 7-8h (hormone régulation)</li>
                     <li><strong>Gestion stress :</strong> Techniques non-alimentaires</li>
                     <li><strong>Suivi :</strong> Marqueurs santé réguliers (glycémie, poids, tension)</li>
-                    <li><strong>Support :</strong> Professionnel santé + entourage</li>
+                    <li><strong>Support :</strong>Entourage</li>
                     <li><strong>Patience :</strong> Résultats durables prennent temps</li>
                 </ol>
             </div>
@@ -325,7 +323,7 @@
                     <li><strong>Activité physique progressive :</strong> De sédentaire à actif (150-300 min/semaine)</li>
                     <li><strong>Sommeil réparateur :</strong> 7-9h/nuit (régulation hormonale, récupération)</li>
                     <li><strong>Gestion stress :</strong> Techniques relaxation, alimentation consciente</li>
-                    <li><strong>Suivi médical :</strong> Collaboration médecin/nutritionniste, réévaluation régulière</li>
+                    <li><strong>Suivi médical :</strong>Réévaluation régulière</li>
                 </ol>
             </div>
 
@@ -335,12 +333,11 @@
                     <li><strong>Progrès > Perfection :</strong> Chaque petit changement compte</li>
                     <li><strong>Long terme :</strong> Style de vie permanent, pas régime temporaire</li>
                     <li><strong>Bienveillance :</strong> Auto-compassion lors rechutes (apprendre, pas culpabiliser)</li>
-                    <li><strong>Curiosité :</strong> Découvrir nouvelles saveurs, nouvelles sensations de vitalité</li>
-                    <li><strong>Responsabilité :</strong> Vous êtes l'acteur principal de votre santé</li>
+                    <li><strong>Célébrations :</strong> Reconnaître victoires (poids, mais aussi énergie, TA, performances)</li>
+                    <li><strong>Soutien  :</strong>Communauté & famille (ne pas porter seul)</li>
                 </ul>
                 <p style="font-weight: bold; margin-top: 15px; text-align: center; font-size: 14px; color: #16a085;">
-                    Une santé cardiovasculaire transformée et un poids équilibré sont à votre portée. Ce guide est votre
-                    feuille de route, mais l'engagement quotidien est votre moteur. Vous pouvez le faire !
+                    Vous avez toutes les connaissances et outils nécessaires. Le succès dépend désormais de l'application constante, patiente et bienveillante de ces principes. Bonne chance dans votre transformation vers une santé optimale ! 🌟
                 </p>
             </div>
         </div>
@@ -379,7 +376,6 @@
                         <ul>
                             <li>Impliquer : Famille, amis dans démarche</li>
                             <li>Groupes : Marche collective, sport en équipe</li>
-                            <li>Professionnel : Nutritionniste, psychologue si besoin</li>
                         </ul>
                     </li>
                     <li style="margin-top: 10px;"><strong>5. SUIVI ET AJUSTEMENTS</strong>
@@ -388,16 +384,6 @@
                             <li>Mesures : Tour de taille, hanches, cuisses (mensuel)</li>
                             <li>Photos : Mensuel (progrès visibles)</li>
                             <li>Énergie/Bien-être : Suivi subjectif quotidien</li>
-                            <li>Ajustements : Si stagnation > 4 semaines ou perte trop rapide (> 1,5 kg/semaine après mois
-                                1)</li>
-                        </ul>
-                    </li>
-                    <li style="margin-top: 10px;"><strong>6. PATIENCE ET PERSÉVÉRANCE</strong>
-                        <ul>
-                            <li>Perte durable : 0,5-1 kg/semaine MAXIMUM</li>
-                            <li>Plateaux : Normaux, temporaires</li>
-                            <li>Rechutes : Apprentissage, pas échec</li>
-                            <li>Vision : Mode de vie permanent, pas régime temporaire</li>
                         </ul>
                     </li>
                 </ul>
@@ -410,20 +396,7 @@
         <div class="section"
             style="background-color: #fcfcfc; padding: 20px; border-radius: 8px; border: 1px solid #e0e0e0; margin-bottom: 30px;">
             <h2 style="color: #27ae60; text-align: center; border-bottom: 2px solid #27ae60; padding-bottom: 10px;">
-                CONSEILS TRANSVERSAUX - PERTE DE POIDS (< 5KG) & DIABÈTE </h2>
-
-                    <!-- Synthèse personnalisée -->
-                    <div
-                        style="background-color: #e8f8f5; border-left: 4px solid #1abc9c; padding: 15px; margin-top: 20px; border-radius: 4px;">
-                        <h4 style="color: #16a085; margin-top: 0;">SYNTHÈSE PERSONNALISÉE :</h4>
-                        <p><strong>Conseil à retenir :</strong><br>
-                            Faites une synthèse sur le cadre d’analyse en dessus enfin de comprendre ce qui a marché pour
-                            vous dans votre régime précédent et comment vous pouvez l’appliquer dans votre plan nutritionnel
-                            actuel.</p>
-                        <p><strong>SI NON - Premier essai structuré</strong><br>
-                            Si vous êtes dans ce cas, alors ce sera votre première utilisation de régime alimentaire ; alors
-                            nous vous souhaitons une bonne expérience.</p>
-                    </div>
+                CONSEILS TRANSVERSAUX - PERTE DE POIDS (< 5KG) & DIABÈTE DE TYPE 2 </h2>
 
                     <!-- Conseils Généraux -->
                     <div style="margin-top: 20px;">
@@ -501,7 +474,6 @@
                             <li>Surveiller sa glycémie régulièrement, surtout en cas de traitement hypoglycémiant.</li>
                             <li>Prendre ses médicaments correctement selon les indications.</li>
                             <li>Attention aux hypoglycémies si traitement type insuline ou sulfonylurées.</li>
-                            <li>Contrôler son poids, car chaque perte de 5-10 % du poids corporel améliore la glycémie.</li>
                             <li>Suivi médical régulier : Bilan sanguin, tension, complications possibles (yeux, reins,
                                 pieds…).</li>
                         </ul>
@@ -515,41 +487,6 @@
                             <li><strong>Éviter l’automédication :</strong> surtout en cas de complications métaboliques ou
                                 de prise de plusieurs médicaments.</li>
                         </ul>
-                    </div>
-
-                    <!-- Tableau Collations -->
-                    <div class="regulatory-box" style="margin-top: 25px; margin-bottom: 20px;">
-                        <h4 style="color: #c0392b; margin-top: 0;">Guide des collations</h4>
-                        <table style="width: 100%; text-align: left; margin-top: 10px; border-collapse: collapse;">
-                            <thead>
-                                <tr style="background-color: #ecf0f1;">
-                                    <th style="padding: 8px; border: 1px solid #bdc3c7;">Niveau d’activité</th>
-                                    <th style="padding: 8px; border: 1px solid #bdc3c7;">Nombre de collations / jour</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td style="padding: 8px; border: 1px solid #bdc3c7;">Sédentaire</td>
-                                    <td style="padding: 8px; border: 1px solid #bdc3c7;">0 – 1</td>
-                                </tr>
-                                <tr>
-                                    <td style="padding: 8px; border: 1px solid #bdc3c7;">Légèrement actif</td>
-                                    <td style="padding: 8px; border: 1px solid #bdc3c7;">1</td>
-                                </tr>
-                                <tr>
-                                    <td style="padding: 8px; border: 1px solid #bdc3c7;">Modérément actif</td>
-                                    <td style="padding: 8px; border: 1px solid #bdc3c7;">1 – 2</td>
-                                </tr>
-                                <tr>
-                                    <td style="padding: 8px; border: 1px solid #bdc3c7;">Très actif</td>
-                                    <td style="padding: 8px; border: 1px solid #bdc3c7;">2</td>
-                                </tr>
-                                <tr>
-                                    <td style="padding: 8px; border: 1px solid #bdc3c7;">Extrêmement actif</td>
-                                    <td style="padding: 8px; border: 1px solid #bdc3c7;">2 (nécessaires)</td>
-                                </tr>
-                            </tbody>
-                        </table>
                     </div>
         </div>
     @endif
@@ -571,16 +508,27 @@
                         bien hydraté.</li>
                     <li><strong>Sommeil :</strong> 7-8h/nuit minimum. Régularité horaires et qualité prioritaire.</li>
                     <li><strong>Gestion Stress :</strong> Techniques de relaxation, activité physique, support social. Ne
-                        pas compenser par la nourriture.</li>
-                    <li><strong>Suivi Médical :</strong> Consultation régulière (tous les 2-3 mois), bilan sanguin tous les
-                        6 mois, communication avec le médecin.</li>
-                </ul>
-
-                <h4 style="color: #c0392b; margin-bottom: 5px;">Patience, Réalisme & Support Social :</h4>
-                <ul style="margin-top: 0;">
-                    <li>Perte saine : 0.5-1kg/semaine. Pas linéaire (plateaux normaux). Focus santé.</li>
-                    <li>Informer sa famille/proches, éviter les saboteurs.</li>
-                    <li>Flexibilité 90-10 : 90% du temps plan alimentaire ; 10% occasions spéciales.</li>
+                        pas compenser par la nourriture.
+                        <br>Support Social :
+                        <ul>
+                            <li>Informer famille/proches de démarche</li>
+                            <li>Demander soutien</li>
+                            <li>Éviter saboteurs</li>
+                            <li>Trouver partenaire accountability (ami, conjoint)</li>
+                        </ul>
+                        8. Mesures & Suivi : Hebdomadaire :
+                        <ul>
+                            <li>Poids (lundi matin)</li>
+                            <li>Tour de taille</li>
+                            <li>Noter alimentation/activité</li>
+                        </ul>
+                        Mensuel :
+                        <ul>
+                            <li>Photos (face, profil, dos)</li>
+                            <li>Mesures (bras, cuisses, hanches)</li>
+                            <li>Évaluation énergie/bien-être</li>
+                        </ul>
+                    </li>
                 </ul>
             </div>
 
@@ -617,56 +565,201 @@
         </div>
     @endif
 
-    @if($show_weight_loss_under_5_no_pathology_extras || $show_weight_loss_5_10_no_pathology_extras)
+    @if($show_weight_loss_under_5_cardio_extras)
         <div class="page-break"></div>
         <div class="section">
-            <h2 style="color: #27ae60; text-align: center; border-bottom: 2px solid #27ae60; padding-bottom: 10px;">
-                CONSEILS transversaux
-                ({{ $show_weight_loss_under_5_no_pathology_extras ? '< 5kg' : '5-10kg' }})
+            <h2 style="color: #c0392b; border-bottom: 2px solid #e74c3c; padding-bottom: 10px; font-size: 20px;">
+                <i class="fas fa-heartbeat"></i>CONSEILS GÉNÉRAUX TRANSVERSAUX
             </h2>
-            <div class="highlight" style="padding: 15px;">
-                <h3 style="color: #16a085;">PRIORISATION DES ACTIONS</h3>
-                <p>Si multiples problématiques, commencer par TOP 3 :</p>
-                <ul style="line-height: 1.8;">
-                    <li><strong>Priorité 1 - Impact majeur perte poids :</strong>
-                        <ol>
-                            <li>Supprimer boissons sucrées (si consommation quotidienne)</li>
-                            <li>Augmenter légumes à 5-7 portions/jour</li>
-                            <li>Initier/augmenter activité physique</li>
-                        </ol>
-                    </li>
-                    <li><strong>Priorité 2 - Santé globale :</strong>
+
+            <p style="font-size: 14px; margin-bottom: 20px;"> PRINCIPES ABSOLUS POUR OBÉSITÉ + MALADIE
+                CARDIOVASCULAIRE</p>
+
+            <div style="background-color: #fcebeb; padding: 15px; border-left: 4px solid #c0392b; margin-bottom: 20px;">
+                <h4 style="color: #c0392b; margin-bottom: 5px; margin-top: 0;">1. SEL : < 5g/jour (idéalement < 2g si
+                    hypertension sévère)</h4>
+                <ul style="margin-top: 0;">
+                    <li>Bannir : bouillons cubes, poissons trop fumés, sel de table</li>
+                    <li>Remplacer par : épices, herbes, citron, gingembre, ail, oignon, piment</li>
+                </ul>
+
+                <h4 style="color: #c0392b; margin-bottom: 5px;">2. GRAISSES SATURÉES : Limiter drastiquement</h4>
+                <ul style="margin-top: 0;">
+                    <li>Limiter : huile de palme, viandes grasses, peau de volaille, fritures</li>
+                    <li>Privilégier : huile d'olive, huile d'arachide (modération), poissons gras, avocat, noix</li>
+                </ul>
+
+                <h4 style="color: #c0392b; margin-bottom: 5px;">3. SUCRES SIMPLES : Éviter totalement</h4>
+                <ul style="margin-top: 0;">
+                    <li>Bannir : sucre ajouté, sodas, jus sucrés, pâtisseries, bonbons</li>
+                    <li>Remplacer par : fruits frais entiers, eau, tisanes</li>
+                </ul>
+
+                <h4 style="color: #c0392b; margin-bottom: 5px;">4. FIBRES : Augmenter massivement (25-35g/jour)</h4>
+                <ul style="margin-top: 0;">
+                    <li>À CHAQUE repas : légumes verts abondants</li>
+                    <li>Privilégier : céréales complètes, légumineuses, fruits</li>
+                </ul>
+
+                <h4 style="color: #c0392b; margin-bottom: 5px;">5. HYDRATATION : 1,5-2L d'eau/jour</h4>
+                <ul style="margin-top: 0;">
+                    <li>Eau nature prioritaire</li>
+                    <li>Tisanes locales sans sucre</li>
+                    <li>SURVEILLANCE RÉGULIÈRE
                         <ul>
-                            <li>4. Améliorer sommeil (7-9h)</li>
-                            <li>5. Gérer stress sans nourriture</li>
-                            <li>6. Traiter apnée sommeil (si présente)</li>
-                        </ul>
-                    </li>
-                    <li><strong>Priorité 3 - Optimisation :</strong>
-                        <ul>
-                            <li>7. Arrêter grignotage émotionnel</li>
-                            <li>8. Écouter satiété</li>
-                            <li>9. Réduire temps assis</li>
+                            <li>Poids : 1 fois/semaine (même jour, même heure, même tenue)</li>
+                            <li>Tour de taille : 1 fois/mois</li>
+                            <li>Tension artérielle : Selon recommandation médicale</li>
+                            <li>Glycémie : Si diabétique, selon protocole médical</li>
                         </ul>
                     </li>
                 </ul>
-                <p><strong>Progression :</strong><br>
-                    • Semaine 1-2 : 1-2 changements (priorité 1)<br>
-                    • Semaine 3-4 : Ajouter 1-2 changements (priorité 2)<br>
-                    • Mois 2+ : Peaufiner et optimiser (priorité 3)</p>
             </div>
 
-            <h3 style="color: #16a085;">SUIVI ET AJUSTEMENTS</h3>
-            <div class="highlight" style="padding: 15px;">
-                <p>Indicateurs succès (suivre hebdomadairement) :</p>
-                <ul style="line-height: 1.8;">
-                    <li><strong>Poids/mensurations :</strong> Pesée hebdomadaire, tour de taille (objectif : -0.5 à
-                        -1kg/semaine).</li>
-                    <li><strong>Énergie/Humeur :</strong> Niveau énergie stable, meilleure qualité sommeil.</li>
-                    <li><strong>Glycémie :</strong> Stabilité des glycémies à jeun et post-prandiales (si applicable).</li>
+            <div style="background-color: #ecf0f1; padding: 15px; border-radius: 5px; margin-top: 20px;">
+                <h4 style="color: #2c3e50; margin-top: 0; text-align: center;">Message Final d'Encouragement</h4>
+                <p style="font-style: italic; text-align: justify;">
+                    Vous avez pris la décision de changer votre vie. C'est courageux et admirable. Le chemin ne sera pas
+                    toujours facile, il y aura des hauts et des bas, mais chaque petit pas compte.
+                </p>
+                <p style="font-style: italic; text-align: justify;">
+                    Rappelez-vous :
+                </p>
+                <ul>
+                    <li>Vous ne faites pas ça pour être "parfait"</li>
+                    <li>Vous le faites pour votre SANTÉ, votre ÉNERGIE, votre QUALITÉ DE VIE</li>
+                    <li>Chaque kilo perdu réduit votre tension, améliore votre glycémie, protège votre cœur</li>
+                    <li>Vous méritez de vous sentir bien dans votre corps</li>
+                    <li>Vous êtes CAPABLE de réussir</li>
                 </ul>
+                <p style="font-weight: bold; margin-top: 15px; text-align: center; font-size: 14px; color: #16a085;">
+                    Avancez à votre rythme, soyez bienveillant avec vous-même, et n'hésitez pas à demander de l'aide
+                    quand nécessaire. Vous pouvez le faire !
+                </p>
             </div>
         </div>
+    @endif
+
+    @if($show_weight_loss_under_5_no_pathology_extras || $show_weight_loss_5_10_no_pathology_extras)
+
+        <div class="page-break"></div>
+
+        <div class="section">
+
+            <h2 style="color: #27ae60; text-align: center; border-bottom: 2px solid #27ae60; padding-bottom: 10px;">
+                CONSEILS TRANSVERSAUX
+                ({{ $show_weight_loss_under_5_no_pathology_extras ? '< 5kg' : '5-10kg' }})
+            </h2>
+
+            <div class="highlight" style="padding: 15px;">
+
+                {{-- ======================= --}}
+                {{-- CAS < 5 KG --}}
+                {{-- ======================= --}}
+                @if($show_weight_loss_under_5_no_pathology_extras)
+
+                    <h3 style="color: #16a085;">PRIORISATION DES ACTIONS</h3>
+
+                    <ul>
+                        <li>
+                            <strong>Priorité 1 - Impact majeur perte poids :</strong>
+                            <ol>
+                                <li>Supprimer boissons sucrées</li>
+                                <li>Augmenter légumes (5-7 portions/jour)</li>
+                                <li>Initier/augmenter activité physique</li>
+                            </ol>
+                        </li>
+
+                        <li>
+                            <strong>Priorité 2 - Santé globale :</strong>
+                            <ul>
+                                <li>Améliorer sommeil (7-9h)</li>
+                                <li>Gérer stress sans nourriture</li>
+                                <li>Traiter apnée du sommeil si présente</li>
+                            </ul>
+                        </li>
+
+                        <li>
+                            <strong>Priorité 3 - Optimisation :</strong>
+                            <ul>
+                                <li>Réduire grignotage émotionnel</li>
+                                <li>Écouter satiété</li>
+                                <li>Réduire temps assis</li>
+                            </ul>
+                        </li>
+                    </ul>
+
+                    <p>
+                        <strong>Progression :</strong><br>
+                        Semaine 1–2 : 1 à 2 changements<br>
+                        Semaine 3–4 : Ajout progressif
+                    </p>
+
+                    <hr>
+
+                    <h3 style="color: #16a085;">SUIVI</h3>
+
+                    <ul>
+                        <li>Pesée hebdomadaire</li>
+                        <li>Tour de taille mensuel</li>
+                        <li>Énergie et sommeil</li>
+                        <li>Comportements alimentaires</li>
+                    </ul>
+
+                {{-- ======================= --}}
+                {{-- CAS 5–10 KG --}}
+                {{-- ======================= --}}
+                @elseif($show_weight_loss_5_10_no_pathology_extras)
+
+                    <h3 style="color: #16a085;">PRINCIPES FONDAMENTAUX À RETENIR</h3>
+
+                    <ol>
+                        <li>Ce n'est pas un régime temporaire, c'est votre nouvelle vie</li>
+                        <li>La perte de poids saine = 2-4 kg/mois (patience !)</li>
+                        <li>Tous les aliments peuvent s'intégrer (portions, préparations adaptées)</li>
+                        <li>L'échec n'existe pas - seulement des apprentissages</li>
+                        <li>Demandez de l'aide (famille, amis)</li>
+                        <li>Célébrez TOUTES les victoires (poids, énergie, vêtements, analyses...)</li>
+                        <li>Soyez bienveillant envers vous-même</li>
+                    </ol>
+
+                    <h3 style="color: #16a085;">PROCHAINES ÉTAPES</h3>
+
+                    <ol>
+                        <li>Identifier votre niveau d'activité actuel</li>
+                        <li>Commencer le plan alimentaire correspondant</li>
+                        <li>Intégrer les adaptations personnalisées</li>
+                        <li>Suivre la progression (poids, mesures, photos, bien-être)</li>
+                        <li>Ajuster après 1 mois</li>
+                        <li>Persévérer minimum 3 mois</li>
+                    </ol>
+
+                    <hr>
+
+                    <h3 style="color: #16a085;">MESSAGE FINAL</h3>
+
+                    <p>
+                        VOUS POUVEZ Y ARRIVER !
+                    </p>
+
+                    <p>
+                        Des milliers de personnes réussissent chaque jour. Avec ce guide personnalisé, les aliments adaptés,
+                        le soutien de vos proches et votre détermination, vous allez transformer votre santé et votre vie.
+                    </p>
+
+                    <p>
+                        Chaque jour est une opportunité. Chaque repas est un choix. Passez à l’action !
+                    </p>
+
+                    <p>
+                        💪 Bonne chance dans votre parcours de santé !
+                    </p>
+
+                @endif
+
+            </div>
+        </div>
+
     @endif
 
     @if($show_weight_loss_over_10_no_pathology_extras)
@@ -681,68 +774,153 @@
                     béninois.</p>
                 <h3 style="color: #2980b9;">PROCHAINES ÉTAPES :</h3>
                 <ol style="line-height: 1.8;">
-                    <li>Identifier votre niveau d’activité (Partie 1)</li>
-                    <li>Suivre le plan de repas correspondant (2 jours fournis, à répéter/varier)</li>
-                    <li>Appliquer TOUTES les adaptations selon vos réponses au questionnaire (Partie 2)</li>
                     <li>Commencer progressivement (pas tout d’un coup)</li>
                     <li>Suivre vos progrès (poids, mesures, photos)</li>
-                    <li>Ajuster selon résultats (après 4 semaines)</li>
-                    <li>Consulter professionnels si besoin (médecin, nutritionniste)</li>
+                    <li>Ajuster selon résultats (après 4 semaines)
+                        <br>Patience, persévérance et permanence sont vos alliés !<br>
+                        Bonne chance dans votre parcours vers une santé optimale ! 🌟
+                    </li>
                 </ol>
-                <div class="regulatory-box" style="border: 2px solid #2980b9; background-color: #f0f7ff;">
-                    <p style="color: #2c3e50;"><strong>RAPPEL : Perte saine 0.5 - 1 kg / semaine.</strong> La patience et la
-                        régularité sont vos meilleures alliées pour une transformation durable !</p>
-                </div>
             </div>
         </div>
     @endif
 
     @if($show_fitness_no_pathology_extras)
+
         <div class="page-break"></div>
+
         <div class="section">
+
             <h1 class="section-title">Conseils transversaux</h1>
-            <p style="color: #2c3e50; font-weight: bold;">
-                Ce guide complet de 21 questions couvre tous les aspects nécessaires à un rééquilibrage alimentaire
-                personnalisé pour une personne souffrant d'obésité modérée.
-            </p>
 
             <div class="summary-box"
                 style="background-color: #f9f9f9; padding: 20px; border: 1px solid #ddd; border-radius: 8px;">
+
                 <h4 style="color: #27ae60; margin-top: 0;">Points clés à retenir :</h4>
+
                 <ol style="line-height: 1.6;">
-                    <li><strong>Alimentation adaptée</strong> au niveau d'activité (Sédentaire → Extrêmement actif).</li>
-                    <li><strong>Personnalisation</strong> selon les antécédents médicaux (Diabète, HTA, maladies
-                        cardiovasculaires).</li>
-                    <li><strong>Ajustements médicamenteux</strong> (Interactions aliments-médicaments).</li>
-                    <li><strong>Correction des habitudes</strong> (Portions fruits/légumes, grignotages, boissons).</li>
-                    <li><strong>Optimisation du sommeil</strong> (7-8h/nuit essentiel).</li>
-                    <li><strong>Gestion de l'apnée du sommeil</strong> (Si présente).</li>
-                    <li><strong>Activité physique progressive</strong> (Marche → Diversification).</li>
-                    <li><strong>Réduction du temps assis</strong> (<6h /jour idéalement).</li>
-                    <li><strong>Gestion de l'alimentation émotionnelle</strong> (Stress, ennui).</li>
-                    <li><strong>Écoute des signaux</strong> de faim et de satiété (Arrêt avant l'assiette vide).</li>
-                    <li><strong>Apprentissage des échecs</strong> régimes passés (Approche durable).</li>
+
+                    <li>
+                        <strong>Adopter une alimentation équilibrée</strong><br>
+                        Privilégier les aliments peu transformés.<br>
+                        Consommer quotidiennement des légumes variés.<br>
+                        Intégrer des fruits frais en quantité modérée.<br>
+                        Choisir des céréales complètes (riz complet, pain complet, avoine, maïs complet).<br>
+                        Privilégier les protéines maigres (poisson, poulet sans peau, œufs, légumineuses).<br>
+                        Réduire la consommation des aliments riches en sucres ajoutés.<br>
+                        Limiter les aliments riches en graisses saturées et en graisses trans.<br>
+                        Éviter les repas trop copieux.
+                    </li>
+
+                    <li>
+                        <strong>Contrôler les portions alimentaires</strong><br>
+                        Utiliser des assiettes de taille modérée.<br>
+                        Manger lentement.<br>
+                        Respecter les sensations de faim et de satiété.<br>
+                        Éviter de se resservir systématiquement.<br>
+                        Éviter de manger devant la télévision ou le téléphone.
+                    </li>
+
+                    <li>
+                        <strong>Structurer les repas</strong><br>
+                        Maintenir des horaires de repas réguliers.<br>
+                        Éviter de sauter les repas.<br>
+                        Prendre un petit-déjeuner équilibré.<br>
+                        Prévoir des collations saines si nécessaire.
+                    </li>
+
+                    <li>
+                        <strong>S'hydrater correctement</strong><br>
+                        Boire suffisamment d'eau tout au long de la journée.<br>
+                        Privilégier l'eau comme boisson principale.<br>
+                        Limiter les boissons sucrées (sodas, jus industriels, boissons énergétiques).<br>
+                        Réduire la consommation d'alcool.
+                    </li>
+
+                    <li>
+                        <strong>Augmenter progressivement l'activité physique</strong><br>
+                        Pratiquer une activité physique adaptée à ses capacités :<br>
+                        Marche rapide.<br>
+                        Vélo.<br>
+                        Natation.<br>
+                        Danse.<br>
+                        Exercices de renforcement musculaire légers.<br><br>
+
+                        Objectif :<br>
+                        Au moins 150 minutes d'activité physique modérée par semaine.<br>
+                        Répartir les séances sur plusieurs jours.<br>
+                        Réduire le temps passé assis.
+                    </li>
+
+                    <li>
+                        <strong>Améliorer la qualité du sommeil</strong><br>
+                        Dormir entre 7 et 9 heures par nuit.<br>
+                        Maintenir des horaires de coucher réguliers.<br>
+                        Limiter l'utilisation des écrans avant le coucher.<br>
+                        Créer un environnement propice au sommeil.
+                    </li>
+
+                    <li>
+                        <strong>Gérer le stress</strong><br>
+                        Identifier les situations de stress.<br>
+                        Pratiquer des techniques de relaxation.<br>
+                        Faire des exercices de respiration.<br>
+                        Pratiquer une activité agréable et régulière.<br>
+                        Éviter de compenser le stress par la nourriture.
+                    </li>
+
+                    <li>
+                        <strong>Adopter des objectifs réalistes</strong><br>
+                        Viser une perte de poids progressive.<br>
+                        Éviter les régimes très restrictifs.<br>
+                        Privilégier des changements durables des habitudes de vie.<br>
+                        Se concentrer sur les progrès plutôt que sur la rapidité des résultats.
+                    </li>
+
+                    <li>
+                        <strong>Surveiller régulièrement son évolution</strong><br><br>
+
+                        Suivre périodiquement :<br>
+                        Le poids.<br>
+                        Le tour de taille.<br>
+                        L'indice de masse corporelle (IMC).<br>
+                        Le niveau d'activité physique.
+                    </li>
+
+                    <li>
+                        <strong>Prévenir l'apparition des maladies chroniques</strong><br><br>
+
+                        Même en l'absence d'antécédents pathologiques :<br>
+                        Effectuer des bilans de santé réguliers.<br>
+                        Contrôler la glycémie selon les recommandations médicales.<br>
+                        Surveiller la tension artérielle.<br>
+                        Vérifier périodiquement le bilan lipidique (cholestérol et triglycérides).
+                    </li>
+
                 </ol>
-                <p style="margin-top: 15px; font-weight: bold; color: #16a085;">Tous les repas proposés sont béninois,
-                    accessibles et culturellement adaptés.</p>
+
             </div>
 
             <p class="final-encouragement"
                 style="background-color: #f1f8e9; padding: 15px; border-left: 5px solid #4caf50; font-style: italic; margin-top: 20px;">
+
                 "Votre transformation n'est pas un sprint, c'est un marathon. Chaque petit changement quotidien est une
                 victoire vers une meilleure santé."
+
             </p>
+
         </div>
+
     @endif
 
     @if($show_weight_loss_5_10_diabetes_extras)
         <div class="page-break"></div>
         <div class="section">
             <h1 style="color: #2c3e50; border-bottom: 2px solid #e67e22;">CONSEILS FINAUX TRANSVERSAUX (Profil Perte 5-10kg
-                + Diabète)</h1>
+                + Diabète de type 2)</h1>
 
             <div class="highlight" style="border-left: 4px solid #e67e22; margin-bottom: 20px;">
-                <h2 style="color: #d35400; margin-top: 0;">💧 HYDRATATION (Tous profils)</h2>
+                <h2 style="color: #d35400; margin-top: 0;">HYDRATATION</h2>
                 <p><strong>Objectif:</strong> 2-3L/jour (climat chaud Bénin)</p>
                 <p><strong>Répartition:</strong></p>
                 <ul>
@@ -758,43 +936,19 @@
                 <p><strong>À limiter/éviter:</strong> Sodas (jamais), Jus industriels (jamais), Alcool (occasionnel
                     uniquement), Café (max 2/jour, avant 14h)</p>
             </div>
-
-            <div class="highlight" style="border-left: 4px solid #27ae60;">
-                <h2 style="color: #1e8449; margin-top: 0;">🧺 PRÉPARATION ET ORGANISATION</h2>
-                <p><strong>Batch Cooking (dimanche):</strong></p>
-                <ul>
-                    <li>Cuire riz/fonio/igname pour 3-4 jours</li>
-                    <li>Bouillir œufs (6-8) pour semaine</li>
-                    <li>Laver/couper légumes</li>
-                    <li>Préparer bissap sans sucre (2L)</li>
-                    <li>Griller arachides/plantain portions</li>
-                </ul>
-                <p><strong>Courses hebdomadaires:</strong></p>
-                <ul>
-                    <li>Liste structurée (évite achats impulsifs)</li>
-                    <li>Marché local: Légumes saison, poissons frais, noix</li>
-                    <li>Éviter rayons produits transformés</li>
-                </ul>
-                <p><strong>Portions pré-mesurées:</strong></p>
-                <ul>
-                    <li>Utiliser petits sachets/boîtes pour collations (20g noix, 30g arachides)</li>
-                    <li>Évite de manger directement dans le grand sac</li>
-                </ul>
-            </div>
         </div>
     @endif
 
     @if($show_weight_loss_5_10_hypertension_extras)
         <div class="page-break"></div>
         <div class="section">
-            <h1 style="color: #2c3e50; border-bottom: 2px solid #2980b9;">SYNTHÈSE FINALE & RECOMMANDATIONS GÉNÉRALES
+            <h1 style="color: #2c3e50; border-bottom: 2px solid #2980b9;">CONSEILS GENERAUX TRANSVERSEAUX
                 (Profil Perte 5-10kg + HTA)</h1>
 
             <div class="highlight" style="border-left: 4px solid #2980b9;">
                 <h2 style="color: #2471a3; margin-top: 0;">🎯 PRINCIPES CLÉS RÉUSSITE</h2>
                 <ul>
-                    <li><strong>PROGRESSIVITÉ :</strong> Changements graduels (1-2 nouvelles habitudes/semaine). Perte poids
-                        0,5-1 kg/semaine. Activité physique intensification progressive. Patience (résultats durables =
+                    <li><strong>PROGRESSIVITÉ :</strong> Changements graduels (1-2 nouvelles habitudes/semaine).  Activité physique intensification progressive. Patience (résultats durables =
                         mois, pas jours).</li>
                     <li><strong>PERSONNALISATION :</strong> Adapter selon réponses questionnaire. Écouter corps (signes
                         faim, satiété, fatigue). Ajuster si résultats stagnent/régressent. Pas de "one-size-fits-all".</li>
@@ -803,37 +957,102 @@
                         (famille, amis).</li>
                     <li><strong>GLOBALITÉ :</strong> Nutrition + Activité + Sommeil + Stress + Social. Tous interconnectés.
                         Négliger un aspect = limiter résultats globaux.</li>
-                    <li><strong>BIENVEILLANCE :</strong> Accepter écarts (10-20% repas). Pas de culpabilité destructrice.
-                        Reprendre après écart sans attendre lundi. Focus progrès, pas perfection.</li>
                 </ul>
             </div>
         </div>
     @endif
 
     @if($show_weight_loss_5_10_cardio_extras)
-        <div class="page-break"></div>
-        <div class="section">
-            <h1 style="color: #2c3e50; border-bottom: 2px solid #e74c3c;">CONSEILS GÉNÉRAUX TRANSVERSAUX (Profil Perte
-                5-10kg + Cardiovasculaire)</h1>
+    <div class="page-break"></div>
+    <div class="section">
+        <h1 style="color: #2c3e50; border-bottom: 2px solid #e74c3c;">
+            CONSEILS GÉNÉRAUX TRANSVERSAUX (Profil Perte 5-10kg + MALADIE Cardiovasculaire)
+        </h1>
 
-            <div class="highlight" style="border-left: 4px solid #e74c3c; margin-bottom: 20px;">
-                <h2 style="color: #c0392b; margin-top: 0;">🥗 PRÉPARATIONS CULINAIRES SANTÉ</h2>
-                <ul>
-                    <li><strong>Cuissons recommandées :</strong> Bouilli, vapeur, grillé, braisé, en sauce légère.</li>
-                    <li><strong>À ÉVITER :</strong> Friture, huiles réutilisées, graisses brûlées (noirs/fumées).</li>
-                    <li><strong>Aromates naturels :</strong> Ail, gingembre, piment, oignon, basilic africain, poivre,
-                        citron, vinaigre, tomate fraîche.</li>
-                    <li><strong>Sel :</strong> ZÉRO sel ajouté (les aromates compensent naturellement).</li>
-                </ul>
-                <h2 style="color: #c0392b; margin-top: 20px;">📏 CONTRÔLE DES PORTIONS (Méthode de la main)</h2>
-                <ul>
-                    <li><strong>Protéines :</strong> Taille de la paume.</li>
-                    <li><strong>Féculents :</strong> Taille du poing fermé.</li>
-                    <li><strong>Légumes :</strong> 2 poignées ouvertes minimum.</li>
-                    <li><strong>Assiette divisée :</strong> 1/2 légumes, 1/4 protéines, 1/4 féculents.</li>
-                </ul>
-            </div>
+        <div class="highlight" style="border-left: 4px solid #e74c3c; margin-bottom: 20px;">
+
+            <h2 style="color: #c0392b; margin-top: 0;">💧 HYDRATATION</h2>
+            <ul>
+                <li><strong>Minimum :</strong> 1,5 à 2 L d'eau par jour.</li>
+                <li><strong>Augmenter les apports :</strong> en cas de chaleur, d'activité physique ou d'allaitement.</li>
+                <li><strong>Signes de déshydratation :</strong> urine foncée, soif, fatigue, maux de tête.</li>
+                <li><strong>Privilégier :</strong> eau plate, eau citronnée, tisanes sans sucre.</li>
+                <li><strong>Limiter :</strong> café (2 tasses maximum par jour) et thé fort.</li>
+            </ul>
+
+            <h2 style="color: #c0392b; margin-top: 20px;">🥗 PRÉPARATIONS CULINAIRES</h2>
+            <ul>
+                <li><strong>Cuissons santé :</strong> bouilli, vapeur, grillé, braisé, en sauce légère.</li>
+                <li><strong>Éviter :</strong> friture, huiles réutilisées et graisses brûlées.</li>
+                <li><strong>Aromates béninois :</strong> ail, gingembre, piment, oignon, basilic africain, poivre, citron, vinaigre et tomate fraîche.</li>
+                <li><strong>Sel :</strong> ZÉRO sel ajouté (les aromates compensent naturellement).</li>
+            </ul>
+
+            <h2 style="color: #c0392b; margin-top: 20px;">🎉 VIE SOCIALE</h2>
+            <ul>
+                <li><strong>Cérémonies et fêtes :</strong> manger avant d'y aller, choisir des options saines, prendre de petites portions et refuser poliment les excès.</li>
+                <li><strong>Restaurant :</strong> demander des préparations sans sel ou avec peu d'huile, partager un plat et prendre une salade en entrée.</li>
+            </ul>
+
+            <h2 style="color: #c0392b; margin-top: 20px;">📊 SUIVI DES PROGRÈS</h2>
+            <ul>
+                <li><strong>Pesée :</strong> une fois par semaine, le même jour, à la même heure et avec la même balance.</li>
+                <li><strong>Mesures :</strong> tour de taille mensuel (objectif : &lt; 102 cm chez l'homme et &lt; 88 cm chez la femme).</li>
+                <li><strong>Journal alimentaire :</strong> une semaine par mois pour rester vigilant.</li>
+                <li><strong>Bilan médical :</strong> contrôler la tension, la glycémie et le cholestérol tous les 3 à 6 mois.</li>
+            </ul>
+
+            <h2 style="color: #c0392b; margin-top: 20px;">🤝 SOUTIEN</h2>
+            <ul>
+                <li><strong>Impliquer la famille :</strong> partager des repas sains et s'encourager mutuellement.</li>
+                <li><strong>Groupe de soutien :</strong> partager les expériences et maintenir la motivation.</li>
+            </ul>
+
+            <h2 style="color: #c0392b; margin-top: 20px;">🎯 MOTIVATION À LONG TERME</h2>
+            <ul>
+                <li><strong>Objectifs SMART :</strong> Spécifiques, Mesurables, Atteignables, Réalistes et Temporels.</li>
+                <li><strong>Exemple :</strong> « Perdre 2 kg en 1 mois » plutôt que « maigrir ».</li>
+                <li><strong>Célébrer les victoires :</strong> chaque kilo perdu et chaque habitude acquise.</li>
+                <li><strong>Bienveillance :</strong> les rechutes sont normales, reprenez sans culpabilité.</li>
+                <li><strong>Visualiser les bénéfices :</strong> meilleure santé, vêtements mieux ajustés et davantage d'énergie.</li>
+            </ul>
+
+            <h2 style="color: #c0392b; margin-top: 20px;">✅ RÉSUMÉ DES CLÉS DU SUCCÈS</h2>
+            <ol>
+                <li><strong>Alimentation :</strong> portions contrôlées, légumes en quantité, cuissons saines, ZÉRO sel ajouté et limitation des sucres et des graisses.</li>
+                <li><strong>Activité physique :</strong> minimum 150 minutes d'activité modérée par semaine.</li>
+                <li><strong>Sommeil :</strong> 7 à 9 heures de sommeil de qualité par nuit.</li>
+                <li><strong>Stress :</strong> privilégier des stratégies de gestion autres que l'alimentation.</li>
+                <li><strong>Hydratation :</strong> 1,5 à 2 L d'eau par jour.</li>
+                <li><strong>Suivi :</strong> suivi médical régulier et ajustements progressifs.</li>
+                <li><strong>Durabilité :</strong> changements progressifs, plaisir préservé et vie sociale maintenue.</li>
+            </ol>
+
+            <h2 style="color: #c0392b; margin-top: 20px;">💙 MESSAGE FINAL D'ENCOURAGEMENT</h2>
+
+            <p>
+                Vous avez pris la décision de changer votre vie. C'est courageux et admirable.
+                Le chemin ne sera pas toujours facile, il y aura des hauts et des bas, mais chaque petit pas compte.
+            </p>
+
+            <p><strong>Rappelez-vous :</strong></p>
+
+            <ul>
+                <li>Vous ne faites pas cela pour être « parfait ».</li>
+                <li>Vous le faites pour votre <strong>SANTÉ</strong>, votre <strong>ÉNERGIE</strong> et votre <strong>QUALITÉ DE VIE</strong>.</li>
+                <li>Chaque kilo perdu réduit votre tension, améliore votre glycémie et protège votre cœur.</li>
+                <li>Vous méritez de vous sentir bien dans votre corps.</li>
+                <li>Vous êtes <strong>CAPABLE</strong> de réussir.</li>
+            </ul>
+
+            <p>
+                Avancez à votre rythme, soyez bienveillant avec vous-même et n'hésitez pas à demander de l'aide lorsque cela est nécessaire.
+            </p>
+
+            <p><strong>Vous pouvez le faire !</strong></p>
+
         </div>
+    </div>
     @endif
 
     @if($show_weight_loss_over_10_diabetes_extras)
@@ -843,21 +1062,80 @@
                 Diabète)</h1>
 
             <div class="highlight" style="border-left: 4px solid #27ae60; margin-bottom: 20px;">
-                <h2 style="color: #1e8449; margin-top: 0;">🍯 GESTION DES SUCRES ET GLUCIDES</h2>
+                <h2 style="color: #1e8449; margin-top: 0;">Aliments à privilégier :</h2>
                 <ul>
-                    <li><strong>Réduire les sucres rapides :</strong> Éliminer sodas, jus industriels, pâtisseries,
-                        confitures, bonbons.</li>
-                    <li><strong>Favoriser les fibres :</strong> Légumineuses (haricots), légumes verts (épinards, gombo),
-                        céréales complètes (riz complet), fonio. Les fibres ralentissent l'absorption des sucres.</li>
-                    <li><strong>Fractionnement :</strong> Répartir les glucides sur 3 repas et éventuellement 1 à 2
-                        collations pour éviter les pics de glycémie.</li>
-                    <li><strong>Manger lentement :</strong> Mastiquer au moins 20 fois chaque bouchée pour donner le temps
-                        au cerveau de recevoir les signaux de satiété.</li>
+                    <li><strong>Protéines :</strong> Poissons locaux, légumineuses, œufs</li>
+                    <li><strong>Glucides :</strong> Fonio, igname, patate douce, riz local complet</li>
+                    <li><strong>Légumes :</strong> Épinards, okra, gombo, tomates, aubergines locales</li>
+                    <li><strong>Fruits :</strong> Mangue verte, papaye, oranges locales (avec modération)</li>
                 </ul>
-                <h2 style="color: #1e8449; margin-top: 20px;">🏃 ACTIVITÉ PHYSIQUE RÉGULIÈRE</h2>
+                <h2 style="color: #1e8449; margin-top: 20px;">Préparations à éviter/limiter :</h2>
                 <ul>
-                    <li>Objectif : 30 minutes de marche rapide après le repas principal (améliore la sensibilité à
-                        l'insuline).</li>
+                    <li>Fritures excessives</li>
+                    <li>Sucre ajouté dans boissons</li>
+                    <li>Sel en excès</li>
+                    <li>Portions trop importantes</li>
+                </ul>
+                <h2 style="color: #1e8449; margin-top: 20px;">Techniques de cuisson recommandées :</h2>
+                <ul>
+                    <li>Cuisson vapeur</li>
+                    <li>Grillades</li>
+                    <li>Mijotés avec peu d'huile</li>
+                    <li>Préparations en papillote</li>
+                </ul>
+                <h2 style="color: #1e8449; margin-top: 20px;">Hydratation :</h2>
+                <ul>
+                    <li>2-3L d'eau/jour</li>
+                    <li>Tisanes locales sans sucre</li>
+                    <li>Eau de coco occasionnellement</li>
+                    <li>Bissap sans sucre ajouté</li>
+                </ul>
+                <h2 style="color: #1e8449; margin-top: 20px;">Conseils nutritionnels :</h2>
+                <ul>
+                    <li><strong>Réduire les sucres rapides :</strong> Éviter les sodas, pâtisseries, confiseries, pain
+                        blanc.</li>
+                    <li><strong>Privilégier les glucides complexes :</strong> Consommer du riz complet, des
+                        légumineuses, du pain complet, etc.</li>
+                    <li><strong>Limiter les portions</strong> pour contrôler l’apport calorique total.</li>
+                    <li><strong>Manger à heures fixes :</strong> Cela aide à stabiliser la glycémie, surtout si
+                        traitement avec sulfonylurées ou insuline.</li>
+                    <li><strong>Riche en fibres :</strong> Fruits (non sucrés), légumes, avoine, graines de chia – cela
+                        aide à ralentir l’absorption du sucre.</li>
+                    <li><strong>Limiter les graisses saturées et trans :</strong> Réduire les fritures, les viandes
+                        grasses, le beurre.</li>
+                    <li><strong>Favoriser les bonnes graisses :</strong> Avocat, huile d’olive, poissons gras (sardines,
+                        maquereaux, saumon).</li>
+                    <li><strong>Limiter l’alcool et boire suffisamment d’eau</strong> (surtout si traitement comme les
+                        inhibiteurs SGLT2).</li>
+                </ul>
+                <h2 style="color: #1e8449; margin-top: 20px;">Activité physique :</h2>
+                <ul>
+                    <li><strong>Objectif :</strong> au moins 150 minutes par semaine d’activité modérée (marche rapide,
+                        vélo, natation…).</li>
+                    <li><strong>Aide à :</strong>
+                        <ul>
+                            <li>Améliorer la sensibilité à l’insuline</li>
+                            <li>Perdre du poids progressivement</li>
+                            <li>Baisser la tension artérielle</li>
+                        </ul>
+                    </li>
+                </ul>
+                <h2 style="color: #1e8449; margin-top: 20px;">Surveillance & traitement :</h2>
+                <ul>
+                    <li>Surveiller sa glycémie régulièrement, surtout en cas de traitement hypoglycémiant.</li>
+                    <li>Prendre ses médicaments correctement selon les indications.</li>
+                    <li>Attention aux hypoglycémies si traitement type insuline ou sulfonylurées.</li>
+                    <li>Suivi médical régulier : Bilan sanguin, tension, complications possibles (yeux, reins,
+                        pieds…).</li>
+                </ul>
+                <h2 style="color: #1e8449; margin-top: 20px;">Conseils généraux :</h2>
+                <ul>
+                    <li><strong>Bien dormir (7 à 9 h par nuit) :</strong> le manque de sommeil peut déséquilibrer la
+                        glycémie.</li>
+                    <li><strong>Réduire le stress</strong>, car il peut augmenter la glycémie (pratique : respiration,
+                        méditation, marche…).</li>
+                    <li><strong>Éviter l’automédication</strong>, surtout en cas de complications métaboliques ou de
+                        prise de plusieurs médicaments.</li>
                 </ul>
             </div>
         </div>
@@ -871,16 +1149,87 @@
             </h2>
 
             <div style="background-color: #fcebeb; padding: 15px; border-left: 4px solid #c0392b; margin-bottom: 20px;">
-                <h4 style="color: #c0392b; margin-bottom: 5px; margin-top: 0;">Principes Universels Réussite :</h4>
+                <h4 style="color: #c0392b; margin-bottom: 5px; margin-top: 0;">Principes Universels Tous Niveaux/Situations :</h4>
+                <ol>
+                    <li><strong>Hydratation :</strong>
+                        <ul>
+                            <li>2-3L eau/jour minimum</li>
+                            <li>Plus si activité/chaleur</li>
+                            <li>Urine jaune clair = bien hydraté</li>
+                        </ul>
+                    </li>
+                    <li><strong>Sommeil :</strong>
+                        <ul>
+                            <li>7-8h/nuit minimum</li>
+                            <li>Régularité horaires</li>
+                            <li>Qualité prioritaire</li>
+                        </ul>
+                    </li>
+                    <li><strong>Gestion Stress :</strong>
+                        <ul>
+                            <li>Techniques relaxation</li>
+                            <li>Activité physique</li>
+                            <li>Support social</li>
+                            <li>Pas compensation alimentaire</li>
+                        </ul>
+                    </li>
+                    <li><strong>Suivi Médical :</strong>
+                        <ul>
+                            <li>Bilan sanguin tous les 6 mois</li>
+                            <li>Ajustement médicaments si nécessaire</li>
+                            <li>Communication médecin sur changements alimentaires</li>
+                        </ul>
+                    </li>
+                    <li><strong>Patience & Réalisme :</strong>
+                        <ul>
+                            <li>Focus santé, pas seulement poids</li>
+                            <li>Célébrer victoires non-poids (énergie, TA baissée, vêtements, mobilité)</li>
+                        </ul>
+                    </li>
+                    <li><strong>Support Social :</strong>
+                        <ul>
+                            <li>Informer famille/proches de démarche</li>
+                            <li>Demander soutien</li>
+                            <li>Éviter saboteurs</li>
+                            <li>Trouver partenaire accountability (ami, conjoint)</li>
+                        </ul>
+                    </li>
+                </ol>
+                8. Mesures & Suivi : Hebdomadaire :
                 <ul>
-                    <li><strong>HYDRATATION :</strong> 2-3L eau/jour minimum (climat chaud). Urine jaune clair = bien
-                        hydraté.</li>
-                    <li><strong>SOMMEIL :</strong> 7-8h/nuit minimum. Un manque de sommeil augmente le cortisol et favorise
-                        le stockage des graisses.</li>
-                    <li><strong>ZÉRO SEL AJOUTÉ :</strong> Supprimer le sel de table et les bouillons industriels. Utiliser
-                        les épices locales pour le goût.</li>
-                    <li><strong>DURABILITÉ :</strong> Ne pas viser un régime temporaire mais un style de vie permanent.
-                        Accepter les écarts occasionnels et reprendre immédiatement.</li>
+                    <li>Poids (lundi matin)</li>
+                    <li>Tour de taille</li>
+                    <li>Noter alimentation/activité</li>
+                </ul>
+                Mensuel :
+                <ul>
+                    <li>Photos (face, profil, dos)</li>
+                    <li>Mesures (bras, cuisses, hanches)</li>
+                    <li>Évaluation énergie/bien-être</li>
+                </ul>
+                <h4 style="color: #c0392b; margin-bottom: 5px;">Ressources Béninoises :</h4>
+                <p><strong>Aliments Locaux Excellents :</strong></p>
+                <ul>
+                    <li>Poissons : maquereau, sardines, tilapia, carpe</li>
+                    <li>Légumes : gombo, gboma, kpété, aubergines, tomates, carottes, chou</li>
+                    <li>Féculents IG modéré : igname, patate douce, riz rouge, fonio</li>
+                    <li>Fruits : orange, papaye, banane, ananas, mangue (saison)</li>
+                    <li>Légumineuses : haricots rouges/blancs, pois</li>
+                    <li>Oléagineux : noix de cajou, arachides</li>
+                </ul>
+                <p><strong>Activités Gratuites :</strong></p>
+                <ul>
+                    <li>Marche quartiers/plages</li>
+                    <li>Danse musique locale</li>
+                    <li>Exercices maison</li>
+                    <li>Travaux ménagers actifs</li>
+                </ul>
+                <p><strong>Tisanes Santé Locales :</strong></p>
+                <ul>
+                    <li>Kinkeliba (digestion, glycémie)</li>
+                    <li>Bissap/hibiscus (TA, antioxydants)</li>
+                    <li>Gingembre (anti-inflammatoire, digestion)</li>
+                    <li>Citronnelle (relaxation)</li>
                 </ul>
             </div>
         </div>
@@ -893,24 +1242,61 @@
                 Cardiovasculaire)</h1>
 
             <div class="highlight" style="border-left: 4px solid #e74c3c; margin-bottom: 20px;">
-                <h2 style="color: #c0392b; margin-top: 0;">🛡️ PROTECTION CARDIO-VASCULAIRE</h2>
+                <h2 style="color: #c0392b; margin-top: 0;">Hydratation :</h2>
                 <ul>
-                    <li><strong>Lipides :</strong> Privilégier les graisses polyinsaturées (poissons gras localement
-                        disponibles : sardines, maquereau). Limiter drastiquement l'huile de palme et les beurres.</li>
-                    <li><strong>ZÉRO Friture :</strong> Ne jamais réutiliser les huiles de cuisson. Privilégier
-                        systématiquement vapeur et grillé.</li>
-                    <li><strong>Fibres solubles :</strong> Consommer quotidiennement des haricots, du niébé ou de l'avoine
-                        pour aider à capturer le cholestérol alimentaire.</li>
-                    <li><strong>Arrêt Alcool :</strong> L'alcool augmente les triglycérides et la tension artérielle. En
-                        phase de perte importante (>10kg), l'abstinence est fortement recommandée.</li>
+                    <li>Minimum 1,5-2L eau/jour</li>
+                    <li>Augmenter si chaleur, activité physique, allaitement</li>
+                    <li>Signes déshydratation : urine foncée, soif, fatigue, maux de tête</li>
+                    <li>Privilégier : eau plate, eau citronnée, tisanes sans sucre</li>
+                    <li>Limiter : café (2 tasses max), thé fort</li>
                 </ul>
+                <h2 style="color: #c0392b; margin-top: 20px;">Vie sociale :</h2>
+                <ul>
+                    <li><strong>Cérémonies/fêtes :</strong> Manger avant d'y aller (évite fringale), choisir options
+                        saines, portions petites, refuser poliment excès</li>
+                    <li><strong>Restaurant :</strong> Demander préparations sans sel/peu huile, partager plat, salade en
+                        entrée</li>
+                </ul>
+                <h2 style="color: #c0392b; margin-top: 20px;">Suivi progrès :</h2>
+                <ul>
+                    <li><strong>Pesée :</strong> 1 fois/semaine, même jour/heure, même balance</li>
+                    <li><strong>Mesures :</strong> Tour de taille (mensuel) - objectif <102 cm homme, <88 cm femme</li>
+                    <li><strong>Journal alimentaire :</strong> 1 semaine/mois pour vigilance</li>
+                    <li><strong>Bilan médical :</strong> Tension, glycémie, cholestérol tous les 3-6 mois</li>
+                </ul>
+                <h2 style="color: #c0392b; margin-top: 20px;">Soutien :</h2>
+                <ul>
+                    <li><strong>Impliquer famille :</strong> Repas communs sains, encouragements</li>
+                    <li><strong>Groupe soutien :</strong> Partage expériences, motivation</li>
+                    <li><strong>Professionnel :</strong> Diététicien, psychologue si difficultés</li>
+                </ul>
+                <h2 style="color: #c0392b; margin-top: 20px;">Motivation long terme :</h2>
+                <ul>
+                    <li><strong>Objectifs SMART :</strong> Spécifiques, Mesurables, Atteignables, Réalistes,
+                        Temporels</li>
+                    <li>Ex : "Perdre 2 kg en 1 mois" vs "maigrir"</li>
+                    <li><strong>Célébrer victoires :</strong> Chaque kilo perdu, habitude acquise</li>
+                    <li><strong>Bienveillance :</strong> Rechutes normales, reprendre sans culpabilité</li>
+                    <li><strong>Visualiser :</strong> Santé améliorée, vêtements mieux ajustés, énergie ++</li>
+                </ul>
+                <h2 style="color: #c0392b; margin-top: 20px;">RÉSUMÉ CLÉS SUCCÈS</h2>
+                <ol>
+                    <li><strong>Alimentation :</strong> Portions contrôlées, légumes ++, cuissons saines, ZÉRO sel
+                        ajouté, limiter sucres/graisses</li>
+                    <li><strong>Activité :</strong> Minimum 150 min/semaine activité modérée</li>
+                    <li><strong>Sommeil :</strong> 7-9h/nuit qualité</li>
+                    <li><strong>Stress :</strong> Gestion alternatives (pas alimentation)</li>
+                    <li><strong>Hydratation :</strong> 1,5-2L/jour</li>
+                    <li><strong>Durabilité :</strong> Changements progressifs, plaisir préservé, vie sociale
+                        maintenue</li>
+                </ol>
             </div>
         </div>
     @endif
 
     <div class="page-break"></div>
 
-    <!-- 5. Guide Alimentaire 90 Jours -->
+    <!-- 5. Guide Alimentaire 30 Jours -->
     <div class="section">
         <h1>Guide Alimentaire sur 30 Jours</h1>
         <p>Ce plan est conçu pour être suivi sur 1 mois. Il respecte vos besoins caloriques et vos préférences.</p>
