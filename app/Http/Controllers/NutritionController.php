@@ -279,6 +279,15 @@ class NutritionController extends Controller
             ];
             Mail::to($user->email)->send(new \App\Mail\LowCalorieWarningMail($user->nom . ' ' . $user->prenom, $warningData, $minThreshold));
             $lowCalNotification = true;
+
+            return response()->json([
+                'success' => false,
+                'message' => 'Plan non généré, votre apport calorique est trop bas, veuillez augmenter votre apport calorique',
+                'data' => [
+                    'warning_data' => $warningData,
+                    'low_cal_notification' => $lowCalNotification,
+                ]
+            ], 500);
         }
 
         // Macronutrients Distribution
@@ -292,8 +301,8 @@ class NutritionController extends Controller
         if ($isSevereObesity) {
             $guideData = [
                 'menu_journalier' => null,
-                'facteurs'        => null,
-                'conseils'        => 'Pour l\'obésité sévère, les recommandations alimentaires personnalisées sont intégrées dans votre plan d\'intervention ci-dessus. Veuillez consulter un diététicien-nutritionniste pour un menu journalier adapté à votre situation clinique spécifique.',
+                'facteurs' => null,
+                'conseils' => 'Pour l\'obésité sévère, les recommandations alimentaires personnalisées sont intégrées dans votre plan d\'intervention ci-dessus. Veuillez consulter un diététicien-nutritionniste pour un menu journalier adapté à votre situation clinique spécifique.',
             ];
         } else {
             $guideData = $this->generateDynamicFoodGuide($user, $macros['grammes'], $pathologies, $objective, $weightLossRange);
