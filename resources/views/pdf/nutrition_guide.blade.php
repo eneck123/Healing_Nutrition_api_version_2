@@ -278,7 +278,9 @@
     @if($show_diabetes_fitness_extras)
         <div class="page-break"></div>
         <div class="section">
-            <h1>Conseils transversaux</h1>
+            <h2 style="color: #0da52e; border-bottom: 2px solid #3ce789; padding-bottom: 10px; font-size: 20px;">
+                <i class="fas fa-heartbeat"></i>CONSEILS GENERAUX TRANSVERSAUX - AMELIORATION DE LA FORME PHYSIQUE (DIABETE DE TYPE 2)
+            </h2>
             <div class="highlight" style="padding: 15px;">
                 <ol style="line-height: 1.8;">
                     <li><strong>Individualisation :</strong> Adapter selon VOTRE niveau activité, préférences, contraintes
@@ -312,43 +314,114 @@
     @if($show_hypertension_fitness_extras)
         <div class="page-break"></div>
         <div class="section">
-            <h1>Conseils transversaux</h1>
-            <p>Ce guide alimentaire complet pour obésité modérée avec hypertension vise une transformation durable vers
-                santé optimale. Les principes directeurs :</p>
+            <h2 style="color: #a50d0d; border-bottom: 2px solid #e73c3c; padding-bottom: 10px; font-size: 20px;">
+                <i class="fas fa-heartbeat"></i>CONSEILS GENERAUX TRANSVERSAUX - AMELIORATION DE LA FORME PHYSIQUE (HYPERTENSION)
+            </h2>
             <h3>Piliers Fondamentaux</h3>
+
             <div class="highlight" style="padding: 15px;">
+
                 <ol style="line-height: 1.8;">
-                    <li><strong>Nutrition adaptée :</strong> Plans béninois culturellement pertinents, macronutriments
-                        optimisés selon activité</li>
-                    <li><strong>Activité physique progressive :</strong> De sédentaire à actif (150-300 min/semaine)</li>
-                    <li><strong>Sommeil réparateur :</strong> 7-9h/nuit (régulation hormonale, récupération)</li>
-                    <li><strong>Gestion stress :</strong> Techniques relaxation, alimentation consciente</li>
-                    <li><strong>Suivi médical :</strong>Réévaluation régulière</li>
+
+                    <li>
+                        <strong>Nutrition adaptée :</strong>
+                        Plans béninois culturellement pertinents, macronutriments optimisés selon l'activité.
+                    </li>
+
+                    <li>
+                        <strong>Activité physique progressive :</strong>
+                        De sédentaire à actif (150 à 300 min/semaine).
+                    </li>
+
+                    <li>
+                        <strong>Sommeil réparateur :</strong>
+                        7 à 9 h/nuit (régulation hormonale, récupération).
+                    </li>
+
+                    <li>
+                        <strong>Gestion du stress :</strong>
+                        Techniques de relaxation et alimentation consciente.
+                    </li>
+
+                    <li>
+                        <strong>Suivi médical :</strong>
+                        Réévaluation régulière.
+                    </li>
+
                 </ol>
+
             </div>
 
             <h3>Mindset Succès</h3>
+
             <div class="highlight" style="padding: 15px;">
+
                 <ul style="line-height: 1.8;">
-                    <li><strong>Progrès > Perfection :</strong> Chaque petit changement compte</li>
-                    <li><strong>Long terme :</strong> Style de vie permanent, pas régime temporaire</li>
-                    <li><strong>Bienveillance :</strong> Auto-compassion lors rechutes (apprendre, pas culpabiliser)</li>
-                    <li><strong>Célébrations :</strong> Reconnaître victoires (poids, mais aussi énergie, TA, performances)</li>
-                    <li><strong>Soutien  :</strong>Communauté & famille (ne pas porter seul)</li>
+
+                    <li>
+                        <strong>Progrès > Perfection :</strong>
+                        Chaque petit changement compte.
+                    </li>
+
+                    <li>
+                        <strong>Long terme :</strong>
+                        Style de vie permanent, pas un régime temporaire.
+                    </li>
+
+                    <li>
+                        <strong>Bienveillance :</strong>
+                        Auto-compassion lors des rechutes (apprendre, pas culpabiliser).
+                    </li>
+
+                    <li>
+                        <strong>Célébrations :</strong>
+                        Reconnaître les victoires (poids, énergie, tension artérielle, performances).
+                    </li>
+
                 </ul>
+
+                <h4 style="color: #16a085; margin-top: 20px;">
+                    Rappels Critiques
+                </h4>
+
+                <ul style="line-height: 1.8;">
+
+                    <li><strong>Sodium :</strong> &lt; 2000 mg/jour (HTA).</li>
+
+                    <li><strong>Potassium :</strong> 3500 à 4700 mg/jour (protection cardiovasculaire).</li>
+
+                    <li><strong>Fibres :</strong> 30 à 35 g/jour (satiété et santé intestinale).</li>
+
+                    <li><strong>Hydratation :</strong> 2 à 2,5 L d'eau par jour.</li>
+
+                    <li><strong>Activité physique :</strong> Quotidienne (non négociable).</li>
+
+                    <li><strong>Médicaments :</strong> Adhésion stricte au traitement et consultations régulières.</li>
+
+                    <li><strong>Surveillance :</strong> Poids hebdomadaire, tension artérielle 2 à 3 fois par semaine et analyses sanguines tous les 3 à 6 mois.</li>
+
+                </ul>
+
                 <p style="font-weight: bold; margin-top: 15px; text-align: center; font-size: 14px; color: #16a085;">
-                    Vous avez toutes les connaissances et outils nécessaires. Le succès dépend désormais de l'application constante, patiente et bienveillante de ces principes. Bonne chance dans votre transformation vers une santé optimale ! 🌟
+
+                    Vous avez toutes les connaissances et les outils nécessaires. Le succès dépend désormais de l'application constante, patiente et bienveillante de ces principes.
+
+                    Bonne chance dans votre transformation vers une santé optimale ! 🌟
+
                 </p>
+
             </div>
+
         </div>
     @endif
 
     @if($show_cardio_fitness_extras)
         <div class="page-break"></div>
         <div class="section">
-            <h1>Conseils transversaux pour améliorer la forme physique</h1>
-            <p>Indépendamment des réponses spécifiques, voici des conseils universels :</p>
-
+            <h2 style="color: #2b89c0; border-bottom: 2px solid #3ca3e7; padding-bottom: 10px; font-size: 20px;">
+                <i class="fas fa-heartbeat"></i>CONSEILS GENERAUX TRANSVERSAUX - AMELIORATION DE LA FORME PHYSIQUE (MALADIE CARDIOVASCULAIRE)
+            </h2>
+             <p>Indépendamment des réponses spécifiques, voici des conseils universels :</p>
             <div class="highlight" style="padding: 15px;">
                 <ul style="line-height: 1.8;">
                     <li><strong>1. HYDRATATION</strong>
@@ -396,11 +469,11 @@
         <div class="section"
             style="background-color: #fcfcfc; padding: 20px; border-radius: 8px; border: 1px solid #e0e0e0; margin-bottom: 30px;">
             <h2 style="color: #27ae60; text-align: center; border-bottom: 2px solid #27ae60; padding-bottom: 10px;">
-                CONSEILS TRANSVERSAUX - PERTE DE POIDS (< 5KG) & DIABÈTE DE TYPE 2 </h2>
+                CONSEILS GENERAUX TRANSVERSAUX - PERTE DE POIDS (< 5KG) & DIABÈTE DE TYPE 2 </h2>
 
                     <!-- Conseils Généraux -->
                     <div style="margin-top: 20px;">
-                        <h3 style="color: #2c3e50;">CONSEILS GÉNÉRAUX TRANSVERSAUX</h3>
+                        <h3 style="color: #2c3e50;">CONSEILS TRANSVERSAUX</h3>
 
                         <h4 style="color: #34495e; margin-bottom: 5px;">Aliments à privilégier :</h4>
                         <ul style="margin-top: 0;">
@@ -495,7 +568,7 @@
         <div class="page-break"></div>
         <div class="section">
             <h2 style="color: #c0392b; border-bottom: 2px solid #e74c3c; padding-bottom: 10px; font-size: 20px;">
-                <i class="fas fa-heartbeat"></i>CONSEILS transversaux
+                <i class="fas fa-heartbeat"></i>CONSEILS transversaux - PERTE DE POIDS (< 5KG) & HYPERTENSION
             </h2>
 
             <p style="font-size: 14px; margin-bottom: 20px;">Indépendamment de vos réponses spécifiques, voici des conseils
@@ -568,8 +641,8 @@
     @if($show_weight_loss_under_5_cardio_extras)
         <div class="page-break"></div>
         <div class="section">
-            <h2 style="color: #c0392b; border-bottom: 2px solid #e74c3c; padding-bottom: 10px; font-size: 20px;">
-                <i class="fas fa-heartbeat"></i>CONSEILS GÉNÉRAUX TRANSVERSAUX
+            <h2 style="color: #842bc0; border-bottom: 2px solid #7e3ce7; padding-bottom: 10px; font-size: 20px;">
+                <i class="fas fa-heartbeat"></i>CONSEILS GÉNÉRAUX TRANSVERSAUX - PERTE DE POIDS (< 5KG) & MALADIE CARDIOVASCULAIRE
             </h2>
 
             <p style="font-size: 14px; margin-bottom: 20px;"> PRINCIPES ABSOLUS POUR OBÉSITÉ + MALADIE
@@ -652,10 +725,6 @@
             </h2>
 
             <div class="highlight" style="padding: 15px;">
-
-                {{-- ======================= --}}
-                {{-- CAS < 5 KG --}}
-                {{-- ======================= --}}
                 @if($show_weight_loss_under_5_no_pathology_extras)
 
                     <h3 style="color: #16a085;">PRIORISATION DES ACTIONS</h3>
@@ -705,10 +774,6 @@
                         <li>Énergie et sommeil</li>
                         <li>Comportements alimentaires</li>
                     </ul>
-
-                {{-- ======================= --}}
-                {{-- CAS 5–10 KG --}}
-                {{-- ======================= --}}
                 @elseif($show_weight_loss_5_10_no_pathology_extras)
 
                     <h3 style="color: #16a085;">PRINCIPES FONDAMENTAUX À RETENIR</h3>
@@ -765,8 +830,8 @@
     @if($show_weight_loss_over_10_no_pathology_extras)
         <div class="page-break"></div>
         <div class="section">
-            <h2 style="color: #2980b9; text-align: center; border-bottom: 2px solid #2980b9; padding-bottom: 10px;">
-                Conseils transversaux
+            <h2 style="color: #2b89c0; border-bottom: 2px solid #3ca3e7; padding-bottom: 10px; font-size: 20px;">
+                <i class="fas fa-heartbeat"></i>CONSEILS GENERAUX TRANSVERSAUX - SANS PATHOLOGIE (> 10 KG)
             </h2>
             <div class="highlight" style="padding: 15px;">
                 <p>Félicitations d’avoir complété ce questionnaire ! Vous disposez maintenant d’un guide alimentaire complet
@@ -916,8 +981,9 @@
     @if($show_weight_loss_5_10_diabetes_extras)
         <div class="page-break"></div>
         <div class="section">
-            <h1 style="color: #2c3e50; border-bottom: 2px solid #e67e22;">CONSEILS FINAUX TRANSVERSAUX (Profil Perte 5-10kg
-                + Diabète de type 2)</h1>
+                <h2 style="color: #2b89c0; border-bottom: 2px solid #3ca3e7; padding-bottom: 10px; font-size: 20px;">
+                <i class="fas fa-heartbeat"></i>CONSEILS GENERAUX TRANSVERSAUX - PERTE DE POIDS (5-10kg + Diabète de type 2)
+                </h2>
 
             <div class="highlight" style="border-left: 4px solid #e67e22; margin-bottom: 20px;">
                 <h2 style="color: #d35400; margin-top: 0;">HYDRATATION</h2>
@@ -942,11 +1008,11 @@
     @if($show_weight_loss_5_10_hypertension_extras)
         <div class="page-break"></div>
         <div class="section">
-            <h1 style="color: #2c3e50; border-bottom: 2px solid #2980b9;">CONSEILS GENERAUX TRANSVERSEAUX
-                (Profil Perte 5-10kg + HTA)</h1>
-
+                <h2 style="color: #2b89c0; border-bottom: 2px solid #3ca3e7; padding-bottom: 10px; font-size: 20px;">
+                <i class="fas fa-heartbeat"></i>CONSEILS GENERAUX TRANSVERSEAUX - PERTE DE POIDS (5-10kg + Hypertension)
+                </h2>
             <div class="highlight" style="border-left: 4px solid #2980b9;">
-                <h2 style="color: #2471a3; margin-top: 0;">🎯 PRINCIPES CLÉS RÉUSSITE</h2>
+                <h2 style="color: #2471a3; margin-top: 0;">PRINCIPES CLÉS RÉUSSITE</h2>
                 <ul>
                     <li><strong>PROGRESSIVITÉ :</strong> Changements graduels (1-2 nouvelles habitudes/semaine).  Activité physique intensification progressive. Patience (résultats durables =
                         mois, pas jours).</li>
@@ -966,9 +1032,8 @@
     <div class="page-break"></div>
     <div class="section">
         <h1 style="color: #2c3e50; border-bottom: 2px solid #e74c3c;">
-            CONSEILS GÉNÉRAUX TRANSVERSAUX (Profil Perte 5-10kg + MALADIE Cardiovasculaire)
+            CONSEILS GÉNÉRAUX TRANSVERSAUX - PERTE DE POIDS (5-10kg + MALADIE Cardiovasculaire)
         </h1>
-
         <div class="highlight" style="border-left: 4px solid #e74c3c; margin-bottom: 20px;">
 
             <h2 style="color: #c0392b; margin-top: 0;">💧 HYDRATATION</h2>
@@ -1145,9 +1210,8 @@
         <div class="page-break"></div>
         <div class="section">
             <h2 style="color: #c0392b; border-bottom: 2px solid #e74c3c; padding-bottom: 10px; font-size: 20px;">
-                <i class="fas fa-heartbeat"></i> RÉCAPITULATIF FINAL & CONSEILS GLOBAUX (>10kg + HTA)
+                <i class="fas fa-heartbeat"></i> RÉCAPITULATIF FINAL & CONSEILS GLOBAUX (>10kg + HYËRTENSION)
             </h2>
-
             <div style="background-color: #fcebeb; padding: 15px; border-left: 4px solid #c0392b; margin-bottom: 20px;">
                 <h4 style="color: #c0392b; margin-bottom: 5px; margin-top: 0;">Principes Universels Tous Niveaux/Situations :</h4>
                 <ol>
@@ -1238,9 +1302,7 @@
     @if($show_weight_loss_over_10_cardio_extras)
         <div class="page-break"></div>
         <div class="section">
-            <h1 style="color: #2c3e50; border-bottom: 2px solid #e74c3c;">CONSEILS GÉNÉRAUX TRANSVERSAUX (>10kg +
-                Cardiovasculaire)</h1>
-
+            <h1 style="color: #2c3e50; border-bottom: 2px solid #e74c3c;">CONSEILS GÉNÉRAUX TRANSVERSAUX (>10kg + MALADIE Cardiovasculaire)</h1>
             <div class="highlight" style="border-left: 4px solid #e74c3c; margin-bottom: 20px;">
                 <h2 style="color: #c0392b; margin-top: 0;">Hydratation :</h2>
                 <ul>
