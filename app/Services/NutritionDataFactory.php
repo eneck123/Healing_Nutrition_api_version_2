@@ -82,11 +82,6 @@ class NutritionDataFactory
         }
 
         // Cas Fallback : Si aucune pathologie (ou cas non encore implémenté spécifiquement)
-        if (!$hasDiabetes && !$hasHypertension && !$hasCardio) {
-            return new NoPathologyNutritionDataService();
-        }
-
-        // Par défaut, retourner le service générique
-        return new NutritionDataService();
+        return new FitnessNoPathologyNutritionDataService();
     }
 }
