@@ -279,7 +279,7 @@ class NutritionController extends Controller
 
             return response()->json([
                 'success' => false,
-                'message' => 'Plan non généré, votre apport calorique est trop bas, veuillez augmenter votre apport calorique',
+                'message' => 'Plan non généré, votre apport calorique est trop bas, veuillez augmenter votre apport calorique.',
                 'data' => [
                     'warning_data' => $warningData,
                     'low_cal_notification' => $lowCalNotification,
