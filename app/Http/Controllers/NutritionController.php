@@ -6,19 +6,16 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\DB;
-use App\Services\SevereObesityRecommendationService;
+
 
 class NutritionController extends Controller
 {
     protected $calculationService;
-    protected $severeObesityService;
 
     public function __construct(
-        \App\Services\NutritionCalculationService $calculationService,
-        SevereObesityRecommendationService $severeObesityService
+        \App\Services\NutritionCalculationService $calculationService
     ) {
         $this->calculationService = $calculationService;
-        $this->severeObesityService = $severeObesityService;
     }
     /**
      * @OA\Post(
@@ -489,10 +486,7 @@ class NutritionController extends Controller
             'show_fitness_no_pathology_extras' => (stripos($objective, 'forme physique') !== false && !$pathologies['diabetes'] && !$pathologies['hypertension'] && !$pathologies['cardio']),
 
 
-            'severe_advice' => ($user->maladie_chronique_id == 2)
-                ? $this->severeObesityService->getGeneralAdvice(
-                    $pathologies['diabetes'] ? 'diabete' : ($pathologies['hypertension'] ? 'hta' : ($pathologies['cardio'] ? 'cholesterol' : null))
-                ) : null,
+            'severe_advice' => null,
         ];
 
         $viewName = $user->maladie_chronique_id == 2 ? 'pdf.nutrition_guide_severe' : 'pdf.nutrition_guide';
