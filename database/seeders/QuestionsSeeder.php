@@ -319,6 +319,7 @@ class QuestionsSeeder extends Seeder
         $links = [
             // Obésité modérée
             'mod_antecedents_lequel'             => ['parent' => 'mod_antecedents',            'trigger' => 'Oui'],
+            'mod_medicaments_antecedent'         => ['parent' => 'mod_antecedents',            'trigger' => 'Oui'],
             'mod_medicaments_antecedent_lesquels' => ['parent' => 'mod_medicaments_antecedent', 'trigger' => 'Oui'],
             'mod_grignotage_aliments'            => ['parent' => 'mod_grignotage',             'trigger' => 'Oui'],
             'mod_frequence_cardiaque_valeur'     => ['parent' => 'mod_frequence_cardiaque',    'trigger' => 'Oui'],
