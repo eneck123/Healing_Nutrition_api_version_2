@@ -469,7 +469,7 @@
         <div class="section"
             style="background-color: #fcfcfc; padding: 20px; border-radius: 8px; border: 1px solid #e0e0e0; margin-bottom: 30px;">
             <h2 style="color: #27ae60; text-align: center; border-bottom: 2px solid #27ae60; padding-bottom: 10px;">
-                CONSEILS GÉNÉRAUX TRANSVERSAUX - PERTE DE POIDS (< 5KG) & DIABÈTE DE TYPE 2 </h2>
+                CONSEILS GÉNÉRAUX TRANSVERSAUX - PERTE DE POIDS (&lt;5KG) & DIABÈTE DE TYPE 2 </h2>
 
                     <!-- Conseils Généraux -->
                     <div style="margin-top: 20px;">
@@ -568,7 +568,7 @@
         <div class="page-break"></div>
         <div class="section">
             <h2 style="color: #c0392b; border-bottom: 2px solid #e74c3c; padding-bottom: 10px; font-size: 20px;">
-                <i class="fas fa-heartbeat"></i> CONSEILS TRANSVERSAUX - PERTE DE POIDS (< 5KG) & HYPERTENSION
+                <i class="fas fa-heartbeat"></i> CONSEILS TRANSVERSAUX - PERTE DE POIDS (&lt;5KG) & HYPERTENSION
             </h2>
 
             <p style="font-size: 14px; margin-bottom: 20px;">Indépendamment de vos réponses spécifiques, voici des conseils
@@ -642,14 +642,14 @@
         <div class="page-break"></div>
         <div class="section">
             <h2 style="color: #842bc0; border-bottom: 2px solid #7e3ce7; padding-bottom: 10px; font-size: 20px;">
-                <i class="fas fa-heartbeat"></i>CONSEILS GÉNÉRAUX TRANSVERSAUX - PERTE DE POIDS (< 5KG) & MALADIE CARDIOVASCULAIRE
+                <i class="fas fa-heartbeat"></i>CONSEILS GÉNÉRAUX TRANSVERSAUX - PERTE DE POIDS (&lt;5KG) & MALADIE CARDIOVASCULAIRE
             </h2>
 
             <p style="font-size: 14px; margin-bottom: 20px;"> PRINCIPES ABSOLUS POUR OBÉSITÉ + MALADIE
                 CARDIOVASCULAIRE</p>
 
             <div style="background-color: #fcebeb; padding: 15px; border-left: 4px solid #c0392b; margin-bottom: 20px;">
-                <h4 style="color: #c0392b; margin-bottom: 5px; margin-top: 0;">1. SEL : < 5g/jour (idéalement < 2g si
+                <h4 style="color: #c0392b; margin-bottom: 5px; margin-top: 0;">1. SEL : &lt;5g/jour (idéalement &lt;2g si
                     hypertension sévère)</h4>
                 <ul style="margin-top: 0;">
                     <li>Bannir : bouillons cubes, poissons trop fumés, sel de table</li>
@@ -720,12 +720,12 @@
         <div class="section">
 
             <h2 style="color: #27ae60; text-align: center; border-bottom: 2px solid #27ae60; padding-bottom: 10px;">
-                CONSEILS TRANSVERSAUX
-                ({{ $show_weight_loss_under_5_no_pathology_extras ? '< 5kg' : '5-10kg' }})
+                CONSEILS GENERAUX TRANSVERSAUX 
+                ({{ $show_weight_loss_under_5_no_pathology_extras ? 'Sans pathologie pour perte de poids < 5kg' : 'Sans pathologie pour perte de poids entre 5-10 kg' }})
             </h2>
 
             <div class="highlight" style="padding: 15px;">
-                @if($show_weight_loss_under_5_no_pathology_extras)
+                @if($show_weight_loss_under_5_no_pathology_extras)  
 
                     <h3 style="color: #16a085;">PRIORISATION DES ACTIONS</h3>
 
@@ -831,7 +831,7 @@
         <div class="page-break"></div>
         <div class="section">
             <h2 style="color: #2b89c0; border-bottom: 2px solid #3ca3e7; padding-bottom: 10px; font-size: 20px;">
-                <i class="fas fa-heartbeat"></i>CONSEILS GÉNÉRAUX TRANSVERSAUX - SANS PATHOLOGIE (> 10 KG)
+                <i class="fas fa-heartbeat"></i>CONSEILS GÉNÉRAUX TRANSVERSAUX - SANS PATHOLOGIE (&gt;10 KG)
             </h2>
             <div class="highlight" style="padding: 15px;">
                 <p>Félicitations d'avoir complété ce questionnaire ! Vous disposez maintenant d'un guide alimentaire complet
@@ -843,7 +843,7 @@
                     <li>Suivre vos progrès (poids, mesures, photos)</li>
                     <li>Ajuster selon les résultats (après 4 semaines)
                         <br>Patience, persévérance et permanence sont vos alliées !<br>
-                        Bonne chance dans votre parcours vers une santé optimale ! 🌟
+                        Bonne chance dans votre parcours vers une santé optimale !
                     </li>
                 </ol>
             </div>
@@ -856,7 +856,7 @@
 
         <div class="section">
 
-            <h1 class="section-title">Conseils transversaux</h1>
+            <h1 class="section-title">CONSEILS TRANVERSAUX GENERAUX - AMELIORATION DE LA FORME PHYSIQUE </h1>
 
             <div class="summary-box"
                 style="background-color: #f9f9f9; padding: 20px; border: 1px solid #ddd; border-radius: 8px;">
@@ -936,7 +936,6 @@
 
                     <li>
                         <strong>Adopter des objectifs réalistes</strong><br>
-                        Viser une perte de poids progressive.<br>
                         Éviter les régimes très restrictifs.<br>
                         Privilégier des changements durables des habitudes de vie.<br>
                         Se concentrer sur les progrès plutôt que sur la rapidité des résultats.
@@ -1062,7 +1061,7 @@
             <h2 style="color: #c0392b; margin-top: 20px;">📊 SUIVI DES PROGRÈS</h2>
             <ul>
                 <li><strong>Pesée :</strong> une fois par semaine, le même jour, à la même heure et avec la même balance.</li>
-                <li><strong>Mesures :</strong> tour de taille mensuel (objectif : &lt; 102 cm chez l'homme et &lt; 88 cm chez la femme).</li>
+                <li><strong>Mesures :</strong> tour de taille mensuel (objectif : &lt; 102 cm chez l'homme et &gt; 88 cm chez la femme).</li>
                 <li><strong>Journal alimentaire :</strong> une semaine par mois pour rester vigilant.</li>
                 <li><strong>Bilan médical :</strong> contrôler la tension, la glycémie et le cholestérol tous les 3 à 6 mois.</li>
             </ul>
@@ -1123,7 +1122,7 @@
     @if($show_weight_loss_over_10_diabetes_extras)
         <div class="page-break"></div>
         <div class="section">
-            <h1 style="color: #2c3e50; border-bottom: 2px solid #27ae60;">CONSEILS TRANSVERSAUX (Profil Perte >10kg +
+            <h1 style="color: #2c3e50; border-bottom: 2px solid #27ae60;">CONSEILS TRANSVERSAUX (Profil Perte &gt;10kg +
                 Diabète)</h1>
 
             <div class="highlight" style="border-left: 4px solid #27ae60; margin-bottom: 20px;">
@@ -1210,7 +1209,7 @@
         <div class="page-break"></div>
         <div class="section">
             <h2 style="color: #c0392b; border-bottom: 2px solid #e74c3c; padding-bottom: 10px; font-size: 20px;">
-                <i class="fas fa-heartbeat"></i> RÉCAPITULATIF FINAL & CONSEILS GLOBAUX (>10kg + HYPERTENSION)
+                <i class="fas fa-heartbeat"></i> CONSEILS GENERAUX TRANSVERSAUX (&gt;10kg + HYPERTENSION)
             </h2>
             <div style="background-color: #fcebeb; padding: 15px; border-left: 4px solid #c0392b; margin-bottom: 20px;">
                 <h4 style="color: #c0392b; margin-bottom: 5px; margin-top: 0;">Principes Universels Tous Niveaux/Situations :</h4>
@@ -1302,7 +1301,7 @@
     @if($show_weight_loss_over_10_cardio_extras)
         <div class="page-break"></div>
         <div class="section">
-            <h1 style="color: #2c3e50; border-bottom: 2px solid #e74c3c;">CONSEILS GÉNÉRAUX TRANSVERSAUX (>10kg + MALADIE CARDIOVASCULAIRE)</h1>
+            <h1 style="color: #2c3e50; border-bottom: 2px solid #e74c3c;">CONSEILS GÉNÉRAUX TRANSVERSAUX (&gt;10kg + MALADIE CARDIOVASCULAIRE)</h1>
             <div class="highlight" style="border-left: 4px solid #e74c3c; margin-bottom: 20px;">
                 <h2 style="color: #c0392b; margin-top: 0;">Hydratation :</h2>
                 <ul>
@@ -1322,7 +1321,7 @@
                 <h2 style="color: #c0392b; margin-top: 20px;">Suivi des progrès :</h2>
                 <ul>
                     <li><strong>Pesée :</strong> 1 fois par semaine, même jour/heure, même balance</li>
-                    <li><strong>Mesures :</strong> Tour de taille (mensuel) - objectif < 102 cm chez l'homme, < 88 cm chez la femme</li>
+                    <li><strong>Mesures :</strong> Tour de taille (mensuel) - objectif &lt;102 cm chez l'homme, &lt;88 cm chez la femme</li>
                     <li><strong>Journal alimentaire :</strong> 1 semaine par mois pour rester vigilant</li>
                     <li><strong>Bilan médical :</strong> Tension, glycémie, cholestérol tous les 3-6 mois</li>
                 </ul>

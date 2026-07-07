@@ -66,10 +66,12 @@ class NutritionController extends Controller
      */
     public function calculate(Request $request)
     {
-        $userId = $request->user_id ?? auth()->id();
+
+        //$userId = $request->user_id ?? auth()->id();
+        $userId = auth()->id();
 
         if (!$userId) {
-            return response()->json(['success' => false, 'message' => 'User ID required'], 400);
+            return response()->json(['success' => false, 'message' => 'Non authentifié'], 401);
         }
 
         $user = \App\Models\Utilisateur::with('maladieChronique')->find($userId);
@@ -261,6 +263,25 @@ class NutritionController extends Controller
             $deficitValue = min(300, $calcDeficit);
             $apportCalorique = $tdee - $deficitValue;
         }
+
+        // ----------------------------------------------------------------
+        // Ajustement fin RÉSERVÉ À LA PERTE DE POIDS UNIQUEMENT.
+        // Si l'apport calorique calculé tombe juste sous le seuil de
+        // sécurité (1495-1499 kcal homme / 1195-1199 kcal femme), on
+        // l'arrondit à la dizaine la plus proche pour éviter de déclencher
+        // inutilement le garde-fou ci-dessous.
+        // NE S'APPLIQUE PAS au cas "forme physique" (fitness) : pour ce
+        // dernier, l'email d'alerte LowCalorieWarningMail continue de se
+        // déclencher normalement si l'apport est trop bas.
+        // ----------------------------------------------------------------
+        if ($isWeightLoss) {
+            if ($isMale && $apportCalorique >= 1495 && $apportCalorique <= 1499) {
+                $apportCalorique = round($apportCalorique / 10) * 10;
+            } elseif (!$isMale && $apportCalorique >= 1195 && $apportCalorique <= 1199) {
+                $apportCalorique = round($apportCalorique / 10) * 10;
+            }
+        }
+
 
         // Safety Check
         $minThreshold = $isMale ? 1500 : 1200;
@@ -605,7 +626,12 @@ class NutritionController extends Controller
      */
     public function downloadPdf(Request $request)
     {
-        $userId = $request->user_id ?? auth()->id();
+        //$userId = $request->user_id ?? auth()->id();
+         $userId = auth()->id();
+         if (!$userId) {
+        return response()->json(['success' => false, 'message' => 'Non authentifié'], 401);
+        }
+
         $user = \App\Models\Utilisateur::with(['maladieChronique', 'reponse.question'])->find($userId);
 
         if (!$user) {
@@ -705,9 +731,20 @@ class NutritionController extends Controller
             $apportCalorique = $tdee - $deficitValue;
         }
 
+        // Ajustement fin (arrondi) pour la perte de poids
+        // Même logique que dans recommandation() pour garantir la cohérence
+        // entre l'API JSON et le PDF téléchargé via cette route.
+        if ($isWeightLoss) {
+            if ($isMale && $apportCalorique >= 1495 && $apportCalorique <= 1499) {
+                $apportCalorique = round($apportCalorique / 10) * 10;
+            } elseif (!$isMale && $apportCalorique >= 1195 && $apportCalorique <= 1199) {
+                $apportCalorique = round($apportCalorique / 10) * 10;
+            }
+        }
+
         // 4. Macros
         $macros = $this->calculateMacrosEnhanced($user, $user->niveau_d_activite_physique, $deficitValue, $isWeightLoss, $isFitness, $apportCalorique, $weightLossRange, $pathologies);
-
+        
         // 5. Menu
         $guideData = $this->generateDynamicFoodGuide($user, $macros['grammes'], $pathologies);
 
@@ -837,7 +874,7 @@ class NutritionController extends Controller
             $range = 'low'; // < 5kg
             if (stripos($weightLossRange, 'Plus de 10 kg') !== false) {
                 $range = 'high';
-            } elseif (stripos($weightLossRange, '5 - 10 kg') !== false) {
+            } elseif (stripos($weightLossRange, '5-10 kg') !== false) {
                 $range = 'mid';
             } elseif (stripos($weightLossRange, 'Moins de 5 kg') !== false) {
                 $range = 'low';

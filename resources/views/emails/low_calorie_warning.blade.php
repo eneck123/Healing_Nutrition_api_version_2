@@ -6,7 +6,7 @@
 <body>
     <p>Bonjour {{ $userName }},</p>
     <p>Nous vous remercions d’avoir utilisé l’application Healing Nutrition et d’avoir renseigné vos informations personnelles ainsi que votre objectif de changement de poids.</p>
-    <p>Après analyse de vos données, notre système a identifié que l’apport calorique calculé pour atteindre votre objectif est inférieur à la limite minimale recommandée pour votre sexe.</p>
+    <p>Après analyse de vos données, notre système a identifié que votre apport calorique final calculé pour atteindre votre objectif est inférieur à la limite minimale recommandée pour votre sexe.</p>
     
     <h3>🔎 Détails de l’analyse :</h3>
     <ul>
