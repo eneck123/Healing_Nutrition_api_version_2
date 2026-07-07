@@ -18,7 +18,7 @@ class PlanNutritionnelController extends Controller
         $plansNutritionnels = PlanNutritionnel::all();
         return response()->json([
             'success' => true,
-            'message' => 'Liste des plans nutritionnels récupérée avec succès',
+            'message' => 'Liste des plans nutritionnels récupérée avec succès.',
             'data' => $plansNutritionnels,
         ], 200);
     }
@@ -97,7 +97,7 @@ class PlanNutritionnelController extends Controller
 
         $validator = Validator::make($request->all(), [
             'description' => 'sometimes|string',
-           // 'utilisateur_id' => 'sometimes|exists:utilisateurs,id',
+            // 'utilisateur_id' => 'sometimes|exists:utilisateurs,id',
         ]);
 
         if ($validator->fails()) {
