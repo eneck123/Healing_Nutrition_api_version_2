@@ -33,10 +33,10 @@ class NutritionCalculationService
 
         // IMC Calculation
         $heightM = $height / 100;
-        $imc = round($weight / ($heightM * $heightM), 2);
+        $imc = $weight / ($heightM * $heightM);
 
         // RTH Calculation
-        $rth = ($user->tour_de_hanche > 0) ? round($user->tour_de_taille / $user->tour_de_hanche, 2) : 0;
+        $rth = ($user->tour_de_hanche > 0) ? ($user->tour_de_taille / $user->tour_de_hanche) : 0;
 
         // IMG Calculation
         $waist = $user->tour_de_taille;
@@ -48,8 +48,7 @@ class NutritionCalculationService
         } else {
             if (($waist + $hip - $neck) > 0) $img = 163.205 * log10($waist + $hip - $neck) - 97.684 * log10($height) - 78.387;
         }
-        $img = round($img, 2);
-        // $img = max(0, round($img, 2));
+        // $img = max(0, $img);
 
         // Obesity logic
         $imgThreshold = $isMale ? 25 : 32;
@@ -127,8 +126,8 @@ class NutritionCalculationService
             'imc' => $imc,
             'rth' => $rth,
             'img' => $img,
-            'bmr' => round($metrics['bmr']),
-            'tdee' => round($tdee),
+            'bmr' => $metrics['bmr'],
+            'tdee' => $tdee,
             'status' => $calculatedStatus,
             'grade_imc' => $obesityGrade,
             'declared_type' => $declaredType,
@@ -173,7 +172,7 @@ class NutritionCalculationService
         ];
         $tdee = $bmr * ($multipliers[$niveauPhysique] ?? 1.2);
 
-        $rth = ($user->tour_de_hanche > 0) ? round($user->tour_de_taille / $user->tour_de_hanche, 2) : 0;
+        $rth = ($user->tour_de_hanche > 0) ? ($user->tour_de_taille / $user->tour_de_hanche) : 0;
         $rthThreshold = $isMale ? 0.90 : 0.85;
 
         // IMG Calculation
@@ -185,11 +184,10 @@ class NutritionCalculationService
             if (($user->tour_de_taille + $user->tour_de_hanche - $user->tour_du_cou) > 0) 
                 $img = 163.205 * log10($user->tour_de_taille + $user->tour_de_hanche - $user->tour_du_cou) - 97.684 * log10($height) - 78.387;
         }
-        $img = round($img, 2);
-        // $img = max(0, round($img, 2));
+        // $img = max(0, $img);
 
         $heightM = $height / 100;
-        $imc = round($weight / ($heightM * $heightM), 2);
+        $imc = $weight / ($heightM * $heightM);
 
         return [
             'bmr' => $bmr, 

@@ -221,8 +221,8 @@ class NutritionController extends Controller
                         $weightLossRange = $text;
                         break;
                     case 'niveau_changement':
-                        if (preg_match('/(\d+)\s*kcal/i', $text, $matches)) {
-                            $deficitValue = intval($matches[1]);
+                        if (preg_match('/([\d\.]+)\s*kcal/i', $text, $matches)) {
+                            $deficitValue = floatval($matches[1]);
                         }
                         break;
                     case 'antecedents_lequel':
@@ -259,7 +259,7 @@ class NutritionController extends Controller
 
         if ($isFitness) {
             $pct = ($tdee < 2000) ? 0.05 : (($tdee <= 3000) ? 0.04 : 0.03);
-            $calcDeficit = round($tdee * $pct);
+            $calcDeficit = $tdee * $pct;
             $deficitValue = min(300, $calcDeficit);
             $apportCalorique = $tdee - $deficitValue;
         }
@@ -274,13 +274,7 @@ class NutritionController extends Controller
         // dernier, l'email d'alerte LowCalorieWarningMail continue de se
         // déclencher normalement si l'apport est trop bas.
         // ----------------------------------------------------------------
-        if ($isWeightLoss) {
-            if ($isMale && $apportCalorique >= 1495 && $apportCalorique <= 1499) {
-                $apportCalorique = round($apportCalorique / 10) * 10;
-            } elseif (!$isMale && $apportCalorique >= 1195 && $apportCalorique <= 1199) {
-                $apportCalorique = round($apportCalorique / 10) * 10;
-            }
-        }
+        // Ajustement fin supprimé pour garder les vrais résultats
 
 
         // Safety Check
@@ -291,9 +285,9 @@ class NutritionController extends Controller
             $warningData = [
                 'gender' => $isMale ? 'Homme' : 'Femme',
                 'objectif' => $objective,
-                'tdee' => round($tdee),
+                'tdee' => $tdee,
                 'deficit' => $deficitValue,
-                'apport' => round($apportCalorique)
+                'apport' => $apportCalorique
             ];
             Mail::to($user->email)->send(new \App\Mail\LowCalorieWarningMail($user->nom . ' ' . $user->prenom, $warningData, $minThreshold));
             $lowCalNotification = true;
@@ -337,8 +331,8 @@ class NutritionController extends Controller
                 'pathologies_detectees' => array_keys(array_filter($pathologies)),
                 'donnees_obesite' => $questionnaireObesite
             ],
-            'tdee' => round($tdee, 2),
-            'apport_calorique' => round($apportCalorique, 2),
+            'tdee' => $tdee,
+            'apport_calorique' => $apportCalorique,
             'deficit_calorique' => $deficitValue,
             'unite_calorique' => 'kcal',
             'macronutriments' => $macros,
@@ -476,7 +470,7 @@ class NutritionController extends Controller
                 'niveau_changement' => $niveauChangementText,
             ],
             'recommendations' => [
-                'calories' => round($apportCalorique),
+                'calories' => $apportCalorique,
                 'macros_p_percent' => $macros['distribution']['proteines_percent'],
                 'macros_g_percent' => $macros['distribution']['glucides_percent'],
                 'macros_l_percent' => $macros['distribution']['lipides_percent'],
@@ -695,8 +689,8 @@ class NutritionController extends Controller
                         $weightLossRange = $text;
                         break;
                     case 'niveau_changement':
-                        if (preg_match('/(\d+)\s*kcal/i', $text, $matches))
-                            $deficitValue = intval($matches[1]);
+                        if (preg_match('/([\d\.]+)\s*kcal/i', $text, $matches))
+                            $deficitValue = floatval($matches[1]);
                         break;
                     case 'antecedents_lequel':
                         if (stripos($text, 'diabète') !== false)
@@ -726,7 +720,7 @@ class NutritionController extends Controller
         $apportCalorique = $tdee - $deficitValue;
         if ($isFitness) {
             $pct = ($tdee < 2000) ? 0.05 : (($tdee <= 3000) ? 0.04 : 0.03);
-            $calcDeficit = round($tdee * $pct);
+            $calcDeficit = $tdee * $pct;
             $deficitValue = min(300, $calcDeficit);
             $apportCalorique = $tdee - $deficitValue;
         }
@@ -734,13 +728,7 @@ class NutritionController extends Controller
         // Ajustement fin (arrondi) pour la perte de poids
         // Même logique que dans recommandation() pour garantir la cohérence
         // entre l'API JSON et le PDF téléchargé via cette route.
-        if ($isWeightLoss) {
-            if ($isMale && $apportCalorique >= 1495 && $apportCalorique <= 1499) {
-                $apportCalorique = round($apportCalorique / 10) * 10;
-            } elseif (!$isMale && $apportCalorique >= 1195 && $apportCalorique <= 1199) {
-                $apportCalorique = round($apportCalorique / 10) * 10;
-            }
-        }
+        // Ajustement fin supprimé pour garder les vrais résultats
 
         // 4. Macros
         $macros = $this->calculateMacrosEnhanced($user, $user->niveau_d_activite_physique, $deficitValue, $isWeightLoss, $isFitness, $apportCalorique, $weightLossRange, $pathologies);
@@ -828,7 +816,7 @@ class NutritionController extends Controller
                 'niveau_changement' => $user->reponse->where('question_id', 91)->first()->description ?? ($deficitValue . ' kcal')
             ],
             'recommendations' => [
-                'calories' => round($apportCalorique),
+                'calories' => $apportCalorique,
                 'macros_p_percent' => $macros['distribution']['proteines_percent'],
                 'macros_g_percent' => $macros['distribution']['glucides_percent'],
                 'macros_l_percent' => $macros['distribution']['lipides_percent'],
@@ -1256,9 +1244,9 @@ class NutritionController extends Controller
         }
 
         // Final conversion to Grams
-        $gProt = round(($apportCalorique * ($pProt / 100)) / 4);
-        $gGlu = round(($apportCalorique * ($pGlu / 100)) / 4);
-        $gLip = round(($apportCalorique * ($pLip / 100)) / 9);
+        $gProt = ($apportCalorique * ($pProt / 100)) / 4;
+        $gGlu = ($apportCalorique * ($pGlu / 100)) / 4;
+        $gLip = ($apportCalorique * ($pLip / 100)) / 9;
 
         return [
             'distribution' => [
@@ -1581,14 +1569,14 @@ class NutritionController extends Controller
         $age = $user->age ?? 30;
 
         // Tanaka Formula: FCmax = 208 - 0.7 * age
-        $fcMax = round(208 - (0.7 * $age));
+        $fcMax = 208 - (0.7 * $age);
 
         $content = "ACTIVITÉ PHYSIQUE ET POSTURES :\n\n";
         $content .= "VOS ZONES DE FRÉQUENCE CARDIAQUE (Tanaka) :\n";
         $content .= "• FC Maximale : $fcMax bpm.\n";
-        $content .= "• Zone 1 (50-60%) : " . round($fcMax * 0.5) . "-" . round($fcMax * 0.6) . " bpm (Échauffement/Récupération).\n";
-        $content .= "• Zone 2 (60-70%) : " . round($fcMax * 0.6) . "-" . round($fcMax * 0.7) . " bpm (Brûle-graisses/Endurance).\n";
-        $content .= "• Zone 3 (70-80%) : " . round($fcMax * 0.7) . "-" . round($fcMax * 0.8) . " bpm (Amélioration cardio).\n";
+        $content .= "• Zone 1 (50-60%) : " . ($fcMax * 0.5) . "-" . ($fcMax * 0.6) . " bpm (Échauffement/Récupération).\n";
+        $content .= "• Zone 2 (60-70%) : " . ($fcMax * 0.6) . "-" . ($fcMax * 0.7) . " bpm (Brûle-graisses/Endurance).\n";
+        $content .= "• Zone 3 (70-80%) : " . ($fcMax * 0.7) . "-" . ($fcMax * 0.8) . " bpm (Amélioration cardio).\n";
         $content .= "• Échelle RPE (1-10) : Visez un effort de 4-6 (essoufflement léger, peut parler).\n\n";
 
         if ($activityLevel === 'Sédentaire') {
@@ -1811,7 +1799,7 @@ class NutritionController extends Controller
         // Remplacement dynamique de la variable {valeur_tanaka} par le vrai calcul
         if (!empty($content) && strpos($content, '{valeur_tanaka}') !== false) {
             $age = $user->age ?? 30; // Âge par défaut si non renseigné
-            $fcMax = round(208 - (0.7 * $age));
+            $fcMax = 208 - (0.7 * $age);
             $content = str_replace('{valeur_tanaka}', $fcMax, $content);
         }
 
