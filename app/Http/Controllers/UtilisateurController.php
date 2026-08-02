@@ -62,7 +62,7 @@ class UtilisateurController extends Controller
             'niveau_d_activite_physique' => $request->niveau_d_activite_physique,
         ]);
 
-        Auth::login($utilisateur);
+       // Auth::login($utilisateur);
 
         $token = $utilisateur->createToken('auth_token')->plainTextToken;
 
@@ -116,6 +116,15 @@ class UtilisateurController extends Controller
                 'message' => 'Utilisateur non authentifié',
             ], 401);
         }
+
+        // Empêcher un utilisateur de modifier les données d'un autre user (IDOR)
+        if ((int) $id !== (int) Auth::id()) {
+                 return response()->json([
+                    'success' => false,
+                    'message' => 'Vous n\'êtes pas autorisé à modifier cet utilisateur',
+                ], 403);
+        }
+
         
 
         $utilisateur = Utilisateur::find($id);
@@ -183,6 +192,10 @@ class UtilisateurController extends Controller
                 'message' => 'Utilisateur non trouvé',
             ], 404);
         }
+
+        
+
+
 
         $utilisateur->delete();
 

@@ -1357,10 +1357,10 @@
 
     <div class="page-break"></div>
 
-    <!-- 5. Guide Alimentaire 30 Jours -->
+    <!-- 5. Guide Alimentaire 60 Jours -->
     <div class="section">
-        <h1>Guide Alimentaire sur 30 Jours</h1>
-        <p>Ce plan est conçu pour être suivi sur 1 mois. Il respecte vos besoins caloriques et vos préférences.</p>
+        <h1>Guide Alimentaire sur 60 Jours</h1>
+        <p>Ce plan est conçu pour être suivi sur 2 mois. Il respecte vos besoins caloriques et vos préférences.</p>
 
         <!-- Affichage des menus (Groupé par semaine ou jour selon l'espace) -->
         <!-- Pour éviter un PDF de 500 pages, on peut afficher un modèle type ou la liste complète. Ici affichons les 14 premiers jours en détail et résumons le reste si besoin, ou tout si demandé. -->
@@ -1377,14 +1377,24 @@
                             <div class="info-cell">
                                 <div class="meal-title">Petit-déjeuner</div>
                                 @foreach($day['repas']['Petit-déjeuner'] as $item)
-                                    <div>- {{ $item['nom'] ?? 'N/A' }} ({{ $item['portion_recommandee'] ?? '' }})</div>
+                                    <div style="margin-bottom: 6px;">
+                                        - {{ $item['nom'] ?? 'N/A' }} ({{ $item['portion_recommandee'] ?? '' }})
+                                        @if(!empty($item['details']))
+                                            <div class="note" style="margin-left: 10px;">{{ $item['details'] }}</div>
+                                        @endif
+                                    </div>
                                 @endforeach
                             </div>
                             <div class="info-cell">
                                 <div class="meal-title">Déjeuner</div>
                                 @if(isset($day['repas']['Déjeuner']))
                                     @foreach($day['repas']['Déjeuner'] as $item)
-                                        <div>- {{ $item['nom'] ?? 'N/A' }} ({{ $item['portion_recommandee'] ?? '' }})</div>
+                                        <div style="margin-bottom: 6px;">
+                                            - {{ $item['nom'] ?? 'N/A' }} ({{ $item['portion_recommandee'] ?? '' }})
+                                            @if(!empty($item['details']))
+                                                <div class="note" style="margin-left: 10px;">{{ $item['details'] }}</div>
+                                            @endif
+                                        </div>
                                     @endforeach
                                 @endif
                             </div>
@@ -1394,7 +1404,12 @@
                                 <div class="meal-title">Collation(s)</div>
                                 @if(!empty($day['collations']))
                                     @foreach($day['collations'] as $item)
-                                        <div>- {{ $item['nom'] ?? 'N/A' }} ({{ $item['portion'] ?? 'Standard' }})</div>
+                                        <div style="margin-bottom: 6px;">
+                                            - {{ $item['nom'] ?? 'N/A' }} ({{ $item['portion'] ?? 'Standard' }})
+                                            @if(!empty($item['details']))
+                                                <div class="note" style="margin-left: 10px;">{{ $item['details'] }}</div>
+                                            @endif
+                                        </div>
                                     @endforeach
                                 @else
                                     <div>Aucune</div>
@@ -1404,7 +1419,12 @@
                                 <div class="meal-title">Dîner</div>
                                 @if(isset($day['repas']['Dîner']))
                                     @foreach($day['repas']['Dîner'] as $item)
-                                        <div>- {{ $item['nom'] ?? 'N/A' }} ({{ $item['portion_recommandee'] ?? '' }})</div>
+                                        <div style="margin-bottom: 6px;">
+                                            - {{ $item['nom'] ?? 'N/A' }} ({{ $item['portion_recommandee'] ?? '' }})
+                                            @if(!empty($item['details']))
+                                                <div class="note" style="margin-left: 10px;">{{ $item['details'] }}</div>
+                                            @endif
+                                        </div>
                                     @endforeach
                                 @endif
                             </div>
@@ -1429,7 +1449,7 @@
         <div class="regulatory-box">
             <div class="regulatory-title">Notifications Réglementaires</div>
             <ul>
-                <li>Le plan nutritionnel proposé est prévu pour une durée maximale d'un mois, soit 30 jours.</li>
+                <li>Le plan nutritionnel proposé est prévu pour une durée maximale de deux mois, soit 60 jours.</li>
                 <li>Ce plan nutritionnel ne remplace pas un suivi professionnel, car étant un plan sans suivi,
                     il a été conçu pour renforcer votre autonomie, vous proposer une alimentation basée sur vos ressources
                     locales et culturelles, et accroître votre motivation personnelle.

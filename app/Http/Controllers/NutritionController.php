@@ -15,6 +15,7 @@ class NutritionController extends Controller
     public function __construct(
         \App\Services\NutritionCalculationService $calculationService
     ) {
+        $this->middleware('auth:api');
         $this->calculationService = $calculationService;
     }
     /**
@@ -69,6 +70,7 @@ class NutritionController extends Controller
 
         //$userId = $request->user_id ?? auth()->id();
         $userId = auth()->id();
+         $userId = auth('api')->id();
 
         if (!$userId) {
             return response()->json(['success' => false, 'message' => 'Non authentifié'], 401);
@@ -123,6 +125,7 @@ class NutritionController extends Controller
     public function recommandation(Request $request)
     {
         $userId = auth()->id();
+        $userId = auth('api')->id();
 
         if (!$userId) {
             return response()->json(['success' => false, 'message' => 'Non authentifié'], 401);
@@ -274,7 +277,13 @@ class NutritionController extends Controller
         // dernier, l'email d'alerte LowCalorieWarningMail continue de se
         // déclencher normalement si l'apport est trop bas.
         // ----------------------------------------------------------------
-        // Ajustement fin supprimé pour garder les vrais résultats
+        if ($isWeightLoss) {
+            if ($isMale && $apportCalorique >= 1495 && $apportCalorique <= 1499) {
+                $apportCalorique = round($apportCalorique / 10) * 10;
+            } elseif (!$isMale && $apportCalorique >= 1195 && $apportCalorique <= 1199) {
+                $apportCalorique = round($apportCalorique / 10) * 10;
+            }
+        }
 
 
         // Safety Check
@@ -521,7 +530,7 @@ class NutritionController extends Controller
         \App\Models\PlanNutritionnel::create([
             'utilisateur_id' => $user->id,
             'submission_id' => $submissionId,
-            'description' => 'Guide nutritionnel de 90 jours généré le ' . date('d/m/Y'),
+            'description' => 'Guide nutritionnel de 60 jours généré le ' . date('d/m/Y'),
             'pdf_path' => 'storage/pdfs/' . $fileName,
         ]);
 
@@ -560,6 +569,8 @@ class NutritionController extends Controller
     public function downloadStoredPdf(Request $request)
     {
         $userId = auth()->id();
+        $userId = auth('api')->id();
+
         $user = \App\Models\Utilisateur::find($userId);
 
         if (!$user) {
@@ -621,7 +632,8 @@ class NutritionController extends Controller
     public function downloadPdf(Request $request)
     {
         //$userId = $request->user_id ?? auth()->id();
-         $userId = auth()->id();
+        $userId = auth()->id();
+        $userId = auth('api')->id();
          if (!$userId) {
         return response()->json(['success' => false, 'message' => 'Non authentifié'], 401);
         }
@@ -729,6 +741,13 @@ class NutritionController extends Controller
         // Même logique que dans recommandation() pour garantir la cohérence
         // entre l'API JSON et le PDF téléchargé via cette route.
         // Ajustement fin supprimé pour garder les vrais résultats
+        if ($isWeightLoss) {
+            if ($isMale && $apportCalorique >= 1495 && $apportCalorique <= 1499) {
+                $apportCalorique = round($apportCalorique / 10) * 10;
+            } elseif (!$isMale && $apportCalorique >= 1195 && $apportCalorique <= 1199) {
+                $apportCalorique = round($apportCalorique / 10) * 10;
+            }
+        }
 
         // 4. Macros
         $macros = $this->calculateMacrosEnhanced($user, $user->niveau_d_activite_physique, $deficitValue, $isWeightLoss, $isFitness, $apportCalorique, $weightLossRange, $pathologies);
@@ -1707,13 +1726,13 @@ class NutritionController extends Controller
         $dataService = \App\Services\NutritionDataFactory::make($objective, $pathologies, $weightLossRange);
         $menus = $dataService->getMenus();
 
-        $generator = new \App\Services\MenuGenerator($macroGrams, $menus, $user->niveau_d_activite_physique, 30, $pathologies);
+        $generator = new \App\Services\MenuGenerator($macroGrams, $menus, $user->niveau_d_activite_physique, 60, $pathologies);
         $result = $generator->generate();
 
         return [
             'menu_journalier' => $result['menu'],
             'facteurs' => $result['average_factors'],
-            'conseils' => "Votre guide alimentaire sur 30 jours a été généré via notre algorithme de précision. Les portions sont ajustées dynamiquement pour votre TDEE et vos objectifs cliniques spécifiquement pour un profil {$user->niveau_d_activite_physique}."
+            'conseils' => "Votre guide alimentaire sur 60 jours a été généré via notre algorithme de précision. Les portions sont ajustées dynamiquement pour votre TDEE et vos objectifs cliniques spécifiquement pour un profil {$user->niveau_d_activite_physique}."
         ];
     }
 
