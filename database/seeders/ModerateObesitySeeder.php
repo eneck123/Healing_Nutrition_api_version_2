@@ -18,20 +18,14 @@ class ModerateObesitySeeder extends Seeder
             // ========================================================================
             [
                 'maladie_id' => 1,
-                'question' => "Avez-vous des antécédents de diabète de type 2, d'hypertension artérielle ou de maladies cardiovasculaires ?",
+                'question' => "Avez-vous des antécédents de diabète de type 2 ou d'hypertension artérielle ?",
                 'reponses' => [
                     'Oui' => [
                         'weight_loss' => [
                             'under_5' => [
                                 'none' => "Aucun",
                                 'diabetes' => "Aucun",
-                                'hypertension' => "Aucun",
-                                'cardio' => "
-                                Conseils ciblés :
-                                •	Privilégier les glucides à index glycémique bas (igname, patate douce, riz complet)
-                                •	Limiter drastiquement le sel (< 5g/jour) : éviter les poissons fumés excessivement salés, les bouillons cubes
-                                •	Favoriser les cuissons sans matières grasses (vapeur, grillade, bouilli)
-                                •	Augmenter les fibres (légumes verts à chaque repas)"
+                                'hypertension' => "Aucun"
                             ],
                             '5_10' => [
                                 'none' => "Aucun",
@@ -49,8 +43,7 @@ class ModerateObesitySeeder extends Seeder
                                 •	Utiliser le bissap sans sucre (excellent pour la tension)
                                 •	Privilégier: akassa nature, fonio, patate douce, igname bouillie
                                 •	Éviter: arachides salées, poisson très fumé, bouillons cubes",
-                                'hypertension' => "Aucun",
-                                'cardio' => "Aucun"
+                                'hypertension' => "Aucun"
                             ],
                             'over_10' => [
                                 'none' => "Aucun",
@@ -67,8 +60,7 @@ class ModerateObesitySeeder extends Seeder
                                 •	Privilégier les aliments à Index Glycémique bas
                                 •	Éviter totalement les sucres rapides
                                 •	Augmenter les fibres (30-40g/jour)
-                                •	Contrôle médical mensuel obligatoire",
-                                'cardio' => "Aucun"
+                                •	Contrôle médical mensuel obligatoire"
                             ],
                         ],
                         'fitness' => [
@@ -91,20 +83,7 @@ class ModerateObesitySeeder extends Seeder
                             2.	Magnésium : Privilégier arachides nature, noix de cajou, fonio, épinards
                             3.	Oméga-3 : Poisson frais 3-4×/semaine (maquereau frais, sardines fraîches, carpe)
                             4.	Cuisson : Grillé, bouilli, vapeur - ÉVITER fritures
-                            5.	Hydratation : 2-2,5L eau/jour, tisanes (citronnelle, gingembre), bissap nature",
-                            'cardio' => "
-                            Conseils adaptés :
-                            •	Privilégier les aliments à index glycémique bas
-                            •	Limiter drastiquement le sel (max 5g/jour)
-                            •	Augmenter les fibres solubles
-                            •	Privilégier les graisses insaturées
-                            •	Surveiller les portions de féculents
-                        
-                            Modifications alimentaires :
-                            •	Remplacer le riz blanc par du riz complet ou fonio
-                            •	Utiliser des épices (gingembre, ail, piment doux) au lieu de sel
-                            •	Ajouter systématiquement des légumes verts à feuilles à chaque repas
-                            •	Préférer les modes de cuisson : vapeur, bouilli, grillé, au four"
+                            5.	Hydratation : 2-2,5L eau/jour, tisanes (citronnelle, gingembre), bissap nature"
                         ],
                     ],
                     'Non' => [
@@ -124,11 +103,7 @@ class ModerateObesitySeeder extends Seeder
                                 •	Alimentation équilibrée sans restriction excessive
                                 •	Promotion d'habitudes saines à long terme
                                 •	Éducation nutritionnelle continue
-                                ",
-                                'cardio' => "Conseils ciblés :
-                                •	Maintenir une alimentation préventive
-                                •	Surveiller quand même le sel et les graisses saturées
-                                •	Continuer l'équilibre alimentaire pour éviter l'apparition de complications"
+                                "
                             ],
                             '5_10' => [
                                 'none' => "Aucun",
@@ -136,12 +111,7 @@ class ModerateObesitySeeder extends Seeder
                                 •	Continuer la prévention en adoptant une alimentation équilibrée
                                 •	Contrôler régulièrement la glycémie et la tension
                                 •	Maintenir une activité physique régulière",
-                                'hypertension' => "Aucun",
-                                'cardio' => "
-                                Conseils ciblés:
-                                •	Suivre le guide de base selon niveau d'activité
-                                •	Prévention: maintenir variété alimentaire, portions contrôlées
-                                •	Surveillance régulière du poids, tension, glycémie (1 fois/an minimum)"
+                                'hypertension' => "Aucun"
                             ],
                             'over_10' => [
                                 'none' => "Aucun",
@@ -157,12 +127,7 @@ class ModerateObesitySeeder extends Seeder
                                 •	Surveillance annuelle des paramètres
                                 •	Alimentation équilibrée sans restriction excessive
                                 •	Promotion d'habitudes saines à long terme
-                                •	Éducation nutritionnelle continue",
-                                'cardio' => "
-                                Conseils ciblés:
-                                •	Suivre le guide de base selon niveau d'activité
-                                •	Prévention: maintenir variété alimentaire, portions contrôlées
-                                •	Surveillance régulière du poids, tension, glycémie (1 fois/an minimum)"
+                                •	Éducation nutritionnelle continue"
                             ],
                         ],
                         'fitness' => [
@@ -191,22 +156,7 @@ class ModerateObesitySeeder extends Seeder
                             1.	Prévention : Maintenir consommation potassium élevée (fruits, légumes)
                             2.	Habitudes saines : Limiter progressivement le sel pour éduquer le palais
                             3.	Surveillance : Mesurer tension régulièrement (mensuel)
-                            4.	Activité physique : Priorité absolue pour prévention cardiovasculaire",
-                            'cardio' => "
-                            Conseils adaptés :
-                            •	Maintenir une alimentation équilibrée préventive
-                            •	Surveiller quand même l'apport en sel et sucres
-                            •	Privilégier des aliments naturels et peu transformés
-                            
-                            Modifications alimentaires :
-                            •	Suivre les plans de base selon le niveau d'activité
-                            •	Assaisonnement modéré permis
-                            •	Variété alimentaire maximale
-                            
-                            Repas adaptés :
-                            •	Suivre les plans standards proposés plus haut
-                            •	Liberté dans le choix des sauces (en portions raisonnables)
-                            •	Possibilité d'utiliser modérément l'huile de palme rouge (riche en vitamines)"
+                            4.	Activité physique : Priorité absolue pour prévention cardiovasculaire"
                         ]
                     ]
                 ]
@@ -232,14 +182,7 @@ class ModerateObesitySeeder extends Seeder
                                 •	Magnésium : noix, graines, légumes verts
                                 •	Régime DASH adapté au contexte béninois
                                 •	Éviter : bouillons cubes, poissons très fumés/salés, viandes transformées²
-                                ",
-                                'cardio' => "
-                                Conseils ciblés :
-                                •	Réduire les graisses saturées et trans
-                                •	Privilégier les oméga-3 (poissons gras : maquereau, sardines fraîches)
-                                •	Limiter viandes rouges, privilégier volaille sans peau et poisson
-                                •	Augmenter fruits, légumes, fibres
-                                •	Contrôler le cholestérol alimentaire"
+                                "
                             ],
                             '5_10' => [
                                 'none' => "Aucun",
@@ -280,26 +223,7 @@ class ModerateObesitySeeder extends Seeder
                                 •	Surveiller apports sodium : rester ≤ 2300mg/jour
                                 •	Activité physique régulière selon niveau
                                 •	Contrôles médicaux annuels (glycémie, tension, lipides)
-                                •	Maintenir poids santé progressivement ",
-                                'cardio' => "
-                                Conseils ciblés:
-                                •	Lipides de qualité: huile de palme rouge (riche en vitamine A) 1-2 c. à café/jour max
-                                •	Privilégier poissons gras (sardines, maquereau) 3 fois/semaine: oméga-3
-                                •	Éviter fritures, huiles réutilisées, graisses saturées en excès
-                                •	Limiter viandes grasses, abats, peau de volaille
-                                •	Augmenter fibres: légumes verts à chaque repas, légumineuses quotidiennes
-                                •	Noix et graines nature (cajou, arachides non salées): 20-30g/jour
-                                
-                                Modifications des repas:
-                                •	Cuissons: Grillé, bouilli, vapeur, en sauce légère (pas de friture)
-                                •	Protéines: Poisson > volaille > viande maigre
-                                •	Lipides: 1 c. à café d'huile de palme OU avocat (1/3) par jour
-                                •	Fibres: Minimum 300g de légumes/jour
-                                
-                                Repas spécifiques cardio-protecteurs:
-                                •	Sardines grillées + salade de haricots verts et tomates + patate douce bouillie
-                                •	Poulet grillé sans peau + sauce tomate maison + épinards sautés (huile minimale) + manioc
-                                •	Ragoût de niébé + poisson maigre + légumes variés + petit portion de riz complet"
+                                •	Maintenir poids santé progressivement "
                             ],
                             'over_10' => [
                                 'none' => "Aucun",
@@ -310,26 +234,7 @@ class ModerateObesitySeeder extends Seeder
                                 •	Potassium : augmenter (bananes, avocat, pommes de terre, haricots)
                                 •	Magnésium : noix, graines, légumes verts
                                 •	Régime DASH adapté au contexte béninois
-                                •	Éviter : bouillons cubes, poissons très fumés/salés, viandes transformées",
-                                'cardio' => "
-                                    Conseils ciblés:
-                                •	Lipides de qualité: huile de palme rouge (riche en vitamine A) 1-2 c. à café/jour max
-                                •	Privilégier poissons gras (sardines, maquereau) 3 fois/semaine: oméga-3
-                                •	Éviter fritures, huiles réutilisées, graisses saturées en excès
-                                •	Limiter viandes grasses, abats, peau de volaille
-                                •	Augmenter fibres: légumes verts à chaque repas, légumineuses quotidiennes
-                                •	Noix et graines nature (cajou, arachides non salées): 20-30g/jour
-                                
-                                Modifications des repas:
-                                •	Cuissons: Grillé, bouilli, vapeur, en sauce légère (pas de friture)
-                                •	Protéines: Poisson > volaille > viande maigre
-                                •	Lipides: 1 c. à café d'huile de palme OU avocat (1/3) par jour
-                                •	Fibres: Minimum 300g de légumes/jour
-                                
-                                Repas spécifiques cardio-protecteurs:
-                                •	Sardines grillées + salade de haricots verts et tomates + patate douce bouillie
-                                •	Poulet grillé sans peau + sauce tomate maison + épinards sautés (huile minimale) + manioc
-                                •	Ragoût de niébé + poisson maigre + légumes variés + petit portion de riz complet"
+                                •	Éviter : bouillons cubes, poissons très fumés/salés, viandes transformées"
                             ],
                         ],
                         'fitness' => [
@@ -356,20 +261,7 @@ class ModerateObesitySeeder extends Seeder
                             3.	Calcium : Yaourt nature, feuilles vertes, sardines (avec arêtes)
                             4.	Magnésium : Noix, graines, fonio, épinards, haricots
                             5.	Tisanes : Bissap, gingembre-citron, citronnelle (2-3 tasses/jour)
-                            6.	Poids : Chaque kg perdu = réduction 1 mmHg TA",
-                            'cardio' => "
-                            Conseils spécifiques :
-                            •	Graisses saturées < 7% de l'apport total
-                            •	Privilégier oméga-3 (poissons gras)
-                            •	Fibres solubles abondantes
-                            •	Antioxydants (fruits et légumes colorés)
-                            
-                            Aliments bénéfiques :
-                            •	Poissons gras locaux (maquereau, sardine)
-                            •	Gombo (fibres solubles)
-                            •	Légumes verts à feuilles
-                            •	Graines de courge et sésame
-                            •	Avocat (avec modération)"
+                            6.	Poids : Chaque kg perdu = réduction 1 mmHg TA"
                         ]
                     ]
                 ]
@@ -435,18 +327,7 @@ class ModerateObesitySeeder extends Seeder
                                 •	Mesure glycémie avant repas
                                 •	Injection insuline 15-30 min avant
                                 •	Repas avec portion glucides définie et comptée
-                                •	Respecter portion prévue (ne pas sauter)",
-                                'cardio' => "
-                                Conseils ciblés :
-                                •	Respecter scrupuleusement les heures de prise des médicaments
-                                •	Certains médicaments interagissent avec les aliments (voir question suivante)
-                                •	Maintenir une alimentation régulière pour optimiser l'efficacité des traitements
-                                •	Ne jamais arrêter un traitement sans avis médical
-                                
-                                Repas :
-                                •	Régularité des horaires de repas
-                                •	3 repas principaux + 2 collations à heures fixes
-                                •	Hydratation régulière (1,5-2L d'eau/jour)"
+                                •	Respecter portion prévue (ne pas sauter)"
                             ],
                             '5_10' => [
                                 'none' => "Aucun",
@@ -456,18 +337,7 @@ class ModerateObesitySeeder extends Seeder
                                 •	Ne jamais arrêter sans avis médical
                                 •	Informer le médecin de tout effet secondaire
                                 •	Certains médicaments nécessitent des adaptations alimentaires spécifiques",
-                                'hypertension' => "Aucun",
-                                'cardio' => "
-                                Conseils ciblés :
-                                •	Respecter scrupuleusement les heures de prise des médicaments
-                                •	Certains médicaments interagissent avec les aliments (voir question suivante)
-                                •	Maintenir une alimentation régulière pour optimiser l'efficacité des traitements
-                                •	Ne jamais arrêter un traitement sans avis médical
-                            
-                                Repas :
-                                •	Régularité des horaires de repas
-                                •	3 repas principaux + 2 collations à heures fixes
-                                •	Hydratation régulière (1,5-2L d'eau/jour)"
+                                'hypertension' => "Aucun"
                             ],
                             'over_10' => [
                                 'none' => "Aucun",
@@ -526,17 +396,7 @@ class ModerateObesitySeeder extends Seeder
                                 •	Mesure glycémie avant repas
                                 •	Injection insuline 15-30 min avant
                                 •	Repas avec portion glucides définie et comptée
-                                •	Respecter portion prévue (ne pas sauter)",
-                                'cardio' => "
-                                Conseils ciblés :
-                                •	Respecter scrupuleusement les heures de prise des médicaments
-                                •	Certains médicaments interagissent avec les aliments (voir question suivante)
-                                •	Maintenir une alimentation régulière pour optimiser l'efficacité des traitements
-                                •	Ne jamais arrêter un traitement sans avis médical
-                                Repas :
-                                •	Régularité des horaires de repas
-                                •	3 repas principaux + 2 collations à heures fixes
-                                •	Hydratation régulière (1,5-2L d'eau/jour)"
+                                •	Respecter portion prévue (ne pas sauter)"
                             ],
                         ],
                         'fitness' => [
@@ -614,17 +474,7 @@ class ModerateObesitySeeder extends Seeder
                             •	Collation : 10h30
                             •	Déjeuner : 12h30-13h30
                             •	Collation : 16h
-                            •	Dîner : 19h-20h (adapter si médicaments soir)",
-                            'cardio' => "
-                            Conseils généraux :
-                            •	Respecter scrupuleusement les horaires de prise
-                            •	Certains médicaments nécessitent des ajustements alimentaires
-                            •	Ne jamais arrêter sans avis médical
-                            •	Informer votre médecin de tout changement alimentaire majeur
-                            Adaptations alimentaires :
-                            •	Prendre les repas à heures régulières
-                            •	Maintenir une hydratation optimale (1,5-2L d'eau/jour)
-                            •	Éviter le pamplemousse si statines (interaction médicamenteuse)"
+                            •	Dîner : 19h-20h (adapter si médicaments soir)"
                         ]
                     ],
                 ],
@@ -639,13 +489,7 @@ class ModerateObesitySeeder extends Seeder
                             •	Possibilité de prévenir ou retarder médication
                             •	Modifications lifestyle très efficaces à ce stade
                             •	Contrôles médicaux réguliers pour suivre évolution
-                            •	Motivation : chaque kilo perdu et chaque changement compte",
-                            'cardio' => "
-                            Conseils ciblés :
-                            •	L'alimentation est votre principale arme thérapeutique
-                            •	Redoubler d'efforts sur l'équilibre alimentaire
-                            •	Surveillance régulière des paramètres (tension, glycémie si possible)
-                            •	Consultation médicale régulière recommandée"
+                            •	Motivation : chaque kilo perdu et chaque changement compte"
                         ],
                         '5_10' => [
                             'none' => "Aucun",
@@ -659,13 +503,7 @@ class ModerateObesitySeeder extends Seeder
                             Pas d'ajustement médicamenteux spécifique nécessaire
                             •	Suivre recommandations générales
                             •	Vigilance sur automédication
-                            •	Consulter avant tout nouveau traitement",
-                            'cardio' => "
-                            Conseils ciblés :
-                            •	L'alimentation est votre principale arme thérapeutique
-                            •	Redoubler d'efforts sur l'équilibre alimentaire
-                            •	Surveillance régulière des paramètres (tension, glycémie si possible)
-                            •	Consultation médicale régulière recommandée"
+                            •	Consulter avant tout nouveau traitement"
                         ],
                         'over_10' => [
                             'none' => "Aucun",
@@ -676,13 +514,7 @@ class ModerateObesitySeeder extends Seeder
                             •	Possibilité de prévenir ou retarder médication
                             •	Modifications lifestyle très efficaces à ce stade
                             •	Contrôles médicaux réguliers pour suivre évolution
-                            •	Motivation : chaque kilo perdu et chaque changement compte",
-                            'cardio' => "
-                            Conseils ciblés :
-                            •	L'alimentation est votre principale arme thérapeutique
-                            •	Redoubler d'efforts sur l'équilibre alimentaire
-                            •	Surveillance régulière des paramètres (tension, glycémie si possible)
-                            •	Consultation médicale régulière recommandée"
+                            •	Motivation : chaque kilo perdu et chaque changement compte"
                         ],
                     ],
                     'fitness' => [
@@ -708,12 +540,7 @@ class ModerateObesitySeeder extends Seeder
                         2.	Engagement : Adhésion stricte au plan (80-90%)
                         3.	Suivi : Mesures hebdomadaires (poids, TA, tour de taille)
                         4.	Progression : Réévaluation mensuelle, ajustements si nécessaire
-                        5.	Prévention : Éviter progression vers médication",
-                        'cardio' => "
-                        Conseils :
-                        •	L'alimentation devient votre principal outil thérapeutique
-                        •	Rigueur maximale dans le suivi du plan alimentaire
-                        •	Consultation médicale régulière pour évaluer la nécessité d'un traitement"
+                        5.	Prévention : Éviter progression vers médication"
                     ]
                 ]
             ],
@@ -732,28 +559,12 @@ class ModerateObesitySeeder extends Seeder
                                 3. Antagonistes des récepteurs de l'angiotensine II (ARA II) (Losartan, Valsartan, Candesartan, Telmisartan) : Proches des IEC dans leur mode d'action, ils sont généralement mieux tolérés car ils provoquent moins de toux. Ils sont très utilisés chez les patients obèses hypertendus. Les mêmes conseils que pour les IEC s'appliquent, avec en complément le maintien d'une activité physique régulière et l'éviction de l'excès de sel et d'alcool.
                                 4. Bêta-bloquants (Bisoprolol, Métoprolol, Carvedilol, Atenolol) : Ces médicaments ralentissent le rythme cardiaque et réduisent la tension artérielle. Ils sont utiles en cas de cardiopathie associée, mais peuvent favoriser une prise de poids. Il est donc recommandé de contrôler l'apport calorique, de pratiquer une activité physique régulière et adaptée, et de limiter la caféine ainsi que les autres stimulants.
                                 5. Antagonistes calciques (Amlodipine, Nifédipine, Diltiazem, Vérapamil) : Ces médicaments dilatent les artères et réduisent la pression artérielle. Ils sont particulièrement intéressants en cas d'hypertension isolée, notamment chez les personnes âgées. Il est conseillé de limiter le sel, de maintenir un poids stable, de pratiquer une activité physique régulière et de surveiller un éventuel gonflement des chevilles, qui constitue un effet secondaire possible.
-                                Autres médicaments — cas particuliers (Alpha-bloquants : Doxazosine ; Antihypertenseurs centraux : Méthyldopa, Clonidine) : Ces médicaments sont utilisés rarement, en cas d'échec des traitements précédents ou dans des situations spécifiques. Ils sont généralement réservés à des cas complexes. Leur utilisation nécessite un suivi médical strict, en évitant tout arrêt brutal. Il est également recommandé de maintenir une alimentation équilibrée, une activité physique adaptée et une surveillance tensionnelle régulière.",
-                                'cardio' => "
-                                Les médicaments utilisés dans la prise en charge des maladies cardiovasculaires et métaboliques associées à l'obésité appartiennent à plusieurs classes thérapeutiques. Ses classes sont entre autres : 
-                                1. Antihypertenseurs : Cette catégorie comprend les inhibiteurs de l'enzyme de conversion (IEC) tels que l'Enalapril et le Ramipril, les bêta-bloquants comme le Métoprolol et le Bisoprolol, les antagonistes des récepteurs de l'angiotensine II (ARA II) tels que le Losartan et le Valsartan, ainsi que les diurétiques comme l'Hydrochlorothiazide et le Furosémide. Leur rôle principal est de contrôler la tension artérielle et de protéger le cœur. Les patients traités par ces médicaments doivent réduire leur consommation de sel, éviter l'automédication en raison du risque d'interactions médicamenteuses et contrôler régulièrement leur tension artérielle.
-                                2. Hypolipémiants (statines) : Les principaux médicaments de cette classe sont l'Atorvastatine, la Rosuvastatine et la Simvastatine. Ils permettent de diminuer le taux de cholestérol sanguin et de prévenir l'athérosclérose. Il est recommandé d'adopter une alimentation pauvre en graisses saturées, d'éviter la consommation de pamplemousse en raison des interactions possibles avec certaines statines et de réaliser un contrôle régulier des enzymes hépatiques.
-                                3. Antiplaquettaires : Cette catégorie comprend notamment l'Aspirine à faible dose et le Clopidogrel. Ces médicaments ont pour objectif de prévenir la formation de caillots sanguins et de réduire le risque d'accident vasculaire cérébral. Les patients doivent surveiller tout signe de saignement, éviter l'automédication avec des anti-inflammatoires non stéroïdiens et prendre le traitement au cours d'un repas afin de limiter les irritations gastriques.
-                                4. Antidiabétiques : Lorsque l'obésité est associée à un syndrome métabolique ou à un diabète, des médicaments tels que la Metformine, les gliflozines (par exemple la Dapagliflozine) ou les agonistes du GLP-1 comme le Liraglutide et le Sémaglutide peuvent être prescrits. Leur rôle est de contrôler la glycémie et de prévenir les complications cardiovasculaires. Les recommandations associées incluent la limitation des sucres rapides, la pratique régulière d'une activité physique adaptée et la surveillance régulière de la glycémie.
-                                5. Anticoagulants : Les anticoagulants tels que la Warfarine, l'Apixaban et le Rivaroxaban sont utilisés chez les patients présentant une fibrillation auriculaire ou un risque élevé de thrombose. Leur fonction est de fluidifier le sang afin de prévenir la formation de caillots. Les patients sous Warfarine doivent éviter une consommation excessive d'aliments riches en vitamine K, notamment les choux et les épinards, effectuer un suivi régulier de l'INR et informer tout professionnel de santé de leur traitement avant une intervention chirurgicale ou une extraction dentaire.
-                                6. Médicaments anti-obésité : Cette catégorie comprend l'Orlistat, le Liraglutide lorsqu'il est utilisé dans l'indication de perte de poids, ainsi que le Sémaglutide. Ces traitements favorisent la perte de poids et contribuent à la réduction des risques cardiométaboliques. Ils doivent toujours être associés à une alimentation équilibrée et à des mesures hygiéno-diététiques adaptées. Une attention particulière doit être portée aux effets digestifs, notamment avec l'Orlistat, et un suivi médical régulier est nécessaire afin de surveiller l'efficacité et les éventuels effets indésirables du traitement."
+                                Autres médicaments — cas particuliers (Alpha-bloquants : Doxazosine ; Antihypertenseurs centraux : Méthyldopa, Clonidine) : Ces médicaments sont utilisés rarement, en cas d'échec des traitements précédents ou dans des situations spécifiques. Ils sont généralement réservés à des cas complexes. Leur utilisation nécessite un suivi médical strict, en évitant tout arrêt brutal. Il est également recommandé de maintenir une alimentation équilibrée, une activité physique adaptée et une surveillance tensionnelle régulière."
                             ],
                             '5_10' => [
                                 'none' => "Aucun",
                                 'diabetes' => "Aucun",
-                                'hypertension' => "Aucun",
-                                'cardio' => "
-                                Les médicaments utilisés dans la prise en charge des maladies cardiovasculaires et métaboliques associées à l'obésité appartiennent à plusieurs classes thérapeutiques. Ses classes sont entre autres : 
-                                1. Antihypertenseurs : Cette catégorie comprend les inhibiteurs de l'enzyme de conversion (IEC) tels que l'Enalapril et le Ramipril, les bêta-bloquants comme le Métoprolol et le Bisoprolol, les antagonistes des récepteurs de l'angiotensine II (ARA II) tels que le Losartan et le Valsartan, ainsi que les diurétiques comme l'Hydrochlorothiazide et le Furosémide. Leur rôle principal est de contrôler la tension artérielle et de protéger le cœur. Les patients traités par ces médicaments doivent réduire leur consommation de sel, éviter l'automédication en raison du risque d'interactions médicamenteuses et contrôler régulièrement leur tension artérielle.
-                                2. Hypolipémiants (statines) : Les principaux médicaments de cette classe sont l'Atorvastatine, la Rosuvastatine et la Simvastatine. Ils permettent de diminuer le taux de cholestérol sanguin et de prévenir l'athérosclérose. Il est recommandé d'adopter une alimentation pauvre en graisses saturées, d'éviter la consommation de pamplemousse en raison des interactions possibles avec certaines statines et de réaliser un contrôle régulier des enzymes hépatiques.
-                                3. Antiplaquettaires : Cette catégorie comprend notamment l'Aspirine à faible dose et le Clopidogrel. Ces médicaments ont pour objectif de prévenir la formation de caillots sanguins et de réduire le risque d'accident vasculaire cérébral. Les patients doivent surveiller tout signe de saignement, éviter l'automédication avec des anti-inflammatoires non stéroïdiens et prendre le traitement au cours d'un repas afin de limiter les irritations gastriques.
-                                4. Antidiabétiques : Lorsque l'obésité est associée à un syndrome métabolique ou à un diabète, des médicaments tels que la Metformine, les gliflozines (par exemple la Dapagliflozine) ou les agonistes du GLP-1 comme le Liraglutide et le Sémaglutide peuvent être prescrits. Leur rôle est de contrôler la glycémie et de prévenir les complications cardiovasculaires. Les recommandations associées incluent la limitation des sucres rapides, la pratique régulière d'une activité physique adaptée et la surveillance régulière de la glycémie.
-                                5. Anticoagulants : Les anticoagulants tels que la Warfarine, l'Apixaban et le Rivaroxaban sont utilisés chez les patients présentant une fibrillation auriculaire ou un risque élevé de thrombose. Leur fonction est de fluidifier le sang afin de prévenir la formation de caillots. Les patients sous Warfarine doivent éviter une consommation excessive d'aliments riches en vitamine K, notamment les choux et les épinards, effectuer un suivi régulier de l'INR et informer tout professionnel de santé de leur traitement avant une intervention chirurgicale ou une extraction dentaire.
-                                6. Médicaments anti-obésité : Cette catégorie comprend l'Orlistat, le Liraglutide lorsqu'il est utilisé dans l'indication de perte de poids, ainsi que le Sémaglutide. Ces traitements favorisent la perte de poids et contribuent à la réduction des risques cardiométaboliques. Ils doivent toujours être associés à une alimentation équilibrée et à des mesures hygiéno-diététiques adaptées. Une attention particulière doit être portée aux effets digestifs, notamment avec l'Orlistat, et un suivi médical régulier est nécessaire afin de surveiller l'efficacité et les éventuels effets indésirables du traitement."
+                                'hypertension' => "Aucun"
                             ],
                             'over_10' => [
                                 'none' => "Aucun",
@@ -764,15 +575,7 @@ class ModerateObesitySeeder extends Seeder
                                 3. Antagonistes des récepteurs de l'angiotensine II (ARA II) (Losartan, Valsartan, Candesartan, Telmisartan) : Proches des IEC dans leur mode d'action, ils sont généralement mieux tolérés car ils provoquent moins de toux. Ils sont très utilisés chez les patients obèses hypertendus. Les mêmes conseils que pour les IEC s'appliquent, avec en complément le maintien d'une activité physique régulière et l'éviction de l'excès de sel et d'alcool.
                                 4. Bêta-bloquants (Bisoprolol, Métoprolol, Carvedilol, Atenolol) : Ces médicaments ralentissent le rythme cardiaque et réduisent la tension artérielle. Ils sont utiles en cas de cardiopathie associée, mais peuvent favoriser une prise de poids. Il est donc recommandé de contrôler l'apport calorique, de pratiquer une activité physique régulière et adaptée, et de limiter la caféine ainsi que les autres stimulants.
                                 5. Antagonistes calciques (Amlodipine, Nifédipine, Diltiazem, Vérapamil) : Ces médicaments dilatent les artères et réduisent la pression artérielle. Ils sont particulièrement intéressants en cas d'hypertension isolée, notamment chez les personnes âgées. Il est conseillé de limiter le sel, de maintenir un poids stable, de pratiquer une activité physique régulière et de surveiller un éventuel gonflement des chevilles, qui constitue un effet secondaire possible.
-                                Autres médicaments — cas particuliers (Alpha-bloquants : Doxazosine ; Antihypertenseurs centraux : Méthyldopa, Clonidine) : Ces médicaments sont utilisés rarement, en cas d'échec des traitements précédents ou dans des situations spécifiques. Ils sont généralement réservés à des cas complexes. Leur utilisation nécessite un suivi médical strict, en évitant tout arrêt brutal. Il est également recommandé de maintenir une alimentation équilibrée, une activité physique adaptée et une surveillance tensionnelle régulière.",
-                                'cardio' => "
-                                Les médicaments utilisés dans la prise en charge des maladies cardiovasculaires et métaboliques associées à l'obésité appartiennent à plusieurs classes thérapeutiques. Ses classes sont entre autres : 
-                                1. Antihypertenseurs : Cette catégorie comprend les inhibiteurs de l'enzyme de conversion (IEC) tels que l'Enalapril et le Ramipril, les bêta-bloquants comme le Métoprolol et le Bisoprolol, les antagonistes des récepteurs de l'angiotensine II (ARA II) tels que le Losartan et le Valsartan, ainsi que les diurétiques comme l'Hydrochlorothiazide et le Furosémide. Leur rôle principal est de contrôler la tension artérielle et de protéger le cœur. Les patients traités par ces médicaments doivent réduire leur consommation de sel, éviter l'automédication en raison du risque d'interactions médicamenteuses et contrôler régulièrement leur tension artérielle.
-                                2. Hypolipémiants (statines) : Les principaux médicaments de cette classe sont l'Atorvastatine, la Rosuvastatine et la Simvastatine. Ils permettent de diminuer le taux de cholestérol sanguin et de prévenir l'athérosclérose. Il est recommandé d'adopter une alimentation pauvre en graisses saturées, d'éviter la consommation de pamplemousse en raison des interactions possibles avec certaines statines et de réaliser un contrôle régulier des enzymes hépatiques.
-                                3. Antiplaquettaires : Cette catégorie comprend notamment l'Aspirine à faible dose et le Clopidogrel. Ces médicaments ont pour objectif de prévenir la formation de caillots sanguins et de réduire le risque d'accident vasculaire cérébral. Les patients doivent surveiller tout signe de saignement, éviter l'automédication avec des anti-inflammatoires non stéroïdiens et prendre le traitement au cours d'un repas afin de limiter les irritations gastriques.
-                                4. Antidiabétiques : Lorsque l'obésité est associée à un syndrome métabolique ou à un diabète, des médicaments tels que la Metformine, les gliflozines (par exemple la Dapagliflozine) ou les agonistes du GLP-1 comme le Liraglutide et le Sémaglutide peuvent être prescrits. Leur rôle est de contrôler la glycémie et de prévenir les complications cardiovasculaires. Les recommandations associées incluent la limitation des sucres rapides, la pratique régulière d'une activité physique adaptée et la surveillance régulière de la glycémie.
-                                5. Anticoagulants : Les anticoagulants tels que la Warfarine, l'Apixaban et le Rivaroxaban sont utilisés chez les patients présentant une fibrillation auriculaire ou un risque élevé de thrombose. Leur fonction est de fluidifier le sang afin de prévenir la formation de caillots. Les patients sous Warfarine doivent éviter une consommation excessive d'aliments riches en vitamine K, notamment les choux et les épinards, effectuer un suivi régulier de l'INR et informer tout professionnel de santé de leur traitement avant une intervention chirurgicale ou une extraction dentaire.
-                                6. Médicaments anti-obésité : Cette catégorie comprend l'Orlistat, le Liraglutide lorsqu'il est utilisé dans l'indication de perte de poids, ainsi que le Sémaglutide. Ces traitements favorisent la perte de poids et contribuent à la réduction des risques cardiométaboliques. Ils doivent toujours être associés à une alimentation équilibrée et à des mesures hygiéno-diététiques adaptées. Une attention particulière doit être portée aux effets digestifs, notamment avec l'Orlistat, et un suivi médical régulier est nécessaire afin de surveiller l'efficacité et les éventuels effets indésirables du traitement."
+                                Autres médicaments — cas particuliers (Alpha-bloquants : Doxazosine ; Antihypertenseurs centraux : Méthyldopa, Clonidine) : Ces médicaments sont utilisés rarement, en cas d'échec des traitements précédents ou dans des situations spécifiques. Ils sont généralement réservés à des cas complexes. Leur utilisation nécessite un suivi médical strict, en évitant tout arrêt brutal. Il est également recommandé de maintenir une alimentation équilibrée, une activité physique adaptée et une surveillance tensionnelle régulière."
                             ],
                         ],
                         'fitness' => [
@@ -887,8 +690,7 @@ class ModerateObesitySeeder extends Seeder
                             •	Toujours avoir collation d'urgence (fruits secs)
                             •	Noter effets secondaires alimentaires
                             •	Consultation pharmacien pour interactions",
-                            'hypertension' => "Aucun",
-                            'cardio' => "Aucun"
+                            'hypertension' => "Aucun"
                         ]
                     ]
                 ]
@@ -951,13 +753,7 @@ class ModerateObesitySeeder extends Seeder
                                 o	Attendre 15 minutes
                                 o	Re-mesurer glycémie
                                 o	Si encore basse, reprendre 15g
-                                3.	Une fois glycémie normalisée, prendre collation mixte (glucides + protéines)",
-                                'cardio' => "
-                                Conseils ciblés :
-                                •	Comptage des glucides indispensable
-                                •	Synchroniser les repas avec les injections
-                                •	Toujours avoir une collation de secours (risque d'hypoglycémie)
-                                •	Privilégier index glycémique bas"
+                                3.	Une fois glycémie normalisée, prendre collation mixte (glucides + protéines)"
                             ],
                             '5_10' => [
                                 'none' => "
@@ -1022,19 +818,7 @@ class ModerateObesitySeeder extends Seeder
                                 •	Journal alimentaire recommandé
                                 •	Glucides répartis : 40-50g petit-déj, 50-60g déjeuner, 40-50g dîner, 15-20g collations
                                 •	Coordination avec diabétologue
-                                ",
-                                'cardio' => "
-                                Conseils ciblés:
-                                •	Coordination stricte repas-injection (timing crucial)
-                                •	Portions de glucides constantes d'un jour à l'autre
-                                •	Comptage des glucides à apprendre avec diététicien
-                                •	Collations planifiées selon protocole d'injection
-                                •	Jamais d'alcool (risque hypoglycémie sévère)
-                                Adaptations:
-                                •	Portions fixes: ex. toujours 120g de foufou au déjeuner
-                                •	Glucides répartis: 40-45% petit-déj, 30-35% déjeuner, 20-25% dîner
-                                •	Collations 15-20g glucides: 1 banane OU 1 orange OU 150ml lait
-                                •	Journal alimentaire obligatoire pour ajustement doses"
+                                "
                             ],
                             'over_10' => [
                                 'none' => "
@@ -1079,19 +863,7 @@ class ModerateObesitySeeder extends Seeder
                                 o	Attendre 15 minutes
                                 o	Re-mesurer glycémie
                                 o	Si encore basse, reprendre 15g
-                                3.	Une fois glycémie normalisée, prendre collation mixte (glucides + protéines)",
-                                'cardio' => "
-                                Conseils ciblés:
-                                •	Coordination stricte repas-injection (timing crucial)
-                                •	Portions de glucides constantes d'un jour à l'autre
-                                •	Comptage des glucides à apprendre avec diététicien
-                                •	Collations planifiées selon protocole d'injection
-                                •	Jamais d'alcool (risque hypoglycémie sévère)
-                                Adaptations:
-                                •	Portions fixes: ex. toujours 120g de foufou au déjeuner
-                                •	Glucides répartis: 40-45% petit-déj, 30-35% déjeuner, 20-25% dîner
-                                •	Collations 15-20g glucides: 1 banane OU 1 orange OU 150ml lait
-                                •	Journal alimentaire obligatoire pour ajustement doses"
+                                3.	Une fois glycémie normalisée, prendre collation mixte (glucides + protéines)"
                             ],
                         ],
                         'fitness' => [
@@ -1159,13 +931,7 @@ class ModerateObesitySeeder extends Seeder
                             o	Pendant : Si > 1h exercice → collation 15g glucides/30-45 min
                             o	Après : Risque hypoglycémie tardive (jusqu'à 24h) → surveiller, collation si besoin
                             7.	Ajustements : JAMAIS modifier insuline sans avis médecin
-                            8.	Jours de maladie : Protocole spécifique (consulter équipe soignante)",
-                            'cardio' => "
-                            Conseils spécifiques :
-                            •	Synchronisation stricte repas/injection
-                            •	Compter les glucides de manière précise
-                            •	Jamais de repas sauté
-                            •	Surveiller après activité physique"                              
+                            8.	Jours de maladie : Protocole spécifique (consulter équipe soignante)"                              
                          ]
                     ],
                     'Médicaments pour perdre du poids (ex : orlistat, liraglutide…)' => [
@@ -1274,11 +1040,7 @@ class ModerateObesitySeeder extends Seeder
                                 •	Arrêter dès sensation de satiété (ne pas finir assiette)
                                 •	Éviter aliments trop gras/épicés (aggravent nausées)
                                 •	Fractionner en 5-6 petits repas vs 3 gros
-                                •	Bien hydrater entre repas (pas pendant)",
-                                'cardio' => "Conseils ciblés :
-                                •	Orlistat : réduit absorption des graisses → limiter graisses à 15g/repas pour éviter effets secondaires
-                                •	Liraglutide : réduit l'appétit → fractionner en petits repas
-                                •	Privilégier cuissons sans matières grasses"
+                                •	Bien hydrater entre repas (pas pendant)"
                             ],
                             '5_10' => [
                                 'none' => "
@@ -1385,34 +1147,7 @@ class ModerateObesitySeeder extends Seeder
                                 •	Nausées fréquentes initialement
                                 •	Portions plus petites, fractionner
                                 •	Éviter aliments très gras, épicés
-                                •	Bien hydrater",
-                                'cardio' => "
-                                Orlistat (bloque absorption graisses):
-                                Conseils ciblés:
-                                •	Réduire lipides à 20-25% maximum (sinon effets secondaires digestifs)
-                                •	Éviter repas riches en graisses: fritures, sauces d'arachide riches, viandes grasses
-                                •	Prendre suppléments vitamine A, D, E, K (liposolubles) à distance du médicament
-                                •	Privilégier cuissons sans gras
-                                
-                                Adaptations:
-                                •	Sauces d'arachide: Très diluées, portions 100ml max
-                                •	Huile de palme: Maximum 1 c. à café/jour
-                                •	Avocat: 1/4 maximum/jour
-                                •	Arachides/cajou: Limiter à 10g/jour
-                                •	Favoriser: poisson grillé, poulet bouilli, légumes vapeur
-
-                                Liraglutide (coupe-faim, ralentit vidange gastrique):
-                                Conseils ciblés:
-                                •	Portions réduites (satiété précoce)
-                                •	Manger lentement, mastiquer longuement
-                                •	Éviter aliments lourds, gras (nausées possibles)
-                                •	Fractionner en 5-6 petits repas si nausées
-                                •	Hydratation +++ (1,5-2L/jour)
-                                Adaptations:
-                                •	Réduire toutes portions de 20-30% vs guide de base
-                                •	Privilégier: soupes, bouillies, aliments tendres
-                                •	Si nausées: gingembre frais, petites quantités, température ambiante
-                                •	Collations légères: Fruits frais, yaourt nature, bouillon de légumes"
+                                •	Bien hydrater"
                             ],
                             'over_10' => [
                                 'none' => "
@@ -1474,35 +1209,7 @@ class ModerateObesitySeeder extends Seeder
                                 •	Arrêter dès sensation de satiété (ne pas finir assiette)
                                 •	Éviter aliments trop gras/épicés (aggravent nausées)
                                 •	Fractionner en 5-6 petits repas vs 3 gros
-                                •	Bien hydrater entre repas (pas pendant)",
-                                'cardio' => "
-                                Orlistat (bloque absorption graisses):
-                                Conseils ciblés:
-                                •	Réduire lipides à 20-25% maximum (sinon effets secondaires digestifs)
-                                •	Éviter repas riches en graisses: fritures, sauces d'arachide riches, viandes grasses
-                                •	Prendre suppléments vitamine A, D, E, K (liposolubles) à distance du médicament
-                                •	Privilégier cuissons sans gras
-                                
-                                Adaptations:
-                                •	Sauces d'arachide: Très diluées, portions 100ml max
-                                •	Huile de palme: Maximum 1 c. à café/jour
-                                •	Avocat: 1/4 maximum/jour
-                                •	Arachides/cajou: Limiter à 10g/jour
-                                •	Favoriser: poisson grillé, poulet bouilli, légumes vapeur
-                                
-                                Liraglutide (coupe-faim, ralentit vidange gastrique):
-                                Conseils ciblés:
-                                •	Portions réduites (satiété précoce)
-                                •	Manger lentement, mastiquer longuement
-                                •	Éviter aliments lourds, gras (nausées possibles)
-                                •	Fractionner en 5-6 petits repas si nausées
-                                •	Hydratation +++ (1,5-2L/jour)
-                                
-                                Adaptations:
-                                •	Réduire toutes portions de 20-30% vs guide de base
-                                •	Privilégier: soupes, bouillies, aliments tendres
-                                •	Si nausées: gingembre frais, petites quantités, température ambiante
-                                •	Collations légères: Fruits frais, yaourt nature, bouillon de légumes"
+                                •	Bien hydrater entre repas (pas pendant)"
                             ],
                         ],
                         'fitness' => [
@@ -1589,24 +1296,7 @@ class ModerateObesitySeeder extends Seeder
                             4.	Protéines prioritaires : Manger d'abord protéines du repas (maintien masse musculaire)
                             5.	Fibres : Préviennent constipation (effet secondaire possible)
                             6.	Hypoglycémie : Rare mais possible si diabétique → surveiller, collations régulières
-                            7.	Progression : Dose augmente graduellement - ajuster portions selon tolérance",
-                            'cardio' => "
-                            Conseils spécifiques pour ORLISTAT :
-                            •	Limiter les graisses à 15g par repas (effets secondaires si excès)
-                            •	Supplémentation en vitamines liposolubles (A, D, E, K)
-                            •	Éviter les repas trop gras
-                            
-                            À éviter avec Orlistat :
-                            •	Sauce arachide
-                            •	Huile de palme
-                            •	Avocat en excès
-                            •	Noix en grande quantité
-                            •	Viandes grasses
-                            
-                            Conseils spécifiques pour LIRAGLUTIDE :
-                            •	Effet coupe-faim : écouter sa satiété
-                            •	Portions plus petites naturellement
-                            •	Bien s'hydrater"
+                            7.	Progression : Dose augmente graduellement - ajuster portions selon tolérance"
                         ]
                     ],
                     'Médicaments pour la tension artérielle (ex : IEC, ARA2, bêta-bloquants…)' => [
@@ -1700,12 +1390,7 @@ class ModerateObesitySeeder extends Seeder
                                 •	Patate douce : régulièrement
                                 •	Haricots secs : quotidiennement
                                 •	Épinards et légumes verts : abondamment
-                                ",
-                                'cardio' => "
-                                Conseils ciblés :
-                                •	IEC/ARA2 : surveiller le potassium (ne pas exagérer bananes, avocat)
-                                •	Bêta-bloquants : peuvent masquer symptômes d'hypoglycémie si diabétique
-                                •	Réduction stricte du sel reste prioritaire"
+                                "
                             ],
                             '5_10' => [
                                 'none' => "
@@ -1782,19 +1467,7 @@ class ModerateObesitySeeder extends Seeder
                                 •	Surveillance glycémie accrue si diabétique
                                 •	Portions glucides bien réparties
                                 •	Calories : réduire 100-200 kcal/jour si prise de poids
-                                •	Activité physique adaptée (fréquence cardiaque)",
-                                'cardio' => "
-                                Conseils ciblés:
-                                •	Régime DASH adapté: ZÉRO sel ajouté
-                                •	Potassium élevé: banane (1-2/jour), avocat, papaye, épinards, haricots
-                                •	Calcium: lait fermenté, yaourt, sardines avec arêtes
-                                •	Magnésium: arachides nature, épinards, haricots
-                                •	Hydratation suffisante mais pas excessive
-                                
-                                Adaptations spécifiques:
-                                •	IEC/ARA2: Attention potassium (ne pas exagérer), surveillance médicale
-                                •	Bêta-bloquants: Peuvent masquer hypoglycémie, surveiller glycémie si diabète
-                                •	Diurétiques: Augmenter potassium, limiter sodium encore plus"
+                                •	Activité physique adaptée (fréquence cardiaque)"
                             ],
                             'over_10' => [
                                 'none' => "
@@ -1878,19 +1551,7 @@ class ModerateObesitySeeder extends Seeder
                                 •	Avocat : ½-1/jour
                                 •	Patate douce : régulièrement
                                 •	Haricots secs : quotidiennement
-                                •	Épinards et légumes verts : abondamment",
-                                'cardio' => "
-                                Conseils ciblés:
-                                •	Régime DASH adapté: ZÉRO sel ajouté
-                                •	Potassium élevé: banane (1-2/jour), avocat, papaye, épinards, haricots
-                                •	Calcium: lait fermenté, yaourt, sardines avec arêtes
-                                •	Magnésium: arachides nature, épinards, haricots
-                                •	Hydratation suffisante mais pas excessive
-                                
-                                Adaptations spécifiques:
-                                •	IEC/ARA2: Attention potassium (ne pas exagérer), surveillance médicale
-                                •	Bêta-bloquants: Peuvent masquer hypoglycémie, surveiller glycémie si diabète
-                                •	Diurétiques: Augmenter potassium, limiter sodium encore plus"
+                                •	Épinards et légumes verts : abondamment"
                             ],
                         ],
                         'fitness' => [
@@ -2037,27 +1698,7 @@ class ModerateObesitySeeder extends Seeder
                             5.	Ionogramme : Surveillance régulière (tous les 3-6 mois)
                             6.	Symptômes hypokaliémie : Crampes musculaires, fatigue, constipation → augmenter fruits/légumes
                             7.	Timing : Prendre diurétique matin (éviter réveils nocturnes pour uriner)
-                            8.	Alcool : ÉVITER (déshydratation majorée)",
-                            'cardio' => "
-                            Conseils spécifiques :
-                            •	Sel strict < 5g/jour
-                            •	Potassium important (sauf si insuffisance rénale)
-                            •	Hydratation régulière
-                            •	Certains (bêta-bloquants) peuvent ralentir le métabolisme
-                            Repas adaptés (sans sel) :
-                            •	Petit-déjeuner : Bouillie nature + poisson grillé maison + banane (potassium)
-                            •	Déjeuner : Fonio + sauce tomate maison sans sel + poulet + épinards (potassium)
-                            •	Dîner : Igname + sauce claire aux herbes + poisson + légumes verts
-                            •	Collations : Fruits riches en potassium (banane, papaye, orange), noix non salées
-                            Assaisonnement alternatif:
-                            •	Gingembre frais râpé
-                            •	Ail pilé
-                            •	Piment doux ou fort
-                            •	Oignon
-                            •	Citronnelle
-                            •	Basilic africain
-                            •	Jus de citron
-                            •	Poudre de crevettes (très peu)"
+                            8.	Alcool : ÉVITER (déshydratation majorée)"
                         ]
                     ],
                     'Médicaments pour le cholestérol (ex : statines)' => [
@@ -2109,12 +1750,6 @@ class ModerateObesitySeeder extends Seeder
                                 •	Surveillance enzymes hépatiques (par médecin)
                                 •	Douleurs musculaires possibles (signaler au médecin)
                                 •	CoQ10 peut aider douleurs (discuter avec médecin)
-                                ",
-                                'cardio' => "Conseils ciblés :
-                                •	Réduire graisses saturées et cholestérol alimentaire
-                                •	Augmenter fibres solubles (avoine, haricots, légumes)
-                                •	Éviter pamplemousse qui interfère avec statines
-                                •	Privilégier graisses insaturées (huile d'olive, poissons)
                                 "
                             ],
                             '5_10' => [
@@ -2166,23 +1801,7 @@ class ModerateObesitySeeder extends Seeder
                                 •	Oméga-3 : poissons gras 3 fois/semaine
                                 •	Fibres solubles : haricots, avoine, légumes
                                 •	Antioxydants : légumes colorés variés
-                                ",
-                                'cardio' => "
-                                Conseils ciblés:
-                                •	Réduire graisses saturées: limiter viandes grasses, peau volaille, huile de palme
-                                •	Augmenter fibres solubles: haricots, avoine, légumes, fruits
-                                •	Oméga-3: poissons gras (sardines, maquereau) 3-4 fois/semaine
-                                •	Éviter alcool (interférence avec statines)
-                                •	Éviter pamplemousse (interaction médicamenteuse)
-                                Adaptations:
-                                •	Viandes: Privilégier poisson et volaille sans peau
-                                •	Légumineuses: Quotidiennes (haricots, niébé, lentilles)
-                                •	Fruits: 3-4 portions/jour (mais pas pamplemousse)
-                                •	Noix: 20-30g/jour (cajou, arachides nature)
-                                Repas anti-cholestérol:
-                                •	Sardines grillées + haricots blancs + légumes verts + orange
-                                •	Poulet sans peau + sauce tomate-légumes + riz complet + salade
-                                •	Ragoût de niébé + poisson maigre + épinards + papaye"
+                                "
                             ],
                             'over_10' => [
                                 'none' => "Conseils avec statines :
@@ -2236,23 +1855,7 @@ class ModerateObesitySeeder extends Seeder
                                 •	Prendre généralement le soir (cholestérol produit la nuit)
                                 •	Surveillance enzymes hépatiques (par médecin)
                                 •	Douleurs musculaires possibles (signaler au médecin)
-                                •	CoQ10 peut aider douleurs (discuter avec médecin)",
-                                'cardio' => "
-                                Conseils ciblés:
-                                •	Réduire graisses saturées: limiter viandes grasses, peau volaille, huile de palme
-                                •	Augmenter fibres solubles: haricots, avoine, légumes, fruits
-                                •	Oméga-3: poissons gras (sardines, maquereau) 3-4 fois/semaine
-                                •	Éviter alcool (interférence avec statines)
-                                •	Éviter pamplemousse (interaction médicamenteuse)
-                                Adaptations:
-                                •	Viandes: Privilégier poisson et volaille sans peau
-                                •	Légumineuses: Quotidiennes (haricots, niébé, lentilles)
-                                •	Fruits: 3-4 portions/jour (mais pas pamplemousse)
-                                •	Noix: 20-30g/jour (cajou, arachides nature)
-                                Repas anti-cholestérol:
-                                •	Sardines grillées + haricots blancs + légumes verts + orange
-                                •	Poulet sans peau + sauce tomate-légumes + riz complet + salade
-                                •	Ragoût de niébé + poisson maigre + épinards + papaye"
+                                •	CoQ10 peut aider douleurs (discuter avec médecin)"
                             ],
                         ],
                         'fitness' => [
@@ -2330,21 +1933,7 @@ class ModerateObesitySeeder extends Seeder
                             6.	Douleurs musculaires : Effet secondaire fréquent → signaler médecin, possiblement lié CoQ10
                             7.	Surveillance : Bilan lipidique tous les 3-6 mois, enzymes hépatiques annuellement
                             8.	Activité physique : Synergie avec statines (baisse cholestérol additionnelle)
-                            9.	Antioxydants : Fruits/légumes colorés (protègent contre oxydation LDL)",
-                            'cardio' => "
-                            Conseils spécifiques :
-                            •	Éviter le pamplemousse (interaction)
-                            •	Limiter graisses saturées
-                            •	Augmenter fibres solubles
-                            •	Privilégier stérols végétaux
-                            
-                            Aliments anti-cholestérol :
-                            •	Gombo (fibres solubles)
-                            •	Haricots niébé
-                            •	Fonio
-                            •	Poissons gras (oméga-3)
-                            •	Graines de sésame
-                            •	Légumes verts à feuilles"
+                            9.	Antioxydants : Fruits/légumes colorés (protègent contre oxydation LDL)"
                         ]
                     ],
                     'Médicaments pour baisser la glycémie (ex : metformine, glimepiride…)' => [
@@ -2405,12 +1994,7 @@ class ModerateObesitySeeder extends Seeder
                                 •	3 morceaux de sucre
                                 •	1 jus de fruits petit format
                                 •	1 banane
-                                •	Biscuits secs",
-                                'cardio' => "
-                                •	Metformine : peut causer des troubles digestifs, privilégier aliments riches en fibres douces
-                                •	Risque d'hypoglycémie avec certains médicaments : ne jamais sauter de repas
-                                •	Éviter l'alcool qui interfère avec ces médicaments
-                                •	Prendre les repas à horaires réguliers"
+                                •	Biscuits secs"
                             ],
                             '5_10' => [
                                 'none' => "
@@ -2477,8 +2061,7 @@ class ModerateObesitySeeder extends Seeder
                                 •	Collation avant coucher si dîner tôt
                                 •	Glucides complexes à chaque repas
                                 •	Surveiller signes hypoglycémie
-                                ",
-                                'cardio' => "Aucun"
+                                "
                             ],
                             'over_10' => [
                                 'none' => "
@@ -2535,19 +2118,7 @@ class ModerateObesitySeeder extends Seeder
                                 •	3 morceaux de sucre
                                 •	1 jus de fruits petit format
                                 •	1 banane
-                                •	Biscuits secs",
-                                'cardio' => "
-                                Conseils ciblés:
-                                •	JAMAIS sauter de repas: risque d'hypoglycémie
-                                •	Collations obligatoires si délai >4h entre repas
-                                •	Glucides complexes à chaque repas pour éviter pics et chutes
-                                •	Surveiller signes d'hypoglycémie: tremblements, sueurs, faiblesse
-                                •	Avoir toujours fruit ou jus naturel en cas d'urgence
-                                Adaptations:
-                                •	Horaires réguliers des repas (même heure chaque jour)
-                                •	Ne jamais réduire drastiquement les glucides
-                                •	Collations sécuritaires: Orange, banane, lait caillé, arachides (15g)
-                                •	Si activité physique: collation 30 min avant (banane + arachides)"
+                                •	Biscuits secs"
                             ],
                         ],
                         'fitness' => [
@@ -2605,22 +2176,7 @@ class ModerateObesitySeeder extends Seeder
                             2.	Jamais à jeun : Exercice physique uniquement après repas
                             3.	Kit urgence : Toujours avoir fruits secs, noix, biscuits complets
                             4.	Alcool : ÉVITER (majore hypoglycémie)
-                            5.	Communication médecin : Si hypoglycémies fréquentes (ajustement dose)",
-                            'cardio' => "
-                            Conseils spécifiques :
-                            •	La metformine se prend pendant ou après les repas
-                            •	Risque d'hypoglycémie avec certains médicaments : toujours avoir une collation
-                            •	Maintenir des horaires de repas réguliers
-                            Repas adaptés :
-                            •	Avant médicament : Petit-déjeuner substantiel - Bouillie de fonio + œufs + légumes
-                            •	Collation de sécurité : Toujours avoir des noix ou un fruit à portée
-                            •	Éviter : Sauter des repas
-                            •	Privilégier : Repas équilibrés avec protéines à chaque prise
-                            Menu type avec metformine :
-                            •	Matin (avec médicament) : Akassa + poisson grillé + légumes + fruit
-                            •	Midi (avec médicament) : Fonio + sauce légumes + poulet + salade
-                            •	Soir (avec médicament) : Attiéké + ragoût de poisson + légumes verts
-                            •	Collations : Noix, fruit, yaourt nature"
+                            5.	Communication médecin : Si hypoglycémies fréquentes (ajustement dose)"
                         ]
                     ],
                     'Aucun de ces médicaments' => [
@@ -2660,13 +2216,7 @@ class ModerateObesitySeeder extends Seeder
                                 •	Changements alimentaires souvent aussi efficaces que médicaments au début
                                 •	Surveillance médicale régulière pour ajuster approche
                                 •	Possibilité de prévenir ou retarder médication
-                                •	Documentation prouvée : perte 5-10% poids = amélioration majeure tous paramètres",
-                                'cardio' => "
-                                Conseils ciblés :
-                                •	L'alimentation et l'activité physique sont vos principaux outils
-                                •	Prévention primaire essentielle
-                                •	Surveillance régulière recommandée
-                                •	Approche naturelle privilégiée"
+                                •	Documentation prouvée : perte 5-10% poids = amélioration majeure tous paramètres"
                             ],
                             '5_10' => [
                                 'none' => "
@@ -2685,8 +2235,7 @@ class ModerateObesitySeeder extends Seeder
                                 •	Approche préventive pure
                                 •	Focus sur équilibre nutritionnel global
                                 •	Suivi régulier pour éviter médication future
-                                ",
-                                'cardio' => "Aucun"
+                                "
                             ],
                             'over_10' => [
                                 'none' => "
@@ -2722,12 +2271,7 @@ class ModerateObesitySeeder extends Seeder
                                 •	Changements alimentaires souvent aussi efficaces que médicaments au début
                                 •	Surveillance médicale régulière pour ajuster approche
                                 •	Possibilité de prévenir ou retarder médication
-                                •	Documentation prouvée : perte 5-10% poids = amélioration majeure tous paramètres",
-                                'cardio' => "
-                                Conseils ciblés:
-                                •	Prévention par alimentation équilibrée selon niveau d'activité
-                                •	Surveillance régulière paramètres santé
-                                •	Mode de vie sain pour éviter médication future"
+                                •	Documentation prouvée : perte 5-10% poids = amélioration majeure tous paramètres"
                             ],
                         ],
                         'fitness' => [
@@ -2797,17 +2341,7 @@ class ModerateObesitySeeder extends Seeder
                             o	TA : < 130/80 mmHg
                             o	Glycémie à jeun : < 100 mg/dl
                             o	Cholestérol total : < 200 mg/dl
-                            9.	Réévaluation : Si pas d'amélioration après 3-6 mois → consultation médicale (médication potentielle)",
-                            'cardio' => "Conseils :
-                            •	Approche alimentaire stricte comme traitement principal
-                            •	Potentiel de réversibilité plus élevé
-                            •	Suivi régulier des paramètres
-                            •	Possibilité d'éviter la médication avec bonne observance
-                            Plan alimentaire intensif :
-                            •	Suivre strictement les plans selon niveau d'activité
-                            •	Privilégier aliments anti-inflammatoires
-                            •	Maximiser fruits, légumes, fibres
-                            •	Activité physique progressive obligatoire"
+                            9.	Réévaluation : Si pas d'amélioration après 3-6 mois → consultation médicale (médication potentielle)"
                         ]
                     ]
                 ]
@@ -2826,8 +2360,7 @@ class ModerateObesitySeeder extends Seeder
                                 	Adapter des conseils simples et durables
                                 ",
                                 'diabetes' => "Nous vous remercions pour nous avoir divulgué votre journée typique car cela va nous permettre de vous orienter dans nos conseils enfin de cerner vos réalités quotidiennes en matière de nutrition.",
-                                'hypertension' => "Nous vous remercions pour nous avoir divulgué votre journée typique car cela va nous permettre de vous orienter dans nos conseils enfin de cerner vos réalités quotidiennes en matière de nutrition. ",
-                                'cardio' => "Nous vous remercions pour nous avoir divulgué votre journée typique car cela va nous permettre de vous orienter dans nos conseils enfin de cerner vos réalités quotidiennes en matière de nutrition. "
+                                'hypertension' => "Nous vous remercions pour nous avoir divulgué votre journée typique car cela va nous permettre de vous orienter dans nos conseils enfin de cerner vos réalités quotidiennes en matière de nutrition. "
                             ],
                             '5_10' => [
                                 'none' => "Cette question est primordiale car dans le cas actuel où vous êtes sans antécédents métaboliques, cela nous sera utile pour mettre en place votre plan nutritionnel en nous basant sur une :
@@ -2837,8 +2370,7 @@ class ModerateObesitySeeder extends Seeder
                                 	Adapter des conseils simples et durables
 ",
                                 'diabetes' => "Nous vous remercions pour nous avoir divulgué votre journée typique car cela va nous permettre de vous orienter dans nos conseils enfin de cerner vos réalités quotidiennes en matière de nutrition.",
-                                'hypertension' => "Nous vous remercions pour nous avoir divulgué votre journée typique car cela va nous permettre de vous orienter dans nos conseils enfin de cerner vos réalités quotidiennes en matière de nutrition. ",
-                                'cardio' => "Aucun"
+                                'hypertension' => "Nous vous remercions pour nous avoir divulgué votre journée typique car cela va nous permettre de vous orienter dans nos conseils enfin de cerner vos réalités quotidiennes en matière de nutrition. "
                             ],
                             'over_10' => [
                                 'none' => "
@@ -2849,8 +2381,7 @@ class ModerateObesitySeeder extends Seeder
                                 	Adapter des conseils simples et durables
                                 ",
                                 'diabetes' => "Nous vous remercions pour nous avoir divulgué votre journée typique car cela va nous permettre de vous orienter dans nos conseils enfin de cerner vos réalités quotidiennes en matière de nutrition. ",
-                                'hypertension' => "Nous vous remercions pour nous avoir divulgué votre journée typique car cela va nous permettre de vous orienter dans nos conseils enfin de cerner vos réalités quotidiennes en matière de nutrition.",
-                                'cardio' => "Nous vous remercions pour nous avoir divulgué votre journée typique car cela va nous permettre de vous orienter dans nos conseils enfin de cerner vos réalités quotidiennes en matière de nutrition. "
+                                'hypertension' => "Nous vous remercions pour nous avoir divulgué votre journée typique car cela va nous permettre de vous orienter dans nos conseils enfin de cerner vos réalités quotidiennes en matière de nutrition."
                             ],
                         ],
                         'fitness' => [
@@ -3203,33 +2734,7 @@ class ModerateObesitySeeder extends Seeder
                             4.	Écoute : Arrêter à 80% plein (hara hachi bu japonais)
                             5.	Qualité : Aliments denses nutritionnellement (fonio vs riz blanc, légumes vs sauce grasse)
                             6.	Métabolisme : 5-6 prises alimentaires/jour = métabolisme actif toute journée
-                            7.	Glycémie : Stabilité glycémique = moins fringales = contrôle pondéral facilité",
-                            'cardio' => "
-                            Cette question permet d'identifier :
-                            •	Les erreurs alimentaires actuelles
-                            •	Les moments de faiblesse
-                            •	Les habitudes culturelles à préserver ou modifier
-                            •	Les opportunités d'amélioration
-                            Conseils selon les réponses typiques :
-                            Si la personne saute le petit-déjeuner :
-                            •	Problème : Ralentissement métabolique, fringales, hypoglycémie
-                            •	Solution : Commencer par un petit-déjeuner léger puis augmenter progressivement
-                            •	Proposition : Semaine 1 : Fruit + noix ; Semaine 2 : Ajouter bouillie légère ; Semaine 3 : Repas complet
-                            Si la personne mange beaucoup le soir :
-                            •	Problème : Stockage favorisé, sommeil perturbé
-                            •	Solution : Inverser progressivement les portions
-                            •	Proposition : 
-                            o	Augmenter le petit-déjeuner et déjeuner
-                            o	Réduire le dîner de 25% chaque semaine
-                            o	Dîner léger : Soupe de légumes + protéine maigre
-                            Si repas irréguliers :
-                            •	Problème : Dérèglement hormonal, stockage anarchique
-                            •	Solution : Établir des horaires fixes
-                            •	Proposition : 
-                            o	7h-8h : Petit-déjeuner
-                            o	12h-13h : Déjeuner
-                            o	19h-20h : Dîner
-                            o	10h et 16h : Collations"
+                            7.	Glycémie : Stabilité glycémique = moins fringales = contrôle pondéral facilité"
                         ]
                     ]
                 ]
@@ -3309,12 +2814,7 @@ class ModerateObesitySeeder extends Seeder
                                 Semaines 5+ : Atteindre 5-7 portions
                                 •	Légumes à CHAQUE repas
                                 •	Fruits 2-3×/jour
-                                ",
-                                'cardio' => "Conseils ciblés :
-                                •	INSUFFISANT : Objectif minimum 5 portions/jour
-                                •	Augmenter progressivement pour atteindre 5-7 portions
-                                •	Les légumes doivent occuper la moitié de l'assiette à chaque repas
-                                •	Les fruits sont d'excellentes collations"
+                                "
                             ],
                             '5_10' => [
                                 'none' => "
@@ -3366,8 +2866,7 @@ class ModerateObesitySeeder extends Seeder
                                 •	Racines: carottes, betteraves
                                 •	Autres: tomates, concombre, aubergines, piments doux
                                 ",
-                                'hypertension' => "Aucun",
-                                'cardio' => "Aucun"
+                                'hypertension' => "Aucun"
                             ],
                             'over_10' => [
                                 'none' => "❌ INSUFFISANT ! 
@@ -3428,28 +2927,7 @@ class ModerateObesitySeeder extends Seeder
                                 •	Ajouter 1 fruit en collation
                                 Semaines 3-4 : Atteindre 4 portions
                                 •	Ajouter légumes cuits au déjeuner (150g)
-                                •	Maintenir les 3 portions précédentes",
-                                'cardio' => "
-                                Conseils ciblés:
-                                •	AUGMENTER PROGRESSIVEMENT à minimum 5 portions/jour
-                                •	1 portion = 80-100g = 1 fruit moyen OU 1 tasse de légumes cuits
-                                •	Objectif: 2 fruits + 3 portions légumes minimum
-                                •	Bénéfices: fibres, vitamines, satiété, protection cardiovasculaire
-                                
-                                Plan d'action:
-                                •	Semaine 1-2: Ajouter 1 fruit au petit-déjeuner
-                                •	Semaine 3-4: Ajouter salade à déjeuner et dîner
-                                •	Semaine 5+: Ajouter légumes cuits à chaque repas
-                                
-                                Suggestions béninoises:
-                                •	Fruits accessibles: Banane, orange, papaye, mangue, ananas, goyave, fruit de la passion
-                                •	Légumes à chaque repas: Tomates, oignons, poivrons, gombo, épinards, aubergines, carottes, concombre
-                                •	Collations: Mangue verte + piment, bâtonnets de concombre, papaye en morceaux
-                                
-                                Repas enrichis en légumes:
-                                •	Sauce gombo + épinards + tomates + oignons (= 3 portions légumes)
-                                •	Salade composée: tomates + concombre + carottes râpées + avocat
-                                •	Soupe de légumes variés: aubergines + gombo + feuilles + tomates"
+                                •	Maintenir les 3 portions précédentes"
                             ],
                         ],
                         'fitness' => [
@@ -3592,27 +3070,7 @@ class ModerateObesitySeeder extends Seeder
                             5.	Cuisson : Vapeur > bouilli > sauté léger (préserve nutriments)
                             6.	Crudités : Au moins 2 portions/jour (enzymes, vitamine C intactes)
                             7.	Jus : Éviter (préférer fruits entiers - fibres + satiété)
-                            8.	Objectif : 5 couleurs/jour minimum (rouge, vert, orange, blanc, violet)",
-                            'cardio' => "
-                            Problème : Déficit majeur en fibres, vitamines, minéraux, antioxydants
-                            Objectif progressif :
-                            •	Semaine 1-2 : Passer à 3 portions
-                            •	Semaine 3-4 : Passer à 5 portions
-                            •	Semaine 5+ : 7-9 portions (idéal)
-                            
-                            Plan d'augmentation béninois :
-                            •	Étape 1 : Ajouter 1 fruit au petit-déjeuner
-                            •	Étape 2 : Ajouter salade au déjeuner
-                            •	Étape 3 : Ajouter légumes cuits au dîner
-                            •	Étape 4 : Collations = fruits ou légumes
-                            •	Étape 5 : Doubler les portions de légumes aux repas
-                            
-                            Suggestions pratiques :
-                            •	Fruits : Orange, papaye, mangue, ananas, banane, goyave, pamplemousse
-                            •	Légumes à feuilles : Gboma, folon, amarante, épinards
-                            •	Légumes racines : Carotte, betterave
-                            •	Légumes fruits : Tomate, concombre, aubergine, gombo
-                            •	Légumineuses : Haricots niébé, pois d'angole"
+                            8.	Objectif : 5 couleurs/jour minimum (rouge, vert, orange, blanc, violet)"
                         ]
                     ],
                     '3-4' => [
@@ -3664,16 +3122,7 @@ class ModerateObesitySeeder extends Seeder
                                 Points à Améliorer :
                                 1.	Augmenter portion légumes aux repas principaux
                                 2.	Ajouter 2ème fruit
-                                3.	Intégrer légumes crus en collations",
-                                'cardio' => "
-                                Conseils ciblés :
-                                •	Bien mais peut mieux faire
-                                •	Viser 5-7 portions pour bénéfices optimaux
-                                •	Varier les couleurs (vert, orange, rouge, jaune)
-                                Repas :
-                                •	Continuer et ajouter 1-2 portions supplémentaires
-                                •	Légumes à chaque repas principal
-                                •	2-3 fruits répartis dans la journée "
+                                3.	Intégrer légumes crus en collations"
                             ],
                             '5_10' => [
                                 'none' => "BIEN mais peut mieux faire
@@ -3702,8 +3151,7 @@ class ModerateObesitySeeder extends Seeder
                                 •	Débuter chaque repas par une salade crue
                                 •	Doubler portion de légumes dans les sauces
                                 •	Ajouter fruit à chaque collation",
-                                'hypertension' => "Aucun",
-                                'cardio' => "Aucun"
+                                'hypertension' => "Aucun"
                             ],
                             'over_10' => [
                                 'none' => "BON DÉBUT ! Objectif : Atteindre plu de 5 portions
@@ -3751,17 +3199,7 @@ class ModerateObesitySeeder extends Seeder
                                 1.	Augmenter portion légumes aux repas principaux
                                 2.	Ajouter 2ème fruit
                                 3.	Intégrer légumes crus en collations
-                                ",
-                                'cardio' => "
-                                Conseils ciblés:
-                                •	BON DÉBUT, viser 5-7 portions pour bénéfice optimal
-                                •	Varier les couleurs: vert (épinards), rouge (tomates), orange (carottes, papaye), jaune (mangue)
-                                •	Alterner fruits et légumes dans la journée
-                                Plan progression:
-                                •	Ajouter 1 portion supplémentaire/jour
-                                •	Midi: Grande salade en entrée
-                                •	Soir: Soupe de légumes ou légumes sautés
-                                •	Collations: Toujours fruits frais"
+                                "
                             ],
                         ],
                         'fitness' => [
@@ -3821,20 +3259,7 @@ class ModerateObesitySeeder extends Seeder
                             1.	Densité : Privilégier légumes feuilles (grand volume, peu calories, riches nutriments)
                             2.	Snacking : Légumes crus (carotte, concombre) toujours disponibles
                             3.	Sauces : Ajouter systématiquement 2-3 légumes différents
-                            4.	Marché : Acheter variété hebdomadaire (évite monotonie)",
-                            'cardio' => "
-                            Situation : Bien mais peut mieux faire
-                            Objectif : Atteindre 7-9 portions
-                            Conseils d'optimisation :
-                            •	Doubler la portion de légumes à un repas
-                            •	Toujours avoir un fruit en collation
-                            •	Commencer les repas par une salade
-                            •	Ajouter des légumes dans les sauces
-                            Menu optimisé :
-                            •	Matin : Bouillie + légumes sautés + 1 fruit
-                            •	Midi : Grande salade d'entrée + plat avec légumes + 1 fruit
-                            •	Soir : Soupe de légumes + plat + 1 fruit
-                            •	Collations : Fruits et légumes crus"
+                            4.	Marché : Acheter variété hebdomadaire (évite monotonie)"
                         ]
                     ],
                     '5 ou plus' => [
@@ -3879,14 +3304,6 @@ class ModerateObesitySeeder extends Seeder
                                 'hypertension' => "
                                 Évaluation : EXCELLENT - Maintenir et diversifier
                                 Félicitations : Vous atteignez les recommandations internationales !
-                                ",
-                                'cardio' => "Conseils ciblés :
-                                •	EXCELLENT : Continuez ainsi !
-                                •	Maintenir cette habitude
-                                •	Varier les types pour diversifier les nutriments
-                                Repas  :
-                                •	Maintenir la routine actuelle
-                                •	Découvrir de nouveaux légumes béninois (feuilles d'amarante, épinards locaux)
                                 "
                             ],
                             '5_10' => [
@@ -3927,8 +3344,7 @@ class ModerateObesitySeeder extends Seeder
                                 •	Déjeuner: Salade verte (150g) + sauce tomate-légumes (200g) + haricots verts (100g) = 3 portions
                                 •	Collation après-midi: Orange (1) + concombre (100g) = 2 portions
                                 •	Dîner: Sauce gboma (200g) + salade mixte (100g) = 2 portions TOTAL: 10 portion ",
-                                'hypertension' => "Aucun",
-                                'cardio' => "Aucun"
+                                'hypertension' => "Aucun"
                             ],
                             'over_10' => [
                                 'none' => "
@@ -3997,13 +3413,7 @@ class ModerateObesitySeeder extends Seeder
                                 •	Fruits à baies si disponibles (antioxydants)
                                 •	Avocat : bon gras mais 1/jour max",
                                 'hypertension' => "
-                                Évaluation : EXCELLENT - Maintenir et diversifier",
-                                'cardio' => "
-                                Conseils ciblés:
-                                •	EXCELLENT! Maintenir cette habitude
-                                •	Continuer variété pour couvrir tous micronutriments
-                                •	Privilégier légumes verts feuillus (feuilles d'amarante, épinards): riches en fer, calcium
-                                •	Fruits entiers plutôt que jus (fibres préservées)"
+                                Évaluation : EXCELLENT - Maintenir et diversifier"
                             ],
                         ],
                         'fitness' => [
@@ -4076,19 +3486,7 @@ class ModerateObesitySeeder extends Seeder
                             3.	Locaux : Privilégier marché local, saison (fraîcheur, prix)
                             4.	Découverte : Tester 1 nouveau fruit/légume/mois
                             5.	Préparations : Varier modes (cru, vapeur, grillé, sauté léger, soupe)
-                            6.	Crudi : Au moins 30-40% fruits/légumes crus (enzymes)",
-                            'cardio' => "
-                            Situation : Excellent !
-                            Conseils de maintien :
-                            •	Varier les couleurs (vert, rouge, orange, violet)
-                            •	Alterner cru et cuit
-                            •	Privilégier les légumes locaux et de saison
-                            •	Continuer cette bonne habitude
-                            Optimisation qualitative :
-                            •	Privilégier bio ou local
-                            •	Limiter la cuisson pour préserver nutriments
-                            •	Varier les modes de préparation
-                            •	Explorer de nouveaux légumes traditionnels"
+                            6.	Crudi : Au moins 30-40% fruits/légumes crus (enzymes)"
                         ]
                     ]
                 ]
@@ -4129,8 +3527,7 @@ class ModerateObesitySeeder extends Seeder
                                 •	Supprimer aliments tentants de la maison
                                 •	Ne pas acheter grignotages malsains
                                 •	Planifier 2 vraies collations saines
-                                •	Tenir journal émotions-grignotages",
-                                'cardio' => "Aucun"
+                                •	Tenir journal émotions-grignotages"
                             ],
                             '5_10' => [
                                 'none' => "
@@ -4214,8 +3611,7 @@ class ModerateObesitySeeder extends Seeder
                                 •	Noix de cajou (portion 15-20g)
                                 •	Bissap maison sans sucre (bouteille 500ml)
                                 •	Œufs durs (préparés dimanche pour la semaine)",
-                                'hypertension' => "Aucun",
-                                'cardio' => "Aucun"
+                                'hypertension' => "Aucun"
                             ],
                             'over_10' => [
                                 'none' => "
@@ -4255,8 +3651,7 @@ class ModerateObesitySeeder extends Seeder
                                 •	Supprimer aliments tentants de la maison
                                 •	Ne pas acheter grignotages malsains
                                 •	Planifier 2 vraies collations saines
-                                •	Tenir journal émotions-grignotages",
-                                'cardio' => "Aucun"
+                                •	Tenir journal émotions-grignotages"
                             ],
                         ],
                         'fitness' => [
@@ -4266,31 +3661,7 @@ class ModerateObesitySeeder extends Seeder
                             \n•	✅ BON si collations saines et planifiées (fruits, noix)
                             \n•	❌ MAUVAIS si grignotages non contrôlés (beignets, bonbons, gâteaux)",
                             'diabetes' => "Aucun",
-                            'hypertension' => "Aucun",
-                            'cardio' => "
-                            Si grignotage non structuré :
-                            Problème : Apports caloriques incontrôlés, pics glycémiques
-                            Solution : Transformer en collations structurées
-                            Plan de restructuration :
-                            •	Étape 1 : Identifier les moments de grignotage
-                            •	Étape 2 : Planifier 2 collations saines aux mêmes heures
-                            •	Étape 3 : Préparer à l'avance les collations
-                            •	Étape 4 : Éliminer tentations de la maison
-                            Collations saines :
-                            •	1 fruit moyen + 10 noix de cajou
-                            •	Yaourt nature + 1 c. à soupe de graines
-                            •	Bâtonnets de carotte/concombre + houmous de niébé
-                            •	Petite galette de mil + lait caillé
-                            •	1 banane + 1 c. à soupe de beurre d'arachide maison
-                            •	Papaye + quelques amandes
-                            •	Orange + noix
-                            •	Avocat (1/4) sur galette de mil
-                            •	Smoothie léger (fruit + lait écrémé)
-                            •	Pois chiches grillés épicés
-                            
-                            Timing optimal :
-                            •	Collation 1 : 10h-10h30
-                            •	Collation 2 : 16h-16h30"
+                            'hypertension' => "Aucun"
                         ]
                     ],
                 ],
@@ -4392,16 +3763,7 @@ class ModerateObesitySeeder extends Seeder
                             
                             Timing Optimal :
                             •	1h avant exercice : fruit + petite poignée noix
-                            •	2-3h après gros repas si prochain repas loin",
-                            'cardio' => "
-                            Conseils ciblés :
-                            •	Si vous avez faim entre les repas : MANGER une collation saine
-                            •	2 collations/jour recommandées pour maintenir métabolisme actif
-                            •	Aide à éviter la suralimentation aux repas principaux
-                            Collations recommandées :
-                            •	Milieu de matinée : 1 fruit
-                            •	Milieu d'après-midi : Noix (20g) ou yaourt nature
-                            "
+                            •	2-3h après gros repas si prochain repas loin"
                         ],
                         '5_10' => [
                             'none' => "Évaluation :
@@ -4459,8 +3821,7 @@ class ModerateObesitySeeder extends Seeder
                             •	Ajouter 1-2 collations saines si besoins (notamment si très actif)
                             •	Écouter vraie faim vs habitude
                             •	Hydratation régulière (souvent faim = soif)
-                            ",
-                            'cardio' => "Aucun"
+                            "
                         ],
                         'over_10' => [
                             'none' => "EXCELLENT ! Maintenir cette habitude
@@ -4552,12 +3913,7 @@ class ModerateObesitySeeder extends Seeder
                             Timing Optimal :
                             •	1h avant exercice : fruit + petite poignée noix
                             •	2-3h après gros repas si prochain repas loin
-                            ",
-                            'cardio' => "
-                            Conseils ciblés:
-                            •	Parfait pour contrôle pondéral
-                            •	Si faim entre repas: ajouter collation saine planifiée
-                            •	Écouter signaux de faim réels vs ennui/stress"
+                            "
                         ],
                     ],
                     'fitness' => [
@@ -4616,22 +3972,7 @@ class ModerateObesitySeeder extends Seeder
                         2.	Métabolisme : 5-6 prises alimentaires quotidiennes = optimal
                         3.	Glycémie : Collations stabilisent glycémie (surtout si diabète/prédiabète)
                         4.	Performance : Énergie constante toute journée
-                        5.	Portions repas : Si collations ajoutées → réduire légèrement portions repas principaux (calories totales constantes)",
-                        'cardio' => "
-                        Évaluation :
-                        Si espacement > 5h entre repas :
-                        •	Risque : Hypoglycémie, fringales, suralimentation au repas suivant
-                        •	Solution : Introduire 2 petites collations
-                        
-                        Si espacement 4-5h :
-                        •	Situation : Acceptable
-                        •	Recommandation : Rester à l'écoute de sa faim
-                        
-                        Collations préventives recommandées :
-                        •	1 fruit
-                        •	Quelques noix
-                        •	Yaourt nature
-                        •	Légumes crus"
+                        5.	Portions repas : Si collations ajoutées → réduire légèrement portions repas principaux (calories totales constantes)"
                     ]
                 ]
             ],
@@ -4950,36 +4291,7 @@ class ModerateObesitySeeder extends Seeder
                                 Portions Recommandées :
                                 •	Fruits : 1-2 moyens/collation
                                 •	Légumes : 150-200g/collation
-                                •	Noix : 25-30g/jour total",
-                                'cardio' => "
-                                Conseils ciblés :
-                            •	PROBLÉMATIQUE : Favorise prise de poids et déséquilibres glycémiques
-                            •	Remplacer immédiatement par des collations saines
-                            •	Les beignets béninois sont très riches en graisses et sucres
-                            Collations saines de remplacement :
-                            •	Fruits frais (banane, orange, mangue, papaye, ananas)
-                            •	Noix de cajou nature (20g maximum)
-                            •	Arachides grillées non salées et non sucrées
-                            •	Carotte ou concombre crus
-                            •	Yaourt nature non sucré
-                            
-                            Si réponse : Aliments salés (chips, cacahuètes salées, biscuits salés...)
-                            Conseils ciblés :
-                            •	PROBLÉMATIQUE : Excès de sel aggrave l'hypertension
-                            •	Très caloriques, favorisent la prise de poids
-                            •	Remplacer par versions sans sel
-                            Collations  saines :
-                            •	Arachides grillées NATURE (sans sel)
-                            •	Noix de cajou nature
-                            •	Maïs grillé nature (sans sel ni beurre)
-                            •	Fruits frais
-                            •	Légumes crus
-                            
-                            Si réponse : Fruits, noix nature, légumes
-                            Conseils ciblés :
-                            •	EXCELLENT CHOIX : Continuez !
-                            •	Attention aux quantités de noix (riches en calories) : 20-30g maximum
-                            •	Varier les fruits pour diversifier"
+                                •	Noix : 25-30g/jour total"
                             ],
                             '5_10' => [
                                 'none' => "
@@ -5204,8 +4516,7 @@ class ModerateObesitySeeder extends Seeder
                                 Menu ajusté :
                                 •	Collation 1 (10h30) : noix de cajou + 1 orange
                                 •	Collation 2 (16h30) : Yaourt + papaye
-                                •	Si faim supplémentaire : légumes crus illimités (concombre, carotte, tomate)",
-                                'cardio' => "Aucun"
+                                •	Si faim supplémentaire : légumes crus illimités (concombre, carotte, tomate)"
                             ],
                             'over_10' => [
                                 'none' => "
@@ -5534,30 +4845,7 @@ class ModerateObesitySeeder extends Seeder
                                 Portions Recommandées :
                                 •	Fruits : 1-2 moyens/collation
                                 •	Légumes : 150-200g/collation
-                                •	Noix : 25-30g/jour total",
-                                'cardio' => "
-                                Si grignotage d'aliments sucrés/gras (beignets, gâteaux, bonbons, chips):
-                                Conseils ciblés:
-                                •	REMPLACER IMMÉDIATEMENT par collations saines
-                                •	Risque: prise de poids, pics glycémiques, maladies cardiovasculaires
-                                •	Planifier 2 collations structurées/jour pour éviter grignotage anarchique
-                                
-                                Alternatives béninoises saines:
-                                •	Au lieu de beignets: Banane plantain bouillie (80g)
-                                •	Au lieu de chips: Arachides grillées nature (15g) OU concombre + piment
-                                •	Au lieu de gâteaux: Papaye fraîche OU mélange fruits secs (20g)
-                                •	Au lieu de bonbons: Orange, mangue verte, fruit de la passion
-                                
-                                Collations structurées:
-                                •	10h: Fruit frais + quelques noix (banane + 10 cajou)
-                                •	16h: Yaourt nature OU lait caillé + fruit (papaye)
-                                Si grignotage d'aliments sains (fruits, noix):
-                                
-                                Conseils ciblés:
-                                •	BON CHOIX, mais attention aux quantités
-                                •	Noix: limiter 20-30g/jour (caloriques)
-                                •	Fruits: 2-3 portions suffisantes (fructose)
-                                •	Intégrer dans bilan calorique journalier"
+                                •	Noix : 25-30g/jour total"
                             ],
                         ],
                         'fitness' => [
@@ -5859,61 +5147,7 @@ class ModerateObesitySeeder extends Seeder
                             5.	Progression : Pas perfection immédiate - chaque substitution = victoire
                             6.	Récompenses non-alimentaires : Activité plaisante, achat non-alimentaire, temps pour soi
                             7.	Sommeil : Dormir suffisamment (< 6h → fringales sucrées majorées)
-                            8.	Activité physique : Marche 10 min quand envie grignoter (réduit fringales)",
-                            'cardio' => "
-                            Analyse selon les réponses :
-                            SI GRIGNOTAGE SUCRÉ (biscuits, bonbons, gâteaux, sodas):
-                            Problème majeur :
-                            •	Pics glycémiques et insuliniques
-                            •	Calories vides
-                            •	Addiction au sucre
-                            •	Stockage en graisses
-                            
-                            Plan de sevrage progressif (4 semaines) :
-                            Semaine 1 : Substitution partielle
-                            •	Remplacer 50% par fruits frais béninois
-                            •	Mangue, papaye, ananas, orange, banane
-                            Semaine 2 : Substitution 75%
-                            •	Fruits + quelques noix
-                            •	Découvrir les fruits locaux moins connus (pomme cajou, safou)
-                            Semaine 3 : Substitution 100%
-                            •	Éliminer totalement les produits transformés sucrés
-                            •	Collations 100% naturelles
-                            Semaine 4 : Consolidation
-                            •	Nouvelles habitudes installées
-                            •	Palais réhabitué aux sucres naturels
-                            
-                            Alternatives au sucré industriel :
-                            •	Au lieu de bonbons : Fruits séchés maison (mangue, ananas, banane)
-                            •	Au lieu de biscuits : Galettes de mil maison légèrement sucrées au miel
-                            •	Au lieu de gâteaux : Akara au four sucré (version dessert)
-                            •	Au lieu de sodas : Jus naturels dilués, bissap sans sucre, infusions fruitées
-                            Recettes saines pour satisfaire l'envie de sucré :
-                            1.	Boules d'énergie : Dattes + arachides + sésame + coco râpée
-                            2.	Banane grillée : Banane plantain + cannelle
-                            3.	Smoothie bowl : Papaye mixée + graines + noix de coco
-                            4.	Wagashi sucré : Fromage local + miel + noix
-                            SI GRIGNOTAGE SALÉ (chips, cacahuètes salées, beignets frits):
-                            Problème majeur :
-                            •	Excès de sel (HTA)
-                            •	Graisses saturées/trans
-                            •	Calories denses
-                            •	Addiction au sel
-                            
-                            Plan de transition (4 semaines) :
-                            Semaine 1 : Réduire portions de moitié Semaine 2 : Alterner avec versions maison non salées Semaine 3 : 75% versions saines Semaine 4 : 100% alternatives saines
-                            Alternatives béninoises saines au salé :
-                            •	Au lieu de chips : Chips de banane plantain au four (sans sel ou peu salées)
-                            •	Au lieu de cacahuètes salées : Arachides grillées nature ou légèrement épicées
-                            •	Au lieu de beignets frits : Akara au four, galettes de mil grillées
-                            •	Au lieu de pop-corn salé : Pop-corn maison épicé (piment, paprika)
-                            Recettes béninoises saines salées :
-                            1.	Pois chiches rôtis épicés : Niébé grillé + piment + ail
-                            2.	Noix de cajou épicées : Cajou grillé + curry + gingembre (sans sel)
-                            3.	Chips de légumes au four : Patate douce, igname, plantain vert
-                            4.	Graines de courge grillées : Épicées au piment et ail
-                            SI GRIGNOTAGE MIXTE:
-                            Combiner les deux plans ci-dessus selon les dominances"
+                            8.	Activité physique : Marche 10 min quand envie grignoter (réduit fringales)"
                         ]
                     ]
                 ]
@@ -6118,37 +5352,7 @@ class ModerateObesitySeeder extends Seeder
                                 Alternatives :
                                 •	Sodabi → tisane gingembre (même aspect fort)
                                 •	Bière → bissap non sucré avec glaçons (aspect festif)
-                                •	Social → proposer jus frais, être transparent sur démarche santé",
-                                'cardio' => "
-                                •	TRÈS PROBLÉMATIQUE : Arrêt immédiat nécessaire
-                                •	Boissons sucrées : calories vides, pics glycémiques, risque diabète
-                                •	Alcool : calories élevées, interfère avec médicaments, augmente tension
-                                •	Impact direct sur poids et santé cardiovasculaire
-                                •	Les boissons sucrées apportent des calories vides sans satiété 
-                                •	L'alcool augmente la pression artérielle et le poids 
-                                •	Objectif : élimination complète des boissons sucrées, alcool occasionnel uniquement
-                                Plan de sevrage progressif (4 semaines) :
-                                Semaines 1-2 :
-                                •	Réduire de 50% les quantités
-                                •	Diluer les boissons sucrées avec de l'eau
-                                •	Remplacer 1 boisson sucrée/jour par de l'eau infusée
-                                Semaines 3-4 :
-                                •	Réduire de 75% les quantités
-                                •	Maximum 1 boisson sucrée tous les 2 jours
-                                •	Alcool : maximum 1 fois/semaine
-
-                                Pour l'alcool spécifiquement :
-                                •	Si consommation quotidienne : consulter un médecin (risque de dépendance)
-                                •	Éliminer complètement pendant la perte de poids
-                                •	Après stabilisation : maximum 1 verre/semaine pour les femmes, 2 pour les hommes
-                                •	Privilégier vin rouge (si autorisation médicale) plutôt que bière ou alcools forts
-                                
-                                Alternatives :
-                                •	Eau nature (1,5-2L/jour)
-                                •	Eau citronnée sans sucre
-                                •	Tisanes locales (citronnelle, gingembre) sans sucre
-                                •	Jus de fruits frais MAISON dilués (1/3 jus, 2/3 eau) SANS sucre ajouté
-                                •	Bissap (jus d'hibiscus) SANS sucre"
+                                •	Social → proposer jus frais, être transparent sur démarche santé"
                             ],
                             '5_10' => [
                                 'none' => "
@@ -6287,8 +5491,7 @@ class ModerateObesitySeeder extends Seeder
                                 Conseils spécifiques :
                                 •	Si difficulté arrêt : consulter médecin
                                 •	Remplacer rituel : bière du soir → tisane glacée, bissap
-                                •	Socialisation sans alcool : alternatives savoureuses",
-                                'cardio' => "Aucun"
+                                •	Socialisation sans alcool : alternatives savoureuses"
                             ],
                             'over_10' => [
                                 'none' => "
@@ -6450,37 +5653,7 @@ class ModerateObesitySeeder extends Seeder
                                 Alternatives :
                                 •	Sodabi → tisane gingembre (même aspect fort)
                                 •	Bière → bissap non sucré avec glaçons (aspect festif)
-                                •	Social → proposer jus frais, être transparent sur démarche santé",
-                                'cardio' => "
-                                Conseils ciblés - Boissons sucrées:
-                                •	ARRÊT IMMÉDIAT OBLIGATOIRE pour obésité + maladie CV
-                                •	Sodas, jus industriels = bombe calorique sans satiété
-                                •	Risque: diabète, prise de poids, triglycérides élevés, caries
-                                Plan sevrage progressif:
-                                •	Semaine 1: Réduire de 50%, diluer avec eau
-                                •	Semaine 2-3: Remplacer par eau de bissap sans sucre, eau citronnée
-                                •	Semaine 4+: ZÉRO boisson sucrée
-                                
-                                Alternatives béninoises:
-                                •	Eau de bissap (hibiscus) sans sucre (riche en antioxydants)
-                                •	Eau de rônier naturelle (modération, contient sucres naturels)
-                                •	Infusions: citronnelle, gingembre, menthe
-                                •	Eau plate citronnée
-                                •	Eau de coco naturelle (occasionnellement)
-                                
-                                Conseils ciblés - Alcool quotidien:
-                                DANGER MAJEUR:
-                                •	ARRÊT OBLIGATOIRE pour santé cardiovasculaire
-                                •	Alcool = calories vides (7 kcal/g), augmente tension, triglycérides
-                                •	Interaction possible avec médicaments (statines, anti-diabétiques)
-                                •	Risque: cirrhose, cancers, dépendance
-                                
-                                Plan d'action:
-                                •	Consultation médicale si dépendance suspectée
-                                •	Arrêt progressif sous supervision si consommation élevée
-                                •	Remplacement par boissons sans alcool
-                                Objectif: ZÉRO alcool
-                                "
+                                •	Social → proposer jus frais, être transparent sur démarche santé"
                             ],
                         ],
                         'fitness' => [
@@ -6715,67 +5888,7 @@ class ModerateObesitySeeder extends Seeder
                             4.	Médicaments : Interactions possibles (statines, antidiabétiques) - consulter médecin
                             5.	Social : Annoncer entourage réduction alcool (soutien)
                             6.	Alternatives : Bissap lors événements sociaux (personne ne remarquera)
-                            7.	Bénéfices : Arrêt/réduction alcool → TA baisse 2-4 mmHg, perte poids facilitée, sommeil amélioré, énergie augmentée",
-                            'cardio' => "
-                            BOISSONS SUCRÉES quotidiennes :
-                            Impact catastrophique :
-                            •	500-1000 kcal vides par jour
-                            •	Résistance à l'insuline
-                            •	Stéatose hépatique
-                            •	Addiction forte
-                            
-                            Plan de sevrage intensif (4 semaines) :
-                            Semaines 1-2 : Réduction progressive
-                            •	Diluer avec 50% d'eau
-                            •	Réduire à 1 fois/jour
-                            •	Alternative : Jus de fruits frais maison dilué 1:1 avec eau
-                            Semaines 3-4 : Substitution
-                            •	Passer aux boissons non sucrées
-                            •	Alternatives béninoises : 
-                            o	Bissap (hibiscus) sans sucre ou miel léger
-                            o	Gingembre-citron
-                            o	Infusion de citronnelle
-                            o	Eau de coco naturelle
-                            
-                            Boissons béninoises saines :
-                            1.	Bissap nature : Fleurs d'hibiscus + gingembre + citron (sans sucre)
-                            2.	Tchoukoutou léger : Bière traditionnelle de mil (modération, faible alcool)
-                            3.	Infusion de kinkeliba : Détox, digestif
-                            4.	Eau de tamarin : Légèrement sucrée naturellement
-                            5.	Jus de bissap-gingembre : Vitamine C, antioxydants
-                            6.	Décoction de neem : Propriétés médicinales
-                            7.	Thé vert local + citronnelle
-                            8.	Eau détox : Eau + concombre + citron + menthe
-                            
-                            ALCOOL quotidien :
-                            Impact majeur :
-                            •	200-500 kcal vides/jour minimum
-                            •	Toxicité hépatique (foie gras)
-                            •	Augmentation triglycérides
-                            •	Perturbation sommeil
-                            •	Contre-indication avec certains médicaments
-                            Plan de réduction (8 semaines) :
-                            Semaines 1-2 : Évaluation et prise de conscience
-                            •	Noter quantités exactes
-                            •	Identifier déclencheurs
-                            Semaines 3-4 : Réduction à 4-5 jours/semaine
-                            •	Jours sans alcool : lundi, mercredi, jeudi
-                            •	Quantités réduites les autres jours
-                            Semaines 5-6 : Réduction à 2-3 jours/semaine
-                            •	Maximum week-end
-                            •	Limiter à 1-2 verres
-                            Semaines 7-8 : Objectif final
-                            •	Maximum 1-2 fois/semaine
-                            •	Maximum 1 verre standard
-                            Limites recommandées finales :
-                            •	Hommes : Max 2 verres/jour, max 10 verres/semaine, 2 jours sans/semaine
-                            •	Femmes : Max 1 verre/jour, max 7 verres/semaine, 2 jours sans/semaine
-                            
-                            Alternatives béninoises festives sans alcool :
-                            1.	Bissap pétillant maison : Bissap + eau gazeuse + citron
-                            2.	Cocktail tropical : Jus d'ananas + coco + gingembre
-                            3.	Tchoukoutou sans alcool : Version non fermentée
-                            4.	Chapman béninois : Fanta réduit + bissap + citron + concombre (occasionnel)"
+                            7.	Bénéfices : Arrêt/réduction alcool → TA baisse 2-4 mmHg, perte poids facilitée, sommeil amélioré, énergie augmentée"
                         ]
                     ],
                     'Une fois par semaine' => [
@@ -6902,19 +6015,7 @@ class ModerateObesitySeeder extends Seeder
                                 i Hypertension :
                                 •	Idéalement ZÉRO alcool
                                 •	Si 1×/semaine maintenu : maximum 1 verre
-                                ",
-                                'cardio' => "
-                                Conseils ciblés :
-                                •	Encore trop fréquent
-                                •	Réduire à occasionnellement
-                                •	Choisir versions sans sucre
-                                Alternatives :
-                                •	Eau nature (1,5-2L/jour)
-                                •	Eau citronnée sans sucre
-                                •	Tisanes locales (citronnelle, gingembre) sans sucre
-                                •	Jus de fruits frais MAISON dilués (1/3 jus, 2/3 eau) SANS sucre ajouté
-                                •	Bissap (jus d'hibiscus) SANS sucre
-                                •	Limiter à occasions spéciales uniquement"
+                                "
                             ],
                             '5_10' => [
                                 'none' => "Situation actuelle : Raisonnable
@@ -6980,8 +6081,7 @@ class ModerateObesitySeeder extends Seeder
                                 Menu ajusté :
                                 •	6 jours/semaine : eau, bissap, tisanes, jus dilués
                                 •	1 jour : occasion, portion modérée
-                                •	Hydratation quotidienne : 2L eau minimum",
-                                'cardio' => "Aucun"
+                                •	Hydratation quotidienne : 2L eau minimum"
                             ],
                             'over_10' => [
                                 'none' => "
@@ -7086,17 +6186,7 @@ class ModerateObesitySeeder extends Seeder
                                 •	Espace de minimum 6-7 jours entre occasions
                                 Si Hypertension :
                                 •	Idéalement ZÉRO alcool
-                                •	Si 1×/semaine maintenu : maximum 1 verre",
-                                'cardio' => "
-                                Conseils ciblés - Boissons sucrées:
-                                •	Acceptable si petite quantité (200ml max)
-                                •	Préférer fait maison avec peu de sucre
-                                •	Meilleur: eau de bissap maison légèrement sucrée au miel (1 c. à café)
-                                Conseils ciblés - Alcool:
-                                •	RÉDUIRE davantage ou arrêter complètement
-                                •	Si maintien: 1 verre max/semaine, jamais à jeun
-                                •	Privilégier vin rouge (antioxydants) > bière (calories)
-                                •	Boire beaucoup d'eau en parallèle"
+                                •	Si 1×/semaine maintenu : maximum 1 verre"
                             ],
                         ],
                         'fitness' => [
@@ -7165,19 +6255,7 @@ class ModerateObesitySeeder extends Seeder
                             1.	Portion : 1 verre standard, pas 3-4 verres le jour de consommation
                             2.	Hydratation : Alterner chaque verre alcool avec verre d'eau
                             3.	Repas : JAMAIS alcool ventre vide (aggrave effet TA, glycémie)
-                            4.	Qualité : Si consommation maintenue, choisir vin rouge (antioxydants polyphénols) > bière > alcools forts",
-                            'cardio' => "
-                            Situation : Acceptable mais peut optimiser
-                            Conseils :
-                            •	Maintenir cette fréquence maximale
-                            •	Contrôler les quantités (1-2 verres)
-                            •	Préférer le week-end
-                            •	Jamais à jeun
-                            •	Bien s'hydrater après
-                            Choix moins impactants :
-                            •	Vin rouge (polyphénols) : 1 verre
-                            •	Bière locale légère : 1 petite bouteille
-                            •	Éviter cocktails sucrés et alcools forts"
+                            4.	Qualité : Si consommation maintenue, choisir vin rouge (antioxydants polyphénols) > bière > alcools forts"
                         ]
                     ],
                     'Occasionnellement' => [
@@ -7265,15 +6343,7 @@ class ModerateObesitySeeder extends Seeder
                                 •	Pas de compensation restrictive
                                 •	(pas de jeûne)
                                 •	Hydratation ++
-                                •	Reprendre activité physique",
-                                'cardio' => "
-                                Conseils ciblés :
-                                •	Acceptable si vraiment occasionnel (1-2 fois/mois maximum)
-                                •	Privilégier versions sans sucre
-                                •	Éviter complètement l'alcool de preference
-                                Lors des occasions :
-                                •	Jus de fruits frais maison (150ml) : ananas, papaye, mangue, orange
-                                •	Si alcool : 1 verre standard maximum, bien s'hydrater avec de l'eau"
+                                •	Reprendre activité physique"
                             ],
                             '5_10' => [
                                 'none' => "
@@ -7320,8 +6390,7 @@ class ModerateObesitySeeder extends Seeder
                                 •	Continuer limitation
                                 •	Occasions = 1-2 fois/mois maximum
                                 •	Portions raisonnables
-                                •	Préférer alternatives savoureuses quotidiennement",
-                                'cardio' => "Aucun"
+                                •	Préférer alternatives savoureuses quotidiennement"
                             ],
                             'over_10' => [
                                 'none' => "BIEN ! 
@@ -7394,12 +6463,7 @@ class ModerateObesitySeeder extends Seeder
                                 •	Pas de compensation restrictive
                                 •	(pas de jeûne)
                                 •	Hydratation ++
-                                •	Reprendre activité physique ",
-                                'cardio' => "
-                                Conseils ciblés:
-                                •	Acceptable pour événements spéciaux
-                                •	Limiter portion, diluer boissons sucrées
-                                •	Alcool: 1 verre maximum, espacer les occasions"
+                                •	Reprendre activité physique "
                             ],
                         ],
                         'fitness' => [
@@ -7435,14 +6499,7 @@ class ModerateObesitySeeder extends Seeder
                             2.	Occasions : Réserver vrais événements (mariages, fêtes importantes)
                             3.	Quantité : Même occasionnellement, limiter 1-2 verres
                             4.	Compensation : Jour de consommation → boire eau abondamment, légumes extra
-                            5.	Alternative prioritaire : Bissap nature en priorité, alcool/soda = exception rare",
-                            'cardio' => "
-                            Situation : Très bien !
-                            Conseils de maintien :
-                            •	Garder pour occasions spéciales
-                            •	Limiter à 1-2 verres
-                            •	Alterner avec eau
-                            •	Manger avant et pendant"
+                            5.	Alternative prioritaire : Bissap nature en priorité, alcool/soda = exception rare"
                         ]
                     ],
                     'Jamais' => [
@@ -7549,12 +6606,7 @@ class ModerateObesitySeeder extends Seeder
                                 •	Café/thé (modération, sans sucre)
                                 •	Jus frais maison sans sucre ajouté (occasionnels)
                                 •	Eau infusée (citron, concombre, menthe)
-                                ",
-                                'cardio' => "
-                                Conseils ciblés :
-                                •	PARFAIT : Continuez !
-                                •	Maintenir cette habitude excellente
-                                •	Hydratation à l'eau prioritaire"
+                                "
                             ],
                             '5_10' => [
                                 'none' => "Meilleur choix pour santé et perte de poids
@@ -7634,8 +6686,7 @@ class ModerateObesitySeeder extends Seeder
                                 •	Bissap sans sucre : 2-3 tasses
                                 •	Tisanes locales : kinkeliba, citronnelle
                                 •	Eau citronnée : à volonté
-                                Jus légumes frais (concombre, carotte, épinard)",
-                                'cardio' => "Aucun"
+                                Jus légumes frais (concombre, carotte, épinard)"
                             ],
                             'over_10' => [
                                 'none' => "
@@ -7713,12 +6764,7 @@ class ModerateObesitySeeder extends Seeder
                                 •	Tisanes variées non sucrées
                                 •	Café/thé (modération, sans sucre)
                                 •	Jus frais maison sans sucre ajouté (occasionnels)
-                                •	Eau infusée (citron, concombre, menthe)",
-                                'cardio' => "
-                                Conseils ciblés:
-                                •	PARFAIT! Continuer ainsi
-                                •	Meilleur choix pour santé cardiovasculaire et perte de poids
-                                •	Maintenir hydratation avec eau, tisanes, infusions"
+                                •	Eau infusée (citron, concombre, menthe)"
                             ],
                         ],
                         'fitness' => [
@@ -7749,19 +6795,7 @@ class ModerateObesitySeeder extends Seeder
                             3.	Variété : Bissap, tisanes, eau citronnée (éviter monotonie)
                             4.	Social : Bissap festif lors événements (délicieux, coloré, santé)
                             5.	Bénéfices : Reconnaissance bénéfices (TA stable, poids contrôlé, énergie, peau, dents)
-                            6.	Pression sociale : Rester ferme si entourage propose alcool/sodas - santé prioritaire",
-                            'cardio' => "
-                            Situation : Excellent pour la santé !
-                            Conseils :
-                            •	Maintenir cette abstinence
-                            •	Résister aux pressions sociales
-                            •	Proposer alternatives festives
-                            •	Profiter des bienfaits (sommeil, perte de poids, santé hépatique)
-                            Boissons festives sans alcool :
-                            •	Bissap maison élaboré
-                            •	Jus de fruits frais mixés
-                            •	Cocktails tropicaux sans alcool
-                            •	Sodabi SANS alcool (version jus de palme frais)"
+                            6.	Pression sociale : Rester ferme si entourage propose alcool/sodas - santé prioritaire"
                         ]
                     ]
                 ]
@@ -8039,40 +7073,7 @@ class ModerateObesitySeeder extends Seeder
                                 •	Consultation médicale nécessaire
                                 •	Éviter somnifères sans prescription
                                 •	Techniques relaxation : respiration, méditation
-                                •	Activité physique journée (aide sommeil soir)",
-                                'cardio' => "
-                                Conseils ciblés :
-                                •	INSUFFISANT : Favorise prise de poids et problèmes cardiovasculaires
-                                •	Manque de sommeil → dérèglement hormones de la faim → suralimentation
-                                •	Objectif : 7-9h de sommeil
-                                •	Établir routine de coucher régulière
-                                •	PROBLÈME MAJEUR : le manque de sommeil augmente la faim, les envies de sucre, ralentit le métabolisme
-                                •	Risque accru d'obésité, diabète, hypertension
-                                •	Objectif : augmenter progressivement à 7-8h/nuit
-                                •	Le sommeil est aussi important que l'alimentation pour perdre du poids
-                                
-                                Stratégies pour améliorer le sommeil :
-                                •	Horaires réguliers : coucher et lever à heures fixes
-                                •	Éviter les écrans 1h avant le coucher
-                                •	Dîner léger, 2-3h avant le coucher
-                                •	Créer un environnement propice : chambre fraîche, sombre, silencieuse
-                                •	Rituel du coucher : relaxation, lecture
-                                
-                                Adaptations alimentaires :
-                                Collation du soir (si nécessaire, 1-2h avant coucher) :
-                                •	Tisane apaisante : citronnelle, gingembre-citron
-                                •	Banane (riche en magnésium, favorise le sommeil)
-                                •	Lait tiède avec une pincée de muscade (si toléré)
-                                Aliments à éviter le soir :
-                                •	Café, thé noir (après 15h)
-                                •	Boissons sucrées ou énergisantes
-                                •	Repas très épicés ou gras
-                                •	Grandes quantités de liquides (pour éviter les réveils nocturnes)
-                                Aliments favorisant le sommeil (intégrer au dîner) :
-                                •	Banane plantain : magnésium, potassium
-                                •	Poisson : oméga-3
-                                •	Légumes verts : calcium, magnésium
-                                •	Noix de cajou (petite portion) : magnésium"
+                                •	Activité physique journée (aide sommeil soir)"
                             ],
                             '5_10' => [
                                 'none' => "
@@ -8232,8 +7233,7 @@ class ModerateObesitySeeder extends Seeder
                                 •	Augmenter magnésium : amandes, banane, épinards, haricots
                                 •	Protéines qualité : régulation appétit
                                 •	Vitamine B : poissons, œufs
-                                •	Éviter repas lourds le soir",
-                                'cardio' => "Aucun"
+                                •	Éviter repas lourds le soir"
                             ],
                             'over_10' => [
                                 'none' => "
@@ -8448,24 +7448,7 @@ class ModerateObesitySeeder extends Seeder
                                 •	Consultation médicale nécessaire
                                 •	Éviter somnifères sans prescription
                                 •	Techniques relaxation : respiration, méditation
-                                •	Activité physique journée (aide sommeil soir)",
-                                'cardio' => "
-                                Conseils ciblés:
-                                •	PRIORITÉ ABSOLUE: AUGMENTER SOMMEIL
-                                •	Manque sommeil = prise de poids (hormones faim déréglées), résistance insuline, HTA
-                                •	Objectif: 7-9h/nuit
-                                
-                                Impact alimentaire:
-                                •	Manque sommeil → ↑ ghréline (hormone faim) + ↓ leptine (satiété)
-                                •	Envies aliments sucrés/gras augmentées
-                                •	Métabolisme ralenti
-                                
-                                Stratégies:
-                                •	Horaire régulier coucher/lever (même week-end)
-                                •	Dîner léger 2-3h avant coucher
-                                •	Éviter caféine après 15h
-                                •	Tisane relaxante avant coucher (citronnelle, verveine)
-                                •	Chambre fraîche, sombre, calme"
+                                •	Activité physique journée (aide sommeil soir)"
                             ],
                         ],
                         'fitness' => [
@@ -8694,46 +7677,7 @@ class ModerateObesitySeeder extends Seeder
                             5.	Planification : Identifier obstacles (travail tard, écrans, stress) → solutions
                             6.	Progressif : +15-30 min/semaine (ajustement graduel)
                             7.	Week-end : Même horaires (pas grasse matinée compensatoire - dérègle rythme)
-                            8.	Nuit blanche : Si occasionnelle inévitable → sieste 20-30 min lendemain, retour horaire normal soir suivant",
-                            'cardio' => "
-                            Impact catastrophique sur la perte de poids :
-                            •	Augmentation ghréline (hormone de la faim) +30%
-                            •	Diminution leptine (hormone satiété) -20%
-                            •	Résistance à l'insuline accrue
-                            •	Métabolisme ralenti -15%
-                            •	Fringales sucrées augmentées
-                            •	Cortisol élevé (stockage abdominal)
-                            •	Récupération musculaire compromise
-                            
-                            Plan d'amélioration du sommeil (progressif) :
-                            Semaines 1-2 : Gagner 30 minutes
-                            •	Coucher 30 min plus tôt
-                            •	Objectif : 6h30
-                            Semaines 3-4 : Gagner 1 heure
-                            •	Coucher 1h plus tôt
-                            •	Objectif : 7h
-                            
-                            Aliments favorisant le sommeil (riches en tryptophane) :
-                            •	Poisson
-                            •	Poulet
-                            •	Œufs
-                            •	Lait et yaourt
-                            •	Banane
-                            •	Noix de cajou
-                            •	Graines de sésame
-                            •	Haricots niébé
-                            Tisanes pour le sommeil :
-                            1.	Citronnelle
-                            2.	Feuilles de corossol
-                            3.	Kinkeliba
-                            4.	Fleurs d'hibiscus légères
-                            Habitudes à adopter :
-                            •	Dîner 3h avant coucher
-                            •	Pas d'écrans 1h avant
-                            •	Chambre fraîche et sombre
-                            •	Routine régulière
-                            •	Pas de caféine après 15h
-                            •	Éviter siestes longues (max 20-30 min)"
+                            8.	Nuit blanche : Si occasionnelle inévitable → sieste 20-30 min lendemain, retour horaire normal soir suivant"
                         ]
                     ],
                     '6h -7h' => [
@@ -8825,11 +7769,7 @@ class ModerateObesitySeeder extends Seeder
                                 •	Dîner 3h avant coucher minimum
                                 •	Éviter digestion perturbant sommeil
                                 •	Tisane relaxante OK
-                                ",
-                                'cardio' => "
-                                Conseils ciblés :
-                                •	Minimum acceptable mais viser 7-9h serait mieux
-                                •	Qualité du sommeil aussi importante que quantité"
+                                "
                             ],
                             '5_10' => [
                                 'none' => "Situation : Presque suffisant mais optimisable
@@ -8880,8 +7820,7 @@ class ModerateObesitySeeder extends Seeder
                                 •	Dîner 2-3h avant coucher
                                 •	Collation soirée si nécessaire (légère)
                                 •	Tisane apaisante 1h avant sommeil
-                                ",
-                                'cardio' => "Aucun"
+                                "
                             ],
                             'over_10' => [
                                 'none' => "
@@ -8958,12 +7897,7 @@ class ModerateObesitySeeder extends Seeder
                                 •	Dîner 3h avant coucher minimum
                                 •	Éviter digestion perturbant sommeil
                                 •	Tisane relaxante OK
-                                ",
-                                'cardio' => "
-                                Conseils ciblés:
-                                •	Limite basse, viser 7-9h idéalement
-                                •	Améliorer qualité sommeil si quantité difficile à augmenter
-                                •	Mêmes stratégies que ci-dessus"
+                                "
                             ],
                         ],
                         'fitness' => [
@@ -9013,19 +7947,7 @@ class ModerateObesitySeeder extends Seeder
                             2.	Constance : Régularité horaires (± 15 min max)
                             3.	Réveil : Si réveil spontané avant alarme, reposé → peut-être suffisant (écouter corps)
                             4.	Fatigue diurne : Si fatigue/somnolence journée → augmenter durée
-                            5.	Week-end : Si besoin 9-10h week-end pour \"récupérer\" → dette sommeil semaine → rallonger nuits semaine",
-                            'cardio' => "
-                            Situation : Acceptable mais sous-optimal
-                            Objectif : Atteindre 7-8h
-                            Conseils :
-                            •	Ajouter 30-60 minutes
-                            •	Optimiser la qualité du sommeil
-                            •	Routine régulière
-                            
-                            Ajustements alimentaires :
-                            •	Dîner 3h avant coucher
-                            •	Éviter stimulants après 16h
-                            •	Tisane relaxante le soir"
+                            5.	Week-end : Si besoin 9-10h week-end pour \"récupérer\" → dette sommeil semaine → rallonger nuits semaine"
                         ]
                     ],
                     '8h -9h' => [
@@ -9116,11 +8038,7 @@ class ModerateObesitySeeder extends Seeder
                                 Maintien :
                                 •	Continuer régularité
                                 •	Horaires fixes
-                                •	Qualité priorité",
-                                'cardio' => "
-                                Conseils ciblés :
-                                •	IDÉAL : Continuez !
-                                •	Maintenir régularité des horaires"
+                                •	Qualité priorité"
                             ],
                             '5_10' => [
                                 'none' => "Idéal pour santé et gestion du poids
@@ -9162,8 +8080,7 @@ class ModerateObesitySeeder extends Seeder
                                 •	Maintenir régularité
                                 •	Qualité sommeil aussi importante que quantité
                                 •	Hygiène sommeil continue
-                                ",
-                                'cardio' => "Aucun"
+                                "
                             ],
                             'over_10' => [
                                 'none' => "
@@ -9230,12 +8147,7 @@ class ModerateObesitySeeder extends Seeder
                                 •	Petit-déjeuner complet (énergie après bon sommeil)
                                 •	Profiter énergie pour activité physique matinale
                                 •	Meilleure adhérence plan nutritionnel
-                                ",
-                                'cardio' => "
-                                Conseils ciblés:
-                                •	EXCELLENT! Maintenir
-                                •	Sommeil optimal pour santé métabolique et cardiovasculaire
-                                •	Respecter régularité horaires"
+                                "
                             ],
                         ],
                         'fitness' => [
@@ -9271,15 +8183,6 @@ class ModerateObesitySeeder extends Seeder
                             3.	Régularité : Constance horaires même week-end
                             4.	Hygiène : Poursuivre bonnes pratiques (chambre sombre, fraîche, routine)
                             5.	Bien-être : Reconnaître impact positif (énergie, humeur, contrôle poids, TA)",
-                            'cardio' => "Situation : OPTIMAL !
-                            Conseils de maintien :
-                            •	Préserver cette routine
-                            •	Horaires réguliers
-                            •	Qualité avant quantité
-                            Alimentation adaptée :
-                            •	Suivre plans standards
-                            •	Maintenir horaires réguliers des repas
-                            •	Éviter excès le soir",
                         ]
                     ],
                     'Plus de 9h' => [
@@ -9398,12 +8301,7 @@ class ModerateObesitySeeder extends Seeder
                                 •	Ronflements ?
                                 •	Fatigue malgré heures ?
                                 •	Somnolence journée ?
-                                Si Apnée Suspectée → voir question suivante ",
-                                'cardio' => "
-                                Conseils ciblés :
-                                •	Peut indiquer : fatigue excessive, apnée du sommeil, dépression
-                                •	Consulter un médecin si associé à fatigue persistante
-                                •	L'excès de sommeil peut aussi être associé à risques cardiovasculaires "
+                                Si Apnée Suspectée → voir question suivante "
                             ],
                             '5_10' => [
                                 'none' => "Trop de sommeil peut indiquer :
@@ -9468,8 +8366,7 @@ class ModerateObesitySeeder extends Seeder
                                 •	Stimuler métabolisme : petit-déjeuner copieux
                                 •	Caféine modérée matin (si pas contre-indication)
                                 •	Activité physique régulière (améliore qualité sommeil)
-                                ",
-                                'cardio' => "Aucun"
+                                "
                             ],
                             'over_10' => [
                                 'none' => "ATTENTION ! Excès de sommeil peut indiquer un problème
@@ -9574,12 +8471,7 @@ class ModerateObesitySeeder extends Seeder
                                 •	Ronflements ?
                                 •	Fatigue malgré heures ?
                                 •	Somnolence journée ?
-                                Si Apnée Suspectée → voir question suivante",
-                                'cardio' => "
-                                Conseils ciblés:
-                                •	Peut indiquer problème santé sous-jacent (apnée, dépression, hypothyroïdie)
-                                •	Consultation médicale si fatigue persistante malgré long sommeil
-                                •	Vérifier qualité du sommeil (réveils nocturnes?)"
+                                Si Apnée Suspectée → voir question suivante"
                             ],
                         ],
                         'fitness' => [
@@ -9635,23 +8527,7 @@ class ModerateObesitySeeder extends Seeder
                             2.	Fatigue persistante : Si > 9h mais toujours fatigué → consultation médicale (bilan thyroïde, anémie, apnée)
                             3.	Dépression : Hypersomnie peut être symptôme - surveiller humeur, motivation
                             4.	Routine : Même si > 9h, maintenir horaires réguliers (éviter > 10h)
-                            5.	Activité physique : Exercice quotidien améliore qualité sommeil (besoin durée excessive diminue)",
-                            'cardio' => "
-                            Attention : Peut indiquer :
-                            •	Mauvaise qualité de sommeil
-                            •	Apnée du sommeil non diagnostiquée
-                            •	Dépression
-                            •	Hypothyroïdie
-                            •	Sédentarité excessive
-                            
-                            Conseils :
-                            •	Consultation médicale recommandée
-                            •	Évaluer la qualité du sommeil
-                            •	Rechercher apnée du sommeil
-                            Si simplement excès :
-                            •	Réduire progressivement à 8h
-                            •	Augmenter activité physique le matin
-                            •	Routine de lever régulière"
+                            5.	Activité physique : Exercice quotidien améliore qualité sommeil (besoin durée excessive diminue)"
                         ]
                     ]
                 ]
@@ -9906,16 +8782,7 @@ class ModerateObesitySeeder extends Seeder
                                 Position Sommeil :
                                 •	Dormir sur le côté (pas sur le dos)
                                 •	Surélever tête de lit de 10-15cm
-                                •	Oreiller adapté (ni trop haut ni trop bas)",
-                                'cardio' => "Conseils ciblés :
-                                •	Lien direct avec obésité et maladies cardiovasculaires
-                                •	Perte de poids améliore significativement l'apnée
-                                •	Éviter repas lourds le soir
-                                •	Éviter alcool qui aggrave l'apnée
-                                •	L'apnée du sommeil aggrave l'obésité et les maladies cardiovasculaires (cercle vicieux)
-                                •	La perte de poids améliore significativement l'apnée (objectif : -10% du poids)
-                                •	Le traitement (CPAP) améliore le métabolisme et facilite la perte de poids
-                                •	Coordination essentielle entre traitement de l'apnée et régime alimentaire "
+                                •	Oreiller adapté (ni trop haut ni trop bas)"
                             ],
                             '5_10' => [
                                 'none' => "
@@ -10090,8 +8957,7 @@ class ModerateObesitySeeder extends Seeder
                                 •	Polysomnographie si non fait
                                 •	Traitement PPC si indiqué
                                 •	Suivi ORL
-                                •	Contrôle poids régulier",
-                                'cardio' => "Aucun"
+                                •	Contrôle poids régulier"
                             ],
                             'over_10' => [
                                 'none' => "
@@ -10280,18 +9146,7 @@ class ModerateObesitySeeder extends Seeder
                                 Position Sommeil :
                                 •	Dormir sur le côté (pas sur le dos)
                                 •	Surélever tête de lit de 10-15cm
-                                •	Oreiller adapté (ni trop haut ni trop bas)",
-                                'cardio' => "
-                                Conseils ciblés:
-                                •	Traitement OBLIGATOIRE (appareil CPAP si prescrit)
-                                •	Apnée = facteur aggravant HTA, maladies CV, diabète
-                                •	Perte de poids améliore significativement apnée (objectif -10% poids)
-                                
-                                Adaptations alimentaires:
-                                •	Dîner TRÈS léger (estomac plein aggrave apnée)
-                                •	Dernier repas 3-4h avant coucher
-                                •	Éviter alcool complètement (relaxe muscles gorge)
-                                •	Surélever tête de lit "
+                                •	Oreiller adapté (ni trop haut ni trop bas)"
                             ],
                         ],
                         'fitness' => [
@@ -10440,46 +9295,7 @@ class ModerateObesitySeeder extends Seeder
                             4.	Partenaire : Impliquer conjoint(e) (encouragement, surveillance ronflement/pauses respiratoires)
                             5.	Énergie : Avec traitement + perte poids → énergie diurne ↑ → activité physique facilitée → perte poids accélérée (cercle vertueux)
                             6.	HTA : Traitement apnée → TA baisse 5-10 mmHg (additif aux médicaments)
-                            7.	Symptômes : Si somnolence diurne persiste malgré CPAP → consultation (réglages, compliance)",
-                            'cardio' => "
-                            Impact majeur sur poids et santé cardiovasculaire :
-                            •	Fragmentation du sommeil = mêmes effets que manque de sommeil
-                            •	Hypoxie nocturne = stress oxydatif, inflammation
-                            •	Activation sympathique = HTA, risque cardiaque
-                            •	Résistance à l'insuline accrue
-                            •	Difficulté à perdre du poids
-                            Priorités absolues :
-                            1. Traitement médical obligatoire :
-                            •	PPC (Pression Positive Continue) si prescrit
-                            •	Observance maximale
-                            •	Suivi ORL/pneumologue
-                            2. Perte de poids prioritaire :
-                            •	10% de perte = amélioration significative apnées
-                            •	20% de perte = potentielle résolution
-                            •	Cercle vertueux : perte → moins d'apnées → meilleur sommeil → perte facilitée
-                            3. Adaptations alimentaires spécifiques :
-                            Éviter absolument le soir :
-                            •	Alcool (relaxation muscles pharyngés)
-                            •	Repas lourds (reflux gastrique)
-                            •	Aliments inflammatoires
-                            Dîner anti-apnée béninois :
-                            •	Timing : 3-4h avant coucher
-                            •	Type : Léger, anti-inflammatoire
-                            •	Exemples : 
-                            o	Soupe de légumes verts + poisson grillé + petite portion d'igname
-                            o	Attiéké + sauce claire + légumes + tisane
-                            o	Salade complète + protéine maigre + fruit
-                            Position de sommeil :
-                            •	Privilégier décubitus latéral (côté)
-                            •	Éviter décubitus dorsal (dos)
-                            •	Surélever légèrement la tête
-                            Aliments anti-inflammatoires béninois à privilégier :
-                            •	Poissons gras (oméga-3)
-                            •	Légumes verts à feuilles
-                            •	Gingembre
-                            •	Ail
-                            •	Curcuma
-                            •	Fruits rouges locaux"
+                            7.	Symptômes : Si somnolence diurne persiste malgré CPAP → consultation (réglages, compliance)"
                         ]
                     ],
                 ],
@@ -10538,16 +9354,7 @@ class ModerateObesitySeeder extends Seeder
                                 •	Éviter alcool le soir
                                 •	Dormir sur le côté
                                 •	Activité physique régulière
-                                •	Contrôle TA",
-                            'cardio' => "
-                                Conseils ciblés :
-                                •	Bien, mais rester vigilant
-                                •	Perte de poids réduit risque de développer l'apnée
-                                Prévention de l'apnée du sommeil :
-                                •	Maintenir la perte de poids progressive
-                                •	Éviter l'alcool le soir
-                                •	Dormir sur le côté (pas sur le dos)
-                                •	Dîner léger mais suffisant "
+                                •	Contrôle TA"
                             ],
                         '5_10' => [
                             'none' => "
@@ -10616,8 +9423,7 @@ class ModerateObesitySeeder extends Seeder
                                 •	Dormir sur côté
                                 •	Activité physique régulière
                                 Si symptômes apparaissent : consulter pour dépistage
-                                ",
-                            'cardio' => "Aucun"
+                                "
                         ],
                         'over_10' => [
                             'none' => "✅ BON POINT !
@@ -10666,11 +9472,7 @@ class ModerateObesitySeeder extends Seeder
                             •	Éviter alcool le soir
                             •	Dormir sur le côté
                             •	Activité physique régulière
-                            •	Contrôle TA",
-                            'cardio' => "
-                            Conseils ciblés:
-                            •	Prévention: maintenir poids santé, éviter alcool/tabac
-                            •	Surveiller symptômes: ronflements, fatigue diurne, réveils avec suffocation"
+                            •	Contrôle TA"
                         ],
                     ],
                     'fitness' => [
@@ -10727,14 +9529,7 @@ class ModerateObesitySeeder extends Seeder
                         3.	Consultation : Si symptômes → médecin → polysomnographie (examen diagnostic)
                         4.	Prévention : Perte de poids réduit risque développement apnée
                         5.	Position : Dormir sur côté (prévention ronflement)
-                        6.	Alcool : Limiter (même sans apnée diagnostiquée - relaxe muscles pharynx)",
-                        'cardio' => "
-                        
-                        Conseils préventifs :
-                        •	Maintenir poids santé
-                        •	Dormir sur le côté si ronflement
-                        •	Éviter alcool le soir
-                        •	Surveiller signes : ronflements, fatigue diurne, pauses respiratoires"
+                        6.	Alcool : Limiter (même sans apnée diagnostiquée - relaxe muscles pharynx)"
                     ]
                 ]
             ],
@@ -10951,8 +9746,7 @@ class ModerateObesitySeeder extends Seeder
                                 •	Permanent (nouveau style de vie)
                                 •	Flexibilité 90-10 (90% sain, 10% plaisir)
                                 •	Motivation interne (santé, bien-être)
-                                •	Durable → maintien poids",
-                                'cardio' => "Aucun"
+                                •	Durable → maintien poids"
                             ],
                             '5_10' => [
                                 'none' => "
@@ -10993,8 +9787,7 @@ class ModerateObesitySeeder extends Seeder
                                 Repas anti-frustration (plaisir + santé):
                                 •	Déjeuner du dimanche: Riz (portion normale) + sauce préférée (moins d'huile) + viande grillée + légumes + petit plantain mûr
                                 •	Concept: Plaisir contrôlé, pas privation totale",
-                                'hypertension' => "Aucun",
-                                'cardio' => "Aucun"
+                                'hypertension' => "Aucun"
                             ],
                             'over_10' => [
                                 'none' => "Aucun",
@@ -11046,112 +9839,13 @@ class ModerateObesitySeeder extends Seeder
                                 •	Flexibilité 90-10 (90% sain, 10% plaisir)
                                 •	Motivation interne (santé, bien-être)
                                 •	Durable → maintien poids
-                                ",
-                                'cardio' => "Aucun"
+                                "
                             ],
                         ],
                         'fitness' => [
                             'none' => "Aucun",
                             'diabetes' => "Aucun",
-                            'hypertension' => "Aucun",
-                            'cardio' => "
-                            Évaluation approfondie nécessaire :
-                            Risques des régimes restrictifs répétés :
-                            •	Métabolisme ralenti (effet yo-yo)
-                            •	Perte de masse musculaire
-                            •	Carences nutritionnelles
-                            •	Troubles comportements alimentaires
-                            •	Démotivation
-                            
-                            Approche selon résultats antérieurs :
-                            Si ÉCHEC du régime précédent :
-                            Analyse des causes :
-                            •	Trop restrictif ? → Approche équilibrée
-                            •	Monotone ? → Variété maximale
-                            •	Irréaliste ? → Objectifs progressifs
-                            •	Isolement social ? → Intégration culturelle
-                            Nouvelle approche béninoise durable :
-                            Principes fondamentaux :
-                            1.	Pas de privation totale
-                            2.	Intégration culturelle et sociale
-                            3.	Apprentissage vs restriction
-                            4.	Progression lente mais durable (0,5-1 kg/semaine)
-                            Plan nutritionnel non frustrant :
-                            Aliments à consommer librement :
-                            •	Tous les légumes verts à feuilles
-                            •	Légumes non féculents
-                            •	Poissons maigres
-                            •	Bouillons clairs
-                            •	Tisanes non sucrées
-                            
-                            Aliments à portions contrôlées :
-                            •	Pâtes (owo, télibo, akassa) : taille de poing
-                            •	Riz : 1/2 tasse cuite
-                            •	Igname : portion = paume de main
-                            •	Sauce arachide : 2 c. à soupe
-                            •	Huile de palme : 1 c. à café
-                            Aliments occasionnels (1-2 fois/semaine) :
-                            •	Akara (version four)
-                            •	Aloko (plantain grillé vs frit)
-                            •	Gâteaux traditionnels (versions allégées)
-                            
-                            Gestion des événements sociaux :
-                            •	Manger normalement avant
-                            •	Choisir options grillées/bouillies
-                            •	Portions raisonnables
-                            •	Compenser le lendemain
-                            
-                            Si SUCCÈS mais reprise de poids :
-                            Problème : Régime temporaire vs changement de vie
-                            Solution : Transition vers maintenance
-                            Plan de stabilisation béninois :
-                            Phase 1 (Semaines 1-4) : Réintroduction progressive
-                            •	Augmenter calories de 200 kcal/semaine
-                            •	Ajouter 1 portion de féculent/jour
-                            •	Surveiller poids hebdomadairement
-                            Phase 2 (Mois 2-3) : Équilibre
-                            •	Trouver apport calorique de maintenance
-                            •	Stabilisation du poids
-                            •	Flexibilité alimentaire raisonnable
-                            
-                            Stratégies anti-reprise béninoises :
-                            1.	Règle des 80/20 : 80% plan sain, 20% flexibilité
-                            2.	Jours de fête : Plaisir sans culpabilité, retour au plan le lendemain
-                            3.	Activité physique régulière : Non négociable
-                            4.	Soutien social : Impliquer famille et amis
-                            
-                            Perte < 5 kg :
-                            Analyse :
-                            •	Approche peut-être trop douce
-                            •	Ou démarrage récent
-                            •	Ou nombreux écarts
-                            Conseils :
-                            •	Évaluer observance réelle
-                            •	Renforcer rigueur si laxisme
-                            •	Patience si démarrage récent (résultats à 3 mois)
-                            •	Tracer alimentation pendant 1 semaine (prise de conscience)
-                            
-                            Perte 5-10 kg :
-                            Situation : Très bon résultat !
-                            Risque : Plateau ou relâchement
-                            Conseils :
-                            •	Félicitations, encouragement
-                            •	Maintenir l'effort
-                            •	Varier pour éviter plateau
-                            •	Si plateau > 4 semaines : ajuster calories ou activité
-                            Perte > 10 kg :
-                            Situation : Excellent résultat !
-                            Attention :
-                            •	Risque de relâchement
-                            •	Peau distendue possible
-                            •	Adaptation métabolique
-                            
-                            Conseils :
-                            •	Transition vers maintenance
-                            •	Renforcement musculaire important
-                            •	Suivi nutritionnel et médical
-                            •	Prévention reprise de poids
-                            •	Hydratation maximale (peau)"
+                            'hypertension' => "Aucun"
                         ]
                     ],
                 ],
@@ -11173,13 +9867,7 @@ class ModerateObesitySeeder extends Seeder
                             •	Approche durable dès le début
                             CONSEILS CIBLÉS :
                             Démarrage intelligent : suivez votre objectif en cours enfin d’évaluer la différence avec vos expériences passées",
-                            'hypertension' => "Aucun",
-                            'cardio' => "
-                            Conseils ciblés :
-                            •	C'est le moment de commencer !
-                            •	Objectif réaliste : suivre votre objectif de perte de poids en fonction de votre niveau de changement
-                            •	Approche progressive et durable
-                            "
+                            'hypertension' => "Aucun"
                         ],
                         '5_10' => [
                             'none' => "
@@ -11294,8 +9982,7 @@ class ModerateObesitySeeder extends Seeder
                             •	Groupe soutien ou partenaire perte poids
                             •	Application suivi (MyFitnessPal, Yazio, etc.)
                             •	Photos avant/pendant/après (motivation)
-                            •	Mesures corporelles mensuelles (pas que balance)",
-                            'cardio' => "Aucun"
+                            •	Mesures corporelles mensuelles (pas que balance)"
                         ],
                         'over_10' => [
                             'none' => "
@@ -11305,8 +9992,7 @@ class ModerateObesitySeeder extends Seeder
                             •	Meilleures chances de succès
                             •	Motivation élevée",
                             'diabetes' => "Aucun",
-                            'hypertension' => "Aucun",
-                            'cardio' => "Aucun"
+                            'hypertension' => "Aucun"
                         ],
                     ],
                     'fitness' => [
@@ -11381,21 +10067,7 @@ class ModerateObesitySeeder extends Seeder
                         4.	Soutien : Famille, amis, professionnels (nutritionniste, médecin)
                         5.	Patience : Transformation prend temps (accepter)
                         6.	Processus vs résultat : Apprécier changements habitudes (pas seulement chiffre balance)
-                        7.	Santé > esthétique : Priorité = se sentir mieux, vivre plus longtemps/mieux (poids = conséquence)",
-                        'cardio' => "
-                        Situation : Première tentative structurée
-                        Avantages :
-                        •	Métabolisme non endommagé
-                        •	Motivation élevée
-                        •	Pas de frustrations antérieures
-                        •	Résultats potentiellement rapides
-                        
-                        Approche initiale béninoise :
-                        Phase découverte (Mois 1) :
-                        •	Apprentissage des bases
-                        •	Découverte des portions adéquates
-                        •	Prise de conscience alimentaire
-                        •	Résultats encourageants attendus (2-4 kg)"
+                        7.	Santé > esthétique : Priorité = se sentir mieux, vivre plus longtemps/mieux (poids = conséquence)"
                     ]
                 ]
             ],
@@ -11546,22 +10218,7 @@ class ModerateObesitySeeder extends Seeder
                                 •	Squats chaise
                                 •	Pompes murales
                                 •	Levées de jambes
-                                •	Étirements",
-                                'cardio' => "
-                                Conseils ciblés :
-                                •	CRITIQUE : Sédentarité aggrave obésité et risque cardiovasculaire
-                                •	URGENT : Commencer doucement (10-15 min/jour)
-                                •	Objectif progressif : atteindre 30 min/jour, 5 jours/semaine
-                                •	Consulter médecin avant de débuter si problèmes cardiaques
-                                
-                                Activités recommandées pour débuter :
-                                •	Marche tranquille matin/soir (15-20 min)
-                                •	Jardinage léger
-                                •	Tâches ménagères actives
-                                •	Danse douce sur musique locale
-                                
-                                Repas :
-                                •	Collations énergétiques avant effort : banane"
+                                •	Étirements"
                             ],
                             '5_10' => [
                                 'none' => "
@@ -11765,36 +10422,9 @@ class ModerateObesitySeeder extends Seeder
                                 •	Arrêt immédiat si : douleur thoracique, vertige intense, essoufflement extrême
                                 •	Hydratation : 500ml eau avant, 250ml toutes les 15-20 min pendant
                                 •	Progression très graduelle (pas de rush)
-                                •	Consultation médicale avant intensification",
-                                'cardio' => "
-                                Conseils ciblés:
-                                •	DÉBUTER IMMÉDIATEMENT (avec accord médical si maladie CV)
-                                •	Sédentarité = facteur risque majeur décès prématuré
-                                •	Commencer PROGRESSIVEMENT: 10 min/jour puis augmenter
-                                
-                                Plan démarrage (4 semaines):
-                                •	Semaine 1: Marche 10 min/jour (matin ou soir)
-                                •	Semaine 2: Marche 15-20 min/jour
-                                •	Semaine 3: Marche 25 min/jour OU 2 x 15 min
-                        
-                                Activités accessibles au Bénin:
-                                •	Marche rapide (gratuit, sécurisé)
-                                •	Montées d'escaliers (immeuble, colline)
-                                •	Travaux ménagers actifs (balayage énergique, jardinage)
-                                •	Danse (zangbeto, agbadja) - activité culturelle + exercice
-                                •	Vélo si disponible
-                                
-                                Adaptations alimentaires:
-                                •	Suivre guide Sédentaire au début
-                                •	Collation 1h avant exercice si activité >30 min: fruit + noix
-                                •	Hydratation +++: 500ml eau avant/après exercice
-                                
-                                Précautions maladie CV:
-                                •	Consultation cardiologique OBLIGATOIRE avant démarrage
-                                •	Test d'effort si possible
-                                •	Débuter sous supervision
-                                •	Arrêt immédiat si douleur thoracique, essoufflement excessif, vertiges" ,
-                                'over_10' => [
+                                •	Consultation médicale avant intensification" 
+                            ],
+                            'over_10' => [
                                     'none' => "
                                     PROBLÈME MAJEUR ! L'activité physique est ESSENTIELLE pour la perte de poids
                                     POURQUOI L'EXERCICE EST CRUCIAL :
@@ -11964,36 +10594,8 @@ class ModerateObesitySeeder extends Seeder
                                     •	Squats chaise
                                     •	Pompes murales
                                     •	Levées de jambes
-                                    •	Étirements",
-                                    'cardio' => "
-                                    Conseils ciblés:
-                                    •	DÉBUTER IMMÉDIATEMENT (avec accord médical si maladie CV)
-                                    •	Sédentarité = facteur risque majeur décès prématuré
-                                    •	Commencer PROGRESSIVEMENT: 10 min/jour puis augmenter
-                                    
-                                    Plan démarrage (4 semaines):
-                                    •	Semaine 1: Marche 10 min/jour (matin ou soir)
-                                    •	Semaine 2: Marche 15-20 min/jour
-                                    •	Semaine 3: Marche 25 min/jour OU 2 x 15 min
-                                    •	Semaine 4+: Marche 30 min/jour, 5 jours/semaine
-                                    Activités accessibles au Bénin:
-                                    •	Marche rapide (gratuit, sécurisé)
-                                    •	Montées d'escaliers (immeuble, colline)
-                                    •	Travaux ménagers actifs (balayage énergique, jardinage)
-                                    •	Danse (zangbeto, agbadja) - activité culturelle + exercice
-                                    •	Vélo si disponible
-                                    
-                                    Adaptations alimentaires:
-                                    •	Suivre guide Sédentaire au début
-                                    •	Collation 1h avant exercice si activité >30 min: fruit + noix
-                                    •	Hydratation +++: 500ml eau avant/après exercice
-                                    
-                                    Précautions maladie CV:
-                                    •	Consultation cardiologique OBLIGATOIRE avant démarrage
-                                    •	Test d'effort si possible
-                                    •	Débuter sous supervision
-                                    •	Arrêt immédiat si douleur thoracique, essoufflement excessif, vertiges"
-                                ],
+                                    •	Étirements"
+                            ],
                             ],
                             'fitness' => [
                                 'none' => "
@@ -12222,63 +10824,7 @@ class ModerateObesitySeeder extends Seeder
                                 HTA spécifiquement :
                                 •	Activité modérée quotidienne → TA ↓ 5-8 mmHg (équivalent 1 médicament anti-HTA)
                                 •	Précautions : Débuter très progressivement, surveiller TA (avant/après exercice)
-                                •	Contre-indication temporaire : Si TA > 180/110 mmHg → contrôler médicalement d'abord",
-                                'cardio' => "
-                                Impact catastrophique :
-                                •	Métabolisme basal très bas
-                                •	Perte musculaire
-                                •	Résistance à l'insuline
-                                •	Risque cardiovasculaire maximal
-                                •	Ostéoporose
-                                •	Dépression/anxiété
-                                Plan de démarrage ULTRA-progressif (12 semaines) :
-                                Phase 1 - Semaines 1-2 : Activation minimale
-                                •	Objectif : Rompre la sédentarité totale
-                                •	Activité : Marche 10 minutes/jour
-                                •	Fréquence : 3 jours/semaine
-                                •	Intensité : Douce, confortable
-                                Activités béninoises accessibles :
-                                •	Marche dans le quartier le matin (frais)
-                                •	Marche au marché (remplacer transport)
-                                •	Jardinage léger 15 minutes
-                                •	Tâches ménagères actives
-                                Phase 2 - Semaines 3-4 : Augmentation durée
-                                •	Objectif : Allonger sans intensifier
-                                •	Activité : Marche 15-20 minutes
-                                •	Fréquence : 4 jours/semaine
-                                •	Ajout : Étirements 5 minutes
-                                Phase 3 - Semaines 5-8 : Régularité
-                                •	Objectif : Installer routine
-                                •	Activité : Marche 25-30 minutes
-                                •	Fréquence : 5 jours/semaine
-                                •	Ajout : Renforcement léger (chaise, mur)
-                                Exercices béninois à domicile :
-                                •	Squats sur chaise (assis/debout) : 2x10
-                                •	Pompes contre mur : 2x10
-                                •	Montée d'escaliers : 2x1 étage
-                                •	Étirements complets : 10 minutes
-                                Phase 4 - Semaines 9-12 : Diversification
-                                •	Objectif : Éviter monotonie, progresser
-                                •	Activité : Marche 30-40 minutes OU activité alternative
-                                •	Fréquence : 5-6 jours/semaine
-                                •	Intensité : Introduction d'intervalles légers
-                                Activités variées :
-                                •	Danse traditionnelle douce
-                                •	Natation (si accès plage/piscine)
-                                •	Vélo tranquille
-                                •	Marche rapide par intervalles
-                                •	Gym douce collective
-                                Adaptations alimentaires pour sédentaire démarrant :
-                                •	Augmenter protéines légèrement pour préserver muscle
-                                •	Timing : glucides autour de l'activité (même minimale)
-                                Repas post-activité (même 10 min marche) :
-                                •	Dans l'heure : Fruit + quelques noix
-                                •	Repas suivant : Protéine + légumes + petit féculent
-                                Motivation et suivi :
-                                •	Tenir journal d'activité
-                                •	Célébrer chaque victoire
-                                •	Trouver partenaire de marche
-                                •	Objectif de plaisir avant performance "
+                                •	Contre-indication temporaire : Si TA > 180/110 mmHg → contrôler médicalement d'abord"
                             ]
                         ],
                         '1j-3j' => [
@@ -12420,19 +10966,7 @@ class ModerateObesitySeeder extends Seeder
                                     
                                     Activités Courtes Jours Off :
                                     •	Pas obligé 30 min tous les jours
-                                    •	Jours ajoutés : commencer par 15-20 min ",
-                                    'cardio' => "
-                                    Conseils ciblés :
-                                    •	Bon début mais insuffisant
-                                    •	Objectif : 5-7 jours/semaine
-                                    •	Augmenter progressivement fréquence et durée
-                                    Activités béninoises :
-                                    •	Marche rapide 30 min
-                                    •	Danse africaine (zumba locale)
-                                    •	Natation si accès à piscine/mer
-                                    •	Vélo
-                                    Repas  :
-                                    •	Collation pré-effort : fruits + noix "
+                                    •	Jours ajoutés : commencer par 15-20 min "
                                 ],
                                 '5_10' => [
                                     'none' => "
@@ -12524,18 +11058,7 @@ class ModerateObesitySeeder extends Seeder
                                     Semaines 5-8 : Consolidation
                                     •	Maintenir 5 jours/semaine
                                     •	Atteindre 30 min/séance
-                                    •	Varier activités (éviter ennui)",
-                                    'cardio' => "
-                                    Conseils ciblés:
-                                    •	BON DÉBUT, augmenter à 5 jours/semaine minimum
-                                    •	OMS recommande: 150 min activité modérée/semaine = 30 min x 5 jours
-                                    •	Planifier jours fixes (ex: lundi-mercredi-vendredi)
-                                    Plan progression:
-                                    •	Mois 1: 3 jours x 20-30 min
-                                    •	Mois 2: 4 jours x 30 min
-                                    •	Mois 3+: 5 jours x 30-40 min
-                                    Adaptations alimentaires:
-                                    •	Collations pré-exercice si besoin"
+                                    •	Varier activités (éviter ennui)"
                                 ],
                                 'over_10' => [
                                     'none' => "
@@ -12673,17 +11196,6 @@ class ModerateObesitySeeder extends Seeder
                                     Activités Courtes Jours Off :
                                     •	Pas obligé 30 min tous les jours
                                     •	Jours ajoutés : commencer par 15-20 min
-                                    ",
-                                    'cardio' => "Conseils ciblés:
-                                    •	BON DÉBUT, augmenter à 5 jours/semaine minimum
-                                    •	OMS recommande: 150 min activité modérée/semaine = 30 min x 5 jours
-                                    •	Planifier jours fixes (ex: lundi-mercredi-vendredi)
-                                    Plan progression:
-                                    •	Mois 1: 3 jours x 20-30 min
-                                    •	Mois 2: 4 jours x 30 min
-                                    •	Mois 3+: 5 jours x 30-40 min
-                                    Adaptations alimentaires:
-                                    •	Collations pré-exercice si besoin
                                     "
                                 ],
                             ],
@@ -12768,54 +11280,7 @@ class ModerateObesitySeeder extends Seeder
                                 1.	Base solide : Habitude déjà amorcée (facilite progression)
                                 2.	Constance : Viser quotidien (habitude plus facile à maintenir que 3×/semaine)
                                 3.	Variété : Alterner activités (évite monotonie/blessures)
-                                4.	Intensité : Privilégier régularité quotidienne > séances intenses espacées",
-                                'cardio' => "
-                                Situation : Bon démarrage mais marge d'amélioration
-                                Objectif : Passer à 4-5 jours minimum
-                                
-                                Plan de progression (8 semaines) :
-                                Semaines 1-2 : Consolider l'existant
-                                •	Maintenir 3 jours
-                                •	Augmenter durée de 10 minutes
-                                •	Ou intensité légèrement
-                                Semaines 3-4 : Ajouter 1 jour
-                                •	4 jours/semaine
-                                •	Activité légère le 4ème jour (récupération active)
-                                Semaines 5-6 : Ajouter 2ème jour
-                                •	5 jours/semaine
-                                •	Varier les activités
-                                Semaines 7-8 : Consolidation
-                                •	5-6 jours/semaine
-                                •	Mix intensités
-                                •	Routine ancrée
-                                Programme type (5 jours) :
-                                •	Lundi : Marche rapide 30 min
-                                •	Mardi : Renforcement musculaire 30 min
-                                •	Mercredi : REPOS ou yoga/étirements
-                                •	Jeudi : Marche/vélo 40 min
-                                •	Vendredi : Activité ludique (danse, sport)
-                                •	Samedi : Marche longue 45-60 min ou activité en famille
-                                •	Dimanche : REPOS complet
-                                
-                                Activités recommandées :
-                                •	Marche matinale au marché
-                                •	Danse afro (zouglou, coupé-décalé, traditionnel)
-                                •	Football amateur
-                                •	Vélo
-                                •	Natation (plage)
-                                •	Gym communautaire
-                                •	Jardinage actif
-                            
-                                Timing des repas optimal :
-                                •	Si activité matinale (avant petit-déj) : 
-                                o	Petit-déjeuner dans l'heure : Complet et équilibré
-                                •	Si activité milieu matinée (10h) : 
-                                o	Petit-déj 7h : Normal
-                                o	Collation post : Fruit + noix
-                                o	Déjeuner normal
-                                •	Si activité soir (18h) : 
-                                o	Collation 16h : Fruit + yaourt
-                                o	Dîner 19h30 : Normal, compense "
+                                4.	Intensité : Privilégier régularité quotidienne > séances intenses espacées"
                             ]
                         ],
                         '4j-6j' => [
@@ -13019,19 +11484,7 @@ class ModerateObesitySeeder extends Seeder
                                     o	250g bouillie d'avoine
                                     o	2 œufs (protéines récupération)
                                     o	1 fruit
-                                    o	Eau abondante",
-                                    'cardio' => "
-                                    Conseils ciblés :
-                                    •	TRÈS BIEN !
-                                    •	Maintenir cette régularité
-                                    •	Varier les activités pour éviter lassitude
-                                    
-                                    Activités béninoises :
-                                    •	Combiner : marche, danse, natation, vélo
-                                    •	Sports collectifs si possible
-                                    Repas :
-                                    •	Hydratation renforcée
-                                    •	Collations pré et post-effort"
+                                    o	Eau abondante"
                                 ],
                                 '5_10' => [
                                     'none' => "
@@ -13167,22 +11620,7 @@ class ModerateObesitySeeder extends Seeder
                                     •	Collation pré-effort systématique
                                     •	Hydratation optimale
                                     •	Récupération protéinée post-effort
-                                    •	Timing nutriments important",
-                                    'cardio' => "
-                                    Conseils ciblés:
-                                    •	EXCELLENT ENGAGEMENT!
-                                    •	Atteinte recommandations OMS
-                                    •	Varier types d'activités (cardio + renforcement musculaire)
-                                    •	1-2 jours repos/semaine pour récupération
-                                    
-                                    Optimisation:
-                                    •	3 jours cardio (marche rapide, danse, vélo)
-                                    •	2 jours renforcement (pompes, squats, exercices poids corporel)
-                                    •	1 jour flexibilité (étirements, yoga)
-                                    
-                                    Adaptations alimentaires:
-                                    •	Timing nutritionnel important: glucides avant/après entraînement
-                                    •	Protéines pour récupération musculaire"
+                                    •	Timing nutriments important"
                                 ],
                                 'over_10' => [
                                     'none' => "
@@ -13354,22 +11792,7 @@ class ModerateObesitySeeder extends Seeder
                                     o	250g bouillie d'avoine
                                     o	2 œufs (protéines récupération)
                                     o	1 fruit
-                                    o	Eau abondante",
-                                    'cardio' => "
-                                    Conseils ciblés:
-                                    •	EXCELLENT ENGAGEMENT!
-                                    •	Atteinte recommandations OMS
-                                    •	Varier types d'activités (cardio + renforcement musculaire)
-                                    •	1-2 jours repos/semaine pour récupération
-                                    
-                                    Optimisation:
-                                    •	3 jours cardio (marche rapide, danse, vélo)
-                                    •	2 jours renforcement (pompes, squats, exercices poids corporel)
-                                    •	1 jour flexibilité (étirements, yoga)
-                                    
-                                    Adaptations alimentaires:
-                                    •	Timing nutritionnel important: glucides avant/après entraînement
-                                    •	Protéines pour récupération musculaire"
+                                    o	Eau abondante"
                                 ],
                             ],
                             'fitness' => [
@@ -13468,71 +11891,7 @@ class ModerateObesitySeeder extends Seeder
                                 3.	Progression : Si stagnation poids/TA → augmenter intensité plutôt que durée
                                 4.	Récupération : 1 jour repos/semaine acceptable (corps récupère)
                                 5.	Variété : Prévient ennui, blessures surutilisation
-                                6.	Objectifs : Performance (distance, vitesse, répétitions exercices)",
-                                'cardio' => "
-                                Situation : Excellent engagement !
-                                Objectif : Optimiser qualité et résultats
-                                Focus : Équilibre et progression
-                                
-                                Programme type (6 jours) :
-                                •	Lundi : Cardio modéré 40 min (marche rapide, vélo)
-                                •	Mardi : Renforcement musculaire complet 45 min
-                                •	Mercredi : Cardio intense 30 min (intervalles, course)
-                                •	Jeudi : Renforcement + étirements 40 min
-                                •	Vendredi : Activité ludique intense (foot, danse) 45 min
-                                •	Samedi : Cardio longue durée 60 min (randonnée, vélo long)
-                                •	Dimanche : REPOS ACTIF (yoga, marche douce, étirements)
-                                
-                                Variantes béninoises :
-                                •	Cardio : Marche/course plage, vélo, danse intense, football, natation
-                                •	Renforcement : Gym locale, exercices poids du corps, haltères improvisés (bidons d'eau)
-                                •	Ludique : Sports traditionnels, danse afro, activités de groupe
-                                •	Récupération : Yoga, étirements, marche contemplative, natation douce
-                                
-                                Adaptations alimentaires cruciales :
-                                •	Si 6-7 jours avec intensité : Plan Très/Extrêmement actif
-                                •	Priorité : Récupération et reconstruction musculaire
-                                
-                                Timing nutritionnel optimisé :
-                                Jour d'entraînement intense :
-                                •	Pré-activité (1-2h avant) : Glucides modérés + protéine légère 
-                                o	Ex: Banane + quelques noix OU petite bouillie + œuf
-                                •	Post-activité (dans 30-60 min) : Protéine + glucides 
-                                o	Ex: Poulet grillé + igname OU poisson + attiéké
-                                •	Repas suivants : Normaux, équilibrés
-                                Jour de repos/léger :
-                                •	Apports légèrement réduits (surtout glucides)
-                                •	Maintien protéines élevées
-                                •	Focus récupération
-                                
-                                Exemples de journées type :
-                                JOUR INTENSE (ex: Football 18h) :
-                                •	7h : Petit-déj complet : Bouillie + œufs + légumes + fruit
-                                •	10h : Collation : Fruit + noix
-                                •	12h30 : Déjeuner : Riz complet + poulet + légumes + salade
-                                •	16h : Collation pré-foot : Banane + beurre d'arachide + eau
-                                •	18h : FOOTBALL
-                                •	19h30 : Post-foot : Smoothie (banane + lait + arachides) ou jus naturel + poisson grillé
-                                •	20h30 : Dîner léger : Soupe légumes + protéine
-                                •	Hydratation : 2,5-3L eau
-                                
-                                JOUR REPOS :
-                                •	7h : Petit-déj normal
-                                •	10h : Collation légère
-                                •	12h30 : Déjeuner modéré (portions légèrement réduites)
-                                •	16h : Collation
-                                •	19h : Dîner léger
-                                •	Hydratation : 2L eau
-                                
-                                Signaux d'alarme (surentraînement) :
-                                •	Fatigue persistante
-                                •	Baisse de performance
-                                •	Irritabilité
-                                •	Sommeil perturbé
-                                •	Perte d'appétit
-                                •	Immunité réduite (rhumes fréquents)
-                                •	Stagnation/prise de poids malgré efforts
-                                Si surentraînement : Réduire à 4 jours, augmenter repos et calories "
+                                6.	Objectifs : Performance (distance, vitesse, répétitions exercices)"
                             ]
                         ],
                         '7j' => [
@@ -13744,15 +12103,7 @@ class ModerateObesitySeeder extends Seeder
                                     •	Blessures répétées
                                     •	Perte d'appétit
                                     •	Fréquence cardiaque repos élevée
-                                    → Si 3+ signes : réduire volume, consulter",
-                                    'cardio' => "
-                                    Conseils ciblés :
-                                    •	EXCELLENT !
-                                    •	Attention à la récupération (1-2 jours repos actif/semaine recommandés)
-                                    •	Varier intensité (jours intenses/jours légers)
-                                    Repas :
-                                    •	Apports énergétiques suffisants
-                                    •	Protéines adéquates pour récupération"
+                                    → Si 3+ signes : réduire volume, consulter"
                                 ],
                                 '5_10' => [
                                     'none' => "
@@ -13875,17 +12226,7 @@ class ModerateObesitySeeder extends Seeder
                                     •	Exemple : smoothie banane-arachide-lait, atassi + poulet, akassa + œufs
                                     •	Sommeil 8-9h obligatoire
                                     •	Hydratation 3L+/jour
-                                    •	Antioxydants (fruits/légumes abondants)",
-                                    'cardio' => "
-                                    Conseils ciblés:
-                                    •	ATTENTION: risque sur-entraînement sans repos
-                                    •	Corps nécessite récupération pour progrès
-                                    •	Repos actif possible: étirements, marche légè
-
-                                    Recommandations:
-                                    •	Alterner intensités: 3-4 jours intense, 3-4 jours léger
-                                    •	Minimum 1 jour repos complet/semaine
-                                    •	Surveiller signes sur-entraînement: fatigue chronique, blessures, baisse performance"
+                                    •	Antioxydants (fruits/légumes abondants)"
                                 ],
                                 'over_10' => [
                                     'none' => "
@@ -14043,17 +12384,7 @@ class ModerateObesitySeeder extends Seeder
                                     •	Blessures répétées
                                     •	Perte d'appétit
                                     •	Fréquence cardiaque repos élevée
-                                    → Si 3+ signes : réduire volume, consulter",
-                                    'cardio' => "
-                                    Conseils ciblés:
-                                    •	ATTENTION: risque sur-entraînement sans repos
-                                    •	Corps nécessite récupération pour progrès
-                                    •	Repos actif possible: étirements, marche légère
-                                   
-                                    Recommandations:
-                                    •	Alterner intensités: 3-4 jours intense, 3-4 jours léger
-                                    •	Minimum 1 jour repos complet/semaine
-                                    •	Surveiller signes sur-entraînement: fatigue chronique, blessures, baisse performance "
+                                    → Si 3+ signes : réduire volume, consulter"
                                 ],
                             ],
                             'fitness' => [
@@ -14160,56 +12491,7 @@ class ModerateObesitySeeder extends Seeder
                                 4.	Nutrition : Apports adéquats (protéines surtout si renforcement musculaire)
                                 5.	Sommeil : 8 h/nuit si activité quotidienne intense (récupération)
                                 6.	Objectifs : Performance sportive (course, compétition amateur) - maintient motivation
-                                7.	Communauté : Rejoindre club marche/course locale (soutien, convivialité)",
-                                'cardio' => "
-                                Évaluation critique :
-                                Si athlète ou professionnel du sport : Adapté Si personne lambda obèse avec MCV : DANGEREUX
-                                Risques entraînement quotidien sans repos :
-                                •	Surentraînement chronique
-                                •	Blessures
-                                •	Épuisement surrénal
-                                •	Immunité compromise
-                                •	Stress oxydatif excessif
-                                •	Inflammation chronique
-                                •	Stagnation/prise de poids paradoxale
-                                
-                                Recommandation forte : INTÉGRER DU REPOS
-                                Plan corrigé (6 jours actifs + 1 repos) :
-                                •	Suivre le plan 4-6 jours ci-dessus
-                                •	Dimanche : REPOS COMPLET ou très léger (marche douce 20 min max)
-                                Si vraiment 7 jours actifs (circonstances particulières) :
-                                Impératifs absolus :
-                                1.	Variation intensité : Alterner dur/modéré/léger
-                                2.	Récupération active : 2-3 jours/semaine en mode très doux
-                                3.	Nutrition optimale : Calories suffisantes, protéines élevées
-                                4.	Sommeil : 8-9h/nuit obligatoire
-                                5.	Hydratation : 3-4L/jour
-                                6.	Suivi médical : Régulier
-                                
-                                Programme 7 jours intelligent :
-                                •	Lundi : Intensité élevée (60 min)
-                                •	Mardi : Modérée (45 min)
-                                •	Mercredi : Intensité élevée (60 min)
-                                •	Jeudi : Récupération active légère (30 min étirements/yoga)
-                                •	Vendredi : Modérée à élevée (50 min)
-                                •	Samedi : Intensité élevée (60-90 min)
-                                •	Dimanche : Récupération active douce (30-40 min marche/natation calme)
-                                
-                                Adaptations alimentaires extrêmes :
-                                •	Calories significativement augmentées
-                                •	5-6 repas/jour possibles
-                                •	Protéines : 1,8-2g/kg poids corporel
-                                •	Glucides : Timing précis autour des entraînements
-                                •	Supplémentation possible (sous avis médical) : multivitamines, oméga-3
-                                •	Hydratation : 3-4L
-                                
-                                Suppléments naturels pour récupération :
-                                •	Gingembre frais (anti-inflammatoire)
-                                •	Miel local (récupération glucides)
-                                •	Spiruline locale (protéines, fer)
-                                •	Moringa (multivitamines)
-                                •	Lait de coco (électrolytes)
-                                •	Bissap (antioxydants) "
+                                7.	Communauté : Rejoindre club marche/course locale (soutien, convivialité)"
                             ]
                         ]
                     ]
@@ -14284,12 +12566,7 @@ class ModerateObesitySeeder extends Seeder
                                     
                                     Maintien :
                                     •	Continuer lifestyle actif
-                                    •	Varier postures même si debout (pas statique)",
-                                    'cardio' => "
-                                    Conseils ciblés :
-                                    •	EXCELLENT !
-                                    •	Maintenir ce mode de vie actif
-                                    "
+                                    •	Varier postures même si debout (pas statique)"
                                 ],
                                 '5_10' => [
                                     'none' => "
@@ -14328,8 +12605,7 @@ class ModerateObesitySeeder extends Seeder
                                     
                                     Menu :
                                     •	Calories suffisantes (éviter sous-nutrition)
-                                    •	Récupération nutrition importante",
-                                    'cardio' => "Aucun"
+                                    •	Récupération nutrition importante"
                                 ],
                                 'over_10' => [
                                     'none' => "EXCELLENT ! Idéal pour la santé
@@ -14387,12 +12663,7 @@ class ModerateObesitySeeder extends Seeder
                                     •	Mobilité préservée
                                     Maintien :
                                     •	Continuer lifestyle actif
-                                    •	Varier postures même si debout (pas statique)",
-                                    'cardio' => "
-                                    Conseils ciblés:
-                                    •	EXCELLENT! Mode de vie actif
-                                    •	Maintenir cette dynamique
-                                    •	Sédentarité minimale = protection cardiovasculaire optimale"
+                                    •	Varier postures même si debout (pas statique)"
                                 ],
                             ],
                             'fitness' => [
@@ -14431,14 +12702,7 @@ class ModerateObesitySeeder extends Seeder
                                 Conseils ciblés :
                                 1.	Félicitations : Excellent comportement santé
                                 2.	Maintien : Continuer mode de vie actif
-                                3.	Renforcement : Si assis < 4h → activité physique additionnelle optimise résultats",
-                                'cardio' => "
-                                Situation : EXCELLENT !
-                                Profil : Probablement travail actif ou très bon équilibre
-                                Conseils :
-                                •	Maintenir ce mode de vie actif
-                                •	Avantage majeur pour santé et perte de poids
-                                •	Capitaliser sur cette base"
+                                3.	Renforcement : Si assis < 4h → activité physique additionnelle optimise résultats"
                             ]
                         ],
                         '4h-6h' => [
@@ -14531,11 +12795,7 @@ class ModerateObesitySeeder extends Seeder
                                     o	Marcher 2-3 min
                                     o	Étirements
                                     •	Remplacer temps assis par debout quand possible
-                                    ",
-                                    'cardio' => "
-                                    Conseils ciblés :
-                                    •	Acceptable mais rester vigilant
-                                    •	Continuer pauses régulières "
+                                    "
                                 ],
                                 '5_10' => [
                                     'none' => "
@@ -14573,16 +12833,7 @@ class ModerateObesitySeeder extends Seeder
                                     •	Maintenir lifestyle actif
                                     •	Pauses régulières même si moins assis
                                     •	Éviter régression
-                                    ",
-                                    'cardio' => "
-                                    Conseils ciblés:
-                                    •	Acceptable, mais intégrer pauses actives
-                                    •	Toutes les heures: se lever, marcher 2-3 min, étirements
-                                    •	Sédentarité prolongée = risque thrombose, raideurs
-                                    Stratégies:
-                                    •	Appels téléphoniques debout/en marchant
-                                    •	Pause déjeuner active (marche 10 min)
-                                    •	Escaliers vs ascenseur"
+                                    "
                                 ],
                                 'over_10' => [
                                     'none' => "BON ! 
@@ -14649,16 +12900,6 @@ class ModerateObesitySeeder extends Seeder
                                     o	Marcher 2-3 min
                                     o	Étirements
                                     •	Remplacer temps assis par debout quand possible
-                                    ",
-                                    'cardio' => "
-                                    Conseils ciblés:
-                                    •	Acceptable, mais intégrer pauses actives
-                                    •	Toutes les heures: se lever, marcher 2-3 min, étirements
-                                    •	Sédentarité prolongée = risque thrombose, raideurs
-                                    Stratégies:
-                                    •	Appels téléphoniques debout/en marchant
-                                    •	Pause déjeuner active (marche 10 min)
-                                    •	Escaliers vs ascenseur
                                     "
                                 ],
                             ],
@@ -14725,13 +12966,7 @@ class ModerateObesitySeeder extends Seeder
                                 Conseils ciblés :
                                 1.	Compensations : 30-60 min activité quotidienne compense partiellement
                                 2.	Pauses : Toutes les heures, se lever 2-3 min (marcher, étirer)
-                                3.	Travail : Si sédentaire professionnel → pauses actives systématiques",
-                                'cardio' => "
-                                Situation : Acceptable
-                                Maintien :
-                                •	Continuer interruptions fréquentes
-                                •	Équilibre travail/mouvement
-                                •	Ne pas régresser"
+                                3.	Travail : Si sédentaire professionnel → pauses actives systématiques"
                             ]
                         ],
                         '6h-8h' => [
@@ -14864,10 +13099,7 @@ class ModerateObesitySeeder extends Seeder
                                     •	Limiter TV/écrans
                                     •	Activités debout (cuisine, ménage)
                                     •	Loisirs actifs vs passifs
-                                    Objectif : Passer à <6h dans 3 mois",
-                                    'cardio' => "Conseils ciblés :
-                                    •	Encore beaucoup, réduire si possible
-                                    •	Pauses actives essentielles"
+                                    Objectif : Passer à <6h dans 3 mois"
                                 ],
                                 '5_10' => [
                                     'none' => "
@@ -14960,8 +13192,7 @@ class ModerateObesitySeeder extends Seeder
                                     Menu :
                                     •	Selon niveau activité physique
                                     •	Si activité régulière, compense partiellement
-                                    •	Fractionner repas aide",
-                                    'cardio' => "Aucun"
+                                    •	Fractionner repas aide"
                                 ],
                                 'over_10' => [
                                     'none' => "
@@ -15076,20 +13307,7 @@ class ModerateObesitySeeder extends Seeder
                                     À la Maison :
                                     •	Limiter TV/écrans
                                     •	Activités debout (cuisine, ménage)
-                                    •	Loisirs actifs vs passifs",
-                                    'cardio' => "
-                                    Conseils ciblés:
-                                    •	ALERTE: sédentarité élevée
-                                    •	Compenser par activité physique quotidienne intensifiée
-                                    •	Pauses actives OBLIGATOIRES toutes les 30-60 min
-                                    Risques:
-                                    •	Même avec exercice, position assise prolongée = facteur risque indépendant
-                                    •	Ralentissement métabolique, accumulation graisse viscérale
-                                    •	Raideurs, douleurs dorsales
-                                    Actions:
-                                    •	Bureau debout si possible (alterner assis/debout)
-                                    •	Réunions en marchant
-                                    •	Trajet domicile-travail actif (marche, vélo partiel)"
+                                    •	Loisirs actifs vs passifs"
                                 ],
                             ],
                             'fitness' => [
@@ -15200,18 +13418,7 @@ class ModerateObesitySeeder extends Seeder
                                 1.	Alarmes : Téléphone/montre rappels toutes les 30-45 min (se lever)
                                 2.	Hydratation : Boire régulièrement → urines fréquentes → lève automatiquement
                                 3.	Activité compensatoire : 60 min/jour minimum (compense partiellement 6-8h assis)
-                                4.	Week-end : Maximiser activités debout/marche (compense semaine)",
-                                'cardio' => "
-                                Situation : Courant mais perfectible
-                                Objectif : Réduire à < 6h
-                                Stratégies :
-                                •	Se lever toutes les heures minimum
-                                •	Micro-mouvements fréquents
-                                •	Optimiser temps libre actif
-                                Plan de réduction :
-                                •	Identifier périodes assises
-                                •	Remplacer 1-2h par activités debout/mouvement
-                                •	Marche active pauses déjeuner"
+                                4.	Week-end : Maximiser activités debout/marche (compense semaine)"
                             ]
                         ],
                         'Plus de 8h' => [
@@ -15372,17 +13579,7 @@ class ModerateObesitySeeder extends Seeder
                                     5.	Marche 2 min
                                     Rappel Automatique :
                                     •	Alarme téléphone toutes les heures
-                                    •	Note : DEBOUT ! Bouge 5 min ",
-                                    'cardio' => "
-                                    Conseils ciblés :
-                                    •	TRÈS PROBLÉMATIQUE : Risque cardiovasculaire majeur
-                                    •	Se lever toutes les 30-60 minutes (même 2-3 min)
-                                    •	Marche de 5 min chaque heure si possible
-                                    Stratégies  :
-                                    •	Téléphoner debout
-                                    •	Regarder TV debout pendant les pubs
-                                    •	Faire petites tâches ménagères entre périodes assises
-                                    •	Marcher sur place"
+                                    •	Note : DEBOUT ! Bouge 5 min "
                                 ],
                                 '5_10' => [
                                     'none' => "
@@ -15572,28 +13769,7 @@ class ModerateObesitySeeder extends Seeder
                                     •	Petit-déjeuner copieux (métabolisme plus actif matin)
                                     •	Déjeuner modéré + marche digestive
                                     •	Dîner léger (soir = pic inactivité)
-                                    •	Collations = prétextes bouger (aller chercher fruit cuisine) ",
-                                    'cardio' => "
-                                    Conseils ciblés:
-                                    •	PARFAIT pour obésité + maladie CV
-                                    •	Impact faible, accessible, gratuit, sécurisé
-                                    •	Progresser en durée et intensité
-                                    
-                                    Programme marche:
-                                    •	Débutant: 20-30 min, rythme modéré (conversation possible)
-                                    •	Intermédiaire: 40-50 min, rythme soutenu (essoufflement léger)
-                                    •	Avancé: 60+ min OU intervalles (alternance rapide/lent)
-                                    
-                                    Lieux :
-                                    •	Plages (Cotonou, Grand-Popo): sable = calories ++
-                                    •	Parcs, espaces verts
-                                    •	Quartiers résidentiels calmes
-                                    •	Montées légères (renforcement)
-                                    
-                                    Adaptations alimentaires:
-                                    •	Avant marche >45 min: banane + eau
-                                    •	Après: réhydratation + collation si repas >2h
-                                    •	Marche matinale à jeun acceptable si pas diabète"
+                                    •	Collations = prétextes bouger (aller chercher fruit cuisine) "
                                 ],
                                 'over_10' => [
                                     'none' => "Maladie de la chaise ! Aussi dangereux que le tabac
@@ -15808,23 +13984,7 @@ class ModerateObesitySeeder extends Seeder
                                     
                                     Rappel Automatique :
                                     •	Alarme téléphone toutes les heures
-                                    •	Note : DEBOUT ! Bouge 5 min",
-                                    'cardio' => "
-                                    Conseils ciblés:
-                                    •	DANGER MAJEUR pour santé CV
-                                    •	Priorité absolue: réduire temps assis
-                                    •	Risque: diabète, obésité, maladies CV, décès prématuré augmentés significativement
-                                    
-                                    Plan d'action urgent:
-                                    •	Évaluer possibilités réduction (travail, loisirs)
-                                    •	Pauses actives TOUTES LES 30 MIN minimum
-                                    •	Compenser par 60-90 min activité modérée/jour (vs 30 min standard)
-                                    •	Envisager changements professionnels si possible
-                                    
-                                    Adaptations:
-                                    •	Exercices au bureau: extensions jambes, rotations chevilles, étirements
-                                    •	Pause déjeuner active obligatoire
-                                    •	Transport actif"
+                                    •	Note : DEBOUT ! Bouge 5 min"
                                 ],
                             ],
                             'fitness' => [
@@ -15991,45 +14151,7 @@ class ModerateObesitySeeder extends Seeder
                                 3.	Réveil : Toutes les 20 min (non négociable)
                                 4.	Fidget : Bouger jambes/pieds en assis (mieux que totalement immobile)
                                 5.	Week-end : Activités debout/marche maximales (rattrapage partiel semaine)
-                                6.	Long terme : Envisager changement profession si sédentarité excessive inévitable",
-                                'cardio' => "
-                                Danger majeur - \"Sitting is the new smoking\" :
-                                •	Annule partiellement bénéfices de l'exercice
-                                •	Métabolisme glucides altéré
-                                •	Risque cardiovasculaire +147%
-                                •	Mortalité toutes causes +50%
-                                •	Obésité abdominale favorisée
-                               
-                                Plan anti-sédentarité (même avec exercice régulier) :
-                                Au travail/bureau :
-                                •	Règle d'or : Se lever 5 min toutes les heures
-                                •	Alarme téléphone : Rappel horaire
-                                •	Activités debout : Appels téléphoniques, lecture, réflexion
-                                Micro-mouvements béninois au bureau :
-                                1.	Marche sur place 1 min
-                                2.	Étirements bras, cou, dos 2 min
-                                3.	Squats légers 10 répétitions
-                                4.	Montée d'escaliers 1 étage
-                                5.	Marche couloir/extérieur 2 min
-                                À domicile :
-                                •	Éviter TV/canapé prolongé
-                                •	Activités debout : repasser, cuisiner, ranger
-                                •	Privilégier activités actives
-                                Aménagements pratiques béninois :
-                                •	Bureau debout improvisé (table haute)
-                                •	Ballon de gym comme chaise (par intervalles)
-                                •	Marche pendant appels téléphoniques
-                                •	Jardinage quotidien 15 min
-                                •	Tâches ménagères actives
-                                Objectif progressif :
-                                •	Semaine 1-2 : Réduire à 7h (se lever 1 fois/heure)
-                                •	Semaine 3-4 : Réduire à 6h (se lever + micro-activité)
-                                •	Semaine 5+ : Maintenir < 6h, idéalement 4-5h max
-                                
-                                Adaptations alimentaires si très sédentaire :
-                                •	Même si exercice quotidien, considérer réduction glucides légère
-                                •	Collations debout ou en marchant
-                                •	Boire beaucoup (force déplacements toilettes)"
+                                6.	Long terme : Envisager changement profession si sédentarité excessive inévitable"
                             ]
                         ]
                     ]
@@ -16142,22 +14264,7 @@ class ModerateObesitySeeder extends Seeder
                                     Alimentation Marcheur :
                                     •	Collation légère avant si marche matinale (banane)
                                     •	Hydratation ++
-                                    •	Repas normaux selon niveau activité",
-                                        'cardio' => "
-                                        Conseils ciblés :
-                                    •	Excellente activité cardiovasculaire douce
-                                    •	Accessible à tous
-                                    •	Progresser : vitesse et/ou durée
-                                    
-                                    Programme  :
-                                    •	Marche matinale (6h-7h, température fraîche)
-                                    •	Marche vespérale (17h-18h)
-                                    •	Explorer quartiers, marchés
-                                    •	Marche en groupe (motivation)
-                                    
-                                    Repas pré-marche :
-                                    •	1h avant : Banane + eau
-                                    •	Ou : Quelques noix + fruits"
+                                    •	Repas normaux selon niveau activité"
                                 ],
                                 '5_10' => [
                                     'none' => "
@@ -16265,25 +14372,7 @@ class ModerateObesitySeeder extends Seeder
                                     •	Application compteur pas (10 000 pas/jour objectif)
                                     •	Groupe marche matinale quartier
                                     •	Défis personnels (augmenter distance chaque semaine)
-                                    •	Musique/podcasts",
-                                    'cardio' => "
-                                    Conseils ciblés:
-                                    •	PARFAIT pour obésité + maladie CV
-                                    •	Impact faible, accessible, gratuit, sécurisé
-                                    •	Progresser en durée et intensité
-                                    Programme marche:
-                                    •	Débutant: 20-30 min, rythme modéré (conversation possible)
-                                    •	Intermédiaire: 40-50 min, rythme soutenu (essoufflement léger)
-                                    •	Avancé: 60+ min OU intervalles (alternance rapide/lent)
-                                    Lieux :
-                                    •	Plages (Cotonou, Grand-Popo): sable = calories ++
-                                    •	Parcs, espaces verts
-                                    •	Quartiers résidentiels calmes
-                                    •	Montées légères (renforcement)
-                                    Adaptations alimentaires:
-                                    •	Avant marche >45 min: banane + eau
-                                    •	Après: réhydratation + collation si repas >2h
-                                    •	Marche matinale à jeun acceptable si pas diabète"
+                                    •	Musique/podcasts"
                                 ],
                                 'over_10' => [
                                     'none' => "
@@ -16442,27 +14531,7 @@ class ModerateObesitySeeder extends Seeder
                                     Alimentation Marcheur :
                                     •	Collation légère avant si marche matinale (banane)
                                     •	Hydratation ++
-                                    •	Repas normaux selon niveau activité",
-                                    'cardio' => "Conseils ciblés:
-                                    •	PARFAIT pour obésité + maladie CV
-                                    •	Impact faible, accessible, gratuit, sécurisé
-                                    •	Progresser en durée et intensité
-                                    
-                                    Programme marche:
-                                    •	Débutant: 20-30 min, rythme modéré (conversation possible)
-                                    •	Intermédiaire: 40-50 min, rythme soutenu (essoufflement léger)
-                                    •	Avancé: 60+ min OU intervalles (alternance rapide/lent)
-                                    
-                                    Lieux :
-                                    •	Plages (Cotonou, Grand-Popo): sable = calories ++
-                                    •	Parcs, espaces verts
-                                    •	Quartiers résidentiels calmes
-                                    •	Montées légères (renforcement)
-                                    
-                                    Adaptations alimentaires:
-                                    •	Avant marche >45 min: banane + eau
-                                    •	Après: réhydratation + collation si repas >2h
-                                    •	Marche matinale à jeun acceptable si pas diabète "
+                                    •	Repas normaux selon niveau activité"
                                 ],
                             ],
                             'fitness' => [
@@ -16606,43 +14675,7 @@ class ModerateObesitySeeder extends Seeder
                                 4.	Timing : Matin tôt (fraîcheur) OU soir (après 18h) - éviter 12h-16h (chaleur)
                                 5.	Sécurité : Quartiers sûrs, compagnie si possible, téléphone
                                 6.	Suivi : Podomètre/application smartphone (motivant)
-                                7.	Objectif quotidien : 7 000-10 000 pas/jour (marche quotidienne + activités)",
-                                'cardio' => "
-                                Principe fondamental : Le meilleur exercice est celui qu'on FAIT, pas celui qui est \"optimal\" théoriquement.
-                                MARCHE :
-                                Excellente base, surtout pour débuter
-                                Avantages :
-                                •	Accessible, gratuit, sûr
-                                •	Faible impact articulaire (crucial pour obésité)
-                                •	Social (en groupe ou famille)
-                                •	Intégrable au quotidien
-                                
-                                Programme de marche béninois progressif :
-                                Débutant (Semaines 1-4) :
-                                •	15-20 min/jour, 3-4 fois/semaine
-                                •	Vitesse confortable
-                                •	Moments : Matin frais (6h-7h) ou soir (18h-19h)
-                                •	Lieux béninois : Quartier, plage, marché
-                                Intermédiaire (Semaines 5-12) :
-                                •	30-40 min/jour, 5 fois/semaine
-                                •	Introduction d'intervalles rapides
-                                •	Technique : Alterner 3 min normal / 2 min rapide
-                                •	Ajouts : Collines, escaliers
-                                Avancé (Semaines 13+) :
-                                •	45-60 min/jour, 5-6 fois/semaine
-                                •	Marche rapide soutenue
-                                •	Randonnées week-end
-                                •	Objectif : 10 000 pas/jour minimum
-                                
-                                Lieux de marche béninois recommandés :
-                                •	Cotonou : Plage de Fidjrossè, bord de lagune, quartiers résidentiels
-                                •	Porto-Novo : Berges de l'Ouémé, centre historique
-                                •	Autres : Parcs, boulevards, marchés matinaux
-                                
-                                Adaptations alimentaires marche :
-                                •	Avant (si > 45 min) : Petit encas (fruit + noix)
-                                •	Pendant : Eau (si > 60 min)
-                                •	Après : Normal si < 60 min ; collation si > 60 min"
+                                7.	Objectif quotidien : 7 000-10 000 pas/jour (marche quotidienne + activités)"
                                 
                             ]
                         ],
@@ -16749,15 +14782,7 @@ class ModerateObesitySeeder extends Seeder
                                     Postures Bénéfiques Hypertension/Obésité :
                                     •	✅ Postures douces, respirations profondes
                                     •	✅ Torsions (massage organes)
-                                    •	❌ Éviter inversions complètes si TA non contrôlée",
-                                    'cardio' => "
-                                    Conseils ciblés :
-                                    •	Excellent pour flexibilité et gestion stress
-                                    •	Compléter avec activité cardiovasculaire (marche, vélo)
-                                    •	Réduction stress → meilleur contrôle poids
-                                    Programme :
-                                    •	Yoga le matin (énergie) ou soir (détente)
-                                    •	Combiner avec marche 3 fois/semaine"
+                                    •	❌ Éviter inversions complètes si TA non contrôlée"
                                 ],
                                 '5_10' => [
                                     'none' => "
@@ -16846,27 +14871,7 @@ class ModerateObesitySeeder extends Seeder
                                     Yoga à domicile gratuit :
                                     •	YouTube : chaînes francophones (Yoga avec Adriene sous-titres FR, etc.)
                                     •	Applications : Down Dog, Daily Yoga
-                                    •	20-30 min matin ou soir",
-                                    'cardio' => "
-                                    Conseils ciblés:
-                                    •	Excellent pour flexibilité, équilibre, réduction stress
-                                    •	Complément parfait à activités cardio
-                                    •	Certaines formes caloriques (yoga dynamique, vinyasa)
-                                    
-                                    Bénéfices spécifiques:
-                                    •	↓ cortisol (hormone stress → prise poids)
-                                    •	Améliore conscience corporelle → meilleur contrôle alimentaire
-                                    •	↓ tension artérielle, améliore fonction endothéliale
-                                    
-                                    Pratique:
-                                    •	2-3 séances/semaine, 30-60 min
-                                    •	Combiner avec marche ou autre cardio
-                                    •	Respiration profonde = activation parasympathique
-                                    
-                                    Adaptations alimentaires:
-                                    •	Estomac léger: 2h après repas léger OU à jeun
-                                    •	Hydratation avant/après
-                                    •	Pas de collation spécifique nécessaire"
+                                    •	20-30 min matin ou soir"
                                 ],
                                 'over_10' => [
                                     'none' => "
@@ -17004,27 +15009,7 @@ class ModerateObesitySeeder extends Seeder
                                     Postures Bénéfiques Hypertension/Obésité :
                                     •	Postures douces, respirations profondes
                                     •	Torsions (massage organes)
-                                    •	Éviter inversions complètes si TA non contrôlée ",
-                                    'cardio' => "
-                                    Conseils ciblés:
-                                    •	Excellent pour flexibilité, équilibre, réduction stress
-                                    •	Complément parfait à activités cardio
-                                    •	Certaines formes caloriques (yoga dynamique, vinyasa)
-                                    
-                                    Bénéfices spécifiques:
-                                    •	↓ cortisol (hormone stress → prise poids)
-                                    •	Améliore conscience corporelle → meilleur contrôle alimentaire
-                                    •	↓ tension artérielle, améliore fonction endothéliale
-                                    
-                                    Pratique:
-                                    •	2-3 séances/semaine, 30-60 min
-                                    •	Combiner avec marche ou autre cardio
-                                    •	Respiration profonde = activation parasympathique
-                                    
-                                    Adaptations alimentaires:
-                                    •	Estomac léger: 2h après repas léger OU à jeun
-                                    •	Hydratation avant/après
-                                    •	Pas de collation spécifique nécessaire"
+                                    •	Éviter inversions complètes si TA non contrôlée "
                                 ],
                             ],
                             'fitness' => [
@@ -17148,43 +15133,7 @@ class ModerateObesitySeeder extends Seeder
                                 3.	Supports : Utiliser généreusement (pas de honte)
                                 4.	Cours : Si accès professeur qualifié → mentionner obésité + HTA (adaptations)
                                 5.	Maison : Vidéos YouTube \"yoga débutants\" OU \"yoga obésité\" (nombreuses gratuites)
-                                6.	Complémentarité : Yoga + marche = combinaison excellente (cardio + flexibilité/force)",
-                                'cardio' => "
-                                Principe fondamental : Le meilleur exercice est celui qu'on FAIT, pas celui qui est \"optimal\" théoriquement.
-                                YOGA :
-                                Excellent complément, surtout si MCV
-                                Avantages :
-                                •	Flexibilité, équilibre
-                                •	Gestion stress (cortisol ↓)
-                                •	Renforcement musculaire doux
-                                •	Amélioration conscience corporelle
-                                •	Méditation (contrôle alimentaire émotionnel)
-                                Types adaptés obésité + MCV :
-                                •	Hatha yoga : Doux, accessible
-                                •	Yin yoga : Étirements profonds, relaxation
-                                •	Yoga restauratif : Récupération
-                                •	Éviter initialement : Vinyasa intense, Power yoga
-                                
-                                Programme béninois yoga :
-                                •	Fréquence : 2-3 fois/semaine minimum
-                                •	Durée : 30-45 min
-                                •	Moment : Matin (flexibilité) ou soir (relaxation)
-                                Accès au yoga au Bénin :
-                                •	Studios à Cotonou (si disponibles)
-                                •	Vidéos en ligne (YouTube)
-                                •	Applications (Down Dog, Yoga Studio)
-                                •	Pratique autonome à domicile
-                                Séance type yoga domicile (30 min) :
-                                1.	Respiration (5 min) : Pranayama
-                                2.	Échauffement (5 min) : Salutations douces
-                                3.	Postures (15 min) : Focus corps entier
-                                4.	Étirements (3 min) : Souplesse
-                                5.	Relaxation (2 min) : Savasana
-                                
-                                Adaptations alimentaires yoga :
-                                •	Pratique à jeun ou 2-3h après repas
-                                •	Hydratation post-séance
-                                •	Repas léger si proche de la pratique"
+                                6.	Complémentarité : Yoga + marche = combinaison excellente (cardio + flexibilité/force)"
                             ]
                         ],
                         'Autre' => [
@@ -17323,18 +15272,7 @@ class ModerateObesitySeeder extends Seeder
                                     •	Laver voiture/moto énergiquement
                                     •	Ranger maison
                                     •	Cuisiner debout actif (pas assis)
-                                    Principe : TOUT MOUVEMENT COMPTE. Pas besoin sport officiel. Bouger suffisant !",
-                                    'cardio' => "
-                                    Conseils ciblés :
-                                    •	Natation : Excellente, protège articulations
-                                    •	Vélo : Bon cardio, musculation jambes
-                                    •	Danse : Fun, social, excellent cardio (zumba, danse traditionnelle)
-                                    •	Sports collectifs : Motivation, aspect social
-                                    Activités populaires :
-                                    •	Danse afro/zumba dans centres communautaires
-                                    •	Football amateur
-                                    •	Natation plage/piscine
-                                    •	Vélo en groupe"
+                                    Principe : TOUT MOUVEMENT COMPTE. Pas besoin sport officiel. Bouger suffisant !"
                                 ],
                                 '5_10' => [
                                     'none' => "
@@ -17757,31 +15695,7 @@ class ModerateObesitySeeder extends Seeder
                                     •	Terrain varié
                                     •	Intervals intensité
                                     Menu :
-                                    •	Vélo >1h : nutrition sportive (boisson, collation) ",
-                                    'cardio' => "
-                                    Natation:
-                                    •	IDÉAL obésité: aucun impact articulations, effort cardiaque optimal
-                                    •	30-45 min, 3-4 fois/semaine
-                                    •	Calories: 400-600/h selon intensité
-                                    •	Alimentation: Banane + arachides avant, réhydratation abondante après
-                                    
-                                    Cyclisme:
-                                    •	Excellent cardio, renforce jambes
-                                    •	Débuter: 20-30 min terrain plat
-                                    •	Progresser: durée puis dénivelés
-                                    •	Alimentation: Glucides avant (banane, pain complet), eau durant
-                                    
-                                    Danse (traditionnelle ou moderne):
-                                    •	Cardio + aspect ludique/social
-                                    •	Agbadja, zangbeto, kizomba, zumba...
-                                    •	45-60 min/session, 2-3 fois/semaine
-                                    •	Alimentation: Collation légère avant, hydratation ++
-                                    
-                                    Musculation/renforcement:
-                                    •	Crucial: préserve masse musculaire durant perte poids
-                                    •	Métabolisme basal augmenté
-                                    •	2-3 séances/semaine, corps entier
-                                    •	Alimentation: Protéines essentielles (poisson, œufs, haricots), glucides post-effort"
+                                    •	Vélo >1h : nutrition sportive (boisson, collation) "
                                 ],
                                 'over_10' => [
                                     'none' => "
@@ -17975,31 +15889,7 @@ class ModerateObesitySeeder extends Seeder
                                     •	Vélo transport quotidien = activité intégrée
                                     •	30+ min/jour
                                     •	Hydratation ++
-                                    •	Protection solaire",
-                                    'cardio' => "
-                                    Natation:
-                                    •	IDÉAL obésité: aucun impact articulations, effort cardiaque optimal
-                                    •	30-45 min, 3-4 fois/semaine
-                                    •	Calories: 400-600/h selon intensité
-                                    •	Alimentation: Banane + arachides avant, réhydratation abondante après
-                                    
-                                    Cyclisme:
-                                    •	Excellent cardio, renforce jambes
-                                    •	Débuter: 20-30 min terrain plat
-                                    •	Progresser: durée puis dénivelés
-                                    •	Alimentation: Glucides avant (banane, pain complet), eau durant
-                                    
-                                    Danse (traditionnelle ou moderne):
-                                    •	Cardio + aspect ludique/social
-                                    •	Agbadja, zangbeto, kizomba, zumba...
-                                    •	45-60 min/session, 2-3 fois/semaine
-                                    •	Alimentation: Collation légère avant, hydratation ++
-                                    
-                                    Musculation/renforcement:
-                                    •	Crucial: préserve masse musculaire durant perte poids
-                                    •	Métabolisme basal augmenté
-                                    •	2-3 séances/semaine, corps entier
-                                    •	Alimentation: Protéines essentielles (poisson, œufs, haricots), glucides post"
+                                    •	Protection solaire"
                                 ],
                             ],
                             'fitness' => [
@@ -18436,122 +16326,7 @@ class ModerateObesitySeeder extends Seeder
                                 2.	Variété : Combiner plusieurs activités (évite monotonie, travaille différents groupes musculaires)
                                 3.	Adaptation : Toute activité adaptable selon niveau (modifications, pauses, durée)
                                 4.	Sécurité : Équipement adéquat, échauffement, progression graduelle
-                                5.	Social : Activités groupe (si possibles) → motivation, engagement",
-                                'cardio' => "
-                                FOOTBALL :
-                                Avantages :
-                                •	Social, ludique, motivant
-                                •	Cardio intense + renforcement
-                                •	Culturellement ancré au Bénin
-                                Précautions obésité + MCV :
-                                •	Début : Adaptation progressive (3-6 mois)
-                                •	Intensité : Modérée initialement
-                                •	Échauffement : Obligatoire (15 min)
-                                •	Hydratation : Cruciale
-                                •	Surveillance : Fréquence cardiaque
-                                Programme progressif :
-                                •	Mois 1-2 : Jeu réduit, touches de balle, passes (30 min)
-                                •	Mois 3-4 : Matchs réduits 5v5 (45 min)
-                                •	Mois 5+ : Matchs complets (selon forme)
-                                Nutrition football :
-                                •	3h avant : Repas complet (glucides + protéines modérées)
-                                •	1h avant : Collation légère (banane + eau)
-                                •	Pendant : Eau toutes les 15 min
-                                •	Après : Glucides + protéines dans l'heure (récupération)
-                                Exemple jour de match (18h) :
-                                •	7h : Petit-déj complet
-                                •	13h : Déjeuner riche en glucides (riz + poulet + légumes)
-                                •	16h : Collation : Banane + beurre d'arachide + eau
-                                •	18h : MATCH + hydratation
-                                •	19h30 : Post-match : Jus naturel + noix
-                                •	20h30 : Dîner : Protéines + glucides (poisson + igname + légumes)
-                                
-                                NATATION :
-                                Avantages :
-                                •	Idéal obésité (pas d'impact articulaire)
-                                •	Cardio complet
-                                •	Renforcement musculaire global
-                                •	Rafraîchissant (climat tropical)
-                                Accès au Bénin :
-                                •	Plage (gratuit) : Fidjrossè, Grand-Popo, Ouidah
-                                •	Piscines : Hôtels, clubs
-                                Programme natation :
-                                •	Débutant : 20 min (nage calme, repos fréquents), 2-3 fois/semaine
-                                •	Intermédiaire : 30-40 min (longueurs continues), 3-4 fois/semaine
-                                •	Avancé : 45-60 min (intervalles, techniques variées), 4-5 fois/semaine
-                                Sécurité plage :
-                                •	Zones surveillées uniquement
-                                •	Jamais seul
-                                •	Respecter drapeaux
-                                •	Hydratation malgré immersion
-                                Nutrition natation :
-                                •	Hydratation avant et après (même si dans l'eau)
-                                •	Collation post : Glucides + protéines
-                                •	Repas normal si < 45 min
-                                
-                                DANSE (Afro, Zouglou, Coupé-Décalé, traditionnelle) :
-                                Avantages :
-                                •	Cardio intense et ludique
-                                •	Culturel et social
-                                •	Libération émotionnelle
-                                •	Renforcement core
-                                Types danse:
-                                •	Traditionnelle : Guèlèdè, Tchinkounmè, Sakpata
-                                •	Moderne : Coupé-décalé, Zouglou, Afrobeat
-                                •	Fitness : Zumba (fusion)
-                                Programme danse :
-                                •	Fréquence : 2-4 fois/semaine
-                                •	Durée : 30-60 min
-                                •	Intensité : Modérée à intense
-                                •	Lieux : Cours collectifs, maquis (soirées), domicile
-                                Cours danse à Cotonou :
-                                •	Studios de danse
-                                •	Centres culturels
-                                •	Vidéos YouTube (danse africaine)
-                                •	Soirées maquis (participation active)
-                                Nutrition danse :
-                                •	Éviter repas lourd 2h avant
-                                •	Hydratation cruciale
-                                •	Post-danse : Collation récupération
-                               
-                                VÉLO :
-                                Avantages :
-                                •	Cardio efficace
-                                •	Faible impact
-                                •	Transport actif (économique)
-                                •	Renforcement jambes
-                                Praticabilité au Bénin :
-                                •	Urbain (Cotonou) : Difficile (trafic), possible routes secondaires
-                                •	Régions : Plus accessible
-                                •	Alternative : Vélo d'appartement
-                                Programme vélo :
-                                •	Débutant : 20-30 min, plat, 3 fois/semaine
-                                •	Intermédiaire : 40-60 min, légères pentes, 4 fois/semaine
-                                •	Avancé : 60-90 min, relief varié, 5 fois/semaine
-                                Sécurité :
-                                •	Casque obligatoire
-                                •	Visibilité (gilet, lumières)
-                                •	Éviter heures de pointe
-                                •	Trajets connus
-                                Nutrition vélo :
-                                •	< 60 min : Eau suffisante
-                                •	> 60 min : Collation (banane, fruits secs)
-                                •	Post : Repas dans l'heure (glucides + protéines)
-                                
-                                COMBINAISON ACTIVITÉS (Recommandé) :
-                                Programme équilibré béninois type :
-                                •	Lundi : Marche 40 min
-                                •	Mardi : Renforcement musculaire maison 30 min
-                                •	Mercredi : Danse (cours ou vidéo) 45 min
-                                •	Jeudi : Yoga 30 min
-                                •	Vendredi : Football amateur 60 min
-                                •	Samedi : Natation ou vélo 45 min
-                                •	Dimanche : Repos actif (marche légère, étirements)
-                                Avantages combinaison :
-                                •	Évite monotonie et abandon
-                                •	Travail complet du corps
-                                •	Adaptation à l'emploi du temps
-                                •	Social + individuel"
+                                5.	Social : Activités groupe (si possibles) → motivation, engagement"
                             ]
                         ]
                     ]
@@ -18565,27 +16340,23 @@ class ModerateObesitySeeder extends Seeder
                                 'under_5' => [
                                     'none' => "Aucun",
                                     'diabetes' => "Aucun",
-                                    'hypertension' => "Aucun",
-                                    'cardio' => "Aucun"
+                                    'hypertension' => "Aucun"
                                 ],
                                 '5_10' => [
                                     'none' => "Aucun",
                                     'diabetes' => "Aucun",
-                                    'hypertension' => "Aucun",
-                                    'cardio' => "Aucun"
+                                    'hypertension' => "Aucun"
                                 ],
                                 'over_10' => [
                                     'none' => "Excellent ! Indicateur de condition physique",
                                     'diabetes' => "Aucun",
-                                    'hypertension' => "Aucun",
-                                    'cardio' => "Aucun"
+                                    'hypertension' => "Aucun"
                                 ],
                             ],
                             'fitness' => [
                                 'none' => "Aucun",
                                 'diabetes' => "Aucun",
-                                'hypertension' => "Aucun",
-                                'cardio' => "Aucun"
+                                'hypertension' => "Aucun"
                             ]
                         ],
                     ],
@@ -18652,18 +16423,7 @@ class ModerateObesitySeeder extends Seeder
                                 4. Noter :
                                 •	Créer tableau suivi
                                 •	Observer évolution
-                                Alternative : Applications téléphone (utilisant caméra/flash) - précision variable",
-                                'cardio' => "
-                                Conseils:
-                                •	Apprendre à la mesurer
-                                •	Consulter un professionnel
-                                •	Focus sur la prévention
-                                •	encourager suivi médical
-                                Aliments cardioprotecteurs:
-                                •	Poissons gras locaux
-                                •	Noix de karité
-                                •	Légumes verts feuillus
-                                •	Fruits riches en potassium"
+                                Alternative : Applications téléphone (utilisant caméra/flash) - précision variable"
                             ],
                             '5_10' => [
                                 'none' => "
@@ -18773,16 +16533,7 @@ class ModerateObesitySeeder extends Seeder
                                 4.	Cardio intense : 80-90% (144-162 bpm) - athlètes
                                 5.	Maximum : 90-100% (162-180 bpm) - brefs intervals seulement
                                 Pour obésité + HTA : privilégier zones 1-3 (50-80% FC max)
-                                ",
-                                                                'cardio' => "Conseils ciblés:
-                                •	Apprendre à mesurer: utile pour suivi santé CV + intensité exercice
-                                •	Méthode: 2 doigts sur poignet (artère radiale) OU cou (carotide), compter 60 sec
-                                •	Moment: au réveil, avant de se lever
-                                •	Applications smartphone possibles
-                                Utilité:
-                                •	Zone cible entraînement: 60-80% FC max
-                                •	FC max estimée: 220 - âge
-                                •	Exemple 50 ans: FC max = 170, zone cible = 102-136 bpm"
+                                "
                             ],
                             'over_10' => [
                                 'none' => "Conseils pour mesurer :
@@ -18848,17 +16599,7 @@ class ModerateObesitySeeder extends Seeder
                                 4. Noter :
                                 •	Créer tableau suivi
                                 •	Observer évolution
-                                Alternative : Applications téléphone (utilisant caméra/flash) - précision variable ",
-                                'cardio' => "
-                                Conseils ciblés:
-                                •	Apprendre à mesurer: utile pour suivi santé CV + intensité exercice
-                                •	Méthode: 2 doigts sur poignet (artère radiale) OU cou (carotide), compter 60 sec
-                                •	Moment: au réveil, avant de se lever
-                                •	Applications smartphone possibles
-                                Utilité:
-                                •	Zone cible entraînement: 60-80% FC max
-                                •	FC max estimée: 220 - âge
-                                •	Exemple 50 ans: FC max = 170, zone cible = 102-136 bpm "
+                                Alternative : Applications téléphone (utilisant caméra/flash) - précision variable "
                             ],
                         ],
                         'fitness' => [
@@ -18952,26 +16693,7 @@ class ModerateObesitySeeder extends Seeder
                             2.	Référence : Établir FCR baseline (moyenne 3 mesures sur 1 semaine)
                             3.	Surveillance : Hebdomadaire (motivation voir baisse progressive)
                             4.	Objectif : < 80 bpm idéal, < 70 bpm excellent
-                            5.	Consultation : Si FCR > 100 bpm repos → médecin",
-                            'cardio' => "
-                            Recommandation : Apprendre à mesurer
-                            Méthodes de mesure :
-                            1. Prise de pouls manuelle (gratuit) :
-                            •	Moment : Au réveil, avant lever, assis ou couché
-                            •	Technique : 
-                            o	Pouls radial (poignet) ou carotidien (cou)
-                            o	Compter battements pendant 15 secondes
-                            o	Multiplier par 4 = FC/minute
-                            •	Répéter 3 matins : Faire moyenne
-                            2. Applications smartphone (gratuit) :
-                            •	Utilisation flash + caméra
-                            •	Précision variable mais indicative
-                            •	Exemples : Instant Heart Rate, Cardiograph
-                            3. Moniteurs cardiaques (investissement) :
-                            •	Montres connectées (Xiaomi Mi Band, autres abordables)
-                            •	Ceintures thoraciques (plus précises)
-                            •	Disponibles Cotonou (boutiques électronique)
-                            Objectif : Connaître sa FC repos puis utiliser pour optimiser entraînement (voir section précédente)"
+                            5.	Consultation : Si FCR > 100 bpm repos → médecin"
                         ]
                     ]
                 ],
@@ -19145,50 +16867,7 @@ class ModerateObesitySeeder extends Seeder
 
                                     Durant Exercice :
                                     •	Viser zone modérée débutant
-                                    •	Progresser vers zone intense ",
-                                    'cardio' => "FCmax estimée selon la formule de Tanaka (208 - 0.7 x âge) : {valeur_tanaka} bpm.
-
-                                    Conseils:
-                                    •	Utiliser pour ajuster l'effort en : 
-                                    •	Déterminant la fréquence cardiaque maximale (FCmax) : Formule de Tanaka (plus précise pour certains adultes) : FCmax ≈ 208 − 0,7 × âge.
-                                    •	Utilisant cette formule pour calculer la fréquence cardiauqe maximale et par la suite définir la zones d’effort cible pour user enfin de lui faire les recommandations pour l’activité physique et nutritionnelles en te basant sur le tableau suivant :
-                                    
-                                    Serves vous de votre FcMax cible en fonstion de viotre niveau d'activité pour connaitre votre zone déeffort, votre activité physqiue recommandées et votre recommanadations snutritionnelles :
-                                    1. Niveau sédentaire : Les personnes sédentaires doivent pratiquer des activités physiques correspondant à 50 à 60 % de leur fréquence cardiaque maximale (FCmax), ce qui correspond à une zone de récupération légère. Les activités recommandées comprennent la marche douce, les étirements et le vélo à faible intensité. Sur le plan nutritionnel, il est conseillé de privilégier les aliments riches en fibres, notamment les fruits, les légumes et les légumineuses, de limiter la consommation de graisses saturées et de sel, et de maintenir une hydratation suffisante.
-                                    2. Niveau légèrement actif : Les personnes légèrement actives doivent viser une intensité comprise entre 60 et 70 % de leur FCmax, correspondant à une zone aérobie modérée. Les activités adaptées incluent la marche rapide, la natation douce et le vélo à intensité modérée. Les recommandations nutritionnelles consistent à adopter une alimentation équilibrée de type DASH, à privilégier les protéines maigres ainsi que les glucides complexes, et à réduire la consommation de sucres rapides.
-                                    3. Niveau modérément actif : Les personnes modérément actives doivent s’exercer à une intensité située entre 70 et 75 % de leur FCmax, dans une zone aérobie supérieure. Les activités recommandées sont la marche rapide prolongée, le vélo soutenu et la natation modérée. Il est conseillé de fractionner les repas, de limiter les apports en sel et en graisses saturées, et de privilégier les aliments riches en potassium et en oméga-3.
-                                    4. Niveau très actif : Les personnes très actives doivent maintenir un effort compris entre 75 et 85 % de leur FCmax, correspondant à une zone cardio intensive. Les activités adaptées comprennent la marche rapide en côte, la natation intensive et le vélo soutenu. Sur le plan nutritionnel, il est recommandé de contrôler les apports caloriques, de maintenir une bonne hydratation, de privilégier les glucides complexes avant l’effort et les protéines après l’effort afin de favoriser la récupération musculaire.
-                                    5. Niveau extrêmement actif : Les personnes extrêmement actives évoluent entre 85 et 90 % de leur FCmax, dans une zone anaérobie légère. Les activités recommandées comprennent des séances encadrées de cardio léger à modéré ainsi que des exercices adaptés aux capacités cardiovasculaires de la personne. Les recommandations nutritionnelles incluent le fractionnement de l’alimentation, la consommation d’aliments riches en antioxydants et en minéraux, ainsi que l’évitement des excès de sel et de graisses saturées afin de préserver la santé cardiovasculaire.
-                                    
-                                    Notes importantes:
-                                    o	FC max = fréquence cardiaque maximale, calculée idéalement avec formule adaptée (formule de Tanaka).
-                                    o	Toutes les activités doivent être validées par un médecin ou cardiologue avant mise en place.
-                                    o	L’intensité des efforts doit rester adaptée à l’état cardiovasculaire et au niveau de tolérance du patient.
-                                    •	Monitorer les progrès en suivant les étapes suivantes : 
-                                    1. Comprendre sa valeur de base
-                                    •	La personne doit mesurer sa FCR le matin au réveil (avant de se lever, après une bonne nuit de sommeil).
-                                    •	Elle note la moyenne de 3 à 5 jours consécutifs pour établir sa valeur de référence (par ex. 78 battements/min).
-
-                                    2. Suivi dans le temps
-                                    •	Diminution progressive de la FCR 👉 signe que le cœur devient plus efficace, souvent grâce à l’activité physique régulière, la perte de poids et une meilleure alimentation.
-                                    •	Stabilité de la FCR 👉 normal si la condition est bien gérée.
-                                    •	Augmentation soudaine (+10 battements/min ou plus) 👉 peut indiquer fatigue, stress, mauvaise récupération, infection, ou un problème cardiaque → nécessite une vérification médicale.
-                                    
-                                    3. Corrélation avec l’activité physique
-                                    •	Si la FCR baisse au repos avec le temps, cela reflète une meilleure condition cardiorespiratoire.
-                                    •	Exemple : passer de 80 bpm → 72 bpm après plusieurs semaines d’activité adaptée (marche, vélo doux, natation).
-                                    
-                                    4. Lien avec l’alimentation
-                                    •	Une alimentation équilibrée (réduction du sel, augmentation des fibres, consommation d’antioxydants) contribue indirectement à la baisse de la FCR via l’amélioration de la tension artérielle et de la santé vasculaire.
-                                    
-                                    5. Outils pratiques de monitoring
-                                    •	Carnet papier → noter chaque matin la FCR.
-                                    •	Montres connectées / applications → suivi automatique avec graphiques.
-                                    •	Associer la FCR avec d’autres mesures : poids, tension artérielle, qualité du sommeil.
-                                    👉 Conseil clé : La FCR est un bon indicateur de progrès, mais une personne avec une maladie cardiovasculaire doit toujours interpréter ses résultats avec son médecin/cardiologue, car une variation peut être liée à un traitement ou à la maladie elle-même.
-
-                                    •	Nutrition cardio-spécifique
-                                    •	interpréter état cardiovasculaire pour adapter les apports."
+                                    •	Progresser vers zone intense "
                                 ],
                                 '5_10' => [
                                     'none' => "FCmax estimée selon la formule de Tanaka (208 - 0.7 x âge) : {valeur_tanaka} bpm.
@@ -19588,71 +17267,7 @@ class ModerateObesitySeeder extends Seeder
                                     •	Performance optimale
                                     Si sédentaire <50 bpm :
                                     •	Consulter cardiologue (éliminer troubles conduction)
-                                    •	Possible médication (bêta-bloquants peuvent ralentir excessivement)",
-                                    'cardio' => "FCmax estimée selon la formule de Tanaka (208 - 0.7 x âge) : {valeur_tanaka} bpm.
-
-                                    •	Déterminant la fréquence cardiaque maximale (FCmax) : Formule de Tanaka (plus précise pour certains adultes) : FCmax ≈ 208 − 0,7 × âge.
-                                    •	Utilisant cette formule pour calculer la fréquence cardiauqe maximale et par la suite définir la zones d’effort cible pour user enfin de lui faire les recommandations pour l’activité physique et nutritionnelles en te basant sur les données suivantes :
-                                    1. Niveau sédentaire : Les personnes sédentaires doivent réaliser des activités physiques correspondant à 50–60 % de leur fréquence cardiaque maximale (FCmax), dans une zone de récupération légère. Les activités recommandées incluent la marche douce, les étirements et le vélo léger. Sur le plan nutritionnel, il est conseillé de privilégier les aliments riches en fibres tels que les fruits, les légumes et les légumineuses, de limiter la consommation de graisses saturées et de sel, et de maintenir une hydratation suffisante.
-                                    2. Niveau légèrement actif : Les personnes légèrement actives doivent évoluer entre 60 et 70 % de leur FCmax, dans une zone aérobie modérée. Les activités adaptées sont la marche rapide, la natation douce et le vélo modéré. L’alimentation doit être équilibrée de type DASH, avec une priorité donnée aux protéines maigres et aux glucides complexes, tout en réduisant la consommation de sucres rapides.
-                                    3. Niveau modérément actif : Les personnes modérément actives doivent travailler à une intensité de 70 à 75 % de leur FCmax, correspondant à une zone aérobie supérieure. Les activités recommandées comprennent la marche rapide prolongée, le vélo soutenu et la natation modérée. Il est conseillé de fractionner les repas, de limiter les apports en sel et en graisses saturées, et de privilégier les aliments riches en potassium et en oméga-3.
-                                    4. Niveau très actif : Les personnes très actives doivent maintenir une intensité de 75 à 85 % de leur FCmax, correspondant à une zone cardio intensive. Les activités adaptées incluent la marche rapide en côte, la natation intensive et le vélo soutenu. Sur le plan nutritionnel, il est important de contrôler les apports caloriques, de maintenir une bonne hydratation, de consommer des glucides complexes avant l’effort et des protéines après l’effort afin de favoriser la récupération.
-                                    5. Niveau extrêmement actif : Les personnes extrêmement actives évoluent entre 85 et 90 % de leur FCmax, dans une zone anaérobie légère. Les activités recommandées sont des séances encadrées de cardio léger à modéré ainsi que des exercices adaptés aux capacités cardiovasculaires. Sur le plan nutritionnel, il est conseillé de fractionner l’alimentation, de privilégier les aliments riches en antioxydants et en minéraux, et d’éviter les excès de sel et de graisses saturées.
-
-                                    Notes importantes:
-                                    o	FC max = fréquence cardiaque maximale, calculée idéalement avec formule adaptée (formule de Tanaka).
-                                    o	Toutes les activités doivent être validées par un médecin ou cardiologue avant mise en place.
-                                    o	L’intensité des efforts doit rester adaptée à l’état cardiovasculaire et au niveau de tolérance du patient.
-
-                                    •	Monitorer les progrès en suivant les étapes suivantes : 
-
-                                    1. Comprendre sa valeur de base
-                                    •	La personne doit mesurer sa FCR le matin au réveil (avant de se lever, après une bonne nuit de sommeil).
-                                    •	Elle note la moyenne de 3 à 5 jours consécutifs pour établir sa valeur de référence (par ex. 78 battements/min).
-
-                                    2. Suivi dans le temps
-                                    •	Diminution progressive de la FCR 👉 signe que le cœur devient plus efficace, souvent grâce à l’activité physique régulière, la perte de poids et une meilleure alimentation.
-                                    •	Stabilité de la FCR 👉 normal si la condition est bien gérée.
-                                    •	Augmentation soudaine (+10 battements/min ou plus) 👉 peut indiquer fatigue, stress, mauvaise récupération, infection, ou un problème cardiaque → nécessite une vérification médicale.
-
-                                    3. Corrélation avec l’activité physique
-                                    •	Si la FCR baisse au repos avec le temps, cela reflète une meilleure condition cardiorespiratoire.
-                                    •	Exemple : passer de 80 bpm → 72 bpm après plusieurs semaines d’activité adaptée (marche, vélo doux, natation).
-
-                                    4. Lien avec l’alimentation
-                                    •	Une alimentation équilibrée (réduction du sel, augmentation des fibres, consommation d’antioxydants) contribue indirectement à la baisse de la FCR via l’amélioration de la tension artérielle et de la santé vasculaire.
-
-                                    5. Outils pratiques de monitoring
-                                    •	Carnet papier → noter chaque matin la FCR.
-                                    •	Montres connectées / applications → suivi automatique avec graphiques.
-                                    •	Associer la FCR avec d’autres mesures : poids, tension artérielle, qualité du sommeil.
-
-                                    👉 Conseil clé : La FCR est un bon indicateur de progrès, mais une personne avec une maladie cardiovasculaire doit toujours interpréter ses résultats avec son médecin/cardiologue, car une variation peut être liée à un traitement ou à la maladie elle-même.
-
-                                    •	Nutrition cardio-spécifique
-                                    •	interpréter état cardiovasculaire pour adapter les apports.
-
-                                    Interprétation (adultes):
-                                    •	60-100 bpm: Normal
-                                    •	< 60 bpm: Bradycardie (normal athlètes, sinon consulter)
-                                    •	> 100 bpm: Tachycardie (stress, déshydratation, maladie → consulter)
-
-                                    Si fréquence élevée (>80 bpm au repos):
-                                    Conseils ciblés:
-                                    •	Possible signe déconditionnement cardiovasculaire
-                                    •	Activité physique régulière diminue FC repos progressivement
-                                    •	↓ FC repos = meilleur pronostic cardiovasculaire
-                                    •	Vérifier: stress, caféine excessive, déshydratation, médicaments
-
-                                    Actions:
-                                    •	Mesurer au réveil, au calme (fiabilité)
-                                    •	Objectif: diminuer de 10-15 bpm avec exercice régulier
-                                    •	Si persistance >100 bpm: consultation cardiologique
-
-                                    Adaptations alimentaires:
-                                    •	↓ caféine (café, thé fort): max 2 tasses/jour
-                                    •	Hydratation optimale: 1,5-2L/jour
-                                    •	Magnésium: arachides, épinards, haricots (régulation cardiaque)"
+                                    •	Possible médication (bêta-bloquants peuvent ralentir excessivement)"
                                 ],
                                 'over_10' => [
                                     'none' => "FCmax estimée selon la formule de Tanaka (208 - 0.7 x âge) : {valeur_tanaka} bpm.
@@ -19874,63 +17489,7 @@ class ModerateObesitySeeder extends Seeder
 
                                     Durant Exercice :
                                     •	Viser zone modérée débutant
-                                    •	Progresser vers zone intense",
-                                    'cardio' => "FCmax estimée selon la formule de Tanaka (208 - 0.7 x âge) : {valeur_tanaka} bpm.
-
-                                    •	Déterminant la fréquence cardiaque maximale (FCmax) : Formule de Tanaka (plus précise pour certains adultes) : FCmax ≈ 208 − 0,7 × âge.
-                                    •	Utilisant cette formule pour calculer la fréquence cardiauqe maximale et par la suite définir la zones d’effort cible pour user enfin de lui faire les recommandations pour l’activité physique et nutritionnelles en te basant sur les données suivantes :
-                                    1. Niveau sédentaire : Les personnes sédentaires doivent pratiquer une activité physique correspondant à 50–60 % de leur fréquence cardiaque maximale (FCmax), dans une zone de récupération légère. Les activités recommandées incluent la marche douce, les étirements et le vélo léger. Sur le plan nutritionnel, il est conseillé de favoriser les aliments riches en fibres (fruits, légumes, légumineuses), de limiter la consommation de graisses saturées et de sel, et de maintenir une hydratation suffisante.
-                                    2. Niveau légèrement actif : Les personnes légèrement actives doivent évoluer entre 60 et 70 % de leur FCmax, dans une zone aérobie modérée. Les activités adaptées sont la marche rapide, la natation douce et le vélo modéré. L’alimentation doit être de type DASH, avec une priorité donnée aux protéines maigres et aux glucides complexes, tout en réduisant la consommation de sucres rapides.
-                                    3. Niveau modérément actif : Les personnes modérément actives travaillent à une intensité de 70 à 75 % de leur FCmax, dans une zone aérobie supérieure. Les activités recommandées comprennent la marche rapide prolongée, le vélo soutenu et la natation modérée. Il est conseillé de fractionner les repas, de limiter le sel et les graisses saturées, et de privilégier les aliments riches en potassium et en oméga-3.
-                                    4. Niveau très actif : Les personnes très actives évoluent entre 75 et 85 % de leur FCmax, dans une zone cardio intensive. Les activités adaptées incluent la marche rapide en côte, la natation intensive et le vélo soutenu. Sur le plan nutritionnel, il est important de contrôler les apports caloriques, de maintenir une bonne hydratation, de consommer des glucides complexes avant l’effort et des protéines après l’effort afin de soutenir la performance et la récupération.
-                                    5. Niveau extrêmement actif : Les personnes extrêmement actives évoluent entre 85 et 90 % de leur FCmax, dans une zone anaérobie légère. Les activités recommandées sont des séances encadrées de cardio léger à modéré ainsi que des exercices adaptés aux capacités cardiaques. Sur le plan nutritionnel, il est conseillé de fractionner l’alimentation, de privilégier les aliments riches en antioxydants et en minéraux, et d’éviter les excès de sel et de graisses saturées.
-                                                                        
-                                    Notes importantes:
-                                    o	FC max = fréquence cardiaque maximale, calculée idéalement avec formule adaptée (formule de Tanaka).
-                                    o	Toutes les activités doivent être validées par un médecin ou cardiologue avant mise en place.
-                                    o	L’intensité des efforts doit rester adaptée à l’état cardiovasculaire et au niveau de tolérance du patient.
-                                    •	Monitorer les progrès en suivant les étapes suivantes : 
-                                    1. Comprendre sa valeur de base
-                                    •	La personne doit mesurer sa FCR le matin au réveil (avant de se lever, après une bonne nuit de sommeil).
-                                    •	Elle note la moyenne de 3 à 5 jours consécutifs pour établir sa valeur de référence (par ex. 78 battements/min).
-
-                                    2. Suivi dans le temps
-                                    •	Diminution progressive de la FCR 👉 signe que le cœur devient plus efficace, souvent grâce à l’activité physique régulière, la perte de poids et une meilleure alimentation.
-                                    •	Stabilité de la FCR 👉 normal si la condition est bien gérée.
-                                    •	Augmentation soudaine (+10 battements/min ou plus) 👉 peut indiquer fatigue, stress, mauvaise récupération, infection, ou un problème cardiaque → nécessite une vérification médicale.
-                                    
-                                    3. Corrélation avec l’activité physique
-                                    •	Si la FCR baisse au repos avec le temps, cela reflète une meilleure condition cardiorespiratoire.
-                                    •	Exemple : passer de 80 bpm → 72 bpm après plusieurs semaines d’activité adaptée (marche, vélo doux, natation).
-                                    
-                                    4. Lien avec l’alimentation
-                                    •	Une alimentation équilibrée (réduction du sel, augmentation des fibres, consommation d’antioxydants) contribue indirectement à la baisse de la FCR via l’amélioration de la tension artérielle et de la santé vasculaire.
-                                    
-                                    5. Outils pratiques de monitoring
-                                    •	Carnet papier → noter chaque matin la FCR.
-                                    •	Montres connectées / applications → suivi automatique avec graphiques.
-                                    •	Associer la FCR avec d’autres mesures : poids, tension artérielle, qualité du sommeil.
-                                    👉 Conseil clé : La FCR est un bon indicateur de progrès, mais une personne avec une maladie cardiovasculaire doit toujours interpréter ses résultats avec son médecin/cardiologue, car une variation peut être liée à un traitement ou à la maladie elle-même.
-                                    •	Nutrition cardio-spécifique
-                                    •	interpréter état cardiovasculaire pour adapter les apports.
-                                    Interprétation (adultes):
-                                    •	60-100 bpm: Normal
-                                    •	< 60 bpm: Bradycardie (normal athlètes, sinon consulter)
-                                    •	> 100 bpm: Tachycardie (stress, déshydratation, maladie → consulter)
-                                    Si fréquence élevée (>80 bpm au repos):
-                                    Conseils ciblés:
-                                    •	Possible signe déconditionnement cardiovasculaire
-                                    •	Activité physique régulière diminue FC repos progressivement
-                                    •	↓ FC repos = meilleur pronostic cardiovasculaire
-                                    •	Vérifier: stress, caféine excessive, déshydratation, médicaments
-                                    Actions:
-                                    •	Mesurer au réveil, au calme (fiabilité)
-                                    •	Objectif: diminuer de 10-15 bpm avec exercice régulier
-                                    •	Si persistance >100 bpm: consultation cardiologique
-                                    Adaptations alimentaires:
-                                    •	↓ caféine (café, thé fort): max 2 tasses/jour
-                                    •	Hydratation optimale: 1,5-2L/jour
-                                    •	Magnésium: arachides, épinards, haricots (régulation cardiaque)"
+                                    •	Progresser vers zone intense"
                                 ],
                             ],
                             'fitness' => [
@@ -20228,10 +17787,7 @@ class ModerateObesitySeeder extends Seeder
                                 2.	Objectif : Réduction 5-10 bpm sur 3-6 mois activité régulière
                                 3.	Zones : Respecter zones adaptées (éviter surentraînement/risques)
                                 4.	HTA : TA + FC surveillées ensemble (cardio contrôlé)
-                                5.	Médicaments : Bêta-bloquants abaissent FC (zones d'entraînement inadaptées - utiliser perception effort plutôt)",
-                                'cardio' => "FCmax estimée selon la formule de Tanaka (208 - 0.7 x âge) : {valeur_tanaka} bpm.
-
-Aucun"
+                                5.	Médicaments : Bêta-bloquants abaissent FC (zones d'entraînement inadaptées - utiliser perception effort plutôt)"
 
                             ]
                         ]
@@ -20623,113 +18179,7 @@ Aucun"
                                     •	Pâtisseries
                                     •	Sodas
                                     •	Fritures
-                                    ",
-                                    'cardio' => "
-                                Conseils ciblés :
-                                •	PROBLÈME MAJEUR ! Alimentation émotionnelle = principale cause d'échec des régimes
-                                •	La nourriture devient solution temporaire au stress/ennui → cercle vicieux
-                                •	Travailler sur les déclencheurs émotionnels est AUSSI important que l'alimentation
-                                •	Objectif : séparer émotions et alimentation
-                                Comprendre l'alimentation émotionnelle :
-                                Différence faim physique vs faim émotionnelle :
-                                Faim physique	Faim émotionnelle
-                                Apparaît graduellement	Apparaît soudainement
-                                Plusieurs heures après dernier repas	Peu après avoir mange
-                                Peut attendre	Urgence, besoin immédiat
-                                Satisfaite par différents aliments	Envie d'aliments spécifiques (sucré, gras)
-                                Arrêt quand rassasié	Continue malgré satiété
-                                Pas de culpabilité après	Culpabilité, honte après
-                                Déclencheurs fréquents :
-                                •	Stress (travail, famille, finances)
-                                •	Ennui (inactivité, solitude)
-                                •	Fatigue
-                                •	Tristesse, anxiété
-                                •	Colère, frustration
-                                •	Habitudes (manger devant TV)
-                                •	Récompense (je mérite ça)
-                                Stratégies pour gérer l'alimentation émotionnelle :
-                                1. Identification des déclencheurs :
-                                •	Tenir un journal émotions-alimentation pendant 2 semaines
-                                •	Noter : heure, contexte, émotions, aliments consommés, quantité
-                                •	Identifier patterns (quand, pourquoi, quoi)
-                                2. Stratégies de remplacement (au lieu de manger) :
-                                En cas de stress :
-                                •	Respiration profonde : 5 min, inspirer 4 secondes, expirer 6 secondes
-                                •	Marche rapide : 10-15 min
-                                •	Appeler un ami, un proche
-                                •	Écrire ses pensées, frustrations
-                                •	Écouter musique apaisante
-                                •	Infusion relaxante : citronnelle, gingembre
-                                En cas d'ennui :
-                                •	Activité manuelle : tricot, dessin, bricolage
-                                •	Lire un livre, écouter podcast
-                                •	Sortir marcher, explorer le quartier
-                                •	Appeler un ami
-                                •	Faire des tâches ménagères légères
-                                •	Jardiner (si espace)
-                                En cas de tristesse :
-                                •	Exprimer émotions : pleurer si besoin, parler à quelqu'un
-                                •	Activité physique douce : marche, étirements
-                                •	Pratique de gratitude : noter 3 choses positives
-                                •	Regarder photos positives, souvenirs heureux
-                                •	Prière, méditation (selon convictions)
-                                3. Restructuration environnement :
-                                •	Éliminer aliments déclencheurs de la maison (biscuits, chips, chocolat)
-                                •	Garde-manger sain : fruits, noix en portions individuelles, légumes coupés prêts à consommer
-                                •	Éviter courses quand affamé ou stressé
-                                •	Manger à table (pas devant TV, ordinateur, téléphone)
-                                •	Plaquer assiettes dans cuisine (ne pas laisser plats sur table)
-                                4. Techniques de gestion du stress à long terme :
-                                •	Activité physique régulière : meilleur anti-stress naturel
-                                •	Sommeil suffisant : 7-8h/nuit
-                                •	Yoga, méditation : 10-15 min/jour
-                                •	Gestion du temps : éviter surcharge
-                                •	Réseau social : maintenir liens avec famille, amis
-                                •	Hobbies, loisirs : activités plaisantes non alimentaires
-                                5. Mindful eating (alimentation en pleine conscience) :
-                                •	Avant de manger, se demander : Ai-je vraiment faim ou est-ce une émotion ?
-                                •	Si faim émotionnelle : attendre 10-15 min, utiliser stratégie de remplacement
-                                •	Si faim physique : manger lentement, savourer, sans distraction
-                                •	Poser couverts entre chaque bouchée
-                                •	Mastiquer 20-30 fois par bouchée
-                                •	Arrêter à 80% de satiété (pas jusqu'à être plein)
-                                6. Règle des 3 D (quand envie émotionnelle) :
-                                •	Distraction : activité plaisante 15 min
-                                •	Délai : attendre 15-20 min (l'envie diminue souvent)
-                                •	Distance : s'éloigner physiquement de la nourriture
-                                Adaptations alimentaires béninoises spécifiques :
-                                Collations d'urgence (si vraiment impossible de résister) :
-                                •	Privilégier aliments sains, faibles calories, fort volume
-                                •	Options : 
-                                o	Légumes crus : concombre (entier = 50 kcal), carotte, tomate
-                                o	Fruits à fort volume : papaye (200g = 80 kcal), pastèque
-                                o	Gingembre infusé : 0 calorie, occupe bouche et mains
-                                o	Pop-corn maison sans huile : grand volume, faible calorie
-                                Éviter absolument en cas de stress/ennui :
-                                •	Sauce graine, arachides en grande quantité
-                                •	Pain blanc, biscuits
-                                •	Boissons sucrées
-                                •	Fritures
-                                Soutien professionnel (si alimentation émotionnelle sévère) :
-                                •	Psychologue spécialisé TCC (thérapie cognitivo-comportementale)
-                                •	Groupe de soutien
-                                •	Médecin nutritionniste
-                                •	Si dépression ou anxiété : traitement médical peut aider
-                                Plan progressif (12 semaines) :
-                                •	Semaines 1-2 : Identification (journal émotions-alimentation)
-                                •	Semaines 3-4 : Introduction 1 stratégie de remplacement par déclencheur
-                                •	Semaines 5-8 : Pratiquer systématiquement stratégies, restructuration environnement
-                                •	Semaines 9-12 : Consolidation, mindful eating, gestion stress long terme
-
-                                Stratégies  :
-                                •	Lors de stress : Marche 10 min, tisane de citronnelle, respiration profonde
-                                •	Lors d'ennui : Appeler un ami, écouter musique, lire, activité manuelle
-                                •	Si vraie faim : Collations saines (fruits, légumes crus, noix 20g)
-                                •	Journal alimentaire : noter émotions avant de manger
-                                Repas structurés :
-                                •	3 repas + 2 collations PROGRAMMÉS à heures fixes
-                                •	Ne pas sauter de repas (favorise grignotage)
-                                •	Manger en pleine conscience (pas devant TV/téléphone)"
+                                    "
                                 ],
                                 '5_10' => [
                                     'none' => "
@@ -21070,51 +18520,7 @@ Aucun"
                                     •	Psychologues (Cotonou, Porto-Novo)
                                     •	Nutritionnistes spécialisés comportement alimentaire
                                     •	Groupes soutien (associations santé mentale)
-                                    ",
-                                    'cardio' => "
-                                    PROBLÈME MAJEUR à adresser: alimentation émotionnelle = prise poids
-                                    •	Distinguer faim physique vs émotionnelle
-                                    •	Identifier déclencheurs: stress, ennui, tristesse, solitude, colère
-                                    Signes faim émotionnelle:
-                                    •	Soudaine (vs progressive)
-                                    •	Envies spécifiques (sucré, gras)
-                                    •	Manger sans faim physiologique
-                                    •	Culpabilité après
-                                    •	Pas de satiété réelle
-
-                                    Stratégies alternatives:
-                                    Au lieu de manger quand stressé:
-                                    1.	Marche 10-15 min (libère endorphines)
-                                    2.	Respiration profonde: inspirer 4 sec, expirer 6 sec, répéter 5 fois
-                                    3.	Appeler ami/famille
-                                    4.	Écouter musique apaisante
-                                    5.	Prière/méditation
-                                    6.	Boire grand verre d'eau ou tisane
-
-                                    Au lieu de manger quand ennui:
-                                    1.	Activité manuelle: tricot, dessin, jardinage
-                                    2.	Lecture, puzzle
-                                    3.	Sortir (même court)
-                                    4.	Tâche ménagère reportée
-                                    5.	Projet personnel
-
-                                    Journal émotions-alimentation:
-                                    •	Noter: heure, aliment, quantité, émotion ressentie, faim 0-10
-                                    •	Identifier patterns
-                                    •	Développer conscience
-
-                                    Adaptations alimentaires:
-                                    •	Structure stricte: 3 repas + 2 collations planifiées, horaires fixes
-                                    •	Éviter restriction excessive (→ craquages)
-                                    •	Si envie forte: attendre 10 min, boire eau, réévaluer
-                                    •	\"Aliments doudou\" sains: tisane chaude, soupe, fruit croquant
-
-                                    Repas réconfort sains:
-                                    •	Soupe chaude de légumes variés (réconfortante, volume élevé, peu calorique)
-                                    •	Bouillie de mil chaude + cannelle (nostalgie enfance)
-                                    •	Tisane de gingembre + citron + miel (1 c. à café)
-
-                                    Si problème sévère: consultation psychologue/diététicien"
+                                    "
                                 ],
                                 'over_10' => [
                                     'none' => "
@@ -21510,46 +18916,6 @@ Aucun"
                                     •	Pâtisseries
                                     •	Sodas
                                     •	Fritures
-                                    ",
-                                    'cardio' => "
-                                    Conseils ciblés:
-                                    •	PROBLÈME MAJEUR à adresser: alimentation émotionnelle = prise poids
-                                    •	Distinguer faim physique vs émotionnelle
-                                    •	Identifier déclencheurs: stress, ennui, tristesse, solitude, colère
-                                    Signes faim émotionnelle:
-                                    •	Soudaine (vs progressive)
-                                    •	Envies spécifiques (sucré, gras)
-                                    •	Manger sans faim physiologique
-                                    •	Culpabilité après
-                                    •	Pas de satiété réelle
-                                    Stratégies alternatives:
-                                    Au lieu de manger quand stressé:
-                                    7.	Marche 10-15 min (libère endorphines)
-                                    8.	Respiration profonde: inspirer 4 sec, expirer 6 sec, répéter 5 fois
-                                    9.	Appeler ami/famille
-                                    10.	Écouter musique apaisante
-                                    11.	Prière/méditation
-                                    12.	Boire grand verre d'eau ou tisane
-                                    Au lieu de manger quand ennui:
-                                    6.	Activité manuelle: tricot, dessin, jardinage
-                                    7.	Lecture, puzzle
-                                    8.	Sortir (même court)
-                                    9.	Tâche ménagère reportée
-                                    10.	Projet personnel
-                                    Journal émotions-alimentation:
-                                    •	Noter: heure, aliment, quantité, émotion ressentie, faim 0-10
-                                    •	Identifier patterns
-                                    •	Développer conscience
-                                    Adaptations alimentaires:
-                                    •	Structure stricte: 3 repas + 2 collations planifiées, horaires fixes
-                                    •	Éviter restriction excessive (→ craquages)
-                                    •	Si envie forte: attendre 10 min, boire eau, réévaluer
-                                    •	Aliments doudou sains: tisane chaude, soupe, fruit croquant
-                                    Repas réconfort sains:
-                                    •	Soupe chaude de légumes variés (réconfortante, volume élevé, peu calorique)
-                                    •	Bouillie de mil chaude + cannelle (nostalgie enfance)
-                                    •	Tisane de gingembre + citron + miel (1 c. à café)
-                                    Si problème sévère: consultation psychologue/diététicien
                                     "
                                 ],
                             ],
@@ -21886,93 +19252,7 @@ Aucun"
                                 5.	Carnet : Outil puissant (conscience déclencheurs/patterns)
                                 6.	Soutien : En parler (ami, famille, professionnel) - pas porter seul
                                 7.	Objectif : Pas perfection (jamais manger émotionnel) mais réduction 80-90%
-                                8.	Bienveillance : Auto-compassion (pas culpabilité/jugement si rechute)",
-                                'cardio' => "
-                                Problématique majeure : Alimentation émotionnelle vs physiologique
-                                Identification du problème :
-                                •	Faim physiologique : Apparaît progressivement, satisfaite par tout aliment, stoppe à satiété
-                                •	Faim émotionnelle : Apparaît soudainement, envies spécifiques (sucré/gras), difficile à rassasier, culpabilité après
-                                Plan de gestion (8 semaines) :
-                                Phase 1 (Semaines 1-2) : Prise de conscience
-                                •	Outil : Journal alimentaire émotionnel
-                                •	Noter : Heure, aliment, quantité, émotions AVANT, faim physique (0-10)
-                                •	Objectif : Identifier déclencheurs (stress travail, ennui soir, anxiété, tristesse)
-                                Modèle journal :
-                                Date | Heure | Aliment | Quantité | Émotion avant | Faim (0-10) | Contexte
-                                Phase 2 (Semaines 3-4) : Stratégies alternatives
-                                Remplacer l'alimentation par d'autres réponses :
-                                Si STRESS :
-                                •	Activité physique : Marche 10 min, danse 5 min, étirements
-                                •	Respiration : 5 respirations profondes, cohérence cardiaque
-                                •	Activité manuelle : Jardinage, ménage, artisanat
-                                •	Social : Appel ami, discussion famille
-                                •	Relaxation : Musique, lecture, prière
-                                Si ENNUI :
-                                •	Occupation : Hobby, projet créatif, apprentissage
-                                •	Social : Sortie, visite, activité communautaire
-                                •	Mouvement : Marche, danse, sport
-                                •	Structuration : Planning activités quotidiennes
-                                Si TRISTESSE/ANXIÉTÉ :
-                                •	Expression : Journal intime, art, musique
-                                •	Connexion : Soutien social, famille, amis
-                                •	Professionnel : Psychologue si récurrent et intense
-                                •	Spiritualité : Prière, méditation, connexion nature
-                                Phase 3 (Semaines 5-6) : Techniques anti-compulsion
-                                Règle des 10 minutes :
-                                1.	Envie de manger émotionnel détectée
-                                2.	Attendre 10 minutes
-                                3.	Activité alternative pendant ce temps
-                                4.	Réévaluer : Vraie faim ? Souvent, envie disparue
-                                Technique HALT : Avant de manger, vérifier :
-                                •	H (Hungry) : Vraie faim ?
-                                •	A (Angry) : En colère ?
-                                •	L (Lonely) : Seul(e) ?
-                                •	T (Tired) : Fatigué(e) ? Si A, L, ou T → Adresser l'émotion, pas l'estomac
-                                Phase 4 (Semaines 7-8) : Consolidation
-                                •	Habitudes alternatives ancrées
-                                •	Rechutes normales : apprentissage, pas échec
-                                •	Bienveillance envers soi-même
-                                •	Célébration des progrès
-                                Adaptations alimentaires spécifiques :
-                                Structure des repas anti-compulsion :
-                                •	3 repas complets + 2 collations PLANIFIÉES
-                                •	Jamais sauter de repas (fringales → compulsions)
-                                •	Protéines à chaque repas (satiété prolongée)
-                                •	Fibres abondantes (volume, satiété)
-                                Collations anti-stress béninoises (préparées à l'avance) :
-                                •	Croquants : Noix, graines, légumes crus
-                                •	Frais : Fruits, yaourt nature
-                                •	Réconfortants sains : Bouillie tiède légère, tisane
-                                Aliments à éviter à domicile (si compulsions) :
-                                •	Biscuits industriels
-                                •	Chips
-                                •	Bonbons
-                                •	Sodas
-                                •	Tout aliment déclencheur identifié
-                                Aliments béninois réconfortants sains (alternatives) :
-                                1.	Bouillie de mil tiède : Réconfort, sans excès calorique
-                                2.	Tisane de citronnelle + miel léger : Apaisant
-                                3.	Soupe de légumes maison : Volume, chaleur, nutrition
-                                4.	Fruit frais mixé (smoothie sans sucre) : Sucré naturel, satiété
-                                5.	Yaourt nature + banane : Protéine, glucides, texture crémeuse
-                                Gestion des crises aiguës :
-                                Si compulsion imminente :
-                                1.	SORTIR : Quitter la cuisine, aller dehors
-                                2.	BOUGER : Marche rapide 5-10 min
-                                3.	BOIRE : Grand verre d'eau, tisane
-                                4.	ATTENDRE : 10-15 minutes
-                                5.	RÉÉVALUER : Besoin toujours présent ?
-                                6.	SI OUI : Collation saine prévue (pas l'aliment compulsif)
-                                Soutien social et professionnel :
-                                •	Informer entourage proche (soutien)
-                                •	Groupes de soutien (si disponibles)
-                                •	Psychologue/nutritionniste (si compulsions sévères)
-                                •	Applications : Ate Food Journal, Recovery Record
-                                Suivi des progrès :
-                                •	Épisodes émotionnels alimentaires : Compter par semaine
-                                •	Objectif : Réduction progressive (pas perfection immédiate)
-                                •	Semaine 1 : X épisodes → Semaine 8 : X/2 épisodes = SUCCÈS
-                                "
+                                8.	Bienveillance : Auto-compassion (pas culpabilité/jugement si rechute)"
                             ]
                         ],
                     ],
@@ -22014,11 +19294,7 @@ Aucun"
                                 Maintien :
                                 •	Continuer écoute signaux faim/satiété
                                 •	Vigilance si période stress future (prévention rechute)
-                                •	Stratégies gestion stress non-alimentaires en place",
-                                'cardio' => "
-                                Conseils ciblés :
-                                •	EXCELLENT : Maintenir cette capacité
-                                •	Relation saine avec la nourriture "
+                                •	Stratégies gestion stress non-alimentaires en place"
                             ],
                             '5_10' => [
                                 'none' => "
@@ -22059,10 +19335,7 @@ Aucun"
                                 •	Maintenir cette dissociation émotion-alimentation
                                 •	Développer répertoire gestion stress (exercice, loisirs, social)
                                 •	Vigilance si stress majeur nouveau (deuil, perte emploi) : pourrait émerger
-                                ",
-                                                                'cardio' => "EXCELLENT! Relation saine à l'alimentation
-                                •	Maintenir écoute signaux physiologiques
-                                •	Rester vigilant en périodes stressantes"
+                                "
                             ],
                             'over_10' => [
                                 'none' => "
@@ -22094,12 +19367,7 @@ Aucun"
                                 Maintien :
                                 •	Continuer écoute signaux faim/satiété
                                 •	Vigilance si période stress future (prévention rechute)
-                                •	Stratégies gestion stress non-alimentaires en place ",
-                                'cardio' => "
-                                Conseils ciblés:
-                                •	EXCELLENT! Relation saine à l'alimentation
-                                •	Maintenir écoute signaux physiologiques
-                                •	Rester vigilant en périodes stressantes "
+                                •	Stratégies gestion stress non-alimentaires en place "
                             ],
                         ],
                         'fitness' => [
@@ -22134,15 +19402,6 @@ Aucun"
                             2.	Vigilance : Périodes stressantes vie → risque émergence (prévention)
                             3.	Techniques : Maintenir gestion stress saines (activité physique, relaxation, sommeil, soutien social)
                             4.	Modèle : Partager stratégies entourage (aide autres)",
-                                                        'cardio' => "Situation : Excellent signe de régulation émotionnelle saine
-                            Conseils de maintien :
-                            •	Continuer à distinguer faims physique/émotionnelle
-                            •	Stratégies de gestion du stress (sport, relaxation, social)
-                            •	Vigilance en période difficile (deuil, perte emploi, etc.)
-                            Prévention :
-                            •	Structure des repas réguliers
-                            •	Activités plaisir non alimentaires
-                            •	Soutien social actif",
                         ]
                     ]
                 ],
@@ -22425,23 +19684,7 @@ Aucun"
                                     8. Affirmation Positive : Si Culpabilité Laisser :
                                     •	J'écoute mon corps
                                     •	Je respecte ma satiété
-                                    •	Je nourris ma santé, pas nettoie assiette",
-                                    'cardio' => "
-                                    Conseils ciblés :
-                                    •	PROBLÉMATIQUE : Ignore signaux de satiété
-                                    •	Apprendre à écouter son corps
-                                    •	Manger lentement (20-30 min/repas)
-                                    Stratégies :
-                                    •	Servir dans assiettes plus petites (portions paraissent plus grandes)
-                                    •	Manger lentement : poser couverts entre chaque bouchée
-                                    •	Pause en milieu de repas : évaluer sa faim (échelle 1-10)
-                                    •	Arrêter à 80% de satiété (principe Hara Hachi Bu)
-                                    •	Conservation : garder restes pour prochain repas (pas de gaspillage)
-                                    Repas  :
-                                    •	Commencer par salade ou légumes (effet rassasiant)
-                                    •	Portions mesurées dès le départ
-                                    •	Manger assis, sans distraction
-                                    "
+                                    •	Je nourris ma santé, pas nettoie assiette"
                                 ],
                                 '5_10' => [
                                     'none' => "
@@ -22703,41 +19946,7 @@ Aucun"
                                     •	Ajuster selon
                                     Objectif :
                                     •	Portions = besoins réels (selon tableau niveau activité)
-                                    •	Arrêt basé sur satiété pas quantité servie",
-                                    'cardio' => "
-                                    HABITUDE À CHANGER ABSOLUMENT
-                                    •	Cause majeure suralimentation et prise poids
-                                    •	Origine souvent éducation (\"ne gaspille pas\"), mais santé prioritaire
-
-                                    Stratégies reconditionnement:
-                                    Méthode assiette:
-                                    •	Utiliser assiettes plus petites (illusion volume)
-                                    •	Servir portions réduites initialement
-                                    •	Règle: Possible de resservir SI faim réelle persiste après 20 min
-
-                                    Écoute satiété:
-                                    •	Manger lentement: 20-30 min/repas (cerveau détecte satiété après 20 min)
-                                    •	Poser fourchette entre bouchées
-                                    •	Mastiquer 20-30 fois/bouchée
-                                    •	Pause mi-repas: évaluer faim 0-10
-                                    •	Arrêter à 7/10 (confortablement rassasié, pas plein)
-
-                                    Échelle faim-satiété:
-                                    •	0: Affamé, étourdi
-                                    •	3: Faim confortable
-                                    •	5: Neutre
-                                    •	7: STOP ICI - Confortablement rassasié
-                                    •	10: Inconfortablement plein
-
-                                    Gestion restes:
-                                    •	Conserver pour repas suivant (vs finir à tout prix)
-                                    •	Partager avec famille
-                                    •	Compost si nécessaire (santé > gaspillage)
-
-                                    Environnement repas:
-                                    •	Manger assis, table, sans distraction (TV, téléphone)
-                                    •	Concentration sur aliments: goûts, textures, arômes
-                                    •	Ambiance calme"
+                                    •	Arrêt basé sur satiété pas quantité servie"
                                 ],
                                 'over_10' => [
                                     'none' => "
@@ -23024,39 +20233,7 @@ Aucun"
                                     8. Affirmation Positive : Si Culpabilité Laisser :
                                     •	J'écoute mon corps
                                     •	Je respecte ma satiété
-                                    •	Je nourris ma santé, pas nettoie assiette",
-                                    'cardio' => "
-                                    Conseils ciblés:
-                                    •	HABITUDE À CHANGER ABSOLUMENT
-                                    •	Cause majeure suralimentation et prise poids
-                                    •	Origine souvent éducation (ne gaspille pas), mais santé prioritaire
-                                    
-                                    Stratégies reconditionnement:
-                                    Méthode assiette:
-                                    •	Utiliser assiettes plus petites (illusion volume)
-                                    •	Servir portions réduites initialement
-                                    •	Règle: Possible de resservir SI faim réelle persiste après 20 min
-                                    Écoute satiété:
-                                    •	Manger lentement: 20-30 min/repas (cerveau détecte satiété après 20 min)
-                                    •	Poser fourchette entre bouchées
-                                    •	Mastiquer 20-30 fois/bouchée
-                                    •	Pause mi-repas: évaluer faim 0-10
-                                    •	Arrêter à 7/10 (confortablement rassasié, pas plein)
-                                    Échelle faim-satiété:
-                                    •	0: Affamé, étourdi
-                                    •	3: Faim confortable
-                                    •	5: Neutre
-                                    •	7: STOP ICI - Confortablement rassasié
-                                    •	10: Inconfortablement plein
-                                    Gestion restes:
-                                    •	Conserver pour repas suivant (vs finir à tout prix)
-                                    •	Partager avec famille
-                                    •	Compost si nécessaire (santé > gaspillage)
-                                    Environnement repas:
-                                    •	Manger assis, table, sans distraction (TV, téléphone)
-                                    •	Concentration sur aliments: goûts, textures, arômes
-                                    •	Ambiance calme
-                                    "
+                                    •	Je nourris ma santé, pas nettoie assiette"
                                 ],
                             ],
                             'fitness' => [
@@ -23306,126 +20483,7 @@ Aucun"
                                 5.	Enfants : Si parents → ne pas forcer enfants finir (transmet mauvaise habitude)
                                 6.	Respect corporel : Corps = priorité (signaux satiété = sagesse)
                                 7.	Expérimentation : Tester laisser ¼ assiette 1 semaine → observer effets (satiété, poids, bien-être)
-                                8.	Échelle : Utiliser quotidiennement (devient automatique après 3-4 semaines)",
-                                'cardio' => "
-                                Problématique : Éducation \"finir assiette\" + déconnexion signaux de satiété
-                                Conséquences :
-                                •	Suralimentation chronique 200-500 kcal/jour
-                                •	Insensibilité aux signaux de satiété
-                                •	Prise de poids progressive
-                                •	Inconfort digestif
-                                
-                                Causes culturelles:
-                                •	Éducation \"ne pas gaspiller\"
-                                •	Respect envers cuisinier
-                                •	Contexte social (plat commun)
-                                •	Habitudes familiales
-                                
-                                Plan de rééducation (8 semaines) :
-                                Phase 1 (Semaines 1-2) : Reconnecter aux signaux de satiété
-                                Échelle de faim-satiété (1-10) :
-                                1.	Affamé, faible 2-3. Très faim
-                                2.	Légère faim
-                                3.	Neutre (ni faim ni plein)
-                                4.	Agréablement rassasié ← OBJECTIF D'ARRÊT
-                                5.	Plein, un peu inconfortable
-                                6.	Très plein, inconfortable 9-10. Excessivement plein, mal
-                                Objectif : Commencer à manger à 3-4, arrêter à 6
-                                Technique :
-                                •	Mi-repas : Pause 2 minutes, évaluer niveau (1-10)
-                                •	Si 6 : Arrêter, même si reste
-                                •	Si < 6 : Continuer, lentement
-                                Phase 2 (Semaines 3-4) : Techniques de contrôle des portions
-                                AVANT de se servir :
-                                1.	Assiette plus petite : Trompe le cerveau (illusion volume)
-                                2.	Se servir moins : 75% de la portion habituelle
-                                3.	Légumes d'abord : Remplir 50% assiette de légumes
-                                4.	Féculents limités : ¼ assiette maximum
-                                5.	Protéines : ¼ assiette
-                                En pratique au Bénin (plat commun) :
-                                •	Se servir dans petite assiette individuelle
-                                •	Quantité limitée dès le début
-                                •	Ne pas se resservir automatiquement
-                                •	Attendre 10 min avant resservi si faim subsiste
-                                Phase 3 (Semaines 5-6) : Manger en pleine conscience
-                                Techniques :
-                                1.	Mâcher lentement : 20-30 fois par bouchée
-                                2.	Poser couverts entre bouchées
-                                3.	Éliminer distractions : Pas de TV, téléphone pendant repas
-                                4.	Savourer : Goûts, textures, arômes
-                                5.	Conversations : Ralentit naturellement le rythme
-                                Durée repas idéale : 20-30 minutes minimum
-                                Avantages :
-                                •	Satiété atteinte avec moins de nourriture
-                                •	Meilleure digestion
-                                •	Plaisir gustatif accru
-                                •	Connexion aux signaux corporels
-                                Phase 4 (Semaines 7-8) : Gestion sociale et culturelle
-                                Situations béninoises typiques :
-                                1. Repas familial (plat commun) :
-                                •	Solution : Se servir portion raisonnable dans assiette individuelle
-                                •	Si pression sociale : \"J'ai bien mangé, merci, c'était délicieux\"
-                                •	Technique : Manger lentement (autres finissent avant vous)
-                                2. Invité chez quelqu'un :
-                                •	Solution : Accepter portion, manger jusqu'à satiété (6/10)
-                                •	Restes : \"C'était excellent, je suis rassasié, merci\"
-                                •	Alternative : Demander petite portion dès le service
-                                3. Cérémonies (abondance) :
-                                •	Solution : Petites portions variées, dégustation vs consommation
-                                •	Stratégie : Assiette remplie visuellement (mais portions petites)
-                                •	Prioriser : Aliments sains (légumes, protéines maigres)
-                                
-                                Gestion des restes :
-                                À domicile :
-                                •	Conservation : Restes = repas suivant ou congélation
-                                •	Partage : Donner voisins, famille (tradition)
-                                •	Compost : Si vraiment non consommable
-                                •	Servir moins initialement : Prévention meilleure que gestion
-                                Phrases utiles (sans culpabilité) :
-                                •	\"J'écoute mon corps, je suis rassasié(e)\"
-                                •	\"C'était délicieux, je garde le reste pour plus tard\"
-                                •	\"Je préfère manger à ma faim pour savourer pleinement\"
-                                Adaptations alimentaires :
-                                Augmenter densité nutritionnelle (même portions réduites) :
-                                •	Plus de légumes : Volume sans calories
-                                •	Protéines de qualité : Satiété prolongée
-                                •	Fibres : Remplissage, transit
-                                •	Graisses saines (modération) : Satiété
-                                Repas béninois \"anti-finir assiette\" :
-                                Technique \"3 temps\" :
-                                Temps 1 - Légumes (5 min) :
-                                •	Commencer par salade ou légumes
-                                •	Manger lentement
-                                •	Volume d'abord
-                                Temps 2 - Protéine + féculent (10 min) :
-                                •	Alterner bouchées protéine et féculent
-                                •	Pause régulières
-                                •	Évaluer satiété à mi-chemin
-                                Temps 3 - Finir si faim < 6/10, sinon arrêter :
-                                •	Respect signal de satiété
-                                •	Pas de culpabilité si reste
-                                Exemple concret (Riz sauce arachide poulet) :
-                                ❌ AVANT (finir assiette) :
-                                •	Service : Grande assiette remplie
-                                •	Riz : 2 tasses
-                                •	Sauce arachide : 1 tasse
-                                •	Poulet : 2 gros morceaux
-                                •	Légumes : Peu
-                                •	Résultat : ~1200 kcal, satiété 8/10 (trop plein)
-                                
-                                ✅ APRÈS (écouter satiété) :
-                                •	Service : Assiette moyenne
-                                •	Temps 1 : Salade de laitue-tomates-concombre (manger d'abord)
-                                •	Temps 2 : Riz : ½ tasse + Sauce : 2 c. à soupe + Poulet : 1 morceau moyen + Légumes cuits : Abondance
-                                •	Pause mi-repas : Évaluation satiété
-                                •	Si 6/10 : STOP
-                                •	Si 4/10 : Continuer avec reste (lentement)
-                                •	Résultat : ~600 kcal, satiété 6/10 (optimal), économie 600 kcal !
-                                
-                                Suivi des progrès :
-                                •	Semaine 1 : Noter % de repas où assiette finie vs arrêt à satiété
-                                •	Objectif : Inverser progressivement
-                                •	Semaine 8 : 80%+ des repas arrêtés à satiété 6/10"
+                                8.	Échelle : Utiliser quotidiennement (devient automatique après 3-4 semaines)"
                             ]
                         ],
                     ],
@@ -23473,10 +20531,6 @@ Aucun"
                                 Maintien :
                                 •	Continuer cette pratique saine
                                 •	Modèle pour enfants/proches (si applicable)
-                                ",
-                                                                'cardio' => "Conseils ciblés :
-                                •	EXCELLENT : Bonne écoute du corps
-                                •	Maintenir cette capacité
                                 "
                             ],
                             '5_10' => [
@@ -23514,10 +20568,7 @@ Aucun"
                                 •	Maintenir cette écoute
                                 •	Modèle pour enfants si applicable (apprendre écoute corps jeunes)
                                 •	Résister pressions sociales si elles émergent
-                                ",
-                                                                'cardio' => "PARFAIT! Respect signaux satiété
-                                •	Écoute corporelle préservée
-                                •	Maintenir cette conscience"
+                                "
                             ],
                             'over_10' => [
                                 'none' => "
@@ -23553,12 +20604,7 @@ Aucun"
                                 •	Facilite perte/maintien poids
                                 Maintien :
                                 •	Continuer cette pratique saine
-                                •	Modèle pour enfants/proches (si applicable)",
-                                'cardio' => "
-                                Conseils ciblés:
-                                •	PARFAIT! Respect signaux satiété
-                                •	Écoute corporelle préservée
-                                •	Maintenir cette conscience "
+                                •	Modèle pour enfants/proches (si applicable)"
                             ],
                         ],
                         'fitness' => [
@@ -23591,16 +20637,7 @@ Aucun"
                             1.	Félicitations : Compétence précieuse contrôle pondéral
                             2.	Maintien : Continuer écoute attentive
                             3.	Transmission : Partager approche (famille, enfants)
-                            4.	Vigilance : Situations sociales (pression finir) → rester ferme respect signaux",
-                            'cardio' => "
-                            Situation : Excellente connexion aux signaux de satiété !
-                            Conseils de maintien :
-                            •	Continuer à écouter son corps
-                            •	Ne pas céder aux pressions sociales
-                            •	Modèle positif pour entourage
-                            Optimisation :
-                            •	Servir portions justes dès le départ (moins de restes)
-                            •	Partager recettes et astuces avec famille (éducation enfants)"
+                            4.	Vigilance : Situations sociales (pression finir) → rester ferme respect signaux"
                         ]
                     ]
                 ],
@@ -23677,8 +20714,7 @@ Aucun"
                                     •	Plaisir culinaire (découvrir nouvelles recettes béninoises saines)
                                     ",
                                     'diabetes' => "Aucun",
-                                    'hypertension' => "Aucun",
-                                    'cardio' => "Aucun"
+                                    'hypertension' => "Aucun"
                                 ],
                                 '5_10' => [
                                     'none' => "Aucun",
@@ -23824,8 +20860,7 @@ Aucun"
                                     Suivi professionnel FORTEMENT recommandé :
                                     •	Nutritionniste comportemental
                                     •	Psychologue spécialisé TCA (si troubles)
-                                    •	Médecin suivi métabolique ",
-                                    'cardio' => "Aucun"
+                                    •	Médecin suivi métabolique "
                                 ],
                                 'over_10' => [
                                     'none' => "Aucun",
@@ -23932,176 +20967,13 @@ Aucun"
                                     SYNTHÈSE PERSONNALISÉE : [Basée sur réponses spécifiques utilisateur]
                                     Conseil à retenir : 
                                     o	Faites une synthèse sur le cadre d’analyse en dessus enfin de comprendre ce qui a marché pour vous dans votre régime précédent et comment vous pouvez l’appliquer dans votre plan nutritionnel actuel ",
-                                    'hypertension' => "Aucun",
-                                    'cardio' => "
-                                    Régimes restrictifs drastiques (jeûne prolongé, mono-aliment, <1200 kcal/jour):
-                                    Conseils ciblés:
-                                    •	INEFFICACE long terme (reprise poids ++)
-                                    •	Perte initiale = eau + muscle (pas graisse uniquement)
-                                    •	Métabolisme ralenti = effet rebond
-                                    •	Risques: carences, fatigue, perte masse musculaire
-                                    Si perte poids:
-                                    •	Surtout eau/muscle, reprise rapide à l'arrêt
-                                    •	Échec car non-durable
-                                    Recommandations:
-                                    •	Transition vers alimentation équilibrée (guides ci-dessus)
-                                    •	Perte progressive: 0,5-1 kg/semaine
-                                    •	Déficit modéré: 300-500 kcal/jour (pas 1000+)
-                                    Régimes populaires (Keto, Paleo, Jeûne intermittent...):
-                                    Keto (très faible glucides):
-                                    Évaluation:
-                                    •	Perte poids initiale rapide (eau)
-                                    •	Problèmes: Difficile maintien, carences fibres/vitamines, ↑ cholestérol possible, incompatible culture alimentaire béninoise
-                                    •	Déconseillé pour profil maladie CV
-                                    Alternative: Réduire modérément glucides raffinés (pain blanc, riz blanc), privilégier glucides complexes (igname, patate douce)
-                                    Jeûne intermittent (16:8, 5:2...):
-                                    Évaluation:
-                                    •	Peut aider contrôle portions/calories
-                                    •	Attention: Risque hypoglycémie si diabète/médicaments
-                                    •	Problèmes: Peut encourager suralimentation fenêtre alimentaire, vie sociale compliquée
-                                    Si efficace pour vous:
-                                    •	Assurer qualité nutritionnelle pendant fenêtre
-                                    •	Hydratation période jeûne
-                                    •	Surveillance médicale si médicaments
-                                    •	Arrêt si vertiges, fatigue extrême
-                                    Régimes équilibrés (Méditerranéen, DASH...):
-                                    Évaluation:
-                                    •	EXCELLENTS choix, soutenus scientifiquement
-                                    •	Durables, complets nutritionnellement
-                                    •	Adaptables cuisine béninoise
-                                    Méditerranéen adapté Bénin:
-                                    •	Poisson ++, huile d'olive → huile palme rouge (modération)
-                                    •	Légumes abondants, légumineuses quotidiennes
-                                    •	Fruits, noix
-                                    •	Céréales complètes
-                                    DASH adapté Bénin:
-                                    •	Conçu anti-HTA: parfait pour profil
-                                    •	Fruits/légumes ++, ZÉRO sel ajouté
-                                    •	Laitages faibles gras, protéines maigres
-                                    •	Voir adaptations proposées dans guides ci-dessus
-                                    "
+                                    'hypertension' => "Aucun"
                                 ],
                             ],
                             'fitness' => [
                                 'none' => "Aucun",
                                 'diabetes' => "Aucun",
-                                'hypertension' => "Aucun",
-                                'cardio' => "
-                                Exploration nécessaire : \"Lequel et efficacité ?\"
-                                Analyse par type de régime :
-                                RÉGIMES RESTRICTIFS (Ex: Keto, Atkins, Très basse calorie, Jeûne strict) :
-                                Si ÉCHEC (reprise de poids) :
-                                Causes probables :
-                                •	Trop restrictif, insoutenable
-                                •	Perte rapide (eau + muscle)
-                                •	Métabolisme ralenti
-                                •	Frustrations → craquages
-                                •	Pas de transition maintenance
-                                Enseignements :
-                                •	Approche équilibrée > restriction
-                                •	Lenteur = durabilité
-                                •	Intégration culturelle nécessaire
-                                Nouvelle approche béninoise équilibrée :
-                                •	Inclusion tous groupes alimentaires
-                                •	Portions contrôlées vs élimination
-                                •	Aliments béninois traditionnels adaptés
-                                •	Progression lente (0,5-1 kg/semaine)
-                                •	Plan de maintenance intégré
-                                Exemple (si échec keto) :
-                                •	Keto : Suppression glucides → Frustration pâtes, riz, igname béninois → Abandon
-                                •	Nouvelle approche : Pâtes et riz en portions modérées, version complète, timing stratégique (matin, post-activité), environnement de légumes
-                                Si SUCCÈS temporaire puis reprise :
-                                Analyse : Régime = parenthèse vs mode de vie
-                                Solution : Transition progressive vers équilibre permanent
-                                Plan de maintenance béninois :
-                                Phase transition (3 mois) :
-                                •	Augmentation calorique progressive (+100 kcal/semaine)
-                                •	Réintroduction aliments \"interdits\" modérément
-                                •	Établissement nouvelles habitudes durables
-                                •	Monitoring poids hebdomadaire (ajustement si +2 kg)
-                                Phase maintenance (à vie) :
-                                •	Règle 80/20 (80% sain, 20% flexibilité)
-                                •	Activité physique régulière (non négociable)
-                                •	Pesée hebdomadaire (vigilance)
-                                •	Reprise plan strict si +3 kg
-                                
-                                RÉGIMES \"SAINS\" (Ex: Méditerranéen, DASH, Volumétrique) :
-                                Si SUCCÈS :
-                                •	Excellent ! Approche scientifiquement validée
-                                •	Continuer et personnaliser version béninoise
-                                Adaptation béninoise du régime méditerranéen :
-                                Principes méditerranéens → Équivalents béninois :
-                                •	Huile d'olive → Huile d'arachide locale, avocat (modération)
-                                •	Poissons gras → Maquereau, sardine, thon frais
-                                •	Légumineuses → Haricots niébé, pois d'angole
-                                •	Céréales complètes → Fonio, riz complet, mil
-                                •	Fruits & légumes → Abondance locale (mangue, papaye, gboma, folon)
-                                •	Noix → Cajou, arachides, graines de courge
-                                •	Herbes & épices → Gingembre, ail, piment, basilic africain
-                                Si ÉCHEC :
-                                •	Analyser pourquoi (coût ? disponibilité ? culture ?)
-                                •	Adapter version plus accessible
-                                RÉGIMES 'À LA MODE' (Ex: Détox, Soupe, Mono-aliment, Jeûne intermittent extrême) :
-                                Si essayé et échec : Normal, non durables et potentiellement dangereux
-                                Problèmes :
-                                •	Carences nutritionnelles
-                                •	Perte muscle > graisse
-                                •	Ralentissement métabolique
-                                •	Effet yo-yo garanti
-                                •	Aucune éducation nutritionnelle
-                                Message : Oublier ces approches, focus équilibre et durabilité
-                                
-                                RÉGIMES TRADITIONNELS/CULTURELS (Ex: \"Régime de grand-mère\", plantes médicinales) :
-                                Évaluation nuancée :
-                                Aspects positifs (à conserver) :
-                                •	Aliments naturels, non transformés
-                                •	Sagesse ancestrale (certaines plantes bénéfiques)
-                                •	Connexion culturelle
-                                Aspects négatifs (à abandonner) :
-                                •	Parfois trop restrictifs ou déséquilibrés
-                                •	Croyances non scientifiques
-                                •	Remèdes \"miracles\" inexistants
-                                Exemples béninois :
-                                ✅ À conserver :
-                                •	Consommation de tisanes digestives (kinkeliba, citronnelle)
-                                •	Cuisine à base de légumes feuilles
-                                •	Poissons frais
-                                •	Céréales complètes traditionnelles (fonio, mil)
-                                ❌ À abandonner :
-                                •	Purges drastiques
-                                •	Jeûnes prolongés sans supervision
-                                •	Remèdes \"magiques\" pour maigrir vite
-                                •	Élimination totale de groupes alimentaires
-                                Approche intégrative :
-                                •	Garder sagesse traditionnelle saine
-                                •	Ajouter connaissances scientifiques modernes
-                                •	Créer fusion équilibrée béninoise optimale
-                                
-                                RÉGIME MÉDICAL PRESCRIT (Ex: Diabète, HTA) :
-                                Si suivi avec succès : Excellent, continuer
-                                Si difficultés d'observance :
-                                Identifier obstacles :
-                                •	Trop restrictif ?
-                                •	Manque de variété ?
-                                •	Coût ?
-                                •	Complexité ?
-                                •	Isolement social ?
-                                Solutions béninoises :
-                                •	Adaptation culturelle du régime médical
-                                •	Simplification (recettes faciles)
-                                •	Soutien familial (impliquer dans préparation)
-                                •	Accessibilité (aliments locaux abordables)
-                                •	Suivi nutritionniste (si possible)
-                                Exemple régime diabétique béninois :
-                                ❌ Prescription standard (difficile) :
-                                •	Pain complet importé, quinoa, édulcorants artificiels, aliments spécialisés
-                                ✅ Adaptation béninoise accessible :
-                                •	Fonio (céréale locale IG bas)
-                                •	Légumes feuilles abondants (gboma, folon)
-                                •	Haricots niébé
-                                •	Poissons frais
-                                •	Fruits locaux modérés (papaye, goyave, pamplemousse)
-                                •	Épices locales (gingembre, ail, piment)"
+                                'hypertension' => "Aucun"
                             ]
                         ],
                     ],
@@ -24120,12 +20992,7 @@ Aucun"
                                 •	Partir sur bases saines dès début
                                 •	Lifestyle équilibré (pas régime)
                                 •	Éducation nutritionnelle complète
-                                •	Patience, long terme ",
-                                'cardio' => "
-                                Conseils ciblés :
-                                •	Première démarche : positif !
-                                •	Pas de régime mais changement de mode de vie
-                                •	Approche progressive et durable"
+                                •	Patience, long terme "
                             ],
                             '5_10' => [
                                 'none' => "
@@ -24149,9 +21016,7 @@ Aucun"
                                 •	Habitudes saines dès départ
                                 •	Éviter erreurs classiques (restriction excessive)
                                 •	Approche durable d'emblée
-                                ",
-                                'cardio' => "
-                                suivre votre plan actuel pour l’atteinte de votre objectif"
+                                "
                             ],
                             'over_10' => [
                                 'none' => "
@@ -24221,8 +21086,7 @@ Aucun"
                                 •	Lifestyle équilibré (pas régime)
                                 •	Éducation nutritionnelle complète
                                 •	Patience, long terme
-                                ",
-                                'cardio' => "Conseils ciblés: suivre votre plan actuel pour l’atteinte de votre objectif "
+                                "
                             ],
                         ],
                         'fitness' => [
@@ -24277,8 +21141,7 @@ Aucun"
                             •	Éducation nutritionnelle
                             •	Support professionnel (n)
                             •	Patience (résultats progressifs mais durables)",
-                            'hypertension' => "Aucun",
-                            'cardio' => ""
+                            'hypertension' => "Aucun"
                         ]
                     ]
                 ],
@@ -24540,35 +21403,7 @@ Aucun"
                                     •	Changements progressifs
                                     •	Durables à vie
                                     •	Pas perfection
-                                    •	90% sain, 10% flex",
-                                    'cardio' => "
-                                    Conseils ciblés :
-                                    •	PROBLÉMATIQUE : Effet yoyo quasi certain
-                                    •	Régimes trop restrictifs = insoutenables = reprise de poids
-                                    •	Privilégier changement de mode de vie durable
-                                    Approche béninoise durable :
-                                    •	Pas de privation totale
-                                    •	Équilibre et modération
-                                    •	Intégrer aliments béninois traditionnels de façon équilibrée
-                                    •	Perte de poids progressive (0,5-1 kg/semaine)
-                                    Si réponse indique : Régimes équilibrés (méditerranéen, DASH, etc.)
-                                    Conseils ciblés :
-                                    •	Excellents régimes, adaptables au contexte béninois
-                                    •	Principes applicables : fruits, légumes, poissons, céréales complètes, peu de sel
-                                    Adaptation béninoise du régime DASH (hypertension) :
-                                    •	Céréales : Riz complet, maïs, mil, igname, patate douce
-                                    •	Protéines : Poissons frais, poulet sans peau, haricots, œufs (modération)
-                                    •	Légumes : Gombo, épinards, tomate, carotte, chou
-                                    •	Fruits : Banane, orange, mangue, papaye, ananas
-                                    •	Graisses saines : Huile d'olive, avocat, noix de cajou nature
-                                    •	TRÈS PEU DE SEL !
-                                    Si efficace :
-                                    •	Maintenir les principes qui ont fonctionné
-                                    •	Adapter au long terme
-                                    Si échec :
-                                    •	Analyser pourquoi : trop restrictif ? Pas adapté culturellement ? Manque de soutien ?
-                                    •	Cette fois : approche progressive, durable, ancrée dans culture béninoise
-                                    "
+                                    •	90% sain, 10% flex"
                                 ],
                                 '5_10' => [
                                     'none' => "Question ouverte - Analyse personnalisée
@@ -24694,59 +21529,7 @@ Aucun"
                                     Vous ne faites pas un régime - vous adoptez un mode de vie sain permanent.
                                     ",
                                     'diabetes' => "Aucun ",
-                                    'hypertension' => "Aucun",
-                                    'cardio' => "
-                                    Régimes restrictifs drastiques (jeûne prolongé, mono-aliment, <1200 kcal/jour):
-                                    •	INEFFICACE long terme (reprise poids ++)
-                                    •	Perte initiale = eau + muscle (pas graisse uniquement)
-                                    •	Métabolisme ralenti = effet rebond
-                                    •	Risques: carences, fatigue, perte masse musculaire
-                                    Si perte poids:
-                                    •	Surtout eau/muscle, reprise rapide à l'arrêt
-                                    •	Échec car non-durable
-
-                                    Recommandations:
-                                    •	Transition vers alimentation équilibrée (guides ci-dessus)
-                                    •	Perte progressive: 0,5-1 kg/semaine
-                                    •	Déficit modéré: 300-500 kcal/jour (pas 1000+)
-
-                                    Régimes populaires (Keto, Paleo, Jeûne intermittent...):
-
-                                    Keto (très faible glucides):
-                                    Évaluation:
-                                    •	Perte poids initiale rapide (eau)
-                                    •	Problèmes: Difficile maintien, carences fibres/vitamines, ↑ cholestérol possible, incompatible culture alimentaire béninoise
-                                    •	Déconseillé pour profil maladie CV
-                                    Alternative: Réduire modérément glucides raffinés (pain blanc, riz blanc), privilégier glucides complexes (igname, patate douce)
-
-                                    Jeûne intermittent (16:8, 5:2...):
-                                    Évaluation:
-                                    •	Peut aider contrôle portions/calories
-                                    •	Attention: Risque hypoglycémie si diabète/médicaments
-                                    •	Problèmes: Peut encourager suralimentation fenêtre alimentaire, vie sociale compliquée
-                                    Si efficace pour vous:
-                                    •	Assurer qualité nutritionnelle pendant fenêtre
-                                    •	Hydratation période jeûne
-                                    •	Surveillance médicale si médicaments
-                                    •	Arrêt si vertiges, fatigue extrême
-
-                                    Régimes équilibrés (Méditerranéen, DASH...):
-                                    Évaluation:
-                                    •	EXCELLENTS choix, soutenus scientifiquement
-                                    •	Durables, complets nutritionnellement
-                                    •	Adaptables cuisine béninoise
-
-                                    Méditerranéen adapté Bénin:
-                                    •	Poisson ++, huile d'olive → huile palme rouge (modération)
-                                    •	Légumes abondants, légumineuses quotidiennes
-                                    •	Fruits, noix
-                                    •	Céréales complètes
-
-                                    DASH adapté Bénin:
-                                    •	Conçu anti-HTA: parfait pour profil
-                                    •	Fruits/légumes ++, ZÉRO sel ajouté
-                                    •	Laitages faibles gras, protéines maigres
-                                    •	Voir adaptations proposées dans guides ci-dessus"
+                                    'hypertension' => "Aucun"
                                 ],
                                 'over_10' => [
                                     'none' => "
@@ -24958,8 +21741,7 @@ Aucun"
                                     •	Changements progressifs
                                     •	Durables à vie
                                     •	Pas perfection
-                                    •	90% sain, 10% flex ",
-                                    'cardio' => "Aucun"
+                                    •	90% sain, 10% flex "
                                 ],
                             ],
                             'fitness' => [
@@ -25380,7 +22162,6 @@ Aucun"
                                 2.	Plaisir : Aliments appréciés (versions saines)
                                 3.	Flexibilité :
                                 80-90% adhésion (10-20% flexibilité occasions) 4. Équilibre : Tous groupes alimentaires (sauf allergies/intolérances) 5. Culture : Respecte traditions/disponibilités locales 6. Soutien : Famille, amis, professionnels 7. Patience : 0,5-1 kg/semaine (marathon, pas sprint)",
-                                'cardio' => "Aucun",
                             ]
                         ]
                     ]
@@ -25394,27 +22175,23 @@ Aucun"
                                 'under_5' => [
                                     'none' => "Aucun",
                                     'diabetes' => "Aucun",
-                                    'hypertension' => "Aucun",
-                                    'cardio' => "Aucun"
+                                    'hypertension' => "Aucun"
                                 ],
                                 '5_10' => [
                                     'none' => "Aucun",
                                     'diabetes' => "Aucun",
-                                    'hypertension' => "Aucun",
-                                    'cardio' => "Aucun"
+                                    'hypertension' => "Aucun"
                                 ],
                                 'over_10' => [
                                     'none' => "Aucun",
                                     'diabetes' => "Aucun",
-                                    'hypertension' => "Aucun",
-                                    'cardio' => "Aucun"
+                                    'hypertension' => "Aucun"
                                 ],
                             ],
                             'fitness' => [
                                 'none' => "Aucun",
                                 'diabetes' => "Aucun",
-                                'hypertension' => "Aucun",
-                                'cardio' => "Aucun"
+                                'hypertension' => "Aucun"
                             ]
                         ],
                         'Améliorer votre forme physique' => [
@@ -25422,27 +22199,23 @@ Aucun"
                                 'under_5' => [
                                     'none' => "Aucun",
                                     'diabetes' => "Aucun",
-                                    'hypertension' => "Aucun",
-                                    'cardio' => "Aucun"
+                                    'hypertension' => "Aucun"
                                 ],
                                 '5_10' => [
                                     'none' => "Aucun",
                                     'diabetes' => "Aucun",
-                                    'hypertension' => "Aucun",
-                                    'cardio' => "Aucun"
+                                    'hypertension' => "Aucun"
                                 ],
                                 'over_10' => [
                                     'none' => "Aucun",
                                     'diabetes' => "Aucun",
-                                    'hypertension' => "Aucun",
-                                    'cardio' => "Aucun"
+                                    'hypertension' => "Aucun"
                                 ]
                             ],
                             'fitness' => [
                                 'none' => "Aucun",
                                 'diabetes' => "Aucun",
-                                'hypertension' => "Aucun",
-                                'cardio' => "Aucun"
+                                'hypertension' => "Aucun"
                             ]
                         ]
                     ]
@@ -25456,27 +22229,23 @@ Aucun"
                                 'under_5' => [
                                     'none' => "Aucun",
                                     'diabetes' => "Aucun",
-                                    'hypertension' => "Aucun",
-                                    'cardio' => "Aucun"
+                                    'hypertension' => "Aucun"
                                 ],
                                 '5_10' => [
                                     'none' => "Aucun",
                                     'diabetes' => "Aucun",
-                                    'hypertension' => "Aucun",
-                                    'cardio' => "Aucun"
+                                    'hypertension' => "Aucun"
                                 ],
                                 'over_10' => [
                                     'none' => "Aucun",
                                     'diabetes' => "Aucun",
-                                    'hypertension' => "Aucun",
-                                    'cardio' => "Aucun"
+                                    'hypertension' => "Aucun"
                                 ]
                             ],
                             'fitness' => [
                                 'none' => "Aucun",
                                 'diabetes' => "Aucun",
-                                'hypertension' => "Aucun",
-                                'cardio' => "Aucun"
+                                'hypertension' => "Aucun"
                             ]
                         ],
                         '5 - 10 kg.' => [
@@ -25484,27 +22253,23 @@ Aucun"
                                 'under_5' => [
                                     'none' => "Aucun",
                                     'diabetes' => "Aucun",
-                                    'hypertension' => "Aucun",
-                                    'cardio' => "Aucun"
+                                    'hypertension' => "Aucun"
                                 ],
                                 '5_10' => [
                                     'none' => "Aucun",
                                     'diabetes' => "Aucun",
-                                    'hypertension' => "Aucun",
-                                    'cardio' => "Aucun"
+                                    'hypertension' => "Aucun"
                                 ],
                                 'over_10' => [
                                     'none' => "Aucun",
                                     'diabetes' => "Aucun",
-                                    'hypertension' => "Aucun",
-                                    'cardio' => "Aucun"
+                                    'hypertension' => "Aucun"
                                 ]
                             ],
                             'fitness' => [
                                 'none' => "Aucun",
                                 'diabetes' => "Aucun",
-                                'hypertension' => "Aucun",
-                                'cardio' => "Aucun"
+                                'hypertension' => "Aucun"
                             ]
                         ],
                         'Plus de 10 kg.' => [
@@ -25512,27 +22277,23 @@ Aucun"
                                 'under_5' => [
                                     'none' => "Aucun",
                                     'diabetes' => "Aucun",
-                                    'hypertension' => "Aucun",
-                                    'cardio' => "Aucun"
+                                    'hypertension' => "Aucun"
                                 ],
                                 '5_10' => [
                                     'none' => "Aucun",
                                     'diabetes' => "Aucun",
-                                    'hypertension' => "Aucun",
-                                    'cardio' => "Aucun"
+                                    'hypertension' => "Aucun"
                                 ],
                                 'over_10' => [
                                     'none' => "Aucun",
                                     'diabetes' => "Aucun",
-                                    'hypertension' => "Aucun",
-                                    'cardio' => "Aucun"
+                                    'hypertension' => "Aucun"
                                 ]
                             ],
                             'fitness' => [
                                 'none' => "Aucun",
                                 'diabetes' => "Aucun",
-                                'hypertension' => "Aucun",
-                                'cardio' => "Aucun"
+                                'hypertension' => "Aucun"
                             ]
                         ]
                     ]
@@ -25546,27 +22307,23 @@ Aucun"
                                 'under_5' => [
                                     'none' => "Aucun",
                                     'diabetes' => "Aucun",
-                                    'hypertension' => "Aucun",
-                                    'cardio' => "Aucun"
+                                    'hypertension' => "Aucun"
                                 ],
                                 '5_10' => [
                                     'none' => "Aucun",
                                     'diabetes' => "Aucun",
-                                    'hypertension' => "Aucun",
-                                    'cardio' => "Aucun"
+                                    'hypertension' => "Aucun"
                                 ],
                                 'over_10' => [
                                     'none' => "Aucun",
                                     'diabetes' => "Aucun",
-                                    'hypertension' => "Aucun",
-                                    'cardio' => "Aucun"
+                                    'hypertension' => "Aucun"
                                 ]
                             ],
                             'fitness' => [
                                 'none' => "Aucun",
                                 'diabetes' => "Aucun",
-                                'hypertension' => "Aucun",
-                                'cardio' => "Aucun"
+                                'hypertension' => "Aucun"
                             ]
                         ],
                         'Perdre moins de 5Kg: Moyen 400 kcal' => [
@@ -25574,27 +22331,23 @@ Aucun"
                                 'under_5' => [
                                     'none' => "Aucun",
                                     'diabetes' => "Aucun",
-                                    'hypertension' => "Aucun",
-                                    'cardio' => "Aucun"
+                                    'hypertension' => "Aucun"
                                 ],
                                 '5_10' => [
                                     'none' => "Aucun",
                                     'diabetes' => "Aucun",
-                                    'hypertension' => "Aucun",
-                                    'cardio' => "Aucun"
+                                    'hypertension' => "Aucun"
                                 ],
                                 'over_10' => [
                                     'none' => "Aucun",
                                     'diabetes' => "Aucun",
-                                    'hypertension' => "Aucun",
-                                    'cardio' => "Aucun"
+                                    'hypertension' => "Aucun"
                                 ],
                             ],
                             'fitness' => [
                                 'none' => "Aucun",
                                 'diabetes' => "Aucun",
-                                'hypertension' => "Aucun",
-                                'cardio' => "Aucun"
+                                'hypertension' => "Aucun"
                             ]
                         ],
                         'Perdre moins de 5Kg: Serein 500 kcal' => [
@@ -25602,27 +22355,23 @@ Aucun"
                                 'under_5' => [
                                     'none' => "Aucun",
                                     'diabetes' => "Aucun",
-                                    'hypertension' => "Aucun",
-                                    'cardio' => "Aucun"
+                                    'hypertension' => "Aucun"
                                 ],
                                 '5_10' => [
                                     'none' => "Aucun",
                                     'diabetes' => "Aucun",
-                                    'hypertension' => "Aucun",
-                                    'cardio' => "Aucun"
+                                    'hypertension' => "Aucun"
                                 ],
                                 'over_10' => [
                                     'none' => "Aucun",
                                     'diabetes' => "Aucun",
-                                    'hypertension' => "Aucun",
-                                    'cardio' => "Aucun"
+                                    'hypertension' => "Aucun"
                                 ],
                             ],
                             'fitness' => [
                                 'none' => "Aucun",
                                 'diabetes' => "Aucun",
-                                'hypertension' => "Aucun",
-                                'cardio' => "Aucun"
+                                'hypertension' => "Aucun"
                             ]
                         ],
                         'Perdre entre 5-10Kg: Léger 500 kcal' => [
@@ -25630,27 +22379,23 @@ Aucun"
                                 'under_5' => [
                                     'none' => "Aucun",
                                     'diabetes' => "Aucun",
-                                    'hypertension' => "Aucun",
-                                    'cardio' => "Aucun"
+                                    'hypertension' => "Aucun"
                                 ],
                                 '5_10' => [
                                     'none' => "Aucun",
                                     'diabetes' => "Aucun",
-                                    'hypertension' => "Aucun",
-                                    'cardio' => "Aucun"
+                                    'hypertension' => "Aucun"
                                 ],
                                 'over_10' => [
                                     'none' => "Aucun",
                                     'diabetes' => "Aucun",
-                                    'hypertension' => "Aucun",
-                                    'cardio' => "Aucun"
+                                    'hypertension' => "Aucun"
                                 ],
                             ],
                             'fitness' => [
                                 'none' => "Aucun",
                                 'diabetes' => "Aucun",
-                                'hypertension' => "Aucun",
-                                'cardio' => "Aucun"
+                                'hypertension' => "Aucun"
                             ]
                         ],
                         'Perdre entre 5-10Kg: Moyen 600 kcal' => [
@@ -25658,27 +22403,23 @@ Aucun"
                                 'under_5' => [
                                     'none' => "Aucun",
                                     'diabetes' => "Aucun",
-                                    'hypertension' => "Aucun",
-                                    'cardio' => "Aucun"
+                                    'hypertension' => "Aucun"
                                 ],
                                 '5_10' => [
                                     'none' => "Aucun",
                                     'diabetes' => "Aucun",
-                                    'hypertension' => "Aucun",
-                                    'cardio' => "Aucun"
+                                    'hypertension' => "Aucun"
                                 ],
                                 'over_10' => [
                                     'none' => "Aucun",
                                     'diabetes' => "Aucun",
-                                    'hypertension' => "Aucun",
-                                    'cardio' => "Aucun"
+                                    'hypertension' => "Aucun"
                                 ],
                             ],
                             'fitness' => [
                                 'none' => "Aucun",
                                 'diabetes' => "Aucun",
-                                'hypertension' => "Aucun",
-                                'cardio' => "Aucun"
+                                'hypertension' => "Aucun"
                             ]
                         ],
                         'Perdre entre 5-10Kg: Serein 700 kcal' => [
@@ -25686,27 +22427,23 @@ Aucun"
                                 'under_5' => [
                                     'none' => "Aucun",
                                     'diabetes' => "Aucun",
-                                    'hypertension' => "Aucun",
-                                    'cardio' => "Aucun"
+                                    'hypertension' => "Aucun"
                                 ],
                                 '5_10' => [
                                     'none' => "Aucun",
                                     'diabetes' => "Aucun",
-                                    'hypertension' => "Aucun",
-                                    'cardio' => "Aucun"
+                                    'hypertension' => "Aucun"
                                 ],
                                 'over_10' => [
                                     'none' => "Aucun",
                                     'diabetes' => "Aucun",
-                                    'hypertension' => "Aucun",
-                                    'cardio' => "Aucun"
+                                    'hypertension' => "Aucun"
                                 ],
                             ],
                             'fitness' => [
                                 'none' => "Aucun",
                                 'diabetes' => "Aucun",
-                                'hypertension' => "Aucun",
-                                'cardio' => "Aucun"
+                                'hypertension' => "Aucun"
                             ]
                         ],
                         'Perdre plus de 10Kg: Léger 700 kcal' => [
@@ -25714,27 +22451,23 @@ Aucun"
                                 'under_5' => [
                                     'none' => "Aucun",
                                     'diabetes' => "Aucun",
-                                    'hypertension' => "Aucun",
-                                    'cardio' => "Aucun"
+                                    'hypertension' => "Aucun"
                                 ],
                                 '5_10' => [
                                     'none' => "Aucun",
                                     'diabetes' => "Aucun",
-                                    'hypertension' => "Aucun",
-                                    'cardio' => "Aucun"
+                                    'hypertension' => "Aucun"
                                 ],
                                 'over_10' => [
                                     'none' => "Aucun",
                                     'diabetes' => "Aucun",
-                                    'hypertension' => "Aucun",
-                                    'cardio' => "Aucun"
+                                    'hypertension' => "Aucun"
                                 ],
                             ],
                             'fitness' => [
                                 'none' => "Aucun",
                                 'diabetes' => "Aucun",
-                                'hypertension' => "Aucun",
-                                'cardio' => "Aucun"
+                                'hypertension' => "Aucun"
                             ]
                         ],
                         'Perdre plus de 10Kg: Moyen 800 kcal' => [
@@ -25742,27 +22475,23 @@ Aucun"
                                 'under_5' => [
                                     'none' => "Aucun",
                                     'diabetes' => "Aucun",
-                                    'hypertension' => "Aucun",
-                                    'cardio' => "Aucun"
+                                    'hypertension' => "Aucun"
                                 ],
                                 '5_10' => [
                                     'none' => "Aucun",
                                     'diabetes' => "Aucun",
-                                    'hypertension' => "Aucun",
-                                    'cardio' => "Aucun"
+                                    'hypertension' => "Aucun"
                                 ],
                                 'over_10' => [
                                     'none' => "Aucun",
                                     'diabetes' => "Aucun",
-                                    'hypertension' => "Aucun",
-                                    'cardio' => "Aucun"
+                                    'hypertension' => "Aucun"
                                 ],
                             ],
                             'fitness' => [
                                 'none' => "Aucun",
                                 'diabetes' => "Aucun",
-                                'hypertension' => "Aucun",
-                                'cardio' => "Aucun"
+                                'hypertension' => "Aucun"
                             ]
                         ],
                         'Perdre plus de 10Kg: Serein 900 kcal' => [
@@ -25770,39 +22499,34 @@ Aucun"
                                 'under_5' => [
                                     'none' => "Aucun",
                                     'diabetes' => "Aucun",
-                                    'hypertension' => "Aucun",
-                                    'cardio' => "Aucun"
+                                    'hypertension' => "Aucun"
                                 ],
                                 '5_10' => [
                                     'none' => "Aucun",
                                     'diabetes' => "Aucun",
-                                    'hypertension' => "Aucun",
-                                    'cardio' => "Aucun"
+                                    'hypertension' => "Aucun"
                                 ],
                                 'over_10' => [
                                     'none' => "Aucun",
                                     'diabetes' => "Aucun",
-                                    'hypertension' => "Aucun",
-                                    'cardio' => "Aucun"
+                                    'hypertension' => "Aucun"
                                 ],
                             ],
                             'fitness' => [
                                 'none' => "Aucun",
                                 'diabetes' => "Aucun",
-                                'hypertension' => "Aucun",
-                                'cardio' => "Aucun"
+                                'hypertension' => "Aucun"
                             ]
                         ],
                     ],
                 ],
-            ],
-        ];
+            ];
         // LOGIQUE D'INSERTION CORRIGÉE POUR ID 1
         $recommendations = [];
         $objectives   = ['weight_loss', 'fitness'];
         $ranges       = ['under_5', '5_10', 'over_10'];
         // CORRECTION 1 : uniquement les clés réellement présentes dans $donnees
-        $pathologies  = ['none', 'diabetes', 'hypertension', 'cardio'];
+        $pathologies  = ['none', 'diabetes', 'hypertension'];
 
         /**
          * CORRECTION 2 : aplatissement récursif des réponses imbriquées.
