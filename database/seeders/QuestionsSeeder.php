@@ -25,7 +25,7 @@ class QuestionsSeeder extends Seeder
 
             'mod_antecedents' => [
                 'maladie_chronique_id' => 1,
-                'texte_question' => "Avez-vous des antécédents de diabète de type 2, d'hypertension artérielle ou de maladies cardiovasculaires ?",
+                'texte_question' => "Avez-vous des antécédents de diabète de type 2 ou d'hypertension artérielle ?",
                 'possible_answers' => $yes_or_no,
             ],
             'mod_antecedents_lequel' => [
@@ -52,10 +52,6 @@ class QuestionsSeeder extends Seeder
                     'Médicaments pour baisser la glycémie (ex : metformine, glimepiride…)',
                     'Aucun de ces médicaments',
                 ],
-            ],
-            'mod_repas_journee' => [
-                'maladie_chronique_id' => 1,
-                'texte_question' => 'Pouvez-vous décrire une journée typique de vos repas et collations ?',
             ],
             'mod_fruits_legumes' => [
                 'maladie_chronique_id' => 1,
@@ -164,7 +160,7 @@ class QuestionsSeeder extends Seeder
 
             'sev_problemes_sante' => [
                 'maladie_chronique_id' => 2,
-                'texte_question' => "Avez-vous été diagnostiqué avec des problèmes de santé liés à l'obésité, comme le diabète de type 2, l'hypertension ou l'hypercholestérolémie ?",
+                'texte_question' => "Avez-vous été diagnostiqué avec des problèmes de santé liés à l'obésité, comme le diabète de type 2 ou l'hypertension ?",
                 'possible_answers' => $yes_or_no,
             ],
             'sev_problemes_sante_lequel' => [
@@ -253,15 +249,6 @@ class QuestionsSeeder extends Seeder
                 'texte_question' => 'Quelles activités physiques appréciez-vous ?',
                 'possible_answers' => ['Marche', 'Yoga', 'Autre'],
             ],
-            'sev_frequence_cardiaque' => [
-                'maladie_chronique_id' => 2,
-                'texte_question' => 'Connaissez-vous votre fréquence cardiaque au repos ?',
-                'possible_answers' => $yes_or_no,
-            ],
-            'sev_frequence_cardiaque_valeur' => [
-                'maladie_chronique_id' => 2,
-                'texte_question' => 'Si oui, veuillez- nous la donner ?',
-            ],
             'sev_ressenti_poids' => [
                 'maladie_chronique_id' => 2,
                 'texte_question' => 'Comment décririez-vous votre ressenti personnel par rapport à votre poids ?',
@@ -336,7 +323,6 @@ class QuestionsSeeder extends Seeder
             'sev_boissons_detail'                => ['parent' => 'sev_boissons',               'trigger' => 'Oui'],
             'sev_douleurs_frequence'             => ['parent' => 'sev_douleurs',               'trigger' => 'Oui'],
             'sev_regime_poids_perdu'             => ['parent' => 'sev_regime_recemment',      'trigger' => 'Oui'],
-            'sev_frequence_cardiaque_valeur'     => ['parent' => 'sev_frequence_cardiaque',   'trigger' => 'Oui'],
         ];
 
         foreach ($links as $childKey => $link) {
